@@ -17,7 +17,7 @@ HYGIEA is an offline tablet app that turns a one-minute daily check of the six i
 `[public link to the ≤30-second video (English captions) OR the ≤7-slide deck — choose ONE, no login required]`
 
 ## Link to Final Project
-`[public GitHub repo, e.g. https://github.com/ibeastmanish/hygiea]` · Live demo: `[https://ibeastmanish.github.io/hygiea/]`
+https://github.com/ibeastmanish/hygiea · Live demo: https://ibeastmanish.github.io/hygiea/
 
 ## Detailed Project Description
 

@@ -1,7 +1,7 @@
 # HYGIEA
 ### *Health for the Artemis generation.*
 
-**Live demo:** `https://<github-user>.github.io/hygiea/` *(set after the first deploy)* · [![CI](../../actions/workflows/ci.yml/badge.svg)](../../actions/workflows/ci.yml)
+**Live demo:** https://ibeastmanish.github.io/hygiea/ · [![CI](https://github.com/ibeastmanish/hygiea/actions/workflows/ci.yml/badge.svg)](https://github.com/ibeastmanish/hygiea/actions/workflows/ci.yml)
 
 HYGIEA is an offline tablet app that turns a quick daily check of six health indicators into a clear answer (green, yellow or red). It explains the answer in plain words on a clickable body map, tells the astronaut what to do, and alerts the crew doctor and Earth only when it's serious.
 
