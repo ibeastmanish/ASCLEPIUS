@@ -1,0 +1,46 @@
+{
+  "name": "hygiea",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Offline daily health self-check for astronauts. Decision support, not a medical device.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint src",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "data": "python3 analysis/build_app_data.py && python3 analysis/inspiration4_baseline.py",
+    "data:fetch": "python3 analysis/fetch_nasa_data.py",
+    "tauri": "tauri",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build",
+    "desktop:test": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "desktop:selftest": "tauri build --debug --no-bundle && HYGIEA_SELFTEST=1 src-tauri/target/debug/hygiea-desktop"
+  },
+  "dependencies": {
+    "@tauri-apps/api": "~2.9.1",
+    "dexie": "^4.4.7",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.4",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-basic-ssl": "^2.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "ajv": "^8.20.0",
+    "fake-indexeddb": "^6.2.7",
+    "fast-check": "^4.10.2",
+    "oxlint": "^1.89.0",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.5",
+    "vite-plugin-pwa": "^2.0.0",
+    "vitest": "^5.1.0"
+  }
+}

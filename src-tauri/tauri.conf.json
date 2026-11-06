@@ -1,0 +1,44 @@
+{
+  "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+  "productName": "HYGIEA",
+  "version": "1.0.0",
+  "identifier": "org.teamhygiea.hygiea",
+  "build": {
+    "frontendDist": "../dist",
+    "devUrl": "http://localhost:5173",
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "HYGIEA",
+        "width": 1180,
+        "height": 820,
+        "minWidth": 380,
+        "minHeight": 600,
+        "center": true,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; worker-src 'self' blob:; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": ["app", "dmg"],
+    "category": "Medical",
+    "shortDescription": "Offline daily health self-check for astronauts",
+    "longDescription": "HYGIEA turns a quick daily check of six health indicators into a clear green, yellow or red answer, fully offline. Decision support, not a medical device.",
+    "copyright": "Copyright (c) 2026 Manish Tula and Team HYGIEA. MIT License.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

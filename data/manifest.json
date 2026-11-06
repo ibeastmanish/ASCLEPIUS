@@ -1,0 +1,60 @@
+{
+ "project": "HYGIEA",
+ "event": "NASA Space Apps Challenge 2026",
+ "files": {
+  "raw/horizons_earth_mars.json": {
+   "source": "JPL Horizons API",
+   "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND='499'&EPHEM_TYPE=OBSERVER&CENTER='500@399'&START_TIME='2026-11-01'&STOP_TIME='2029-12-31'&STEP_SIZE='1 d'&QUANTITIES='20,23'&CSV_FORMAT=YES",
+   "fetched_utc": "2026-11-03T15:10:51+00:00",
+   "bytes": 199045,
+   "sha256": "fe96a7bdb3228706cb698847c9a6d4bd5b22d1eeb8fe7587ff4f21556f18352c",
+   "note": "Daily Earth-Mars range, light time, elongation"
+  },
+  "raw/osdr_OSD-569_metadata.json": {
+   "source": "NASA OSDR",
+   "url": "https://visualization.osdr.nasa.gov/biodata/api/v2/dataset/OSD-569/",
+   "fetched_utc": "2026-11-03T15:11:18+00:00",
+   "bytes": 17069,
+   "sha256": "c56f692919262e26e1d533973e17549d6a7bd64491cbde8c682767ab5bb9b4fb",
+   "note": "OSD-569 study metadata (Inspiration4)"
+  },
+  "raw/LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv": {
+   "source": "NASA OSDR",
+   "url": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-569/download?source=datamanager&file=LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+   "fetched_utc": "2026-11-03T15:11:20+00:00",
+   "bytes": 9317,
+   "sha256": "32e4f9c97d3b636b5d5c2e72dab8c4d3319dee64c437508b092dad04603b2b8f",
+   "note": "OSD-569 Inspiration4 crew data (real human spaceflight)"
+  },
+  "raw/osdr_OSD-575_metadata.json": {
+   "source": "NASA OSDR",
+   "url": "https://visualization.osdr.nasa.gov/biodata/api/v2/dataset/OSD-575/",
+   "fetched_utc": "2026-11-03T15:11:21+00:00",
+   "bytes": 9464,
+   "sha256": "1b48ae38ac31d37929d5dbcc922794929af002023bbf432de16737fb5d3f3dab",
+   "note": "OSD-575 study metadata (Inspiration4)"
+  },
+  "raw/LSDS-8_Comprehensive_Metabolic_Panel_CMP_TRANSFORMED.csv": {
+   "source": "NASA OSDR",
+   "url": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-575/download?source=datamanager&file=LSDS-8_Comprehensive_Metabolic_Panel_CMP_TRANSFORMED.csv",
+   "fetched_utc": "2026-11-03T15:11:23+00:00",
+   "bytes": 8506,
+   "sha256": "5eb1e7f025dd8443a9e70111e62bc32afae3432753024489c5c013e401d709d9",
+   "note": "OSD-575 Inspiration4 crew data (real human spaceflight)"
+  },
+  "../src/data/horizons_delay.json": {
+   "source": "derived",
+   "url": "analysis/build_app_data.py",
+   "bytes": 16032,
+   "sha256": "c18e3f0e6a5c6ed23b03c471892ec3be02804e5ecc03d0df80bd4f497da3d211",
+   "note": "App data generated from data/raw by the script in url"
+  },
+  "../src/data/i4_summary.json": {
+   "source": "derived",
+   "url": "analysis/inspiration4_baseline.py",
+   "bytes": 26180,
+   "sha256": "26fe67d096d05a60075ba6e5938a1e8ed2280eaadd3d28f365fbd131711fb215",
+   "note": "App data generated from data/raw by the script in url"
+  }
+ }
+}

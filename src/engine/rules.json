@@ -1,0 +1,163 @@
+{
+  "$schema": "./rules.schema.json",
+  "version": "1.0.0",
+  "note": "Every threshold is either cited or marked project-defined. All [VERIFY] items must be checked against the source before submission. Decision support, not a medical device.",
+  "indicators": {
+    "bp_sys": {
+      "label": "Blood pressure (systolic)",
+      "short": "Systolic",
+      "unit": "mmHg",
+      "region": "heart",
+      "step": 1,
+      "decimals": 0,
+      "valid": { "ruleId": "BP-V1", "gte": 60, "lte": 260 },
+      "redflags": [
+        { "ruleId": "BP-R1", "gte": 180, "text": "Systolic pressure of 180 or more is a hypertensive crisis level.", "source": "AHA/ACC 2017 BP categories [VERIFY]" }
+      ],
+      "clinical": { "ruleId": "BP-C1", "green": { "lt": 130 }, "source": "AHA/ACC 2017 BP categories [VERIFY]" },
+      "personal": { "ruleId": "BP-P1", "minHalfWidth": 8, "direction": "both" },
+      "guidance": { "yellow": "bp-yellow", "red": "bp-red", "green": "heart-green" }
+    },
+    "bp_dia": {
+      "label": "Blood pressure (diastolic)",
+      "short": "Diastolic",
+      "unit": "mmHg",
+      "region": "heart",
+      "step": 1,
+      "decimals": 0,
+      "valid": { "ruleId": "BP-V2", "gte": 30, "lte": 160 },
+      "redflags": [
+        { "ruleId": "BP-R2", "gte": 120, "text": "Diastolic pressure of 120 or more is a hypertensive crisis level.", "source": "AHA/ACC 2017 BP categories [VERIFY]" }
+      ],
+      "clinical": { "ruleId": "BP-C2", "green": { "lt": 80 }, "source": "AHA/ACC 2017 BP categories [VERIFY]" },
+      "personal": { "ruleId": "BP-P2", "minHalfWidth": 6, "direction": "both" },
+      "guidance": { "yellow": "bp-yellow", "red": "bp-red", "green": "heart-green" }
+    },
+    "hr": {
+      "label": "Heart rate (resting)",
+      "short": "Heart rate",
+      "unit": "bpm",
+      "region": "heart",
+      "step": 1,
+      "decimals": 0,
+      "valid": { "ruleId": "HR-V1", "gte": 25, "lte": 220 },
+      "redflags": [
+        { "ruleId": "HR-R1", "lt": 40, "text": "A resting heart rate under 40 needs help now.", "source": "Project-defined red limit (clinical convention)" },
+        { "ruleId": "HR-R2", "gt": 130, "text": "A resting heart rate over 130 needs help now.", "source": "Project-defined red limit (clinical convention)" }
+      ],
+      "clinical": { "ruleId": "HR-C1", "green": { "gte": 60, "lte": 100 }, "source": "Clinical convention: adult resting HR 60-100 bpm [VERIFY]" },
+      "personal": { "ruleId": "HR-P1", "minHalfWidth": 5, "direction": "both", "clearsClinicalLow": true, "clearsNote": "Athletic resting heart rate: 50-59 bpm inside your own pre-learned normal is green. Red flags (< 40) are never cleared. Team decision - confirm with a flight surgeon [VERIFY]." },
+      "guidance": { "yellow": "hr-yellow", "red": "hr-red", "green": "heart-green" }
+    },
+    "glucose": {
+      "label": "Blood sugar",
+      "short": "Blood sugar",
+      "unit": "mg/dL",
+      "region": "blood",
+      "step": 1,
+      "decimals": 0,
+      "valid": { "ruleId": "GL-V1", "gte": 20, "lte": 600 },
+      "redflags": [
+        { "ruleId": "GL-R1", "lt": 54, "text": "Blood sugar under 54 mg/dL is clinically significant low sugar.", "source": "ADA hypoglycaemia level 2 [VERIFY]" },
+        { "ruleId": "GL-R2", "gte": 250, "text": "Blood sugar of 250 mg/dL or more needs help now.", "source": "Project-defined red limit" }
+      ],
+      "clinical": { "ruleId": "GL-C1", "green": { "gte": 70, "lt": 100 }, "source": "ADA fasting glucose categories [VERIFY]" },
+      "personal": { "ruleId": "GL-P1", "minHalfWidth": 10, "direction": "both" },
+      "guidance": { "yellow": "glucose-yellow", "red": "glucose-red", "green": "blood-green" }
+    },
+    "temp": {
+      "label": "Body temperature",
+      "short": "Temperature",
+      "unit": "°C",
+      "region": "skin",
+      "step": 0.1,
+      "decimals": 1,
+      "valid": { "ruleId": "TP-V1", "gte": 30, "lte": 43 },
+      "redflags": [
+        { "ruleId": "TP-R1", "gte": 39.5, "text": "A temperature of 39.5 °C or more is a high fever.", "source": "Project-defined red limit (clinical convention)" },
+        { "ruleId": "TP-R2", "lt": 35.0, "text": "A temperature under 35.0 °C is too cold for the body.", "source": "Project-defined red limit (clinical convention)" }
+      ],
+      "clinical": { "ruleId": "TP-C1", "green": { "gte": 36.1, "lt": 38.0 }, "source": "Clinical convention: 36.1-37.9 °C [VERIFY]" },
+      "personal": { "ruleId": "TP-P1", "minHalfWidth": 0.3, "direction": "both" },
+      "guidance": { "yellow": "temp-yellow", "red": "temp-red", "green": "skin-green" }
+    },
+    "sleep": {
+      "label": "Sleep last night",
+      "short": "Sleep",
+      "unit": "h",
+      "region": "brain",
+      "step": 0.5,
+      "decimals": 1,
+      "valid": { "ruleId": "SL-V1", "gte": 0, "lte": 16 },
+      "redflags": [],
+      "clinical": { "ruleId": "SL-C1", "green": { "gte": 7 }, "source": "AASM/SRS adult recommendation: 7 h or more [VERIFY]" },
+      "personal": { "ruleId": "SL-P1", "minHalfWidth": 0.75, "direction": "low" },
+      "guidance": { "yellow": "sleep-yellow", "red": "sleep-red", "green": "brain-green" }
+    },
+    "mood": {
+      "label": "Mood",
+      "short": "Mood",
+      "unit": "/5",
+      "region": "brain",
+      "step": 1,
+      "decimals": 0,
+      "valid": { "ruleId": "MD-V1", "gte": 1, "lte": 5 },
+      "redflags": [],
+      "clinical": { "ruleId": "MD-C1", "green": { "gte": 3 }, "source": "Project-defined" },
+      "personal": { "ruleId": "MD-P1", "minHalfWidth": 1, "direction": "low" },
+      "guidance": { "yellow": "mood-yellow", "red": "mood-yellow", "green": "brain-green" }
+    },
+    "crt": {
+      "label": "Capillary refill (fingertip)",
+      "short": "Perfusion",
+      "unit": "s",
+      "region": "heart",
+      "step": 0.1,
+      "decimals": 1,
+      "valid": { "ruleId": "CR-V1", "gte": 0.2, "lte": 10 },
+      "redflags": [
+        { "ruleId": "CR-R1", "gte": 4.5, "text": "A capillary refill time of 4.5 seconds or more needs help now.", "source": "Project-defined red limit; delayed capillary refill is a recognised bedside sign of poor peripheral perfusion [VERIFY]" }
+      ],
+      "clinical": { "ruleId": "CR-C1", "green": { "lt": 3.0 }, "source": "Clinical convention: capillary refill under roughly 2-3 s is usually considered normal in adults at room temperature [VERIFY]" },
+      "personal": { "ruleId": "CR-P1", "minHalfWidth": 0.4, "direction": "both" },
+      "guidance": { "yellow": "crt-yellow", "red": "crt-red", "green": "heart-green" }
+    }
+  },
+  "symptoms": {
+    "ruleId": "SY-R1",
+    "source": "Project-defined, based on standard emergency warning signs",
+    "list": {
+      "chest_pain": "Chest pain",
+      "breathing": "Trouble breathing",
+      "fainting": "Fainting",
+      "weakness": "Sudden weakness or numbness",
+      "confusion": "Confusion",
+      "headache": "Severe headache"
+    }
+  },
+  "context": {
+    "exercise": { "label": "After exercise", "skipPersonal": ["hr", "bp_sys", "bp_dia"], "minutes": 30 },
+    "eva": { "label": "After EVA", "skipPersonal": ["hr"], "minutes": 60, "tip": "hydrate" },
+    "caffeine": { "label": "Caffeine", "skipPersonal": ["hr"], "minutes": 60 },
+    "medication": { "label": "Medication", "skipPersonal": [] },
+    "woke": { "label": "Just woke up", "skipPersonal": [] },
+    "unwell": { "label": "Unwell", "skipPersonal": [], "lowerCmoThreshold": true }
+  },
+  "trends": {
+    "TR-SLEEP-3": { "indicator": "sleep", "days": 3, "lt": 6, "status": "yellow", "source": "Project-defined" },
+    "TR-SLEEP-RED": { "indicator": "sleep", "days": 2, "lt": 4, "status": "red", "source": "Project-defined" },
+    "TR-MOOD-3": { "indicator": "mood", "days": 3, "belowMedianBy": 1, "status": "yellow", "source": "Project-defined" },
+    "TR-HR-3": { "indicator": "hr", "days": 3, "aboveBand": true, "status": "yellow", "source": "Project-defined" }
+  },
+  "patterns": {
+    "PT-FATIGUE": { "label": "Fatigue pattern", "regions": ["brain", "heart"], "guidance": "pattern-fatigue", "tellCmo": false, "source": "Project-defined" },
+    "PT-FEVER": { "label": "Possible infection", "regions": ["skin", "heart"], "guidance": "pattern-fever", "feverGte": 38.0, "tellCmo": true, "source": "Project-defined" }
+  },
+  "baseline": {
+    "learningChecks": 7,
+    "window": 30,
+    "madScale": 1.4826,
+    "k": 2.5,
+    "ewmaAlpha": 0.05
+  }
+}

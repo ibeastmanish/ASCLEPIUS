@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HYGIEA rules",
+  "type": "object",
+  "required": ["version", "indicators", "symptoms", "context", "trends", "patterns", "baseline"],
+  "$defs": {
+    "cond": {
+      "type": "object",
+      "properties": {
+        "gt": { "type": "number" }, "gte": { "type": "number" },
+        "lt": { "type": "number" }, "lte": { "type": "number" }
+      },
+      "minProperties": 1
+    },
+    "ruleId": { "type": "string", "pattern": "^[A-Z]{2}-[A-Z0-9-]+$" },
+    "indicator": {
+      "type": "object",
+      "required": ["label", "short", "unit", "region", "step", "decimals", "valid", "redflags", "clinical", "personal", "guidance"],
+      "properties": {
+        "label": { "type": "string" },
+        "short": { "type": "string" },
+        "unit": { "type": "string" },
+        "region": { "enum": ["brain", "heart", "blood", "skin"] },
+        "step": { "type": "number", "exclusiveMinimum": 0 },
+        "decimals": { "type": "integer", "minimum": 0 },
+        "valid": {
+          "allOf": [{ "$ref": "#/$defs/cond" }],
+          "required": ["ruleId"],
+          "properties": { "ruleId": { "$ref": "#/$defs/ruleId" } }
+        },
+        "redflags": {
+          "type": "array",
+          "items": {
+            "allOf": [{ "$ref": "#/$defs/cond" }],
+            "required": ["ruleId", "text", "source"],
+            "properties": { "ruleId": { "$ref": "#/$defs/ruleId" }, "text": { "type": "string" }, "source": { "type": "string" } }
+          }
+        },
+        "clinical": {
+          "type": "object",
+          "required": ["ruleId", "green", "source"],
+          "properties": { "ruleId": { "$ref": "#/$defs/ruleId" }, "green": { "$ref": "#/$defs/cond" }, "source": { "type": "string" } }
+        },
+        "personal": {
+          "type": "object",
+          "required": ["ruleId", "minHalfWidth", "direction"],
+          "properties": {
+            "ruleId": { "$ref": "#/$defs/ruleId" },
+            "minHalfWidth": { "type": "number", "exclusiveMinimum": 0 },
+            "direction": { "enum": ["both", "low", "high"] },
+            "clearsClinicalLow": { "type": "boolean" },
+            "clearsNote": { "type": "string" }
+          }
+        },
+        "guidance": {
+          "type": "object",
+          "required": ["green", "yellow", "red"],
+          "properties": { "green": { "type": "string" }, "yellow": { "type": "string" }, "red": { "type": "string" } }
+        }
+      }
+    }
+  },
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "indicators": {
+      "type": "object",
+      "required": ["bp_sys", "bp_dia", "hr", "glucose", "temp", "sleep", "mood"],
+      "additionalProperties": { "$ref": "#/$defs/indicator" }
+    },
+    "symptoms": { "type": "object", "required": ["ruleId", "source", "list"] },
+    "context": { "type": "object" },
+    "trends": { "type": "object" },
+    "patterns": { "type": "object" },
+    "baseline": {
+      "type": "object",
+      "required": ["learningChecks", "window", "madScale", "k", "ewmaAlpha"]
+    }
+  }
+}

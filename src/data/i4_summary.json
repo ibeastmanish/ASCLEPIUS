@@ -1,0 +1,1303 @@
+{
+ "appBand": {
+  "k": 2.5,
+  "learningChecks": 7,
+  "madScale": 1.4826,
+  "note": "HYGIEA's own band rule (median +/- 2.5 x scaled MAD) needs 7 checks. Inspiration4 has only 3 pre-flight draws, so a band built from them is too wide and noisy to trust; the fixed 20% cut-off is used here instead. 'Outside app band' shows what the app's rule would say with those 3 draws.",
+  "preflightDraws": 3
+ },
+ "caveat": "4 civilian crew, 3-day low-Earth-orbit flight, blood drawn after landing. Small sample: this illustrates the idea of personal baselines; it is not clinical evidence and not a prediction for Mars missions.",
+ "driftPct": 20.0,
+ "markers": [
+  {
+   "crew": [
+    {
+     "baseline": 2241.0,
+     "crew": "C001",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-92",
+       "value": 2241.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -17.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-44",
+       "value": 1859.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 19.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-3",
+       "value": 2667.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -26.8,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+1",
+       "value": 1640.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -4.2,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+45",
+       "value": 2146.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -3.1,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+82",
+       "value": 2171.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -17.6,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+194",
+       "value": 1847.0
+      }
+     ]
+    },
+    {
+     "baseline": 2119.0,
+     "crew": "C002",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-92",
+       "value": 2119.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -6.5,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-44",
+       "value": 1982.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 35.6,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-3",
+       "value": 2873.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -27.3,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+1",
+       "value": 1540.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": 35.6,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+45",
+       "value": 2874.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -19.7,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+82",
+       "value": 1701.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 21.4,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+194",
+       "value": 2573.0
+      }
+     ]
+    },
+    {
+     "baseline": 3156.0,
+     "crew": "C003",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": false,
+       "pctVsBaseline": 116.3,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-92",
+       "value": 6826.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -34.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-44",
+       "value": 2083.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-3",
+       "value": 3156.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -33.9,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+1",
+       "value": 2086.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -24.6,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+45",
+       "value": 2379.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 2.9,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+82",
+       "value": 3247.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -29.7,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+194",
+       "value": 2220.0
+      }
+     ]
+    },
+    {
+     "baseline": 1786.0,
+     "crew": "C004",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-92",
+       "value": 1786.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -9.7,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-44",
+       "value": 1613.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 65.0,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "L-3",
+       "value": 2947.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 20.7,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+1",
+       "value": 2155.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 8.5,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+45",
+       "value": 1938.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 29.2,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+82",
+       "value": 2307.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": 47.8,
+       "refHigh": 3900.0,
+       "refLow": 850.0,
+       "timepoint": "R+194",
+       "value": 2639.0
+      }
+     ]
+    }
+   ],
+   "file": "LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+   "label": "Lymphocytes",
+   "marker": "absolute_lymphocytes",
+   "r1": {
+    "hiddenDrift": 4,
+    "insideClinical": 4,
+    "n": 4,
+    "outsideAppBand": 1
+   },
+   "study": "OSD-569",
+   "unit": "cells/µL"
+  },
+  {
+   "crew": [
+    {
+     "baseline": 2998.0,
+     "crew": "C001",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -21.6,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-92",
+       "value": 2349.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-44",
+       "value": 2998.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 19.1,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-3",
+       "value": 3570.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -10.4,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+1",
+       "value": 2685.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -26.6,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+45",
+       "value": 2200.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -33.5,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+82",
+       "value": 1994.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -20.2,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+194",
+       "value": 2391.0
+      }
+     ]
+    },
+    {
+     "baseline": 3701.0,
+     "crew": "C002",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.1,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-92",
+       "value": 3705.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -22.4,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-44",
+       "value": 2873.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-3",
+       "value": 3701.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -10.1,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+1",
+       "value": 3328.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -25.3,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+45",
+       "value": 2765.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -15.4,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+82",
+       "value": 3132.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -15.6,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+194",
+       "value": 3123.0
+      }
+     ]
+    },
+    {
+     "baseline": 5792.0,
+     "crew": "C003",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": false,
+       "pctVsBaseline": -99.8,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-92",
+       "value": 10.1
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 10.6,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-44",
+       "value": 6408.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-3",
+       "value": 5792.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -29.4,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+1",
+       "value": 4088.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -20.3,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+45",
+       "value": 4618.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -21.0,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+82",
+       "value": 4576.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -28.3,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+194",
+       "value": 4151.0
+      }
+     ]
+    },
+    {
+     "baseline": 4766.0,
+     "crew": "C004",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-92",
+       "value": 4766.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -22.4,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-44",
+       "value": 3699.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 32.6,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "L-3",
+       "value": 6318.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -5.0,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+1",
+       "value": 4528.0
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -24.1,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+45",
+       "value": 3618.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -8.5,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+82",
+       "value": 4361.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -11.9,
+       "refHigh": 7800.0,
+       "refLow": 1500.0,
+       "timepoint": "R+194",
+       "value": 4200.0
+      }
+     ]
+    }
+   ],
+   "file": "LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+   "label": "Neutrophils",
+   "marker": "absolute_neutrophils",
+   "r1": {
+    "hiddenDrift": 1,
+    "insideClinical": 4,
+    "n": 4,
+    "outsideAppBand": 1
+   },
+   "study": "OSD-569",
+   "unit": "cells/µL"
+  },
+  {
+   "crew": [
+    {
+     "baseline": 5.5,
+     "crew": "C001",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -1.8,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-92",
+       "value": 5.4
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-44",
+       "value": 5.5
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 27.3,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-3",
+       "value": 7.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -9.1,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+1",
+       "value": 5.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -10.9,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+45",
+       "value": 4.9
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -10.9,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+82",
+       "value": 4.9
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -10.9,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+194",
+       "value": 4.9
+      }
+     ]
+    },
+    {
+     "baseline": 6.5,
+     "crew": "C002",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-92",
+       "value": 6.5
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -16.9,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-44",
+       "value": 5.4
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 10.8,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-3",
+       "value": 7.2
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -15.4,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+1",
+       "value": 5.5
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -1.5,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+45",
+       "value": 6.4
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -18.5,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+82",
+       "value": 5.3
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -1.5,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+194",
+       "value": 6.4
+      }
+     ]
+    },
+    {
+     "baseline": 9.6,
+     "crew": "C003",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-92",
+       "value": 9.6
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -3.1,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-44",
+       "value": 9.3
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 2.1,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-3",
+       "value": 9.8
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -27.1,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+1",
+       "value": 7.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -18.7,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+45",
+       "value": 7.8
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -8.3,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+82",
+       "value": 8.8
+      },
+      {
+       "hiddenDrift": true,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": -22.9,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+194",
+       "value": 7.4
+      }
+     ]
+    },
+    {
+     "baseline": 7.7,
+     "crew": "C004",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-92",
+       "value": 7.7
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -16.9,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-44",
+       "value": 6.4
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 37.7,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "L-3",
+       "value": 10.6
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 5.2,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+1",
+       "value": 8.1
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -11.7,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+45",
+       "value": 6.8
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 2.6,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+82",
+       "value": 7.9
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 7.8,
+       "refHigh": 10.8,
+       "refLow": 3.8,
+       "timepoint": "R+194",
+       "value": 8.3
+      }
+     ]
+    }
+   ],
+   "file": "LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+   "label": "White blood cells",
+   "marker": "white_blood_cell_count",
+   "r1": {
+    "hiddenDrift": 1,
+    "insideClinical": 4,
+    "n": 4,
+    "outsideAppBand": 2
+   },
+   "study": "OSD-569",
+   "unit": "thousand/µL"
+  },
+  {
+   "crew": [
+    {
+     "baseline": 80.0,
+     "crew": "C001",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 3.8,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-92",
+       "value": 83.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-44",
+       "value": 80.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -13.8,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-3",
+       "value": 69.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 12.5,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+1",
+       "value": 90.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 5.0,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+45",
+       "value": 84.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 13.8,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+82",
+       "value": 91.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 8.8,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+194",
+       "value": 87.0
+      }
+     ]
+    },
+    {
+     "baseline": 72.0,
+     "crew": "C002",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -4.2,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-92",
+       "value": 69.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-44",
+       "value": 72.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 8.3,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-3",
+       "value": 78.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 15.3,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+1",
+       "value": 83.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": true,
+       "pctVsBaseline": -38.9,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+45",
+       "value": 44.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 6.9,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+82",
+       "value": 77.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": true,
+       "pctVsBaseline": 16.7,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+194",
+       "value": 84.0
+      }
+     ]
+    },
+    {
+     "baseline": 75.0,
+     "crew": "C003",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 2.7,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-92",
+       "value": 77.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": false,
+       "pctVsBaseline": -17.3,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-44",
+       "value": 62.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-3",
+       "value": 75.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": true,
+       "pctVsBaseline": 37.3,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+1",
+       "value": 103.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": true,
+       "pctVsBaseline": -52.0,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+45",
+       "value": 36.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 6.7,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+82",
+       "value": 80.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -2.7,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+194",
+       "value": 73.0
+      }
+     ]
+    },
+    {
+     "baseline": 83.0,
+     "crew": "C004",
+     "points": [
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": false,
+       "pctVsBaseline": 20.5,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-92",
+       "value": 100.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 0.0,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-44",
+       "value": 83.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": false,
+       "pctVsBaseline": -32.5,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "L-3",
+       "value": 56.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 16.9,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+1",
+       "value": 97.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": false,
+       "outsideAppBand": false,
+       "pctVsBaseline": -48.2,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+45",
+       "value": 43.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": -3.6,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+82",
+       "value": 80.0
+      },
+      {
+       "hiddenDrift": false,
+       "insideClinical": true,
+       "outsideAppBand": false,
+       "pctVsBaseline": 1.2,
+       "refHigh": 99.0,
+       "refLow": 65.0,
+       "timepoint": "R+194",
+       "value": 84.0
+      }
+     ]
+    }
+   ],
+   "file": "LSDS-8_Comprehensive_Metabolic_Panel_CMP_TRANSFORMED.csv",
+   "label": "Glucose",
+   "marker": "glucose",
+   "r1": {
+    "hiddenDrift": 0,
+    "insideClinical": 3,
+    "n": 4,
+    "outsideAppBand": 1
+   },
+   "study": "OSD-575",
+   "unit": "mg/dL"
+  }
+ ],
+ "method": "Personal baseline = median of L-92, L-44, L-3. Change = % vs. that baseline. Hidden drift = inside the lab reference range but more than 20% from the person's own baseline (project-defined cut-off).",
+ "sources": [
+  {
+   "id": "OSD-569",
+   "url": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-569",
+   "what": "Complete blood count"
+  },
+  {
+   "id": "OSD-575",
+   "url": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-575",
+   "what": "Comprehensive metabolic panel"
+  }
+ ],
+ "title": "Inspiration4: clinically normal, personally changed"
+}
