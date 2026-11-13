@@ -19,9 +19,9 @@ Every reading is checked against the usual adult range **and** the astronaut's o
 
 ## Operating Context
 - Offline PWA (installable) plus a Tauri desktop build that signs and encrypts Earth messages with the team's Hermes OpenPGP library.
-- Demo flow judges follow: setup with a simulated crew member (Commander Asha Rao, Day 212, fictional) → daily check → body map with fatigue pattern → red alert with Earth outbox → Sun blackout replay.
+- Demo flow judges follow: setup with a simulated crew member (Commander Asha Rao, Day 212, fictional) → daily check → body map with fatigue pattern and the Earth Reply Clock → Crew Pulse (cabin CO2, fever spread) → red alert ("crew decides") with Earth outbox → Ground Station console in a second tab → Sun blackout replay.
 - Scripted video routes `?video=check|bodymap|proof|outbox` must keep working and look right on camera.
-- Screens: Unlock, Home, Daily check, Body map + region drawer, Escalation ladder, Red alert, Trends, Earth outbox, Crew reference (Inspiration4), Settings.
+- Screens: Unlock, Home, Daily check, Body map + region drawer, Escalation ladder + Earth Reply Clock, Red alert, Trends, Earth outbox, Crew Pulse (CMO view), Proof (Inspiration4), Settings (incl. rural clinic mode, Telugu). Separate page: Ground Station console (`ground.html`).
 
 ## Capabilities and Constraints
 - React 19 + Vite PWA; no server; all data encrypted on device. The engine, rules, storage and crypto are done and tested; the redesign must not change behaviour, copy facts, rules or data.
@@ -30,7 +30,7 @@ Every reading is checked against the usual adult range **and** the astronaut's o
 - Light and dark appearance both required (confirmed), following the device setting.
 
 ## Brand Commitments
-- Name **ASCLEPIUS**, tagline "Health for the Artemis generation". Team ASCLEPIUS, Warangal, India.
+- Name **ASCLEPIUS**, tagline "Medicine for when Earth is too far away". Team ASCLEPIUS, Warangal, India.
 - **NASA palette (binding, from the PRD and confirmed by the user):** space black `#000000`, white `#FFFFFF`, NASA blue `#0B3D91`, light blue `#6FA3FF`, NASA red `#FC3D21`; status green `#2EC27E`, yellow `#FFC72C`, red `#FC3D21`.
 - **Type (binding, from the PRD):** Helvetica Neue / Helvetica / Arial. Large bold values, small caps labels.
 - Motion 250-400 ms ease-out; nothing essential depends on animation.

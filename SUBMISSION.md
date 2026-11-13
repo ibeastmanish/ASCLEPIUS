@@ -1,6 +1,6 @@
 # ASCLEPIUS: Space Apps 2026 project page (draft)
 
-Paste each section into the matching field on spaceappschallenge.org. Field names follow the 2025 Project Submission Guide; **re-check them against the 2026 guide on Nov 13** and trim to any character limits it sets. Items in `[brackets]` need the team to fill in or confirm.
+Paste each section into the matching field on spaceappschallenge.org. Field names follow the 2025 Project Submission Guide; **re-check them against the 2026 guide** and trim to any character limits it sets. Items in `[brackets]` need the team to fill in or confirm.
 
 Challenge: **Create Health Monitoring Software for Astronauts on Space Missions**
 Team: **ASCLEPIUS**, Warangal, India · `[team member names, 1–6, all registered for the Warangal Local Event]`
@@ -8,85 +8,87 @@ Team: **ASCLEPIUS**, Warangal, India · `[team member names, 1–6, all register
 ---
 
 ## Project Name
-ASCLEPIUS: Health for the Artemis generation
+ASCLEPIUS: Medicine for when Earth is too far away
 
 ## High-Level Project Summary
-ASCLEPIUS is an offline tablet app that turns a one-minute daily check of the six indicators in the brief (blood pressure, heart rate, blood sugar, temperature, sleep and mood) into a green, yellow or red answer on a clickable body map, with plain-language next steps. Its twist: **normal for everyone is not normal for you.** Each reading is checked against the usual adult range **and** against the astronaut's own learned normal, and the worse result wins. NASA OSDR data from SpaceX Inspiration4 (OSD-569) shows why: the day after landing, all four crew members' lymphocyte counts were inside the lab's normal range, yet all four had moved more than 20% from their own pre-flight level. Mars is 5 to 20 minutes away by radio (NASA JPL Horizons), so the crew acts first: red alerts go to Earth signed and encrypted, showing when they arrive. The same offline design fits rural clinics on Earth.
+ASCLEPIUS is an offline health self-check for astronauts that knows whether Earth can answer in time. Each day the astronaut logs the six readings in the brief (blood pressure, heart rate, blood sugar, temperature, sleep, mood). Each one is judged against the usual adult range and against the astronaut's own learned normal, and every colour shows its rule and source. Using the real Earth–Mars light time and Sun blackouts from NASA JPL Horizons and the NASA Mars24 sol clock, the Earth Reply Clock compares when the crew must act with when a flight surgeon's answer can arrive, and tells the crew when to decide on their own. Crew Pulse looks across the whole crew to separate one sick person from bad cabin air (NASA-STD-3001 CO2 limit) or a spreading infection. Run on NASA OSDR Inspiration4 blood data (OSD-569), the same engine finds a change in all four crew that the population range calls normal. On Earth, the same clock helps rural health workers near Warangal.
 
 ## Link to Project Demo
-`[public link to the ≤30-second video (English captions) OR the ≤7-slide deck — choose ONE, no login required]`
+`[public link to the ≤30-second video (English captions) OR the ≤7-slide deck (deck_v3/ASCLEPIUS_SpaceApps2026_deck.pdf) — choose ONE, no login required]`
 
 ## Link to Final Project
-https://github.com/ibeastmanish/hygiea · Live demo: https://ibeastmanish.github.io/hygiea/
+https://github.com/ibeastmanish/hygiea · Live demo: https://ibeastmanish.github.io/hygiea/ · Ground Station console: https://ibeastmanish.github.io/hygiea/ground.html
 
 ## Detailed Project Description
 
 **What it does**
-- **Daily check (about one minute).** Six tiles, pre-filled from yesterday, with "how to measure" and "why this check" notes on each one. Readings that are steady and inside the astronaut's normal for 7 days are asked every 2–3 days instead, to save crew time.
-- **Two ranges per reading.** Each reading is checked against the usual adult range (AHA/ACC, ADA, AASM/SRS) and against a personal band learned from the astronaut's own checks (median ± 2.5 × scaled MAD, learned from 7 or more checks, drifting slowly only on green days). The result shows both ranges side by side.
-- **Body map.** Brain, heart, blood and skin regions light up green, yellow or red. Tapping a region shows what is happening, why it matters in space (linked to NASA's five hazards of human spaceflight), what to do now, and when to tell the crew medical officer.
-- **Patterns, not alarm floods.** Related signs are combined into one card. For example, short sleep, a raised heart rate and a low mood on the same day become one "Fatigue pattern" card.
-- **Escalation ladder.** Each result maps to one of four steps: all good, do the steps and recheck tonight, tell the crew medical officer, or act now. "Act now" alerts the crew medical officer and sends a summary to Earth. Warning symptoms such as chest pain or fainting are always red and can never be skipped.
-- **Earth outbox.** Red alerts and daily summaries are signed and encrypted, then queued with a real arrival time computed from the Mars–Earth light time. During solar conjunction (8 Mar – 3 Apr 2028), when the Sun blocks the radio link, messages are held and released automatically afterwards.
-- **Trends and gamification.** Charts show each reading against the personal band over time, plus streaks and badges. Badges are personal: ASCLEPIUS never compares crew members.
-- **Optional camera perfusion check (experimental).** The brief lists camera images as a valid input. ASCLEPIUS offers an optional seventh check: capillary refill time measured with the device camera, with a manual stopwatch fallback. It is kept separate from the six core readings and labelled as not clinically validated.
+- **Daily check (about one minute).** Six tiles, pre-filled from yesterday, with "how to measure" and "why this check" notes. Context chips (after exercise, after a meal, dizzy when standing, unwell…) change how a reading is judged, and warning symptoms (chest pain, fainting…) are always red.
+- **Two ranges per reading.** The usual adult range (ACC/AHA, ADA, AASM/SRS, each cited) and a personal band learned from the astronaut's own checks (median ± 2.5 × scaled MAD, 7 or more checks). The worse result wins, and both ranges are shown side by side.
+- **Body map.** Brain, heart, blood and skin light up green, yellow or red. Tapping a region shows what is happening, why it matters in space (NASA HRP hazards), what to do now, and when to tell the crew medical officer. Related signs become one card (fatigue pattern, possible infection, light-headed on standing).
+- **Escalation ladder.** All good → do the steps and recheck tonight → tell the crew medical officer → act now (CMO alerted, Earth told). A pattern, a trend over three days, yellow on three of the last five days, or feeling unwell moves a yellow up a rung.
+- **Earth Reply Clock.** For every finding: *earliest Earth answer* = light time there + flight surgeon response (on or off shift; the Mars sol drifts 39.6 min a day against Houston) + light time back, compared with the *act-by window* of the rule that fired. Three levels: Earth guides, act and Earth confirms, crew decides. During solar conjunction the crew always decides. Every input is shown with its source and marked real or assumed.
+- **Crew Pulse.** The CMO's view across the crew: the same complaint in several crew on the same sol points to the cabin (cabin CO2 vs NASA-STD-3001's 3 mmHg limit); a fever moving from one crew member to the next 1–3 sols apart points to infection; whole-crew short sleep is a schedule problem; one person flagged is individual. Mood stays private.
+- **Earth outbox and Ground Station.** Red alerts and daily digests are signed with the crew key and encrypted to the ground station's public key, with a sequence number, and queued with the real arrival time. A separate Ground Station console page receives each packet only after the real light time (or after the blackout), checks the signature, rejects replays, shows the exact decision snapshot the crew saw, and signs the surgeon's reply, which reaches the crew one light time later.
+- **Trends, streaks and personal badges** (never comparing crew members); **optional camera capillary-refill check** (experimental, labelled); **JSON and HL7 FHIR R4 export**.
+- **Delay is delay (Earth use).** Settings switch the far end from Earth to a rural clinic: the Reply Clock uses travel time and clinic hours instead of light time and the surgeon's shift. The daily check has a Telugu draft for community health workers near Warangal, Telangana.
 
 **How it works**
-React PWA with all logic on the device: no server and no internet needed after the first load. A pure TypeScript rules engine runs in a web worker and applies, in order: input validity → red flags → clinical range → personal band → multi-day trend → patterns → overall (worst wins) → escalation. Every threshold lives in a readable `rules.json` with its source. Every colour carries its rule ID, value, band and source, and **no AI is used to make health decisions**. Data is stored in an append-only event log in IndexedDB, with each event encrypted with AES-GCM-256 using a key derived from the passphrase (PBKDF2, 600,000 iterations). A desktop build (Tauri) signs and encrypts Earth messages with OpenPGP through the team's open-source Hermes library. Records export as JSON or HL7 FHIR R4.
+React PWA with all logic on the device: no server, no internet after the first load. A pure TypeScript rules engine runs in a web worker: validity → red flags → clinical range → personal band → multi-day trend → patterns → overall (worst wins) → escalation → Reply Clock. Every threshold lives in a readable `rules.json` with its source (NASA-STD-3001 where it gives a limit, named terrestrial guidelines where it does not). **No AI is used to make health decisions.** Data is an append-only event log in IndexedDB, each event encrypted with AES-GCM-256 using a key derived from the passphrase (PBKDF2, 600,000 iterations). The Ground Station console is a second static page with its own keys and storage. 147 automated tests, including property tests, cover the rules, the clock, Crew Pulse, the crypto and the NASA-data proof.
 
 **Benefits**
-- The check takes about a minute and reads at a glance.
-- Personal baselines catch changes a population range misses.
-- Every result is explainable and traceable to a rule and its source.
-- It works with no connection to Earth.
-- It respects privacy: health data stays encrypted on the device.
+- One clear answer in about a minute, with the reason one tap away.
+- Personal baselines catch changes a population range misses, shown on real NASA crew data.
+- It says who decides, from the real delay, instead of a fixed rule.
+- It tells one sick person apart from a cabin problem or a spreading infection.
+- Everything is explainable, offline and encrypted.
 
 **What we hope to achieve**
-A self-assessment tool that crews on Artemis surface missions and future Mars missions could actually use, and that flight surgeons can audit rule by rule. Next steps: review of every threshold by a flight surgeon, Bluetooth input from medical devices, and syncing between crew tablets.
+A self-assessment tool that crews on Artemis surface missions and future Mars missions could use, that flight surgeons can audit rule by rule, and that gives NASA's Earth-independent medical operations concept concrete autonomy levels. Next: a flight surgeon's review of every threshold, sealed tablet-to-tablet sync for Crew Pulse, Bluetooth device input.
 
 **Use on Earth**
-The constraints ASCLEPIUS is built for (no internet, help that is minutes or hours away, and people who are not doctors checking themselves) also exist on Earth: Antarctic and polar research stations, submarine and offshore crews, and rural primary health centres. Near our home in Warangal, Telangana, connectivity in some villages is intermittent and specialist doctors can be hours away. Because ASCLEPIUS runs fully offline, keeps data encrypted on the device and explains every result in plain words, the same app could support community health workers there. A Telugu and Hindi version is the first step after the hackathon. This use is proposed, not yet tested with such users.
-
-**Earth link timeline**
-Every red alert and daily digest shows three times: when it was sent from Mars, when Earth receives it, and the earliest moment a doctor's reply can arrive (for example 13:53 → 14:04 → 14:15 UTC on Nov 14, 2026). These come from the light delay alone, which is the physics minimum; waiting for a relay orbiter or a free Deep Space Network dish can add more.
+The constraints ASCLEPIUS is built for (no internet, help that is hours away, people who are not doctors checking themselves) also exist near our home in Warangal, Telangana, where the nearest doctor can be hours away for some villages. The rural clinic mode and the Telugu daily check are a first step; this use is proposed, not yet tested with such users, and the Telugu text awaits native review.
 
 **Tools**
-TypeScript, React 19, Vite, vite-plugin-pwa/Workbox, Dexie (IndexedDB), Recharts, WebCrypto, Tauri (Rust), Hermes `aura` (OpenPGP via Sequoia), Vitest + fast-check (91 unit and property tests), Python (NASA data processing).
+TypeScript, React 19, Vite, vite-plugin-pwa/Workbox, Dexie (IndexedDB), Recharts, WebCrypto, Tauri (Rust) with the team's `aura` OpenPGP library (Sequoia), Vitest + fast-check, Python (NASA data processing).
 
 **Work done before the event (disclosure)**
-Parts of ASCLEPIUS were built before the hackathon: the planning documents, the NASA data download (Nov 3, 2026) and the application code (Nov 4, 2026). Sandeep, the Local Lead for the Warangal event, approved using this pre-event work in writing on Nov 5, 2026 (email thread: `[link to docs/local-lead-approval.pdf in the repo]`). The repository's `pre-event` git tag marks exactly what existed before Nov 14. Hermes, the team's earlier open-source project (MIT OR Apache-2.0), is reused unchanged for OpenPGP signing in the desktop build. Work done during the event (Nov 14–15): `[list it, e.g. datasets from the challenge Resources tab, final demo video and deck, UI changes]`.
+The planning documents, the NASA data download (Nov 3, 2026) and the base application (engine, vault, body map, outbox, Nov 4, 2026) were built before the hackathon. Sandeep, the Local Lead for the Warangal event, approved using this pre-event work in writing on Nov 5, 2026 (email thread: `[link to docs/local-lead-approval.pdf in the repo]`). The repository's `pre-event` git tag marks exactly what existed then. Built after that tag, under the same approval, on Nov 12–13 and during the event: the Earth Reply Clock, Crew Pulse, the Ground Station console, the corrected Inspiration4 analysis, the clinical rule fixes, the clinic mode and Telugu draft, and the demo materials. `[Update with what was done on Nov 14–15.]` `aura`, the team's earlier open-source OpenPGP library (MIT OR Apache-2.0), is reused unchanged in the desktop build only.
 
 ## NASA Data
-- **NASA JPL Horizons API.** Daily Mars position as seen from Earth (target 499, centre 500@399; quantities 20 and 23 for light time and Sun–Earth–Mars angle), Nov 2026 – Dec 2029. Used to compute the real one-way radio delay for every date (11.0 min on 14 Nov 2026; range 5.4–20.1 min) and the solar-conjunction blackout of 8 Mar – 3 Apr 2028. This drives the arrival times in the Earth outbox and the "act first, report after" guidance. https://ssd.jpl.nasa.gov/horizons/
-- **NASA Open Science Data Repository (OSDR), OSD-569:** SpaceX Inspiration4 complete blood count. **OSD-575:** Inspiration4 comprehensive metabolic panel. Used on the Crew Reference screen to compare personal and population ranges with real crew data. Finding: the day after landing, all four crew members' lymphocyte counts were inside the lab's normal range, yet all four had moved more than 20% from their own pre-flight level (−26.8%, −27.3%, −33.9%, +20.7%). Shown as an illustration of the idea, not as clinical evidence (4 civilians, a 3-day flight). The 20% cut-off is project-defined. ASCLEPIUS's own band rule needs 7 checks; run on Inspiration4's 3 pre-flight draws it flags 1 of 4 for lymphocytes, because a band from 3 points is too wide to trust. The Crew screen shows both numbers, and this is why the app waits for 7 daily checks before switching a personal band on (`analysis/inspiration4_baseline.py`). https://osdr.nasa.gov/bio/repo/data/studies/OSD-569 · https://osdr.nasa.gov/bio/repo/data/studies/OSD-575
-- **NASA Human Research Program: five hazards of human spaceflight.** The basis for the "why it matters in space" text on every guidance card. https://www.nasa.gov/hrp/hazards/
-- **NASA public-domain images** used in the deck and video: Blue Marble, Earthrise, Mars, ISS blood draw, and Tim Peake aboard the ISS. `[add the source page URL for each image]`
-- Provenance for every file (URL, fetch time, size, SHA-256) is in `data/manifest.json`, and `npm run data` rebuilds the app data from the raw NASA files.
+- **NASA JPL Horizons API.** Daily Mars position as seen from Earth (target 499, centre 500@399; quantities 20 and 23), Nov 2026 – Dec 2029. Gives the real one-way light time for every date (11.0 min on 14 Nov 2026; 19.25 min on 14 Jan 2028) and the solar-conjunction blackout of 8 Mar – 3 Apr 2028. It drives the Earth Reply Clock, the outbox arrival times and the Ground Station's hold. https://ssd.jpl.nasa.gov/horizons/
+- **NASA GISS Mars24 algorithm** (Allison & McEwen 2000). Mars local time for reminders and the sol drift against the flight surgeon's shift in the Reply Clock. https://www.giss.nasa.gov/tools/mars24/
+- **NASA Open Science Data Repository, OSD-569** (Inspiration4 complete blood count) and **OSD-575** (metabolic panel). The proof screen runs the app's own band rule on the four crew members' three pre-flight draws. Result: the day after landing, all 4 had a red-cell size (MCV) below their own lowest pre-flight value, while all 4 stayed inside the 80–100 fL population range; 16 of 34 markers have an index of individuality under 0.6. Limits are stated on the screen (n = 4, 3-day flight, no in-flight draws; MCV still low months later in 3 crew, so a lab change may contribute). While doing this we found that row C003 L-92 of the submitted CBC file is column-shifted (MCH missing); the pipeline documents and corrects it, and we have reported it to OSDR `[confirm sent]`. https://osdr.nasa.gov/bio/repo/data/studies/OSD-569 · https://osdr.nasa.gov/bio/repo/data/studies/OSD-575
+- **NASA-STD-3001** Vol 1 Rev C and Vol 2 Rev F. Cited rule by rule: monitoring duties, the 8.5 h sleep period and 01:00–07:00 circadian low [V1 6001], behavioural health [V1 4011], private medical communication [V1 6002], hypothermia (App. C), the cabin CO2 limit of 3 mmHg [V2 6004], orthostatic intolerance (Table E.2-2). https://standards.nasa.gov/
+- **NASA OCHMO-TB-004, Carbon Dioxide.** Headaches reported at 2.8–4.5 mmHg: the Crew Pulse cabin rule. https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-004-carbon-dioxide.pdf
+- **NASA Human Research Program** hazards and risks (sleep loss, behavioural health, Earth-independent operations): the "why it matters in space" text. https://www.nasa.gov/hrp/hazards/
+- **NASA Earth-Independent Medical Operations concept of operations** (NTRS 20250000009): the idea the Reply Clock gives numbers to. https://ntrs.nasa.gov/citations/20250000009
+- **NASA public-domain images** in the deck: Blue Marble, Earthrise, Mars, ISS blood draw, Tim Peake aboard the ISS. `[add the source page URL for each image]`
+- Provenance for every data file (URL, fetch time, size, SHA-256) is in `data/manifest.json`; `npm run data` and `npm run proof` rebuild the app data from the raw NASA files.
 
 ## Space Agency Partner & Other Data
-- `[add any partner-agency resources listed on the challenge Resources tab on Nov 13 that you use]`
-- Clinical reference ranges: AHA/ACC 2017 blood pressure categories, ADA glucose categories, AASM/SRS adult sleep recommendation (each cited in `rules.json`, marked for verification).
+- `[add any partner-agency resources listed on the challenge Resources tab that you use]`
+- Clinical reference ranges (terrestrial, cited in `rules.json`): ACC/AHA 2017 blood pressure guideline, NHLBI hypotension line, ADA Standards of Care (glucose), AASM/SRS adult sleep consensus.
+- Viral reactivation background for Crew Pulse: Rooney et al. 2019, *Frontiers in Microbiology* (PMC6374706).
 - Open-source code: React (MIT), Vite (MIT), vite-plugin-pwa / Workbox (MIT), Dexie (Apache-2.0), Recharts (MIT), Tauri (MIT OR Apache-2.0), Sequoia OpenPGP (LGPL-2.0-or-later), Vitest (MIT), fast-check (MIT), Ajv (MIT), fake-indexeddb (Apache-2.0), oxlint (MIT), TypeScript (Apache-2.0).
-- Team's own earlier open-source work: Hermes `aura` (MIT OR Apache-2.0), `[https://github.com/ibeastmanish/hermes — must be public before submission]`.
+- Team's own earlier open-source work: `aura` (MIT OR Apache-2.0), `[repository URL — must be public before submission]`.
 - ASCLEPIUS itself is released under the MIT licence.
-- All crew data shown (Commander Asha Rao) is **simulated** and labelled as such on every screen.
+- All crew data shown (Commander Asha Rao and her crew) is **simulated** and labelled as such on every screen.
 
 ## Use of Super Intelligence (SI / AI)
-SI coding assistants (Claude Code) were used to help write and test the application code, the data-processing scripts, the documentation and this project text. The team reviewed the health rules, the medical wording and the data analysis. ASCLEPIUS does **not** use AI to make health decisions: every result comes from a readable rule in `rules.json`. `[If the synthesized voice-over is kept: "The demo video's voice-over is synthesized with macOS text-to-speech." Delete this if a teammate records it.]` `[List any other AI-generated images, video or audio. If there are any, they need a visible "AI-generated" watermark, and they must not show NASA logos or branding. Edit this section so it matches exactly what the team did.]`
+SI coding assistants (Claude Code) were used to help research prior work, write and test the application code and data-processing scripts, and draft the documentation, the deck and this text. The team reviewed the health rules, the medical wording and the data analysis. ASCLEPIUS does **not** use AI to make health decisions: every result comes from a readable rule in `rules.json`. The Telugu strings are a machine-assisted draft and are labelled so in the app. `[If the synthesized voice-over is kept: "The demo video's voice-over is synthesized with macOS text-to-speech." Delete this if a teammate records it.]` No AI-generated images or video are used; the deck uses NASA public-domain photographs and hand-drawn CSS/SVG art.
 
 ---
 
 ## Before you press Submit
-- [x] Sandeep's written confirmation received (email, Nov 5, 2026, 18:41). Save the whole thread as a PDF.
-- [ ] Sandeep confirms (same email thread) that the approval also covers Global Judging; thread saved as `docs/local-lead-approval.pdf`
-- [ ] `pre-event` git tag pushed, so judges can see what was built at the event
-- [ ] Human voice-over recorded over `video_build/HYGIEA_SpaceApps2026_demo_30s_no-voiceover.mp4` (or the SI disclosure above kept)
-- [ ] Team member names added to the deck title slide and team page
-- [ ] Hermes repo public; `src-tauri/Cargo.toml` switched to the git dependency
-- [ ] 2026 guides read on Nov 13 (field names, demo limits, SI rules)
-- [ ] At least one dataset from the challenge Resources tab used and listed above
-- [ ] Demo: video ≤ 30 s with English captions, **or** deck ≤ 7 slides (not both)
-- [ ] All links public, no login needed
-- [ ] Every `[VERIFY]` threshold in `rules.json` checked
+- [x] Sandeep's written approval received (email, Nov 5, 2026, 18:41).
+- [ ] Sandeep confirms (same thread) that the approval also covers Global Judging; thread saved as `docs/local-lead-approval.pdf`
+- [ ] Repository public, `pre-event` tag pushed, Pages deployed; demo and ground.html open in a private window on a phone
+- [ ] Demo: video ≤ 30 s with English captions **or** deck ≤ 7 slides (not both)
+- [ ] Human voice-over recorded (or the SI disclosure above kept)
+- [ ] Team member names added to the deck and team page
+- [ ] `aura` repository public; `src-tauri/Cargo.toml` switched to the git dependency
+- [ ] 2026 guides read (field names, demo limits, SI rules); Resources-tab dataset considered
+- [ ] OSDR notified about the shifted row (update the NASA Data section)
+- [ ] Telugu strings reviewed by a native speaker, or left labelled as draft
 - [ ] Every member registered for the Warangal event and listed on the team page
 - [ ] Submitted before 11:59 p.m. local time on Nov 15

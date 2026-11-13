@@ -12,7 +12,7 @@ export function Unlock() {
       <div className="unlock-grid">
         <section className="cover">
           <h1>ASCLEPIUS<span className="sq" aria-hidden="true" /></h1>
-          <p className="tagline">Health for the Artemis generation.</p>
+          <p className="tagline">Medicine for when Earth is too far away.</p>
           <p className="subline">The one-minute daily health self-check for astronauts, built for missions where Earth is minutes away.</p>
           <div className="facts">
             <p className="fact"><b>Your normal, not everyone's</b>Every reading is checked against the usual adult range and your own learned baseline. The worse result wins.</p>
