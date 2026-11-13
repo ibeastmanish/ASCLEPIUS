@@ -40,3 +40,7 @@ These values are blank in the NASA file and stay blank: MCHC for C002 at L-92, L
 ### Cross-check
 
 An earlier hand-corrected copy (`research_notes/v3_evidence/cbc_fixed.csv`) has the same values as this file. The only difference is that it left the MCH reference range blank.
+
+### Reported
+
+Reported to the NASA OSDR team on 13 Nov 2026 through the OSDR contact form (https://science.nasa.gov/biological-physical/data/osdr/osdr-help-contact-us/), with a link to this file.
