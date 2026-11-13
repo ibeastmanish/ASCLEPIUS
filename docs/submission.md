@@ -76,6 +76,38 @@ The planning documents, the NASA data download (Nov 3, 2026) and the base applic
 - ASCLEPIUS itself is released under the MIT licence.
 - All crew data shown (Commander Asha Rao and her crew) is **simulated** and labelled as such on every screen.
 
+## References
+**NASA data and resources**
+1. NASA JPL Horizons System, Mars (499) from Earth (500@399), light time and Sun–Earth–Mars angle, Nov 2026 – Dec 2029. https://ssd.jpl.nasa.gov/horizons/
+2. NASA GISS Mars24 Sunclock algorithm (Allison & McEwen 2000). https://www.giss.nasa.gov/tools/mars24/help/algorithm.html
+3. NASA OSDR OSD-569, SpaceX Inspiration4 complete blood count. https://osdr.nasa.gov/bio/repo/data/studies/OSD-569
+4. NASA OSDR OSD-575, SpaceX Inspiration4 comprehensive metabolic panel. https://osdr.nasa.gov/bio/repo/data/studies/OSD-575
+5. NASA-STD-3001 Vol 1 Rev C (2023) and Vol 2 Rev F (2026), NASA Space Flight Human-System Standard. https://standards.nasa.gov/
+6. NASA OCHMO-TB-004, Carbon Dioxide technical brief. https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-004-carbon-dioxide.pdf
+7. NASA HRP, 5 Hazards of Human Spaceflight. https://www.nasa.gov/hrp/hazards/
+8. NASA HRP, Risks of Human Spaceflight. https://www.nasa.gov/hrp/risks/
+9. NASA HRP, Ongoing HRP Research in Space (Artemis II studies). https://www.nasa.gov/hrp/ongoing-hrp-research/
+10. NASA, Earth-Independent Medical Operations concept of operations, NTRS 20250000009. https://ntrs.nasa.gov/citations/20250000009
+11. NASA images: Mars PIA00407 (NASA/JPL/USGS); Blue Marble AS17-148-22727; Earthrise (Apollo 8); ISS blood draw. https://images.nasa.gov
+
+**Space agency partner**
+12. Canadian Space Agency, Monitoring Radiation for Astronaut Health (2026). https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp
+
+**Science and clinical references**
+13. Rooney B.V. et al. (2019), Herpes virus reactivation in astronauts during spaceflight and its application on Earth, *Frontiers in Microbiology*. https://pmc.ncbi.nlm.nih.gov/articles/PMC6374706
+14. Harris E.K. (1974), the index of individuality (within- vs between-person variation), *Clinical Chemistry*.
+15. Whelton P.K. et al. (2017), ACC/AHA guideline for high blood pressure in adults; NIH NHLBI, Low Blood Pressure (90/60 line).
+16. American Diabetes Association, Standards of Care in Diabetes (fasting, after-meal and hypoglycaemia levels).
+17. AASM/SRS consensus on recommended sleep for adults (7 h or more).
+
+**Open-source software** (licence)
+18. React, Vite, vite-plugin-pwa / Workbox, Recharts, Vitest, fast-check, Ajv, oxlint (MIT); Dexie, fake-indexeddb, TypeScript (Apache-2.0); Playwright, pptxgenjs (Apache-2.0 / MIT, pitch build only); Tauri (MIT OR Apache-2.0, optional desktop build only).
+
+**Tools**
+19. Claude Code (AI coding assistant); see the SI section below.
+
+ASCLEPIUS itself: MIT licence, https://github.com/ibeastmanish/ASCLEPIUS
+
 ## Use of Super Intelligence (SI / AI)
 SI coding assistants (Claude Code) were used to research existing tools and competing entries, to write and test the application code and data-processing scripts, and to draft the documentation, the deck, the speech and this text. The team chose the direction, reviewed the health rules, the medical wording and the data analysis, and is responsible for all of it. AI-assisted code is acknowledged in the repository README and in the commit metadata ("Co-Authored-By" lines). ASCLEPIUS does **not** use AI to make health decisions: every result comes from a readable rule in `rules.json`. The Telugu strings are a machine-assisted draft and are labelled so in the app. No video is submitted, and no AI-generated images, video or audio are used; the deck uses NASA public-domain photographs and hand-drawn CSS/SVG art.
 
