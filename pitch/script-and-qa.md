@@ -1,9 +1,9 @@
 # ASCLEPIUS: pitch script (about 3 minutes) and judge-table demo
 
-Files: `ASCLEPIUS_SpaceApps2026_deck.pdf` (7 slides, 1920×1080) and `.pptx` (same slides, script in the speaker notes).
-Rebuild after editing `deck.html`: `node build.cjs` then `NODE_PATH=../deck_v2/node_modules node pptx.cjs`.
+Files: `pitch/ASCLEPIUS_SpaceApps2026_deck.pdf` (7 slides, 1920×1080) and `.pptx` (same slides, script in the speaker notes).
+Rebuild after editing `source/deck.html` or `source/speech_simple.html`: `cd pitch/source && npm install && npm run build` (see `pitch/README.md`).
 Space Apps accepts **one** demo format: a ≤30 s video **or** ≤7 slides. This deck is ready as the slide option and for the local pitch.
-Before presenting: replace `[team member names]` in `deck.html` (slides 1 and 7) and rebuild.
+Before presenting: replace `[team member names]` in `source/deck.html` (slides 1 and 7) and rebuild.
 
 ## Script
 1. **Cover (15 s).** We are Team ASCLEPIUS from Warangal. ASCLEPIUS is an offline health check for astronauts that knows whether Earth can answer in time, and tells the crew what to do when it cannot.

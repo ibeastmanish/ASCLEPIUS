@@ -14,7 +14,7 @@ ASCLEPIUS: Medicine for when Earth is too far away
 ASCLEPIUS is an offline health self-check for astronauts that knows whether Earth can answer in time. Each day the astronaut logs the six readings in the brief (blood pressure, heart rate, blood sugar, temperature, sleep, mood). Each one is judged against the usual adult range and against the astronaut's own learned normal, and every colour shows its rule and source. Using the real Earth–Mars light time and Sun blackouts from NASA JPL Horizons and the NASA Mars24 sol clock, the Earth Reply Clock compares when the crew must act with when a flight surgeon's answer can arrive, and tells the crew when to decide on their own. Crew Pulse looks across the whole crew to separate one sick person from bad cabin air (NASA-STD-3001 CO2 limit) or a spreading infection. Run on NASA OSDR Inspiration4 blood data (OSD-569), the same engine finds a change in all four crew that the population range calls normal. On Earth, the same clock helps rural health workers near Warangal.
 
 ## Link to Project Demo
-`[public link to the ≤30-second video (English captions) OR the ≤7-slide deck (deck_v3/ASCLEPIUS_SpaceApps2026_deck.pdf) — choose ONE, no login required]`
+`[public link to the ≤30-second video (English captions) OR the ≤7-slide deck (pitch/ASCLEPIUS_SpaceApps2026_deck.pdf) — choose ONE, no login required]`
 
 ## Link to Final Project
 https://github.com/ibeastmanish/ASCLEPIUS · Live demo: https://ibeastmanish.github.io/ASCLEPIUS/ · Ground Station console: https://ibeastmanish.github.io/ASCLEPIUS/ground.html

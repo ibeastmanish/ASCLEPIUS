@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ASCLEPIUS · NASA Space Apps 2026</title>
+<style>
+  @page { size: 1920px 1080px; margin: 0; }
+  :root { --red:#FC3D21; --blue:#0B3D91; --sky:#6FA3FF; --green:#2EC27E; --yellow:#FFC72C; --ink:#fff; --mute:#9aa3b5; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #000; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: #000; page-break-after: always; break-after: page; }
+  /* layered maximalist field: stars, halftone, grid, orbits */
+  .stars { position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1.6px 1.6px at 120px 80px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 300px 400px, #cfe0ff 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 700px 220px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 980px 760px, #fff 50%, transparent 51%),
+      radial-gradient(1.8px 1.8px at 1400px 140px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 1650px 620px, #cfe0ff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 1800px 950px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 520px 980px, #fff 50%, transparent 51%);
+    background-size: 1920px 1080px; opacity: .9; }
+  .stars.b { background-size: 640px 360px; opacity: .45; }
+  .halftone { position: absolute; width: 900px; height: 900px; border-radius: 50%;
+    background-image: radial-gradient(circle, rgba(111,163,255,.55) 1.6px, transparent 2px); background-size: 14px 14px;
+    -webkit-mask-image: radial-gradient(circle, #000 20%, transparent 70%); mask-image: radial-gradient(circle, #000 20%, transparent 70%); }
+  .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px); background-size: 120px 120px; }
+  .orbit { position: absolute; border-radius: 50%; border: 1.5px solid rgba(111,163,255,.35); }
+  .orbit.r { border-color: rgba(252,61,33,.5); border-style: dashed; }
+  .tick { position: absolute; font: 700 13px/1 ui-monospace, Menlo, monospace; letter-spacing: .18em; color: var(--mute); text-transform: uppercase; }
+  .content { position: absolute; inset: 0; padding: 84px 96px 96px; }
+  .eyebrow { font: 700 22px/1 "Helvetica Neue", Arial; letter-spacing: .32em; color: var(--red); text-transform: uppercase; }
+  .eyebrow .n { color: #fff; margin-right: 18px; }
+  h1 { font-size: 104px; line-height: .95; font-weight: 800; letter-spacing: -.035em; margin-top: 22px; }
+  h2 { font-size: 78px; line-height: 1; font-weight: 800; letter-spacing: -.03em; margin-top: 20px; max-width: 1150px; }
+  .lede { font-size: 34px; line-height: 1.32; color: #dfe6f2; margin-top: 26px; max-width: 980px; }
+  .big { font-size: 190px; font-weight: 800; letter-spacing: -.05em; line-height: .85; }
+  .unit { font-size: 40px; font-weight: 700; color: var(--sky); letter-spacing: 0; margin-left: 12px; }
+  .stamp { position: absolute; border: 4px solid var(--red); color: var(--red); padding: 12px 22px; font: 800 26px/1 "Helvetica Neue", Arial; letter-spacing: .2em; text-transform: uppercase; transform: rotate(-8deg); background: rgba(0,0,0,.6); }
+  .stamp.blue { border-color: var(--sky); color: var(--sky); }
+  .card { background: rgba(14,16,22,.92); border: 2px solid #262b36; border-radius: 22px; padding: 26px 30px; }
+  .card h3 { font-size: 30px; font-weight: 800; letter-spacing: -.01em; }
+  .card p { font-size: 25px; line-height: 1.35; color: #cdd5e3; margin-top: 10px; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; font: 800 24px/1 "Helvetica Neue", Arial; padding: 12px 18px; border-radius: 999px; background: #111; border: 2px solid #333; }
+  .dot { width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; color: #000; font-weight: 900; font-size: 18px; }
+  .g { background: var(--green); } .y { background: var(--yellow); } .rd { background: var(--red); }
+  .shot { border-radius: 26px; border: 3px solid #2a2f3a; box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 0 12px rgba(255,255,255,.03); background: #fff; object-fit: cover; object-position: top; }
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 34px; display: flex; justify-content: space-between; font: 600 16px/1 "Helvetica Neue", Arial; letter-spacing: .14em; color: #7f889a; text-transform: uppercase; }
+  .src { font-size: 16px; color: #7f889a; letter-spacing: .04em; margin-top: 10px; }
+  .sim { color: var(--red); }
+  .row { display: flex; gap: 28px; }
+  .photo { position: absolute; object-fit: cover; }
+  .redline { position: absolute; height: 6px; background: var(--red); }
+  b.r { color: var(--red); } b.s { color: var(--sky); } b.gr { color: var(--green); } b.yl { color: var(--yellow); }
+</style>
+</head>
+<body>
+
+<!-- 1 · COVER -->
+<section class="slide">
+  <img class="photo" src="img/mars_sq.jpg" style="right:-260px; top:-120px; width:1320px; height:1320px; border-radius:50%; opacity:.95">
+  <div class="stars"></div><div class="stars b"></div><div class="grid"></div>
+  <div class="halftone" style="left:-300px; bottom:-420px"></div>
+  <div class="orbit" style="right:-420px; top:-300px; width:1640px; height:1640px"></div>
+  <div class="orbit r" style="right:-560px; top:-440px; width:1920px; height:1920px"></div>
+  <img class="photo" src="img/bluemarble_sq.jpg" style="left:1050px; top:770px; width:120px; height:120px; border-radius:50%">
+  <div class="content">
+    <div class="eyebrow" style="max-width:800px; line-height:1.5"><span class="n">NASA Space Apps 2026</span><br>Health monitoring for astronauts</div>
+    <h1 style="font-size:190px; letter-spacing:.04em; margin-top:150px">ASCLEPIUS</h1>
+    <div style="width:520px; height:6px; background:var(--red); margin-top:34px"></div>
+    <p class="lede" style="font-size:52px; font-weight:700; color:#fff; margin-top:34px; max-width:900px">Medicine for when Earth is too far away.</p>
+    <p class="lede" style="max-width:820px">An offline health check that knows whether Earth can answer in time, and tells the crew what to do when it can't.</p>
+  </div>
+  <div class="stamp" style="left:110px; top:860px">Team ASCLEPIUS · Warangal, India</div>
+  <div class="foot"><span>[team member names]</span><span>Mars image: NASA/JPL/USGS · Earth: NASA</span></div>
+</section>
+
+<!-- 2 · PROBLEM -->
+<section class="slide">
+  <div class="stars"></div><div class="grid"></div>
+  <img class="photo" src="img/earthrise_sq.jpg" style="right:0; top:0; width:760px; height:1080px; opacity:.55">
+  <div style="position:absolute; right:0; top:0; width:760px; height:1080px; background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.2) 60%,rgba(0,0,0,.6))"></div>
+  <div class="orbit r" style="left:640px; top:-200px; width:900px; height:900px"></div>
+  <div class="content">
+    <div class="eyebrow"><span class="n">01</span>The problem</div>
+    <h2>On Mars, your doctor is on Earth.</h2>
+    <div class="row" style="margin-top:60px; gap:70px">
+      <div><div class="big">4–22<span class="unit">min</span></div><p class="lede" style="font-size:28px; margin-top:12px">each way by radio.<br>11.0 min on 14 Nov 2026.</p></div>
+      <div><div class="big" style="color:var(--red)">27<span class="unit" style="color:var(--red)">days</span></div><p class="lede" style="font-size:28px; margin-top:12px">with no link at all when the<br>Sun is in the way (8 Mar–3 Apr 2028).</p></div>
+    </div>
+    <div class="card" style="margin-top:56px; max-width:1060px">
+      <h3>And "normal" is personal.</h3>
+      <p>A resting heart rate of <b>74</b> is fine for most adults. For an astronaut whose own normal is <b class="s">52–62</b>, it is a warning sign. No doctor on board to notice.</p>
+    </div>
+    <p class="src">Light time and blackout: NASA JPL Horizons. Image: NASA (Earthrise).</p>
+  </div>
+  <div class="foot"><span>ASCLEPIUS · NASA Space Apps 2026</span><span>2 / 7</span></div>
+</section>
+
+<!-- 3 · HOW IT WORKS -->
+<section class="slide">
+  <div class="stars"></div><div class="grid"></div>
+  <div class="halftone" style="right:-200px; top:-250px"></div>
+  <div class="orbit" style="right:120px; top:60px; width:960px; height:960px"></div>
+  <img class="shot" src="shots/bodymap-phone.png" style="position:absolute; right:150px; top:110px; width:420px; height:860px">
+  <img class="shot" src="shots/home-phone.png" style="position:absolute; right:620px; top:190px; width:360px; height:740px; transform:rotate(-4deg)">
+  <div class="content" style="right:1000px">
+    <div class="eyebrow"><span class="n">02</span>How it works</div>
+    <h2 style="font-size:68px">One minute. Six readings. One clear answer.</h2>
+    <p class="lede" style="font-size:28px">Blood pressure, heart rate, blood sugar, temperature, sleep, mood: the six from the challenge.</p>
+    <div class="card" style="margin-top:28px"><h3>Two checks for every reading</h3><p>The usual adult range <b>and</b> your own learned normal (after 7 checks). The worse result wins.</p></div>
+    <div class="card" style="margin-top:18px"><h3>A body map that explains itself</h3><p>Every colour shows its rule and its source, and every card names its NASA HRP hazard and risks. <b class="r">No AI</b> makes health decisions.</p></div>
+    <div class="row" style="margin-top:22px; gap:14px; flex-wrap:wrap">
+      <span class="chip"><span class="dot g">✓</span>Good</span><span class="chip"><span class="dot y">!</span>Check</span><span class="chip"><span class="dot rd">✕</span>Act now</span>
+    </div>
+    <p class="src" style="margin-top:18px">Fully offline · encrypted on the device (AES-GCM 256) · <span class="sim">Simulated crew data</span></p>
+  </div>
+  <div class="foot"><span>ASCLEPIUS · NASA Space Apps 2026</span><span>3 / 7</span></div>
+</section>
+
+<!-- 4 · EARTH REPLY CLOCK -->
+<section class="slide">
+  <div class="stars"></div><div class="stars b"></div><div class="grid"></div>
+  <div class="orbit r" style="left:-300px; bottom:-500px; width:1100px; height:1100px"></div>
+  <div class="content">
+    <div class="eyebrow"><span class="n">03</span>New · Earth Reply Clock</div>
+    <h2>Can Earth answer before you must act?</h2>
+    <p class="lede" style="font-size:30px; max-width:1500px">Earth's answer = light time there + the flight surgeon's reply (are they on shift?) + light time back.</p>
+    <div class="row" style="margin-top:44px; gap:26px">
+      <div class="card" style="flex:1; border-color:var(--green)"><span class="chip"><span class="dot g">✓</span>Earth guides</span><p>The answer arrives well before you need to act.</p></div>
+      <div class="card" style="flex:1; border-color:var(--yellow)"><span class="chip"><span class="dot y">→</span>Act, Earth confirms</span><p>Start the steps now; Earth confirms in time.</p></div>
+      <div class="card" style="flex:1; border-color:var(--red)"><span class="chip"><span class="dot rd">!</span>Crew decides</span><p>The answer comes too late, or the Sun blocks the link.</p></div>
+    </div>
+    <img class="shot" src="shots/home-desk-rc.png" style="position:absolute; left:96px; top:670px; width:1010px; height:290px; object-fit:contain; background:#f4f5f8">
+    <div class="card" style="position:absolute; left:1150px; top:670px; width:674px">
+      <h3>Example: red result</h3>
+      <p>On 14 Nov 2026 Earth's earliest answer is <b class="r">27 min</b> if the surgeon is on shift, <b class="r">52 min</b> if they must be paged. You must act within <b>10 min</b>. Either way: <b class="r">crew decides.</b></p>
+      <p style="font-size:20px">A Mars day is 39.6 min longer than Earth's, so the crew's morning drifts against Houston's shift. NASA's Earth-Independent Medical Ops concept (NTRS 20250000009) has no delay levels; this gives it numbers.</p>
+    </div>
+  </div>
+  <div class="foot"><span>Light time: NASA JPL Horizons · Mars time: NASA GISS Mars24</span><span>4 / 7</span></div>
+</section>
+
+<!-- 5 · CREW PULSE -->
+<section class="slide">
+  <div class="stars"></div><div class="grid"></div>
+  <div class="halftone" style="left:-250px; top:-300px"></div>
+  <div class="orbit" style="left:980px; top:-180px; width:1100px; height:1100px"></div>
+  <div class="content">
+    <div class="eyebrow"><span class="n">04</span>New · Crew Pulse</div>
+    <h2>One person, the cabin, or something spreading?</h2>
+    <div class="row" style="margin-top:44px; gap:24px; max-width:1000px; flex-direction:column">
+      <div class="card"><h3><span class="dot y" style="margin-right:12px">1</span>One person flagged</h3><p>It is about that person. Follow their card.</p></div>
+      <div class="card" style="border-color:var(--red)"><h3><span class="dot rd" style="margin-right:12px">3</span>Several crew, same day</h3><p>Suspect the <b>cabin air</b>. Today: 3 of 4 crew have a headache or short sleep, and cabin CO2 reads <b class="r">3.4 mmHg</b>, above NASA's <b>3 mmHg</b> limit.</p></div>
+      <div class="card" style="border-color:var(--yellow)"><h3><span class="dot y" style="margin-right:12px">→</span>Fever moving person to person</h3><p>Possible infection: Kwame (Sol 208) → Mei (Sol 210). 61% of ISS astronauts shed dormant viruses, mostly without symptoms.</p></div>
+    </div>
+    <p class="src" style="max-width:1000px">CO2: NASA-STD-3001 Vol 2 [V2 6004], NASA OCHMO-TB-004 · Viruses: Rooney et al. 2019 · Mood stays private · <span class="sim">Simulated crew data</span></p>
+  </div>
+  <img class="shot" src="shots/pulse-desk-pulsecard.png" style="position:absolute; right:96px; top:340px; width:720px; height:auto; object-fit:contain; background:#f4f5f8">
+  <div class="stamp blue" style="right:140px; top:250px">CMO view</div>
+  <div class="foot"><span>ASCLEPIUS · NASA Space Apps 2026</span><span>5 / 7</span></div>
+</section>
+
+<!-- 6 · PROOF -->
+<section class="slide">
+  <div class="stars"></div><div class="grid"></div>
+  <img class="photo" src="img/blooddraw_panel.jpg" style="right:0; top:0; width:600px; height:1080px; opacity:.35">
+  <div style="position:absolute; right:0; top:0; width:600px; height:1080px; background:linear-gradient(90deg,#000,rgba(0,0,0,.3))"></div>
+  <div class="content">
+    <div class="eyebrow"><span class="n">05</span>Proof on real NASA crew data</div>
+    <h2>Population range: 4 of 4 fine.<br><span style="color:var(--red)">Personal range: 4 of 4 changed.</span></h2>
+    <p class="lede" style="font-size:29px; max-width:1180px">NASA OSDR OSD-569 (Inspiration4 blood counts). The day after landing, all 4 crew had a red-cell size (MCV) below their <b>own lowest pre-flight value</b>, yet all 4 stayed inside the 80–100 fL adult range.</p>
+    <div class="row" style="margin-top:34px; gap:22px">
+      <div class="card" style="flex:1"><div class="big" style="font-size:120px">4/4</div><p>below their own normal, run through the app's own rule</p></div>
+      <div class="card" style="flex:1"><div class="big" style="font-size:120px">16/34</div><p>blood markers where population ranges miss personal change (index of individuality &lt; 0.6)</p></div>
+      <div class="card" style="flex:1.2; border-color:var(--red)"><h3>We found an error in the NASA file</h3><p>One row (crew C003, draw L-92) is shifted by a column. We fixed it, documented it, and reported it.</p></div>
+    </div>
+    <p class="src" style="margin-top:22px; font-size:19px">Honest limits: 4 people, 3-day flight, no in-flight draws; MCV still low months later in 3 crew, so a lab change may be part of it. Consistent with a personal change, not proof of one. Image: NASA.</p>
+  </div>
+  <div class="stamp" style="right:120px; top:110px">Real data</div>
+  <div class="foot"><span>Reproduce: npm run proof</span><span>6 / 7</span></div>
+</section>
+
+<!-- 7 · IMPACT -->
+<section class="slide">
+  <div class="stars"></div><div class="stars b"></div><div class="grid"></div>
+  <img class="photo" src="img/bluemarble_sq.jpg" style="right:-200px; bottom:-260px; width:900px; height:900px; border-radius:50%; opacity:.85">
+  <div class="orbit" style="right:-330px; bottom:-390px; width:1160px; height:1160px"></div>
+  <div class="content">
+    <div class="eyebrow"><span class="n">06</span>Impact</div>
+    <h2>Delay is delay.</h2>
+    <p class="lede" style="font-size:32px; max-width:1050px">The same clock works on Earth. Near Warangal, the nearest doctor can be hours away. Clinic mode swaps light time for travel time and clinic hours, with a Telugu daily check (draft).</p>
+    <div class="row" style="margin-top:40px; gap:22px; max-width:1180px">
+      <div class="card" style="flex:1"><h3>Ground Station</h3><p>A second page gets the signed, encrypted summary only after the real light time, checks the signature, rejects replays, and signs the reply.</p></div>
+      <div class="card" style="flex:1"><h3>Open and tested</h3><p>MIT licence · 147 automated tests · no server · every rule cited (NASA-STD-3001 where it sets a limit).</p></div>
+    </div>
+    <p class="lede" style="font-size:28px; margin-top:34px"><b class="s">Live demo</b> ibeastmanish.github.io/ASCLEPIUS &nbsp;·&nbsp; <b class="s">Code</b> github.com/ibeastmanish/ASCLEPIUS</p>
+    <p class="src" style="font-size:17px; max-width:1150px">Decision support, not a medical device. AI coding assistants helped write and test code and text; the team reviewed the health rules. Pre-event work disclosed with the Local Lead's approval. Image: NASA (Blue Marble).</p>
+  </div>
+  <div class="foot"><span>Team ASCLEPIUS · Warangal, India · [team member names]</span><span>7 / 7</span></div>
+</section>
+
+</body>
+</html>

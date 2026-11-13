@@ -1,0 +1,12 @@
+{
+  "name": "asclepius-pitch",
+  "private": true,
+  "description": "Builds the ASCLEPIUS 7-slide deck (PDF + PPTX) and the speech paper from deck.html and speech_simple.html.",
+  "scripts": {
+    "build": "node build.cjs && node pptx.cjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.55.0",
+    "pptxgenjs": "3.12.0"
+  }
+}

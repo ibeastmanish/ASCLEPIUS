@@ -4,7 +4,7 @@
    Status is always colour + drawn icon + word. Light and dark share one grammar. */
 
 :root {
-  /* NASA palette (PRODUCT.md, binding) */
+  /* NASA palette (docs/product.md, binding) */
   --nasa-black: #000000;
   --nasa-white: #ffffff;
   --nasa-blue: #0b3d91;

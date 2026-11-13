@@ -1,7 +1,7 @@
 // Capillary refill time (CRT) estimator (experimental, optional 7th check).
 //
 // The challenge brief explicitly allows "camera images" as a health-indicator
-// input. ASCLEPIUS's required six readings (PRODUCT.md) are untouched; this is
+// input. ASCLEPIUS's required six readings (docs/product.md) are untouched; this is
 // an opt-in add-on that turns a phone/tablet camera into a simple bedside
 // perfusion test: press a fingertip over the lens to blanch it, release, and
 // time how long the skin takes to pink up again.

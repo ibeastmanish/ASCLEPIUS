@@ -101,6 +101,19 @@ npm run data:fetch    # re-downloads from NASA (optional)
 ## Optional: camera perfusion check (experimental)
 The brief names camera images as a valid input. ASCLEPIUS offers an optional seventh check: capillary refill time. The astronaut presses a fingertip over the camera lens for five seconds, releases it, and `src/engine/crt.ts` times how long the frame brightness takes to recover with plain signal processing (no ML). A manual stopwatch is always offered too. It never joins the required six readings, the streak or the badges. The thresholds are project-defined and this self-test is not clinically validated.
 
+## Repository layout
+```
+src/            the app: engine/ (rules, Reply Clock, Crew Pulse), screens/, ui/, storage/ (vault, crypto), ground/ (Ground Station), i18n/, seed/ (simulated crew)
+ground.html     Ground Station console entry      index.html   crew tablet entry
+analysis/       Python: NASA data processing and the OSD-569 proof
+scripts/        proof.mjs (engine cross-check)
+data/           raw/ (NASA downloads, untouched), derived/ (corrected CBC), manifest.json (provenance)
+src-tauri/      desktop build (Tauri + OpenPGP)
+docs/           PRD, product brief, submission draft, pre-event disclosure, translations
+pitch/          deck (PDF, PPTX), speech paper, script and Q&A, and their sources
+```
+See [`docs/README.md`](docs/README.md), [`CHANGELOG.md`](CHANGELOG.md) and [`SECURITY.md`](SECURITY.md).
+
 ## Run locally
 ```bash
 npm install
