@@ -119,3 +119,16 @@ describe("simulated crew (seed/crew.ts) through the real engine", () => {
     expect(otherCrewDays(T, 212)).toEqual(days);
   });
 });
+
+describe("NASA HRP risks (challenge Resources tab) are wired into the guidance", async () => {
+  const g = (await import("../content/guidance.json")).default as unknown as {
+    risks: Record<string, { name: string; url: string }>; entries: Record<string, { risks?: string[] }>;
+  };
+  it("every card names at least one HRP risk, and every risk it names exists", () => {
+    for (const [id, e] of Object.entries(g.entries)) {
+      expect(e.risks?.length, id).toBeGreaterThan(0);
+      for (const r of e.risks!) expect(g.risks[r], `${id} -> ${r}`).toBeDefined();
+    }
+    expect(Object.values(g.risks).every((r) => r.name.startsWith("Risk of") && r.url.includes("nasa.gov/hrp/risks"))).toBe(true);
+  });
+});

@@ -4,23 +4,33 @@
   "hazards": {
     "isolation": {
       "name": "Isolation and confinement",
-      "text": "Small spaces, the same few faces and no real sunrise wear down sleep and mood over months."
+      "text": "Small spaces, the same few faces and no real sunrise wear down sleep and mood over months.",
+      "url": "https://www.nasa.gov/hrp/hazards/"
     },
     "gravity": {
       "name": "Gravity fields",
-      "text": "Low gravity shifts body fluids toward the head and changes how the heart and blood vessels work."
+      "text": "Low gravity shifts body fluids toward the head and changes how the heart and blood vessels work.",
+      "url": "https://www.nasa.gov/hrp/hazards/"
     },
     "closed": {
       "name": "Hostile closed environment",
-      "text": "Recycled air, shared surfaces and a busy schedule make infections and stress easier to pick up."
+      "text": "Recycled air, shared surfaces and a busy schedule make infections and stress easier to pick up.",
+      "url": "https://www.nasa.gov/hrp/hazards/"
     },
     "distance": {
       "name": "Distance from Earth",
-      "text": "Help from Earth takes many minutes each way, so the crew must act first and report after."
+      "text": "Help from Earth takes many minutes each way, so the crew must act first and report after.",
+      "url": "https://www.nasa.gov/hrp/hazards/"
     },
     "radiation": {
       "name": "Space radiation",
-      "text": "Radiation outside Earth's magnetic field slowly affects blood, immunity and long-term health."
+      "text": "Radiation outside Earth's magnetic field slowly affects blood, immunity and long-term health.",
+      "url": "https://www.nasa.gov/hrp/hazards/",
+      "learnMore": {
+        "text": "How the Canadian Space Agency measures neutron radiation for astronaut health (about 30% of the total dose on the ISS)",
+        "url": "https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp",
+        "by": "CSA"
+      }
     }
   },
   "entries": {
@@ -36,7 +46,11 @@
       "recheck": "tomorrow",
       "escalate_if": "Tell the CMO if you feel low for several days, even if the numbers look fine.",
       "why_this_check": "Sleep and mood change first when a long mission starts to wear you down.",
-      "source": "NASA HRP hazards: isolation and confinement"
+      "source": "NASA HRP hazards: isolation and confinement",
+      "risks": [
+        "sleep",
+        "behavior"
+      ]
     },
     "sleep-yellow": {
       "region": "brain",
@@ -52,7 +66,10 @@
       "recheck": "evening",
       "escalate_if": "Tell the CMO if you are still short on sleep at the recheck, or after three nights.",
       "why_this_check": "Short sleep slows reactions and changes mood within days. On a mission that affects safety.",
-      "source": "NASA HRP hazards; AASM/SRS adult sleep consensus (terrestrial); NASA-STD-3001 Vol 1 Rev C [V1 6001]"
+      "source": "NASA HRP hazards; AASM/SRS adult sleep consensus (terrestrial); NASA-STD-3001 Vol 1 Rev C [V1 6001]",
+      "risks": [
+        "sleep"
+      ]
     },
     "sleep-red": {
       "region": "brain",
@@ -67,7 +84,10 @@
       "recheck": "after rest",
       "escalate_if": "The CMO has been alerted.",
       "why_this_check": "Severe sleep loss makes mistakes much more likely.",
-      "source": "Project-defined; NASA HRP hazards"
+      "source": "Project-defined; NASA HRP hazards",
+      "risks": [
+        "sleep"
+      ]
     },
     "mood-yellow": {
       "region": "brain",
@@ -83,7 +103,11 @@
       "recheck": "tomorrow",
       "escalate_if": "Tell the CMO if this lasts three days, or right away if you feel very low.",
       "why_this_check": "Long isolation lowers mood slowly. Noticing it early makes it easier to fix.",
-      "source": "NASA HRP hazards: isolation and confinement; project-defined"
+      "source": "NASA HRP hazards: isolation and confinement; project-defined",
+      "risks": [
+        "behavior",
+        "teamwork"
+      ]
     },
     "heart-green": {
       "region": "heart",
@@ -97,7 +121,10 @@
       "recheck": "tomorrow",
       "escalate_if": "Tell the CMO if you feel dizzy, faint or have chest pain at any time.",
       "why_this_check": "Low gravity changes how the heart works. Your own trend shows it first.",
-      "source": "NASA HRP hazards: gravity fields"
+      "source": "NASA HRP hazards: gravity fields",
+      "risks": [
+        "cardio"
+      ]
     },
     "hr-yellow": {
       "region": "heart",
@@ -113,7 +140,10 @@
       "recheck": "evening",
       "escalate_if": "Tell the CMO if it is still off at the recheck, or if you feel dizzy or short of breath.",
       "why_this_check": "A resting heart rate that drifts up can be an early sign of poor sleep, stress, dehydration or illness.",
-      "source": "Clinical convention; personal baseline"
+      "source": "Clinical convention; personal baseline",
+      "risks": [
+        "cardio"
+      ]
     },
     "hr-red": {
       "region": "heart",
@@ -129,7 +159,10 @@
       "recheck": "now",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A very slow or very fast resting heart rate can be serious.",
-      "source": "Project-defined red limits (clinical convention)"
+      "source": "Project-defined red limits (clinical convention)",
+      "risks": [
+        "cardio"
+      ]
     },
     "bp-yellow": {
       "region": "heart",
@@ -144,7 +177,10 @@
       "recheck": "evening",
       "escalate_if": "Tell the CMO if it is still high at the recheck, or if you have a headache or blurred vision.",
       "why_this_check": "Fluid shifts in low gravity change blood pressure. Catching a change early is easy to act on.",
-      "source": "ACC/AHA 2017 adult blood pressure guideline (terrestrial)"
+      "source": "ACC/AHA 2017 adult blood pressure guideline (terrestrial)",
+      "risks": [
+        "cardio"
+      ]
     },
     "bp-red": {
       "region": "heart",
@@ -160,7 +196,10 @@
       "recheck": "now",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "Very high blood pressure can harm the heart, brain and kidneys.",
-      "source": "ACC/AHA 2017 hypertensive crisis level (terrestrial)"
+      "source": "ACC/AHA 2017 hypertensive crisis level (terrestrial)",
+      "risks": [
+        "cardio"
+      ]
     },
     "blood-green": {
       "region": "blood",
@@ -173,7 +212,10 @@
       "recheck": "tomorrow",
       "escalate_if": "Tell the CMO if you feel shaky, sweaty or confused at any time.",
       "why_this_check": "Diet, stress and low activity in space can change how the body handles sugar.",
-      "source": "ADA Standards of Care, fasting glucose (terrestrial)"
+      "source": "ADA Standards of Care, fasting glucose (terrestrial)",
+      "risks": [
+        "nutrition"
+      ]
     },
     "glucose-yellow-high": {
       "region": "blood",
@@ -189,7 +231,10 @@
       "recheck": "tomorrow",
       "escalate_if": "Tell the CMO if it is high again tomorrow.",
       "why_this_check": "A single high reading is common. A pattern is worth knowing about early.",
-      "source": "ADA Standards of Care, fasting glucose (terrestrial)"
+      "source": "ADA Standards of Care, fasting glucose (terrestrial)",
+      "risks": [
+        "nutrition"
+      ]
     },
     "glucose-yellow-low": {
       "region": "blood",
@@ -204,7 +249,10 @@
       "recheck": "15 min",
       "escalate_if": "Tell the CMO if it is still low after 15 minutes, or if you feel shaky or confused.",
       "why_this_check": "Low blood sugar can make you shaky, slow and confused.",
-      "source": "ADA Standards of Care, level 1 hypoglycaemia (terrestrial)"
+      "source": "ADA Standards of Care, level 1 hypoglycaemia (terrestrial)",
+      "risks": [
+        "nutrition"
+      ]
     },
     "glucose-red-low": {
       "region": "blood",
@@ -220,7 +268,10 @@
       "recheck": "15 min",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "Very low blood sugar can cause confusion or fainting quickly.",
-      "source": "ADA Standards of Care, level 2 hypoglycaemia (terrestrial)"
+      "source": "ADA Standards of Care, level 2 hypoglycaemia (terrestrial)",
+      "risks": [
+        "nutrition"
+      ]
     },
     "glucose-red-high": {
       "region": "blood",
@@ -235,7 +286,10 @@
       "recheck": "30 min",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "Very high blood sugar needs medical attention.",
-      "source": "Project-defined red limit"
+      "source": "Project-defined red limit",
+      "risks": [
+        "nutrition"
+      ]
     },
     "skin-green": {
       "region": "skin",
@@ -248,7 +302,11 @@
       "recheck": "tomorrow",
       "escalate_if": "Tell the CMO if you feel feverish or unwell.",
       "why_this_check": "In a closed habitat, infections spread easily. Temperature is the quickest early sign.",
-      "source": "NASA HRP hazards: hostile closed environment"
+      "source": "NASA HRP hazards: hostile closed environment",
+      "risks": [
+        "immune",
+        "microbes"
+      ]
     },
     "temp-yellow-high": {
       "region": "skin",
@@ -263,7 +321,11 @@
       "recheck": "4 h",
       "escalate_if": "Tell the CMO today. Tell them right away if it goes over 39.5 °C or you feel worse.",
       "why_this_check": "A fever in a closed habitat can spread to the whole crew.",
-      "source": "Common adult clinical convention (terrestrial)"
+      "source": "Common adult clinical convention (terrestrial)",
+      "risks": [
+        "immune",
+        "microbes"
+      ]
     },
     "temp-yellow-low": {
       "region": "skin",
@@ -278,7 +340,10 @@
       "recheck": "1 h",
       "escalate_if": "Tell the CMO if it stays low or you feel very cold or confused.",
       "why_this_check": "A low reading is often a measuring error, but a real one needs warming up.",
-      "source": "Common adult clinical convention (terrestrial)"
+      "source": "Common adult clinical convention (terrestrial)",
+      "risks": [
+        "immune"
+      ]
     },
     "temp-red-high": {
       "region": "skin",
@@ -293,7 +358,11 @@
       "recheck": "1 h",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A high fever needs medical care, and may spread to the crew.",
-      "source": "Project-defined red limit (clinical convention)"
+      "source": "Project-defined red limit (clinical convention)",
+      "risks": [
+        "immune",
+        "microbes"
+      ]
     },
     "temp-red-low": {
       "region": "skin",
@@ -308,7 +377,10 @@
       "recheck": "30 min",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A very low body temperature needs care right away.",
-      "source": "Project-defined red limit (clinical convention)"
+      "source": "Project-defined red limit (clinical convention)",
+      "risks": [
+        "immune"
+      ]
     },
     "pattern-fatigue": {
       "region": "brain",
@@ -324,7 +396,11 @@
       "recheck": "evening",
       "escalate_if": "Tell the CMO if it is still yellow at the recheck.",
       "why_this_check": "Each sign alone is small. Together they are an early warning worth one simple plan.",
-      "source": "Project-defined pattern; NASA HRP hazards"
+      "source": "Project-defined pattern; NASA HRP hazards",
+      "risks": [
+        "sleep",
+        "behavior"
+      ]
     },
     "pattern-fever": {
       "region": "skin",
@@ -340,7 +416,11 @@
       "recheck": "4 h",
       "escalate_if": "Tell the CMO today. Tell them right away if you feel worse.",
       "why_this_check": "In a closed habitat, an infection is a crew problem, not just yours.",
-      "source": "Project-defined pattern"
+      "source": "Project-defined pattern",
+      "risks": [
+        "immune",
+        "microbes"
+      ]
     },
     "pattern-ortho": {
       "region": "heart",
@@ -356,7 +436,11 @@
       "recheck": "1 h",
       "escalate_if": "Call the CMO now if you faint, have chest pain, or it does not ease when you lie down.",
       "why_this_check": "After a change in gravity, the body can be slow to keep blood pressure up when standing. Most astronauts feel this after landing.",
-      "source": "NASA-STD-3001 Vol 1 Rev C Table E.2-2 (gravity-transition orthostatic intolerance); project-defined trigger"
+      "source": "NASA-STD-3001 Vol 1 Rev C Table E.2-2 (gravity-transition orthostatic intolerance); project-defined trigger",
+      "risks": [
+        "cardio",
+        "sensorimotor"
+      ]
     },
     "crt-yellow": {
       "region": "heart",
@@ -372,7 +456,10 @@
       "recheck": "evening",
       "escalate_if": "Tell the CMO if it is still slow at the recheck, or if you also feel dizzy or faint.",
       "why_this_check": "Fluid shifts in low gravity change blood pressure and circulation. A slow fingertip refill is an early, physical sign worth a second look.",
-      "source": "Experimental camera-based self-test; team-defined, not clinically validated"
+      "source": "Experimental camera-based self-test; team-defined, not clinically validated",
+      "risks": [
+        "cardio"
+      ]
     },
     "crt-red": {
       "region": "heart",
@@ -388,7 +475,10 @@
       "recheck": "now",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A very slow return of colour to the fingertip can point to poor circulation or significant fluid loss.",
-      "source": "Project-defined red limit; experimental camera-based self-test, not clinically validated"
+      "source": "Project-defined red limit; experimental camera-based self-test, not clinically validated",
+      "risks": [
+        "cardio"
+      ]
     },
     "symptoms-red": {
       "region": "heart",
@@ -404,7 +494,10 @@
       "recheck": "now",
       "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "These warning signs can be serious. Earth is minutes away, so the crew acts first.",
-      "source": "Project-defined, based on standard emergency warning signs"
+      "source": "Project-defined, based on standard emergency warning signs",
+      "risks": [
+        "ops"
+      ]
     }
   },
   "measure": {
@@ -416,5 +509,44 @@
     "sleep": "Hours of real sleep last night, not time in bed. Your watch or your best guess to the half hour.",
     "mood": "How you feel overall right now. 1 = very low, 3 = okay, 5 = great. Be honest; nobody else sees it.",
     "crt": "Optional camera check. Press a fingertip firmly over the camera lens for 5 seconds to blanch it, then move it just clear of the lens. ASCLEPIUS times how long the skin takes to pink up again. No camera, or prefer not to: use the manual stopwatch instead."
-  }
+  },
+  "risks": {
+    "cardio": {
+      "name": "Risk of Cardiovascular Adaptations",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "sensorimotor": {
+      "name": "Risk of Altered Sensorimotor and Vestibular Function",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "immune": {
+      "name": "Risk of Altered Immune System Responses",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "microbes": {
+      "name": "Risk of Host-Microorganism Interactions",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "nutrition": {
+      "name": "Risk of Inadequate Food and Nutrition",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "sleep": {
+      "name": "Risk of Inadequate Sleep and Irregular Schedules",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "behavior": {
+      "name": "Risk of Behavioral Changes and Psychiatric Disorders",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "teamwork": {
+      "name": "Risk of Inadequate Teamwork",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    },
+    "ops": {
+      "name": "Risk of Inadequate Systems Operations Support",
+      "url": "https://www.nasa.gov/hrp/risks/"
+    }
+  },
+  "riskSource": "NASA Human Research Program, Risks of Human Spaceflight (challenge Resources tab)"
 }

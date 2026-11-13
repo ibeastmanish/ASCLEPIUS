@@ -441,7 +441,7 @@
       ],
       "guidance": "pattern-fatigue",
       "tellCmo": true,
-      "source": "Project-defined; NASA HRP risk: Sleep Loss, Circadian Desynchronization and Work Overload"
+      "source": "Project-defined; NASA HRP: Risk of Inadequate Sleep and Irregular Schedules"
     },
     "PT-FEVER": {
       "label": "Possible infection",
@@ -517,6 +517,6 @@
     "levels": {
       "guidedBelowFraction": 0.5
     },
-    "concept": "NASA Earth-Independent Medical Operations (EIMO) concept of operations, NTRS 20250000009: decisions move to the crew when the ground is communication-delayed beyond practicality."
+    "concept": "NASA HRP hazard 'Distance from Earth': medical care becomes increasingly challenging to receive from Earth, so self-sufficiency is key. NASA Earth-Independent Medical Operations (EIMO) concept of operations, NTRS 20250000009: decisions move to the crew when the ground is communication-delayed beyond practicality."
   }
 }

@@ -1,5 +1,5 @@
 import { cloneElement, useEffect, useRef, type ReactElement } from "react";
-import { guidance, HAZARDS, MEASURE } from "../content/guidance";
+import { guidance, HAZARDS, MEASURE, RISKS } from "../content/guidance";
 import { RULES, fmt, rank, worst } from "../engine/rules";
 import type { CheckResult, Escalation, Indicator, IndicatorResult, PatternResult, Region, Status, Why } from "../engine/types";
 import { Disclaimer, G, STATUS_GLYPH, StatusBadge } from "./ui";
@@ -313,7 +313,13 @@ export function RegionCard({ check, region, onClose, scrollToWhy }: {
           <section className="dsec">
             <h3>Why it matters in space</h3>
             <p><b>{hazard.name}</b> <span className="tag tag-blue" style={{ marginLeft: 6 }}>NASA HRP hazard</span></p>
-            <p style={{ marginTop: 8 }}>{hazard.text}</p>
+            <p style={{ marginTop: 8 }}>{hazard.text} <a href={hazard.url} target="_blank" rel="noreferrer">NASA HRP</a></p>
+            {hazard.learnMore && <p className="small" style={{ marginTop: 6 }}><a href={hazard.learnMore.url} target="_blank" rel="noreferrer">{hazard.learnMore.text}</a> ({hazard.learnMore.by})</p>}
+            {g?.risks && g.risks.length > 0 && (
+              <ul className="small" style={{ marginTop: 10, paddingLeft: 18 }} aria-label="NASA HRP risks">
+                {g.risks.map((r) => <li key={r}><a href={RISKS[r].url} target="_blank" rel="noreferrer">{RISKS[r].name}</a></li>)}
+              </ul>
+            )}
             {g && <p className="small muted" style={{ marginTop: 10 }}>{g.why_this_check}</p>}
           </section>
 

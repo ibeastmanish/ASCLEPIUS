@@ -49,14 +49,14 @@ export interface PulseInput {
 /** Thresholds and their sources. Everything here is shown on screen with the finding. */
 export const PULSE_RULES = {
   co2LimitMmHg: 3.0,
-  co2Source: "NASA-STD-3001 Vol 2 Rev F [V2 6004]: cabin CO2 no more than 3 mmHg averaged over one hour; NASA OCHMO-TB-004: headaches reported at 2.8-4.5 mmHg",
+  co2Source: "NASA-STD-3001 Vol 2 Rev F [V2 6004]: cabin CO2 no more than 3 mmHg averaged over one hour; NASA OCHMO-TB-004: headaches reported at 2.8-4.5 mmHg; NASA HRP hazard: Hostile/Closed Environments",
   feverC: 38.0,
   spreadMinSols: 1,
   spreadMaxSols: 3,
-  spreadSource: "Project-defined timing rule. Background: latent herpes viruses reactivate in 53% of Shuttle and 61% of ISS astronauts, mostly without symptoms (Rooney et al. 2019, PMC6374706)",
+  spreadSource: "Project-defined timing rule. NASA HRP: Risk of Altered Immune System Responses (spaceflight can awaken inactive viruses) and Risk of Host-Microorganism Interactions; Artemis II Immune Biomarkers study. Latent herpes viruses reactivate in 53% of Shuttle and 61% of ISS astronauts, mostly without symptoms (Rooney et al. 2019, PMC6374706)",
   shortSleepH: 6,
   sleepSols: 3,
-  sleepSource: "NASA-STD-3001 Vol 1 Rev C [V1 6001]: an 8.5 h sleep period is planned; NASA HRP risk: Sleep Loss, Circadian Desynchronization and Work Overload",
+  sleepSource: "NASA-STD-3001 Vol 1 Rev C [V1 6001]: an 8.5 h sleep period is planned; NASA HRP: Risk of Inadequate Sleep and Irregular Schedules; Artemis II study of crew well-being, activity and sleep",
   cabinSource: "Project-defined rule: the same complaint in two or more crew on the same sol points to something shared (air, water, schedule) before it points to each person",
 } as const;
 
