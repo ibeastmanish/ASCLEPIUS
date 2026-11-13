@@ -67,12 +67,26 @@ p{margin:0 0 10px}
 
 <h2>Slide 7 · Impact</h2>
 <p>And here's the thing: this isn't only a space problem. Near Warangal, some villages are hours away from a doctor. A delay is a delay, whether it's light from Mars or a three-hour bus ride. So the same app works there too, and the daily check is in Telugu.</p>
+<p>Now, there are lots of health apps for astronauts, and in this challenge alone we found about sixty. Most of them show your numbers and a countdown to Earth. What's different about ours is three things. It tells you who should decide, by working out if Earth can answer in time. It looks at the whole crew to tell one sick person from bad air or an infection. And we tested our idea on real NASA crew data, and even found and fixed a mistake in it. As far as we could find, no one else does these.</p>
 <p>ASCLEPIUS works offline, it's open source, and you can try it on your phone right now.</p>
 <p>Medicine for when Earth is too far away. Thank you!</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>Clinic mode (Settings): the Reply Clock uses travel time to the doctor and clinic hours instead of light time and the surgeon's shift. Same maths.</li>
 <li>Telugu is a draft translation, waiting for a native speaker to check it.</li>
 <li>Open source (MIT licence), 148 automated tests, including "property tests" that throw thousands of random inputs at the engine to prove things like "chest pain is always red".</li></ul></div>
+
+<h2>What makes ASCLEPIUS special</h2>
+<p>Say this if a judge asks "how is this different?" or "doesn't this already exist?"</p>
+<div class="tech"><b class="h">What already exists</b>
+<ul><li>In this challenge we found about 60 apps on GitHub. Many have personal baselines (about 30), offline mode, a doctor's view, or an Earth-delay timer. One is very close to a normal health dashboard like ours.</li>
+<li>NASA has a plan for crews doing medicine without Earth, a crew health record system, and a risk model used before missions. NASA and Google are testing a cloud AI medical assistant. None of these is a daily self-check for the astronaut.</li></ul></div>
+<div class="tech" style="border-left-color:#FC3D21"><b class="h" style="color:#FC3D21">What only ASCLEPIUS does (as far as we could find)</b>
+<ul><li><b>Earth Reply Clock.</b> Others show how long a message takes. We compare that with how soon you must act, and say who decides: Earth, Earth confirms, or the crew. NASA's own plan says decisions move to the crew but gives no levels; we give it numbers.</li>
+<li><b>Crew Pulse.</b> Others look at one astronaut at a time. We look across the crew and across days: one person, the cabin air, or a fever spreading from person to person.</li>
+<li><b>Real proof, and a fix.</b> Others use NASA data as a picture. We ran our own rule on NASA's Inspiration4 blood data (4 of 4 crew changed, all looked normal on the standard range), and found and fixed a shifted row in NASA's file.</li>
+<li><b>Honest by design.</b> No AI makes health decisions; every colour shows its rule and source, NASA's crew health standard where it gives a number. Fully offline and encrypted.</li>
+<li><b>Built for home too.</b> The same clock works for health workers near Warangal, with travel time instead of light time, in Telugu.</li></ul></div>
+<p class="small" style="font-size:10.5pt;color:#555">Be fair if pushed: our search was GitHub on 12 Nov; new projects appear during the event, so say "as far as we could find".</p>
 
 <div class="oneline"><b>If a judge says "explain it technically in one line":</b> "It's an offline React app. A rules engine checks each reading against adult ranges and your own learned normal, uses real NASA JPL distance data to work out whether Earth can reply in time, and everything is encrypted on the device, with 148 tests behind it."</div>
 </body></html>
