@@ -42,7 +42,8 @@ export function Home() {
   const alertsToday = state.cmoAlerts.filter((a) => a.ts.slice(0, 10) === today || todayChecks.some((c) => c.checkId === a.checkId));
   const greeting = `Good ${now.getHours() < 12 ? "morning" : now.getHours() < 18 ? "afternoon" : "evening"}, ${p.name.split(" ")[0]}`;
 
-  const pattern = latest?.patterns.find((x) => x.status !== "green");
+  // On a red day, only a red pattern (e.g. warning symptoms) may title the answer; a yellow pattern must not sit under "Act now".
+  const pattern = latest?.patterns.find((x) => (latest.overall === "red" ? x.status === "red" : x.status !== "green"));
   const pg = pattern ? guidance(pattern.guidanceId) : undefined;
   const overall: Status | "none" = latest?.overall ?? "none";
   const link = linkFor(today, p.mission, state.settings.clinic);

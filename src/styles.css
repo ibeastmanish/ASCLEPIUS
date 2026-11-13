@@ -713,6 +713,9 @@ body { background: radial-gradient(1100px 520px at 85% -10%, color-mix(in srgb, 
 /* ---------- Today: Earthrise hero (dark in both themes) ---------- */
 .home-top {
   position: relative; overflow: hidden; border-radius: 26px; color: #fff; min-height: 460px; gap: 0 24px; padding: 40px 44px 36px;
+  /* 12 explicit columns: .answer spans 1/8 and .earth-field 8/13. With only 6, the earth field fell into
+     implicit auto columns and its text stretched it across the whole hero, over the answer. */
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   background:
     linear-gradient(90deg, #03060d 0%, #03060d 57%, rgb(3 6 13 / 72%) 64%, rgb(3 6 13 / 18%) 80%, rgb(3 6 13 / 0%) 100%),
     url("./assets/mars.jpg") right -120px center / 680px no-repeat,
