@@ -5,7 +5,7 @@ import * as engine from "../engine/client";
 import { earthFor } from "../engine/horizons";
 import { RULES } from "../engine/rules";
 import type { Baselines, CheckInput, CheckResult, ContextTag, Indicator, Symptom } from "../engine/types";
-import type { KeyRing } from "../storage/crypto";
+import { sha256Hex, type KeyRing } from "../storage/crypto";
 import { seal } from "../storage/earthlink";
 import type { HEvent, OutboxMessage, Profile } from "../storage/events";
 import { checksOn, historyBefore, type AppState } from "../storage/projection";
@@ -65,12 +65,32 @@ function summary(profile: Profile, result: CheckResult, kind: OutboxMessage["kin
     rules: result.results.flatMap((r) => r.why.filter((w) => r.status !== "green" && w.layer !== "clinical").map((w) => w.ruleId)),
     rulesVersion: result.rulesVersion,
     simulated: !!profile.simulated,
+    // Decision snapshot for the Ground Station console: exactly what the crew saw.
+    mission: profile.mission,
+    sentAt: result.ts,
+    escalationWhy: result.escalationWhy,
+    results: result.results.map((r) => ({
+      i: r.indicator, v: r.value, s: r.status, u: RULES.indicators[r.indicator].unit,
+      ...(r.band ? { band: r.band } : {}), ...(r.learning ? { learning: r.learning } : {}),
+      why: r.why.map((w) => ({ id: w.ruleId, layer: w.layer, text: w.text })),
+    })),
+    patternsSeen: result.patterns.map((p) => ({ id: p.id, s: p.status, tellCmo: p.tellCmo, why: p.why.map((w) => w.text) })),
   };
 }
 
-async function message(profile: Profile, result: CheckResult, kind: OutboxMessage["kind"], symptoms: Symptom[], ring: KeyRing): Promise<OutboxMessage> {
+/** Next Earth-message sequence number (signed; the ground rejects a sequence number it has seen). */
+function nextSeq(state: AppState, events: HEvent[]): number {
+  const seen = state.outbox.map((m) => Number(m.summary.seq) || 0);
+  const base = Math.max(state.outbox.length, ...seen, 0);
+  return base + events.filter((e) => e.type === "MessageQueued").length + 1;
+}
+
+let rulesHashP: Promise<string> | undefined;
+
+async function message(profile: Profile, result: CheckResult, kind: OutboxMessage["kind"], symptoms: Symptom[], ring: KeyRing, seq = 0): Promise<OutboxMessage> {
   const earth = earthFor(result.date, profile.mission);
-  const sum = summary(profile, result, kind, symptoms);
+  rulesHashP ??= sha256Hex(JSON.stringify(RULES));
+  const sum = { seq, ...summary(profile, result, kind, symptoms), earth, rulesHash: await rulesHashP };
   const sealed = await seal(sum, ring);
   return {
     id: newId(kind === "red-alert" ? "alert" : "digest"),
@@ -105,11 +125,12 @@ export async function runCheck(state: AppState, draft: Draft, now: Date, date: s
 
   if (result.overall === "red") {
     events.push({ type: "CmoAlerted", ts: input.ts, checkId: input.checkId, reason: result.escalationWhy[0] ?? "Red result" });
-    events.push({ type: "MessageQueued", ts: input.ts, message: await message(profile, result, "red-alert", draft.symptoms, ring) });
+    events.push({ type: "MessageQueued", ts: input.ts, message: await message(profile, result, "red-alert", draft.symptoms, ring, nextSeq(state, events)) });
   }
   // One compact Earth digest per day (FR-45), from the first completed check.
-  if (result.overall !== "invalid" && !state.outbox.some((m) => m.kind === "digest" && m.date === date)) {
-    events.push({ type: "MessageQueued", ts: input.ts, message: await message(profile, result, "digest", draft.symptoms, ring) });
+  // A red check already sends its own alert, so it never doubles as the digest.
+  if (result.overall !== "invalid" && result.overall !== "red" && !state.outbox.some((m) => m.kind === "digest" && m.date === date)) {
+    events.push({ type: "MessageQueued", ts: input.ts, message: await message(profile, result, "digest", draft.symptoms, ring, nextSeq(state, events)) });
   }
   return { result, events };
 }

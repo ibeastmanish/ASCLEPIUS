@@ -1,0 +1,46 @@
+/* Ground Station console. Builds on styles.css tokens; nothing here changes the crew app. */
+.gs .band-mark b { letter-spacing: 0.22em; }
+.gs-sub { color: #b9c0cc; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; }
+.gs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; margin-bottom: 28px; }
+.gs-card {
+  background: var(--panel, var(--page)); border: var(--edge, 1px solid var(--hair)); border-top: 2px solid var(--rule);
+  border-radius: var(--r, 0); padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0;
+}
+.gs-card > .label:first-child { display: block; }
+.gs-h2 { font-size: 22px; letter-spacing: -0.01em; margin: 36px 0 12px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.gs-h2 .small { font-weight: 400; color: var(--ink-3); }
+.gs-list { display: grid; gap: 10px; }
+.gs-item {
+  background: var(--panel, var(--page)); border: var(--edge, 1px solid var(--hair)); border-radius: var(--r, 0);
+  padding: 14px 16px; display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; min-width: 0;
+}
+.gs-item.open { border-color: var(--ink); }
+@media (max-width: 640px) { .gs-item { grid-template-columns: auto 1fr; } .gs-item > .btn { grid-column: 1 / -1; } }
+.gs-item .kind { width: 44px; height: 44px; }
+.gs-title { font-weight: 700; font-size: 17px; }
+.gs-meta { font-size: 13px; color: var(--ink-3); overflow-wrap: anywhere; }
+.gs-tags { display: flex; flex-wrap: wrap; gap: 6px 8px; margin-top: 6px; align-items: center; }
+.gs-count { font-family: var(--mono); font-size: 22px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+.gs-bar { height: 6px; background: var(--field); margin-top: 8px; position: relative; overflow: hidden; }
+.gs-bar > span { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); transition: width 1s linear; }
+.gs-warp { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; background: var(--yellow); color: var(--on-yellow); }
+.gs-zone { border: 2px dashed var(--ink-3); padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.gs-zone.drag { border-color: var(--accent); background: var(--field); }
+.gs-ta {
+  width: 100%; min-height: 84px; padding: 10px; border: 0; border-bottom: 2px solid var(--ink); background: var(--field);
+  color: var(--ink); font-family: var(--mono); font-size: 13px; resize: vertical;
+}
+.gs-ta:focus { outline: 2px solid var(--accent); outline-offset: 0; }
+.gs-snap { grid-column: 1 / -1; border-top: 1px solid var(--hair); padding-top: 14px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.gs-verify { display: grid; gap: 6px; }
+.gs-verify > div { display: grid; grid-template-columns: 22px 1fr; gap: 8px; align-items: start; font-size: 14px; }
+.gs-verify svg { width: 18px; height: 18px; }
+.gs-verify .ok { color: var(--green-ink); } .gs-verify .bad { color: var(--red-ink); }
+.gs-table-wrap { overflow-x: auto; }
+table.gs-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.gs-table th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); padding: 0 10px 8px 0; border-bottom: 2px solid var(--rule); }
+table.gs-table td { padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); vertical-align: top; }
+table.gs-table td.why { color: var(--ink-2); min-width: 220px; }
+.gs-hash { font-family: var(--mono); font-size: 12px; overflow-wrap: anywhere; }
+.gs .btn { min-height: 44px; }
+@media (max-width: 520px) { table.gs-table td.why { min-width: 180px; } .gs-count { font-size: 18px; } }

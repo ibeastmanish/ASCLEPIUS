@@ -2,226 +2,407 @@
   "version": "1.0.0",
   "rules": "Short sentences. No jargon. Never diagnose. Always say when to tell the crew medical officer (CMO). Reviewed by the team; to be reviewed by flight medicine experts.",
   "hazards": {
-    "isolation": { "name": "Isolation and confinement", "text": "Small spaces, the same few faces and no real sunrise wear down sleep and mood over months." },
-    "gravity": { "name": "Gravity fields", "text": "Low gravity shifts body fluids toward the head and changes how the heart and blood vessels work." },
-    "closed": { "name": "Hostile closed environment", "text": "Recycled air, shared surfaces and a busy schedule make infections and stress easier to pick up." },
-    "distance": { "name": "Distance from Earth", "text": "Help from Earth takes many minutes each way, so the crew must act first and report after." },
-    "radiation": { "name": "Space radiation", "text": "Radiation outside Earth's magnetic field slowly affects blood, immunity and long-term health." }
+    "isolation": {
+      "name": "Isolation and confinement",
+      "text": "Small spaces, the same few faces and no real sunrise wear down sleep and mood over months."
+    },
+    "gravity": {
+      "name": "Gravity fields",
+      "text": "Low gravity shifts body fluids toward the head and changes how the heart and blood vessels work."
+    },
+    "closed": {
+      "name": "Hostile closed environment",
+      "text": "Recycled air, shared surfaces and a busy schedule make infections and stress easier to pick up."
+    },
+    "distance": {
+      "name": "Distance from Earth",
+      "text": "Help from Earth takes many minutes each way, so the crew must act first and report after."
+    },
+    "radiation": {
+      "name": "Space radiation",
+      "text": "Radiation outside Earth's magnetic field slowly affects blood, immunity and long-term health."
+    }
   },
   "entries": {
     "brain-green": {
-      "region": "brain", "title": "Sleep and mood look like you.",
+      "region": "brain",
+      "title": "Sleep and mood look like you.",
       "what": "Your sleep and mood are inside your normal.",
       "hazard": "isolation",
-      "do_now": ["Keep your usual bedtime.", "Get some light and movement early in the day."],
-      "recheck": "tomorrow", "escalate_if": "Tell the CMO if you feel low for several days, even if the numbers look fine.",
+      "do_now": [
+        "Keep your usual bedtime.",
+        "Get some light and movement early in the day."
+      ],
+      "recheck": "tomorrow",
+      "escalate_if": "Tell the CMO if you feel low for several days, even if the numbers look fine.",
       "why_this_check": "Sleep and mood change first when a long mission starts to wear you down.",
       "source": "NASA HRP hazards: isolation and confinement"
     },
     "sleep-yellow": {
-      "region": "brain", "title": "You are short on sleep.",
+      "region": "brain",
+      "title": "You are short on sleep.",
       "what": "You slept less than you need, or less than your normal.",
       "hazard": "isolation",
-      "do_now": ["Keep the same bedtime tonight.", "Dim the lights an hour before bed.", "No caffeine after midday.", "Check again tonight."],
-      "recheck": "evening", "escalate_if": "Tell the CMO if you are still short on sleep at the recheck, or after three nights.",
+      "do_now": [
+        "Keep the same bedtime tonight.",
+        "Dim the lights an hour before bed.",
+        "No caffeine after midday.",
+        "Check again tonight."
+      ],
+      "recheck": "evening",
+      "escalate_if": "Tell the CMO if you are still short on sleep at the recheck, or after three nights.",
       "why_this_check": "Short sleep slows reactions and changes mood within days. On a mission that affects safety.",
-      "source": "NASA HRP hazards; AASM/SRS adult sleep recommendation [VERIFY]"
+      "source": "NASA HRP hazards; AASM/SRS adult sleep consensus (terrestrial); NASA-STD-3001 Vol 1 Rev C [V1 6001]"
     },
     "sleep-red": {
-      "region": "brain", "title": "Very little sleep two nights running.",
+      "region": "brain",
+      "title": "Very little sleep two nights running.",
       "what": "Under 4 hours of sleep two nights in a row.",
       "hazard": "isolation",
-      "do_now": ["Tell the CMO now.", "Do not do hazardous tasks or an EVA until you have rested.", "Plan a protected sleep period today."],
-      "recheck": "after rest", "escalate_if": "The CMO has been alerted.",
+      "do_now": [
+        "Tell the CMO now.",
+        "Do not do hazardous tasks or an EVA until you have rested.",
+        "Plan a protected sleep period today."
+      ],
+      "recheck": "after rest",
+      "escalate_if": "The CMO has been alerted.",
       "why_this_check": "Severe sleep loss makes mistakes much more likely.",
       "source": "Project-defined; NASA HRP hazards"
     },
     "mood-yellow": {
-      "region": "brain", "title": "Your mood is lower than usual.",
+      "region": "brain",
+      "title": "Your mood is lower than usual.",
       "what": "Your mood is below your normal, or low for a few days.",
       "hazard": "isolation",
-      "do_now": ["Talk to a crewmate you trust today.", "Take a short break from screens.", "Do something you enjoy, even for 10 minutes.", "Check again tomorrow."],
-      "recheck": "tomorrow", "escalate_if": "Tell the CMO if this lasts three days, or right away if you feel very low.",
+      "do_now": [
+        "Talk to a crewmate you trust today.",
+        "Take a short break from screens.",
+        "Do something you enjoy, even for 10 minutes.",
+        "Check again tomorrow."
+      ],
+      "recheck": "tomorrow",
+      "escalate_if": "Tell the CMO if this lasts three days, or right away if you feel very low.",
       "why_this_check": "Long isolation lowers mood slowly. Noticing it early makes it easier to fix.",
       "source": "NASA HRP hazards: isolation and confinement; project-defined"
     },
     "heart-green": {
-      "region": "heart", "title": "Heart rate and blood pressure look like you.",
+      "region": "heart",
+      "title": "Heart rate and blood pressure look like you.",
       "what": "Both are inside the usual range and your normal.",
       "hazard": "gravity",
-      "do_now": ["Keep up your exercise plan.", "Drink to your water plan."],
-      "recheck": "tomorrow", "escalate_if": "Tell the CMO if you feel dizzy, faint or have chest pain at any time.",
+      "do_now": [
+        "Keep up your exercise plan.",
+        "Drink to your water plan."
+      ],
+      "recheck": "tomorrow",
+      "escalate_if": "Tell the CMO if you feel dizzy, faint or have chest pain at any time.",
       "why_this_check": "Low gravity changes how the heart works. Your own trend shows it first.",
       "source": "NASA HRP hazards: gravity fields"
     },
     "hr-yellow": {
-      "region": "heart", "title": "Your resting heart rate is off your normal.",
+      "region": "heart",
+      "title": "Your resting heart rate is off your normal.",
       "what": "Your resting heart rate is outside your normal or the usual range.",
       "hazard": "gravity",
-      "do_now": ["Sit still for 5 minutes and measure again.", "Drink a glass of water.", "Note caffeine, exercise or stress in the last hour.", "Check again this evening."],
-      "recheck": "evening", "escalate_if": "Tell the CMO if it is still off at the recheck, or if you feel dizzy or short of breath.",
+      "do_now": [
+        "Sit still for 5 minutes and measure again.",
+        "Drink a glass of water.",
+        "Note caffeine, exercise or stress in the last hour.",
+        "Check again this evening."
+      ],
+      "recheck": "evening",
+      "escalate_if": "Tell the CMO if it is still off at the recheck, or if you feel dizzy or short of breath.",
       "why_this_check": "A resting heart rate that drifts up can be an early sign of poor sleep, stress, dehydration or illness.",
       "source": "Clinical convention; personal baseline"
     },
     "hr-red": {
-      "region": "heart", "title": "Your heart rate needs help now.",
+      "region": "heart",
+      "title": "Your heart rate needs help now.",
       "what": "Your resting heart rate is far outside the safe range.",
       "hazard": "gravity",
-      "do_now": ["Stop what you are doing and sit or lie down.", "Call the CMO now.", "Measure again in 2 minutes while you wait.", "Do not do an EVA or hazardous task."],
-      "recheck": "now", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Stop what you are doing and sit or lie down.",
+        "Call the CMO now.",
+        "Measure again in 2 minutes while you wait.",
+        "Do not do an EVA or hazardous task."
+      ],
+      "recheck": "now",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A very slow or very fast resting heart rate can be serious.",
       "source": "Project-defined red limits (clinical convention)"
     },
     "bp-yellow": {
-      "region": "heart", "title": "Your blood pressure is higher than usual.",
+      "region": "heart",
+      "title": "Your blood pressure is higher than usual.",
       "what": "Your blood pressure is above the usual range or your normal.",
       "hazard": "gravity",
-      "do_now": ["Sit quietly for 5 minutes, feet flat, arm at heart level, and measure again.", "Cut down on salty food today.", "Check again this evening."],
-      "recheck": "evening", "escalate_if": "Tell the CMO if it is still high at the recheck, or if you have a headache or blurred vision.",
+      "do_now": [
+        "Sit quietly for 5 minutes, feet flat, arm at heart level, and measure again.",
+        "Cut down on salty food today.",
+        "Check again this evening."
+      ],
+      "recheck": "evening",
+      "escalate_if": "Tell the CMO if it is still high at the recheck, or if you have a headache or blurred vision.",
       "why_this_check": "Fluid shifts in low gravity change blood pressure. Catching a change early is easy to act on.",
-      "source": "AHA/ACC 2017 BP categories [VERIFY]"
+      "source": "ACC/AHA 2017 adult blood pressure guideline (terrestrial)"
     },
     "bp-red": {
-      "region": "heart", "title": "Your blood pressure needs help now.",
+      "region": "heart",
+      "title": "Your blood pressure needs help now.",
       "what": "Your blood pressure is at a crisis level.",
       "hazard": "gravity",
-      "do_now": ["Sit down and stay calm.", "Call the CMO now.", "Measure again in 5 minutes.", "Tell the CMO about any chest pain, headache, weakness or trouble seeing."],
-      "recheck": "now", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Sit down and stay calm.",
+        "Call the CMO now.",
+        "Measure again in 5 minutes.",
+        "Tell the CMO about any chest pain, headache, weakness or trouble seeing."
+      ],
+      "recheck": "now",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "Very high blood pressure can harm the heart, brain and kidneys.",
-      "source": "AHA/ACC 2017 hypertensive crisis level [VERIFY]"
+      "source": "ACC/AHA 2017 hypertensive crisis level (terrestrial)"
     },
     "blood-green": {
-      "region": "blood", "title": "Blood sugar looks like you.",
+      "region": "blood",
+      "title": "Blood sugar looks like you.",
       "what": "Your blood sugar is inside the usual range and your normal.",
       "hazard": "closed",
-      "do_now": ["Keep to your meal plan."],
-      "recheck": "tomorrow", "escalate_if": "Tell the CMO if you feel shaky, sweaty or confused at any time.",
+      "do_now": [
+        "Keep to your meal plan."
+      ],
+      "recheck": "tomorrow",
+      "escalate_if": "Tell the CMO if you feel shaky, sweaty or confused at any time.",
       "why_this_check": "Diet, stress and low activity in space can change how the body handles sugar.",
-      "source": "ADA fasting glucose categories [VERIFY]"
+      "source": "ADA Standards of Care, fasting glucose (terrestrial)"
     },
     "glucose-yellow-high": {
-      "region": "blood", "title": "Your blood sugar is a bit high.",
+      "region": "blood",
+      "title": "Your blood sugar is a bit high.",
       "what": "Your fasting blood sugar is above the usual range or your normal.",
       "hazard": "closed",
-      "do_now": ["Make sure this was a fasting reading (no food for 8 hours).", "Drink water.", "Choose a lower-sugar meal next.", "Check again tomorrow morning before eating."],
-      "recheck": "tomorrow", "escalate_if": "Tell the CMO if it is high again tomorrow.",
+      "do_now": [
+        "Make sure this was a fasting reading (no food for 8 hours).",
+        "Drink water.",
+        "Choose a lower-sugar meal next.",
+        "Check again tomorrow morning before eating."
+      ],
+      "recheck": "tomorrow",
+      "escalate_if": "Tell the CMO if it is high again tomorrow.",
       "why_this_check": "A single high reading is common. A pattern is worth knowing about early.",
-      "source": "ADA fasting glucose categories [VERIFY]"
+      "source": "ADA Standards of Care, fasting glucose (terrestrial)"
     },
     "glucose-yellow-low": {
-      "region": "blood", "title": "Your blood sugar is a bit low.",
+      "region": "blood",
+      "title": "Your blood sugar is a bit low.",
       "what": "Your blood sugar is below the usual range.",
       "hazard": "closed",
-      "do_now": ["Eat or drink something with sugar now (juice or a sweet).", "Measure again in 15 minutes.", "Then eat a normal meal."],
-      "recheck": "15 min", "escalate_if": "Tell the CMO if it is still low after 15 minutes, or if you feel shaky or confused.",
+      "do_now": [
+        "Eat or drink something with sugar now (juice or a sweet).",
+        "Measure again in 15 minutes.",
+        "Then eat a normal meal."
+      ],
+      "recheck": "15 min",
+      "escalate_if": "Tell the CMO if it is still low after 15 minutes, or if you feel shaky or confused.",
       "why_this_check": "Low blood sugar can make you shaky, slow and confused.",
-      "source": "ADA hypoglycaemia level 1 [VERIFY]"
+      "source": "ADA Standards of Care, level 1 hypoglycaemia (terrestrial)"
     },
     "glucose-red-low": {
-      "region": "blood", "title": "Your blood sugar is too low.",
+      "region": "blood",
+      "title": "Your blood sugar is too low.",
       "what": "Your blood sugar is under 54 mg/dL.",
       "hazard": "closed",
-      "do_now": ["Eat or drink 15 g of fast sugar now (juice or glucose tablets).", "Call the CMO now.", "Sit down. Do not do hazardous tasks.", "Measure again in 15 minutes."],
-      "recheck": "15 min", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Eat or drink 15 g of fast sugar now (juice or glucose tablets).",
+        "Call the CMO now.",
+        "Sit down. Do not do hazardous tasks.",
+        "Measure again in 15 minutes."
+      ],
+      "recheck": "15 min",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "Very low blood sugar can cause confusion or fainting quickly.",
-      "source": "ADA hypoglycaemia level 2 [VERIFY]"
+      "source": "ADA Standards of Care, level 2 hypoglycaemia (terrestrial)"
     },
     "glucose-red-high": {
-      "region": "blood", "title": "Your blood sugar is very high.",
+      "region": "blood",
+      "title": "Your blood sugar is very high.",
       "what": "Your blood sugar is 250 mg/dL or more.",
       "hazard": "closed",
-      "do_now": ["Call the CMO now.", "Drink water.", "Measure again in 30 minutes."],
-      "recheck": "30 min", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Call the CMO now.",
+        "Drink water.",
+        "Measure again in 30 minutes."
+      ],
+      "recheck": "30 min",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "Very high blood sugar needs medical attention.",
       "source": "Project-defined red limit"
     },
     "skin-green": {
-      "region": "skin", "title": "Temperature looks like you.",
+      "region": "skin",
+      "title": "Temperature looks like you.",
       "what": "Your temperature is inside the usual range and your normal.",
       "hazard": "closed",
-      "do_now": ["Wash hands before meals and after the toilet."],
-      "recheck": "tomorrow", "escalate_if": "Tell the CMO if you feel feverish or unwell.",
+      "do_now": [
+        "Wash hands before meals and after the toilet."
+      ],
+      "recheck": "tomorrow",
+      "escalate_if": "Tell the CMO if you feel feverish or unwell.",
       "why_this_check": "In a closed habitat, infections spread easily. Temperature is the quickest early sign.",
       "source": "NASA HRP hazards: hostile closed environment"
     },
     "temp-yellow-high": {
-      "region": "skin", "title": "You have a raised temperature.",
+      "region": "skin",
+      "title": "You have a raised temperature.",
       "what": "Your temperature is above the usual range.",
       "hazard": "closed",
-      "do_now": ["Rest and drink extra water.", "Wear a mask in shared areas and clean surfaces you touch.", "Measure again in 4 hours."],
-      "recheck": "4 h", "escalate_if": "Tell the CMO today. Tell them right away if it goes over 39.5 °C or you feel worse.",
+      "do_now": [
+        "Rest and drink extra water.",
+        "Wear a mask in shared areas and clean surfaces you touch.",
+        "Measure again in 4 hours."
+      ],
+      "recheck": "4 h",
+      "escalate_if": "Tell the CMO today. Tell them right away if it goes over 39.5 °C or you feel worse.",
       "why_this_check": "A fever in a closed habitat can spread to the whole crew.",
-      "source": "Clinical convention [VERIFY]"
+      "source": "Common adult clinical convention (terrestrial)"
     },
     "temp-yellow-low": {
-      "region": "skin", "title": "Your temperature is a bit low.",
+      "region": "skin",
+      "title": "Your temperature is a bit low.",
       "what": "Your temperature is below the usual range.",
       "hazard": "closed",
-      "do_now": ["Measure again with the thermometer in the right place.", "Put on warm layers and have a warm drink.", "Check again in 1 hour."],
-      "recheck": "1 h", "escalate_if": "Tell the CMO if it stays low or you feel very cold or confused.",
+      "do_now": [
+        "Measure again with the thermometer in the right place.",
+        "Put on warm layers and have a warm drink.",
+        "Check again in 1 hour."
+      ],
+      "recheck": "1 h",
+      "escalate_if": "Tell the CMO if it stays low or you feel very cold or confused.",
       "why_this_check": "A low reading is often a measuring error, but a real one needs warming up.",
-      "source": "Clinical convention [VERIFY]"
+      "source": "Common adult clinical convention (terrestrial)"
     },
     "temp-red-high": {
-      "region": "skin", "title": "You have a high fever.",
+      "region": "skin",
+      "title": "You have a high fever.",
       "what": "Your temperature is 39.5 °C or more.",
       "hazard": "closed",
-      "do_now": ["Call the CMO now.", "Rest, drink water, and keep away from crewmates.", "Measure again in 1 hour."],
-      "recheck": "1 h", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Call the CMO now.",
+        "Rest, drink water, and keep away from crewmates.",
+        "Measure again in 1 hour."
+      ],
+      "recheck": "1 h",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A high fever needs medical care, and may spread to the crew.",
       "source": "Project-defined red limit (clinical convention)"
     },
     "temp-red-low": {
-      "region": "skin", "title": "Your temperature is too low.",
+      "region": "skin",
+      "title": "Your temperature is too low.",
       "what": "Your temperature is under 35.0 °C.",
       "hazard": "closed",
-      "do_now": ["Call the CMO now.", "Warm up slowly: dry clothes, blankets, warm drink.", "Do not do hazardous tasks."],
-      "recheck": "30 min", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Call the CMO now.",
+        "Warm up slowly: dry clothes, blankets, warm drink.",
+        "Do not do hazardous tasks."
+      ],
+      "recheck": "30 min",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A very low body temperature needs care right away.",
       "source": "Project-defined red limit (clinical convention)"
     },
     "pattern-fatigue": {
-      "region": "brain", "title": "Fatigue pattern",
+      "region": "brain",
+      "title": "Fatigue pattern",
       "what": "Short sleep, a raised resting heart rate and a lower mood, all on the same day. Together they point to one thing: you are running down.",
       "hazard": "isolation",
-      "do_now": ["Protect tonight's sleep: same bedtime, lights dim an hour before.", "Ask to move one demanding task if you can.", "Light exercise only today.", "Check again this evening."],
-      "recheck": "evening", "escalate_if": "Tell the CMO if it is still yellow at the recheck.",
+      "do_now": [
+        "Protect tonight's sleep: same bedtime, lights dim an hour before.",
+        "Ask to move one demanding task if you can.",
+        "Light exercise only today.",
+        "Check again this evening."
+      ],
+      "recheck": "evening",
+      "escalate_if": "Tell the CMO if it is still yellow at the recheck.",
       "why_this_check": "Each sign alone is small. Together they are an early warning worth one simple plan.",
       "source": "Project-defined pattern; NASA HRP hazards"
     },
     "pattern-fever": {
-      "region": "skin", "title": "Possible infection",
+      "region": "skin",
+      "title": "Possible infection",
       "what": "A raised temperature and a raised heart rate together.",
       "hazard": "closed",
-      "do_now": ["Tell the CMO today.", "Rest and drink extra water.", "Wear a mask in shared areas.", "Measure again in 4 hours."],
-      "recheck": "4 h", "escalate_if": "Tell the CMO today. Tell them right away if you feel worse.",
+      "do_now": [
+        "Tell the CMO today.",
+        "Rest and drink extra water.",
+        "Wear a mask in shared areas.",
+        "Measure again in 4 hours."
+      ],
+      "recheck": "4 h",
+      "escalate_if": "Tell the CMO today. Tell them right away if you feel worse.",
       "why_this_check": "In a closed habitat, an infection is a crew problem, not just yours.",
       "source": "Project-defined pattern"
     },
+    "pattern-ortho": {
+      "region": "heart",
+      "title": "Light-headed when you stand up",
+      "what": "You feel dizzy on standing and your blood pressure is low for you.",
+      "hazard": "gravity",
+      "do_now": [
+        "Sit or lie down now, legs raised.",
+        "Drink 500 mL of water or an electrolyte drink.",
+        "Stand up slowly, in two steps.",
+        "Tell the CMO today and measure again lying, then standing."
+      ],
+      "recheck": "1 h",
+      "escalate_if": "Call the CMO now if you faint, have chest pain, or it does not ease when you lie down.",
+      "why_this_check": "After a change in gravity, the body can be slow to keep blood pressure up when standing. Most astronauts feel this after landing.",
+      "source": "NASA-STD-3001 Vol 1 Rev C Table E.2-2 (gravity-transition orthostatic intolerance); project-defined trigger"
+    },
     "crt-yellow": {
-      "region": "heart", "title": "Your fingertip is slow to pink up.",
+      "region": "heart",
+      "title": "Your fingertip is slow to pink up.",
       "what": "Capillary refill is slower than the usual range, or slower than your normal.",
       "hazard": "gravity",
-      "do_now": ["Warm your hands for a minute, cold hands slow this test.", "Drink a glass of water.", "Retest in a few minutes.", "Check again this evening."],
-      "recheck": "evening", "escalate_if": "Tell the CMO if it is still slow at the recheck, or if you also feel dizzy or faint.",
+      "do_now": [
+        "Warm your hands for a minute, cold hands slow this test.",
+        "Drink a glass of water.",
+        "Retest in a few minutes.",
+        "Check again this evening."
+      ],
+      "recheck": "evening",
+      "escalate_if": "Tell the CMO if it is still slow at the recheck, or if you also feel dizzy or faint.",
       "why_this_check": "Fluid shifts in low gravity change blood pressure and circulation. A slow fingertip refill is an early, physical sign worth a second look.",
-      "source": "Experimental camera-based self-test; team-defined, not clinically validated [VERIFY]"
+      "source": "Experimental camera-based self-test; team-defined, not clinically validated"
     },
     "crt-red": {
-      "region": "heart", "title": "Your capillary refill needs help now.",
+      "region": "heart",
+      "title": "Your capillary refill needs help now.",
       "what": "Capillary refill of 4.5 seconds or more.",
       "hazard": "gravity",
-      "do_now": ["Sit or lie down.", "Call the CMO now.", "Mention any dizziness, faintness or cold, pale hands.", "Retest in a few minutes while you wait."],
-      "recheck": "now", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Sit or lie down.",
+        "Call the CMO now.",
+        "Mention any dizziness, faintness or cold, pale hands.",
+        "Retest in a few minutes while you wait."
+      ],
+      "recheck": "now",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "A very slow return of colour to the fingertip can point to poor circulation or significant fluid loss.",
-      "source": "Project-defined red limit; experimental camera-based self-test, not clinically validated [VERIFY]"
+      "source": "Project-defined red limit; experimental camera-based self-test, not clinically validated"
     },
     "symptoms-red": {
-      "region": "heart", "title": "Act now",
+      "region": "heart",
+      "title": "Act now",
       "what": "You reported a warning sign that always needs help right away.",
       "hazard": "distance",
-      "do_now": ["Stop what you are doing. Sit or lie down somewhere safe.", "Call the CMO now. Say what you feel.", "Do not be alone. Ask a crewmate to stay with you.", "Follow the CMO's emergency checklist."],
-      "recheck": "now", "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
+      "do_now": [
+        "Stop what you are doing. Sit or lie down somewhere safe.",
+        "Call the CMO now. Say what you feel.",
+        "Do not be alone. Ask a crewmate to stay with you.",
+        "Follow the CMO's emergency checklist."
+      ],
+      "recheck": "now",
+      "escalate_if": "The CMO has been alerted. A summary is going to Earth.",
       "why_this_check": "These warning signs can be serious. Earth is minutes away, so the crew acts first.",
       "source": "Project-defined, based on standard emergency warning signs"
     }
@@ -234,6 +415,6 @@
     "temp": "Thermometer under the tongue, mouth closed, for the full time. No hot or cold drinks for 15 minutes before.",
     "sleep": "Hours of real sleep last night, not time in bed. Your watch or your best guess to the half hour.",
     "mood": "How you feel overall right now. 1 = very low, 3 = okay, 5 = great. Be honest; nobody else sees it.",
-    "crt": "Optional camera check. Press a fingertip firmly over the camera lens for 5 seconds to blanch it, then move it just clear of the lens. HYGIEA times how long the skin takes to pink up again. No camera, or prefer not to: use the manual stopwatch instead."
+    "crt": "Optional camera check. Press a fingertip firmly over the camera lens for 5 seconds to blanch it, then move it just clear of the lens. ASCLEPIUS times how long the skin takes to pink up again. No camera, or prefer not to: use the manual stopwatch instead."
   }
 }

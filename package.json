@@ -1,5 +1,5 @@
 {
-  "name": "hygiea",
+  "name": "asclepius",
   "private": true,
   "version": "1.0.0",
   "description": "Offline daily health self-check for astronauts. Decision support, not a medical device.",
@@ -14,11 +14,12 @@
     "test:watch": "vitest",
     "data": "python3 analysis/build_app_data.py && python3 analysis/inspiration4_baseline.py",
     "data:fetch": "python3 analysis/fetch_nasa_data.py",
+    "proof": "python3 -I analysis/i4_proof.py && node scripts/proof.mjs",
     "tauri": "tauri",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
     "desktop:test": "cargo test --manifest-path src-tauri/Cargo.toml",
-    "desktop:selftest": "tauri build --debug --no-bundle && HYGIEA_SELFTEST=1 src-tauri/target/debug/hygiea-desktop"
+    "desktop:selftest": "tauri build --debug --no-bundle && ASCLEPIUS_SELFTEST=1 src-tauri/target/debug/asclepius-desktop"
   },
   "dependencies": {
     "@tauri-apps/api": "~2.9.1",

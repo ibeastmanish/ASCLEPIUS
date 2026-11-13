@@ -3,7 +3,7 @@
   "k": 2.5,
   "learningChecks": 7,
   "madScale": 1.4826,
-  "note": "HYGIEA's own band rule (median +/- 2.5 x scaled MAD) needs 7 checks. Inspiration4 has only 3 pre-flight draws, so a band built from them is too wide and noisy to trust; the fixed 20% cut-off is used here instead. 'Outside app band' shows what the app's rule would say with those 3 draws.",
+  "note": "ASCLEPIUS's own band rule (median +/- 2.5 x scaled MAD) needs 7 checks. Inspiration4 has only 3 pre-flight draws, so a band built from them is too wide and noisy to trust; the fixed 20% cut-off is used here instead. 'Outside app band' shows what the app's rule would say with those 3 draws.",
   "preflightDraws": 3
  },
  "caveat": "4 civilian crew, 3-day low-Earth-orbit flight, blood drawn after landing. Small sample: this illustrates the idea of personal baselines; it is not clinical evidence and not a prediction for Mars missions.",

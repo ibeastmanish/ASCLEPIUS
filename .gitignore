@@ -29,3 +29,4 @@ src-tauri/gen
 
 # Design-tool working files
 .impeccable
+__pycache__/

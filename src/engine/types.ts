@@ -1,11 +1,11 @@
-// HYGIEA engine contract (PRD section 8.4). Pure data types shared by the
+// ASCLEPIUS engine contract (PRD section 8.4). Pure data types shared by the
 // engine worker, the storage layer and the UI.
 
 export type Indicator = "bp_sys" | "bp_dia" | "hr" | "glucose" | "temp" | "sleep" | "mood" | "crt";
 export type Status = "green" | "yellow" | "red" | "invalid";
 export type Layer = "validity" | "redflag" | "clinical" | "personal" | "trend" | "pattern" | "context";
 export type Region = "brain" | "heart" | "blood" | "skin";
-export type ContextTag = "exercise" | "eva" | "caffeine" | "medication" | "woke" | "unwell";
+export type ContextTag = "exercise" | "eva" | "caffeine" | "meal" | "medication" | "woke" | "unwell" | "dizzy";
 export type Symptom = "chest_pain" | "breathing" | "fainting" | "weakness" | "confusion" | "headache";
 export type Escalation = "none" | "recheck" | "tell-cmo" | "alert-cmo-and-earth";
 export type MissionSetting = "mars" | "moon" | "iss";

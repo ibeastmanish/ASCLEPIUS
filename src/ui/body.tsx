@@ -181,7 +181,7 @@ const SILHOUETTE = (() => {
 const RUNGS: { e: Escalation; s: Status; title: string; text: string }[] = [
   { e: "none", s: "green", title: "All good", text: "Streak +1. No message is sent." },
   { e: "recheck", s: "yellow", title: "Do the steps, recheck tonight", text: "A recheck reminder is set." },
-  { e: "tell-cmo", s: "yellow", title: "Tell the crew medical officer", text: "Still yellow, a pattern, or you feel unwell." },
+  { e: "tell-cmo", s: "yellow", title: "Tell the crew medical officer", text: "Yellow again at the recheck, a trend over several days, a pattern the CMO should know, or you feel unwell." },
   { e: "alert-cmo-and-earth", s: "red", title: "Act now", text: "CMO alerted at once. A signed summary goes to Earth." },
 ];
 

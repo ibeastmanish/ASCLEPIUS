@@ -1,15 +1,15 @@
-# HYGIEA
+# ASCLEPIUS
 ### *Health for the Artemis generation.*
 
 **Live demo:** https://ibeastmanish.github.io/hygiea/ · [![CI](https://github.com/ibeastmanish/hygiea/actions/workflows/ci.yml/badge.svg)](https://github.com/ibeastmanish/hygiea/actions/workflows/ci.yml)
 
-HYGIEA is an offline tablet app that turns a quick daily check of six health indicators into a clear answer (green, yellow or red). It explains the answer in plain words on a clickable body map, tells the astronaut what to do, and alerts the crew doctor and Earth only when it's serious.
+ASCLEPIUS is an offline tablet app that turns a quick daily check of six health indicators into a clear answer (green, yellow or red). It explains the answer in plain words on a clickable body map, tells the astronaut what to do, and alerts the crew doctor and Earth only when it's serious.
 
-> **Normal for everyone is not normal for you.** A resting heart rate of 74 is fine for most people. For an astronaut whose own normal is 52-62, it is a warning sign. HYGIEA checks every reading against the usual adult range **and** against the astronaut's own learned baseline. The worse result wins.
+> **Normal for everyone is not normal for you.** A resting heart rate of 74 is fine for most people. For an astronaut whose own normal is 52-62, it is a warning sign. ASCLEPIUS checks every reading against the usual adult range **and** against the astronaut's own learned baseline. The worse result wins.
 
-Built for the NASA Space Apps Challenge 2026: *Create Health Monitoring Software for Astronauts on Space Missions*. Team HYGIEA, Warangal, India.
+Built for the NASA Space Apps Challenge 2026: *Create Health Monitoring Software for Astronauts on Space Missions*. Team ASCLEPIUS, Warangal, India.
 
-**Decision support, not a medical device.** HYGIEA does not diagnose. Every colour comes from a readable rule, never from AI.
+**Decision support, not a medical device.** ASCLEPIUS does not diagnose. Every colour comes from a readable rule, never from AI.
 
 ---
 
@@ -72,7 +72,7 @@ npm run data:fetch    # re-downloads from NASA (optional)
 
 ## Optional: camera perfusion check (experimental)
 The challenge brief names "camera images" as a valid health-indicator input. Alongside the six required
-readings, HYGIEA offers one optional seventh check: capillary refill time (CRT), a standard bedside
+readings, ASCLEPIUS offers one optional seventh check: capillary refill time (CRT), a standard bedside
 perfusion test. The astronaut presses a fingertip over the camera lens for five seconds, releases it, and
 `src/engine/crt.ts` times how long the frame brightness takes to recover, using plain signal processing
 (no AI, no ML model - a release-jump detector, a trough/plateau read, and a 90%-recovery crossing, exactly
@@ -108,7 +108,7 @@ git clone <hermes repo> ../hermes
 npm run desktop:test       # Rust tests: round trip, one-bit tamper, forged signer, wrong passphrase, keys persist
 npm run desktop:selftest   # builds the app, runs the full flow inside the real desktop window, prints a JSON report
 npm run desktop:dev        # run the desktop app against the dev server
-npm run desktop:build      # HYGIEA.app + .dmg in src-tauri/target/release/bundle/
+npm run desktop:build      # ASCLEPIUS.app + .dmg in src-tauri/target/release/bundle/
 ```
 
 ## Tests
@@ -120,12 +120,12 @@ npm run desktop:build      # HYGIEA.app + .dmg in src-tauri/target/release/bundl
 - Performance: a full check evaluates in under 100 ms (about 1 ms measured).
 
 ## Privacy and security
-- All data stays on the device in IndexedDB. Each event is encrypted with AES-GCM 256. The key comes from your passphrase and is kept only in memory. HYGIEA asks the browser for persistent storage.
+- All data stays on the device in IndexedDB. Each event is encrypted with AES-GCM 256. The key comes from your passphrase and is kept only in memory. ASCLEPIUS asks the browser for persistent storage.
 - Nothing leaves the device unless you export it (JSON or HL7 FHIR R4 with LOINC codes) or a red alert or daily digest is queued for Earth.
 - Earth messages are signed (ECDSA P-256, crew key) and encrypted to the flight surgeon's key (ECDH P-256 + AES-GCM 256) with WebCrypto. In this demo the flight-surgeon key is a **simulated ground station**, so the app can show decryption and tamper detection. The desktop build does the same with the team's Hermes OpenPGP library (see *Desktop app*).
 
 ## Licences and credits
-HYGIEA is MIT-licensed (see `LICENSE`). Desktop build: Tauri (MIT OR Apache-2.0), Hermes `aura` (MIT OR Apache-2.0), Sequoia OpenPGP (LGPL-2.0-or-later, linked as a library). Dependencies: React (MIT), Vite (MIT), vite-plugin-pwa / Workbox (MIT), Dexie (Apache-2.0), Recharts (MIT), Vitest (MIT), fast-check (MIT), Ajv (MIT), fake-indexeddb (Apache-2.0), oxlint (MIT), TypeScript (Apache-2.0).
+ASCLEPIUS is MIT-licensed (see `LICENSE`). Desktop build: Tauri (MIT OR Apache-2.0), Hermes `aura` (MIT OR Apache-2.0), Sequoia OpenPGP (LGPL-2.0-or-later, linked as a library). Dependencies: React (MIT), Vite (MIT), vite-plugin-pwa / Workbox (MIT), Dexie (Apache-2.0), Recharts (MIT), Vitest (MIT), fast-check (MIT), Ajv (MIT), fake-indexeddb (Apache-2.0), oxlint (MIT), TypeScript (Apache-2.0).
 NASA data is public: JPL Horizons, NASA OSDR (OSD-569, OSD-575), NASA HRP.
 
 

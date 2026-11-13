@@ -12,7 +12,7 @@ web
 - **Secondary:** the crew medical officer (alerted on red), and the flight surgeon on Earth (receives the signed, encrypted summary).
 
 ## Product Purpose
-HYGIEA turns six daily readings (blood pressure, resting heart rate, blood sugar, temperature, sleep, mood) into one clear answer, green, yellow or red, explains it in plain words on a body map, tells the astronaut what to do, and alerts the crew medical officer and Earth only when it is serious. Success: a judge understands "normal for everyone is not normal for you" within seconds, and a crew member finishes a check in about a minute.
+ASCLEPIUS turns six daily readings (blood pressure, resting heart rate, blood sugar, temperature, sleep, mood) into one clear answer, green, yellow or red, explains it in plain words on a body map, tells the astronaut what to do, and alerts the crew medical officer and Earth only when it is serious. Success: a judge understands "normal for everyone is not normal for you" within seconds, and a crew member finishes a check in about a minute.
 
 ## Positioning
 Every reading is checked against the usual adult range **and** the astronaut's own learned baseline; the worse result wins. Every colour carries its rule, value, band and source (no AI). It is fully offline, and it knows the real Earth delay and Sun blackout from NASA JPL Horizons, so messages to Earth queue, are signed and encrypted, and show a true arrival time.
@@ -30,7 +30,7 @@ Every reading is checked against the usual adult range **and** the astronaut's o
 - Light and dark appearance both required (confirmed), following the device setting.
 
 ## Brand Commitments
-- Name **HYGIEA**, tagline "Health for the Artemis generation". Team HYGIEA, Warangal, India.
+- Name **ASCLEPIUS**, tagline "Health for the Artemis generation". Team ASCLEPIUS, Warangal, India.
 - **NASA palette (binding, from the PRD and confirmed by the user):** space black `#000000`, white `#FFFFFF`, NASA blue `#0B3D91`, light blue `#6FA3FF`, NASA red `#FC3D21`; status green `#2EC27E`, yellow `#FFC72C`, red `#FC3D21`.
 - **Type (binding, from the PRD):** Helvetica Neue / Helvetica / Arial. Large bold values, small caps labels.
 - Motion 250-400 ms ease-out; nothing essential depends on animation.

@@ -9,6 +9,8 @@ import { checksOn } from "../storage/projection";
 import { BodyMap, Ladder, PatternBlock, REGIONS, RegionCard, regionParts, regionStatus } from "../ui/body";
 import { Disclaimer, G, OVERALL_WORD, StatusBadge, TopBar, fmtMinutes } from "../ui/ui";
 import { LinkTimeline } from "../ui/link";
+import { ReplyClockCard } from "../ui/replyclock";
+import { linkFor, replyClockForCheck } from "../engine/replyclock";
 import { EarthBanner } from "./Home";
 
 export function Body() {
@@ -18,14 +20,14 @@ export function Body() {
   const [open, setOpen] = useState<Region | null>(null);
   const [scrollWhy, setScrollWhy] = useState(false);
   const [ripple, setRipple] = useState<{ x: number; y: number; key: number } | null>(null);
-  const [dismissed, setDismissed] = useState<string | null>(() => sessionStorage.getItem("hygiea-dismissed-alert"));
+  const [dismissed, setDismissed] = useState<string | null>(() => sessionStorage.getItem("asclepius-dismissed-alert"));
   const [timing, setTiming] = useState<{ s: number; taps: number; ms: number } | null>(null);
 
   useEffect(() => {
-    const t = sessionStorage.getItem("hygiea-last-timing");
+    const t = sessionStorage.getItem("asclepius-last-timing");
     if (t) {
       setTiming(JSON.parse(t));
-      sessionStorage.removeItem("hygiea-last-timing");
+      sessionStorage.removeItem("asclepius-last-timing");
       const h = setTimeout(() => setTiming(null), 6000);
       return () => clearTimeout(h);
     }
@@ -70,6 +72,8 @@ export function Body() {
   const showAlert = check.overall === "red" && dismissed !== check.checkId && isToday;
   const topPatterns = check.patterns.filter((p) => p.status !== "green");
   const select = (r: Region) => { setScrollWhy(false); setOpen(r); };
+  const p = state.profile!;
+  const clock = replyClockForCheck(check, p.mission, p.baseLonE, linkFor(check.date, p.mission, state.settings.clinic));
 
   return (
     <>
@@ -113,13 +117,14 @@ export function Body() {
             <span className="label">What happens next</span>
             <Ladder escalation={check.escalation} />
             <ul>{check.escalationWhy.map((w) => <li key={w}>{w}</li>)}</ul>
+            {clock && <ReplyClockCard clock={clock} />}
           </section>
         </div>
       </div>
       <Disclaimer />
 
       {open && <RegionCard check={check} region={open} scrollToWhy={scrollWhy} onClose={() => { setOpen(null); setScrollWhy(false); }} />}
-      {showAlert && <RedAlert check={check} onClose={() => { sessionStorage.setItem("hygiea-dismissed-alert", check.checkId); setDismissed(check.checkId); }} />}
+      {showAlert && <RedAlert check={check} onClose={() => { sessionStorage.setItem("asclepius-dismissed-alert", check.checkId); setDismissed(check.checkId); }} />}
       {timing && !app.video && !showAlert && (
         <div className="toast" role="status"><span className="sq" aria-hidden="true" />Check done in {timing.s} s · {timing.taps} {timing.taps === 1 ? "tap" : "taps"} · engine {timing.ms.toFixed(1)} ms</div>
       )}
@@ -134,6 +139,7 @@ function RedAlert({ check, onClose }: { check: CheckResult; onClose: () => void 
   const g = sym ? guidance(sym.guidanceId) : guidance(red?.guidanceId, red?.side);
   const msg = state.outbox.find((m) => m.checkId === check.checkId && m.kind === "red-alert");
   const mins = check.earthEta ? (Date.parse(check.earthEta) - Date.parse(check.ts)) / 60_000 : 0;
+  const clock = replyClockForCheck(check, state.profile!.mission, state.profile!.baseLonE, linkFor(check.date, state.profile!.mission, state.settings.clinic));
   useEffect(() => {
     const esc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     addEventListener("keydown", esc);
@@ -153,10 +159,11 @@ function RedAlert({ check, onClose }: { check: CheckResult; onClose: () => void 
           <div className="panel">
             {check.earthHeld
               ? <><b>Earth summary held: Sun blackout.</b> It is sent automatically when the Sun moves out of the way. The CMO has it now.</>
-              : <><b>Summary queued for Earth</b>{msg?.signed ? ", signed and encrypted" : ""}. It arrives in {fmtMinutes(mins)}; a reply takes {fmtMinutes(2 * mins)} or more. Don't wait for Earth: act first.
+              : <><b>Summary queued for Earth</b>{msg?.signed ? ", signed and encrypted" : ""}. It arrives in {fmtMinutes(mins)}. Don't wait for Earth: act first.
                   {mins > 0 && <LinkTimeline sentMs={Date.parse(check.ts)} oneWayMin={mins} />}</>}
           </div>
         </div>
+        {clock && <ReplyClockCard clock={clock} compact />}
         <div className="actions">
           <button className="btn btn-primary btn-lg" onClick={onClose} autoFocus>I'm with the CMO: show details</button>
           <a className="btn btn-lg" href="#/outbox" onClick={onClose}>See Earth outbox</a>

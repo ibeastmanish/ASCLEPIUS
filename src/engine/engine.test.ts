@@ -189,11 +189,13 @@ describe("journey J3: Asha, Day 212", () => {
     for (const i of ["glucose", "temp", "bp_sys", "bp_dia"] as Indicator[]) expect(get(i).status).toBe("green");
   });
 
-  it("raises one PT-FATIGUE card and an overall yellow with an evening recheck", () => {
+  it("raises one PT-FATIGUE card, overall yellow, and tells the CMO (pattern + 3-night trend)", () => {
     expect(res.patterns.map((p) => p.id)).toEqual(["PT-FATIGUE"]);
     expect(res.patterns[0].regions).toEqual(["brain", "heart"]);
     expect(res.overall).toBe("yellow");
-    expect(res.escalation).toBe("recheck");
+    expect(res.escalation).toBe("tell-cmo");
+    expect(res.escalationWhy.some((w) => w.endsWith("(PT-FATIGUE)"))).toBe(true);
+    expect(res.escalationWhy.some((w) => w.endsWith("(TR-SLEEP-3)"))).toBe(true);
     expect(res.rulesVersion).toBe(RULES.version);
   });
 
@@ -374,4 +376,65 @@ it("worst() never lets invalid beat a colour", () => {
   expect(worst("invalid", "green")).toBe("green");
   expect(worst("red", "invalid")).toBe("red");
   expect(matches(5, { gte: 5, lt: 6 })).toBe(true);
+});
+
+// ------------------------------------------------------------ v3 clinical fixes
+describe("v3 clinical rules", () => {
+  const none = ctx({ baselines: {} });
+  const one = (ind: Indicator, v: number, tags: CheckInput["tags"] = []) =>
+    completeCheck(input({ [ind]: v }, { tags }), none).results[0];
+
+  it("low blood pressure is no longer green: yellow under 90/60, red under 80/40", () => {
+    expect(one("bp_sys", 85).status).toBe("yellow");
+    expect(one("bp_sys", 85).side).toBe("low");
+    expect(one("bp_sys", 75).status).toBe("red");
+    expect(one("bp_dia", 55).status).toBe("yellow");
+    expect(one("bp_dia", 38).status).toBe("red");
+    expect(one("bp_sys", 118).status).toBe("green");
+  });
+
+  it("after-meal glucose uses the 2-hour range (under 140) instead of the fasting one", () => {
+    expect(one("glucose", 120).status).toBe("yellow");
+    expect(one("glucose", 120, ["meal"]).status).toBe("green");
+    expect(one("glucose", 150, ["meal"]).status).toBe("yellow");
+    expect(one("glucose", 50, ["meal"]).status).toBe("red"); // red flags are never relaxed
+    expect(one("glucose", 120, ["meal"]).why[0].source).toMatch(/2 h after eating/);
+  });
+
+  it("an athletic HR inside your band clears to green only from 50 bpm", () => {
+    const base = { hr: computeBaseline("hr", [42, 43, 44, 45, 46, 47, 48]) };
+    const r = (v: number) => completeCheck(input({ hr: v }), ctx({ baselines: base })).results[0];
+    expect(r(44).status).toBe("yellow");
+    const athlete = { hr: computeBaseline("hr", [52, 53, 54, 55, 56, 57, 58]) };
+    expect(completeCheck(input({ hr: 55 }), ctx({ baselines: athlete })).results[0].status).toBe("green");
+  });
+
+  it("PT-ORTHO: dizzy on standing with low systolic pressure tells the CMO", () => {
+    const r = completeCheck(input({ bp_sys: 96, bp_dia: 64 }, { tags: ["dizzy"] }), none);
+    expect(r.patterns.map((p) => p.id)).toContain("PT-ORTHO");
+    expect(r.escalation).toBe("tell-cmo");
+    const calm = completeCheck(input({ bp_sys: 118, bp_dia: 76 }, { tags: ["dizzy"] }), none);
+    expect(calm.patterns.map((p) => p.id)).not.toContain("PT-ORTHO");
+  });
+
+  it("a 3-day heart-rate trend tells the CMO instead of only 'recheck'", () => {
+    const history = [day("2026-11-13", { hr: 66 }, true), day("2026-11-12", { hr: 65 }, true)];
+    const r = completeCheck(input({ hr: 67 }), ctx({ history }));
+    expect(r.results[0].why.map((w) => w.ruleId)).toContain("TR-HR-3");
+    expect(r.escalation).toBe("tell-cmo");
+  });
+
+  it("ES-YELLOW-3of5: yellow again after 2 yellow days in the last 4 tells the CMO", () => {
+    const y = (date: string): DayRecord => ({ date, day: 0, values: { glucose: 104 }, statuses: { glucose: "yellow" }, aboveBand: {}, belowBand: {} });
+    const g = (date: string): DayRecord => ({ date, day: 0, values: { glucose: 90 }, statuses: { glucose: "green" }, aboveBand: {}, belowBand: {} });
+    const twice = completeCheck(input({ glucose: 104 }), ctx({ baselines: {}, history: [y("2026-11-13"), g("2026-11-12"), y("2026-11-11")] }));
+    expect(twice.escalation).toBe("tell-cmo");
+    expect(twice.escalationWhy.join(" ")).toMatch(/3 of the last 5 days/);
+    const once = completeCheck(input({ glucose: 104 }), ctx({ baselines: {}, history: [y("2026-11-13"), g("2026-11-12")] }));
+    expect(once.escalation).toBe("recheck");
+  });
+
+  it("no [VERIFY] markers are left in the shipped rules", () => {
+    expect(JSON.stringify(RULES)).not.toMatch(/VERIFY/);
+  });
 });

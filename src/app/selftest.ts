@@ -1,4 +1,4 @@
-// Desktop self-test (HYGIEA_SELFTEST=1 npm run desktop:selftest).
+// Desktop self-test (ASCLEPIUS_SELFTEST=1 npm run desktop:selftest).
 // Runs the real app code inside the real desktop webview, with no network:
 // vault (IndexedDB + WebCrypto) → engine worker → Hermes OpenPGP seal → ground open → tamper.
 // Uses its own database and a temporary key folder; the user's data is never touched.
@@ -8,7 +8,7 @@ import { open, setHermesReady } from "../storage/earthlink";
 import type { OutboxMessage } from "../storage/events";
 import { hermes } from "../storage/hermes";
 import { project } from "../storage/projection";
-import { createVault, destroyVault, HygieaDB } from "../storage/store";
+import { createVault, destroyVault, AsclepiusDB } from "../storage/store";
 import { missionDay } from "./clock";
 import { runCheck } from "./record";
 
@@ -46,7 +46,7 @@ export async function runSelfTest(): Promise<void> {
 
   const pass = "selftest passphrase";
   const date = "2026-11-14";
-  const db = new HygieaDB("hygiea-selftest");
+  const db = new AsclepiusDB("asclepius-selftest");
 
   await step("secure context and WebCrypto", () => {
     expect(isSecureContext && crypto?.subtle, "WebCrypto is not available");

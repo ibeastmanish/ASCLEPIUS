@@ -4,9 +4,15 @@ import { completeCheck } from "../engine/evaluate";
 import { earthFor } from "../engine/horizons";
 import { ashaEvents, ASHA_TODAY, ashaProfile } from "../seed/asha";
 import { decode, encode } from "./cbor";
-import { createKeyRing, fromB64, gzip, openFromCrew, sealForEarth, toB64 } from "./crypto";
+import { createKeyRing, crewRing, forgeFromCrew, fromB64, gzip, newSigningKey, openFromCrew, sealForEarth, toB64, type KeyRing, type OpenKeys } from "./crypto";
+import { DEMO_STATION } from "../ground/demoKeys";
+import { releaseAt, seqKey, triage } from "../ground/protocol";
+import { verifyPacket } from "../ground/station";
+
+/** What the GROUND holds to open a crew message: its own private key + the crew's public key. */
+const groundKeys = (ring: KeyRing): OpenKeys => ({ groundPrivateJwk: DEMO_STATION.encPrivateJwk, crewPublicJwk: ring.crewSign.publicJwk });
 import { badges, checksOn, dueIndicators, historyBefore, outboxView, project, streak } from "./projection";
-import { createVault, destroyVault, HygieaDB, MemoryStore, openVault, WrongPassphraseError } from "./store";
+import { createVault, destroyVault, AsclepiusDB, MemoryStore, openVault, WrongPassphraseError } from "./store";
 
 const TODAY = "2026-11-14";
 const FAST = 1000; // PBKDF2 iterations in tests only (production: 600,000)
@@ -20,7 +26,7 @@ describe("CBOR", () => {
 
 describe("Health Vault", () => {
   it("keeps data across reopen; wrong passphrase cannot read it; data at rest is ciphertext", async () => {
-    const db = new HygieaDB(`t-${Math.random()}`);
+    const db = new AsclepiusDB(`t-${Math.random()}`);
     const v = await createVault(db, "correct horse battery staple", FAST);
     await v.append([{ type: "ProfileSet", ts: "x", profile: ashaProfile(TODAY) }]);
     // Reopen (simulates reload).
@@ -42,18 +48,92 @@ describe("Earth messages (sign + encrypt)", () => {
     const msg = { kind: "red-alert", crew: "ASHA-01", overall: "red", readings: { glucose: [48, "red"] } };
     const sealed = await sealForEarth(msg, ring);
     expect(sealed).toMatchObject({ signed: true, encrypted: true });
-    expect(await openFromCrew(sealed.payload, ring)).toEqual(msg);
+    expect(await openFromCrew(sealed.payload, groundKeys(ring))).toEqual(msg);
 
     const bytes = fromB64(sealed.payload);
     bytes[bytes.length - 5] ^= 0x01;
-    await expect(openFromCrew(toB64(bytes), ring)).rejects.toThrow();
+    await expect(openFromCrew(toB64(bytes), groundKeys(ring))).rejects.toThrow(/Decryption/);
+  });
+
+  it("key separation: the crew tablet never holds the ground private key", async () => {
+    const ring = await createKeyRing();
+    expect(JSON.stringify(ring)).not.toContain(DEMO_STATION.encPrivateJwk.d);
+    expect((ring.ground as { privateJwk?: unknown }).privateJwk).toBeUndefined();
+    // A pre-separation vault (ground private key on the tablet) is migrated, not crashed on.
+    const legacy = { ...ring, ground: { ...ring.ground, privateJwk: { kty: "EC", d: "old" } } } as KeyRing;
+    const m = crewRing(legacy);
+    expect(m.migrated).toBe(true);
+    expect((m.ring.ground as { privateJwk?: unknown }).privateJwk).toBeUndefined();
   });
 
   it("rejects a message signed by a different key", async () => {
     const crew = await createKeyRing();
     const impostor = await createKeyRing();
     const sealed = await sealForEarth({ x: 1 }, { ...impostor, ground: crew.ground });
-    await expect(openFromCrew(sealed.payload, crew)).rejects.toThrow(/Signature/);
+    await expect(openFromCrew(sealed.payload, groundKeys(crew))).rejects.toThrow(/Signature/);
+  });
+
+  it("S3: changing the SIGNED body (re-encrypted correctly) is caught by the signature, not AES-GCM", async () => {
+    const ring = await createKeyRing();
+    const sealed = await sealForEarth({ overall: "red", glucose: 48 }, ring);
+    const forged = await forgeFromCrew(sealed.payload, DEMO_STATION.encPrivateJwk, DEMO_STATION.bundle.enc, (s) => ({ ...s, overall: "green", glucose: 92 }));
+    await expect(openFromCrew(forged.payload, groundKeys(ring))).rejects.toThrow(/Signature/);
+    // Re-signed with the attacker's own key: still rejected, because the ground trusts the paired crew key.
+    const attacker = await newSigningKey();
+    const resigned = await forgeFromCrew(sealed.payload, DEMO_STATION.encPrivateJwk, DEMO_STATION.bundle.enc, (s) => ({ ...s, overall: "green" }), attacker.privateJwk);
+    await expect(openFromCrew(resigned.payload, groundKeys(ring))).rejects.toThrow(/Signature/);
+  });
+});
+
+describe("Ground Station console (protocol + verification)", () => {
+  const packet = (over: Partial<Parameters<typeof releaseAt>[0]> = {}) => ({
+    sentAt: "2026-11-14T07:10:00.000Z", sentAtReal: 1_000_000, missionDate: "2026-11-14", mission: "mars" as const, ...over,
+  });
+
+  it("holds a packet for the real JPL Horizons light time, x60 in demo warp", () => {
+    const r = releaseAt(packet());
+    expect(r.oneWayMin).toBeCloseTo(11.01, 2);
+    expect(r.releaseMs - 1_000_000).toBeCloseTo(11.01 * 60_000, -2);
+    expect(releaseAt(packet(), 60).releaseMs - 1_000_000).toBeCloseTo((11.01 * 60_000) / 60, -1);
+    expect(releaseAt(packet({ mission: "moon" })).oneWayMin).toBeLessThan(0.05);
+  });
+
+  it("holds everything through the Sun blackout until the first clear day", () => {
+    const r = releaseAt(packet({ sentAt: "2028-03-20T07:00:00.000Z", missionDate: "2028-03-20" }));
+    expect(r.heldForBlackout).toBe(true);
+    expect(r.blackoutEnd).toBe("2028-04-04");
+    expect(r.holdMs).toBeGreaterThan(14 * 86_400_000);
+  });
+
+  it("triage: red first, then persistent yellow, then yellow, then digests", () => {
+    expect(triage({ kind: "red-alert", overall: "red" })).toBe(0);
+    expect(triage({ kind: "digest", overall: "yellow", escalation: "tell-cmo" })).toBe(1);
+    expect(triage({ kind: "digest", overall: "yellow", escalation: "recheck", rules: ["HR-P1"] })).toBe(2);
+    expect(triage({ kind: "digest", overall: "green" })).toBe(3);
+  });
+
+  it("verifyPacket: accepts once, rejects the replay, rejects an unpaired crew and a forged body", async () => {
+    const ring = await createKeyRing();
+    const crewKey = { asclepius: "crew-key" as const, v: 1 as const, crew: "ASHA-01", name: "Asha Rao", sign: ring.crewSign.publicJwk };
+    const sealed = await sealForEarth({ seq: 7, crew: "ASHA-01", overall: "red" }, ring);
+    const p = {
+      asclepius: "dsn-packet" as const, v: 1 as const, id: "m1", kind: "red-alert" as const, priority: 0, crew: "ASHA-01", name: "Asha Rao",
+      missionDate: "2026-11-14", mission: "mars" as const, sentAt: "2026-11-14T07:10:00.000Z", sentAtReal: 0,
+      payload: sealed.payload, alg: "webcrypto" as const, bytes: sealed.bytes, crewKey, simulated: true,
+    };
+    const crews = { "ASHA-01": crewKey };
+    const seen = new Set<string>();
+    const first = await verifyPacket(p, DEMO_STATION, crews, seen);
+    expect(first.status).toBe("accepted");
+    expect(first.seq).toBe(7);
+    expect(first.bodyHash).toMatch(/^[0-9a-f]{64}$/);
+    seen.add(first.replayKey!);
+    expect(first.replayKey).toBe(seqKey(first.crewFingerprint!, 7));
+    const again = await verifyPacket(p, DEMO_STATION, crews, seen);
+    expect(again).toMatchObject({ status: "rejected", stage: "replay" });
+    expect((await verifyPacket(p, DEMO_STATION, {}, new Set())).status).toBe("unpaired");
+    const forged = await forgeFromCrew(sealed.payload, DEMO_STATION.encPrivateJwk, DEMO_STATION.bundle.enc, (s) => ({ ...s, overall: "green" }));
+    expect(await verifyPacket({ ...p, payload: forged.payload }, DEMO_STATION, crews, new Set())).toMatchObject({ status: "rejected", stage: "signature" });
   });
 });
 
@@ -84,7 +164,10 @@ describe("seeded persona + projections", () => {
     expect(r.patterns.map((p) => p.id)).toEqual(["PT-FATIGUE"]);
     expect(r.results.find((x) => x.indicator === "hr")!.band).toEqual({ low: 52, high: 62, position: "above" }); // as in PRD 7.5 and the deck
     expect(r.results.find((x) => x.indicator === "sleep")!.why.map((w) => w.ruleId)).toContain("TR-SLEEP-3");
-    expect(r.escalation).toBe("recheck");
+    // v3: a fatigue pattern on top of a 3-night sleep trend is worth telling the CMO.
+    expect(r.escalation).toBe("tell-cmo");
+    expect(r.escalationWhy.join(" ")).toMatch(/PT-FATIGUE/);
+    expect(r.escalationWhy.join(" ")).toMatch(/TR-SLEEP-3/);
   });
 
   it("adaptive frequency asks everything that isn't steadily green", () => {
@@ -117,12 +200,18 @@ describe("live check -> events -> outbox", () => {
     expect((Date.parse(alert.eta!) - now.getTime()) / 60_000).toBeCloseTo(11.0, 1);
     expect(outboxView(alert, now.getTime() + 60_000, TODAY).state).toBe("in-transit");
     expect(outboxView(alert, now.getTime() + 12 * 60_000, TODAY).state).toBe("delivered");
-    const digest = after.outbox.find((m) => m.kind === "digest")!;
-    expect(digest.bytes).toBeLessThan(2048);
-    expect(await openFromCrew(alert.payload, ring)).toMatchObject({ overall: "red", day: 212 });
-    // Recording the check again on the same day does not add a second digest.
+    expect(await openFromCrew(alert.payload, groundKeys(ring))).toMatchObject({ overall: "red", day: 212, seq: 1 });
+    // The red check sends its own alert; it does not double as the daily digest.
+    expect(after.outbox.some((m) => m.kind === "digest")).toBe(false);
+    // The next non-red check that day becomes the digest, once.
     const { events: e2 } = await runCheck(after, { values: { hr: 58 }, tags: [], symptoms: [] }, now, TODAY, 212, ring);
-    expect(e2.filter((e) => e.type === "MessageQueued")).toHaveLength(0);
+    expect(e2.filter((e) => e.type === "MessageQueued")).toHaveLength(1);
+    await store.append(e2);
+    const after2 = project(await store.all());
+    const digest = after2.outbox.find((m) => m.kind === "digest")!;
+    expect(digest.bytes).toBeLessThan(2048);
+    const { events: e3 } = await runCheck(after2, { values: { hr: 58 }, tags: [], symptoms: [] }, now, TODAY, 212, ring);
+    expect(e3.filter((e) => e.type === "MessageQueued")).toHaveLength(0);
   });
 
   it("during the Sun blackout the Earth message is held, then released", async () => {

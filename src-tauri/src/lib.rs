@@ -1,4 +1,4 @@
-//! HYGIEA desktop build.
+//! ASCLEPIUS desktop build.
 //!
 //! The UI is the same web app. This crate adds one thing: Earth messages are signed and
 //! encrypted with Hermes (`aura`, the team's earlier open-source OpenPGP library) instead of
@@ -33,8 +33,8 @@ use zeroize::Zeroizing;
 /// Shown in the Outbox "Ground view".
 pub const ALG: &str = "OpenPGP via Hermes aura (Sequoia): Ed25519 signature by the crew key, X25519 encryption to the flight surgeon key";
 
-const CREW_UID: &str = "HYGIEA crew member <crew@hygiea.invalid>";
-const GROUND_UID: &str = "HYGIEA simulated flight surgeon ground station <ground@hygiea.invalid>";
+const CREW_UID: &str = "ASCLEPIUS crew member <crew@asclepius.invalid>";
+const GROUND_UID: &str = "ASCLEPIUS simulated flight surgeon ground station <ground@asclepius.invalid>";
 /// Same rule as the web vault.
 const MIN_PASSPHRASE: usize = 8;
 
@@ -230,7 +230,7 @@ fn hermes_erase(hermes: State<'_, Hermes>) -> Result<(), String> {
     hermes.erase().map_err(err)
 }
 
-// Self-test mode (HYGIEA_SELFTEST=1): the real app runs its own end-to-end check inside the
+// Self-test mode (ASCLEPIUS_SELFTEST=1): the real app runs its own end-to-end check inside the
 // real webview, prints a JSON report and exits. Keys go to a temporary folder, never the user's.
 
 struct SelfTest(bool);
@@ -250,7 +250,7 @@ fn app_mode(st: State<'_, SelfTest>) -> AppMode {
 #[tauri::command]
 fn selftest_log(st: State<'_, SelfTest>, line: String) {
     if st.0 {
-        println!("HYGIEA_SELFTEST_STEP {line}");
+        println!("ASCLEPIUS_SELFTEST_STEP {line}");
     }
 }
 
@@ -259,17 +259,17 @@ fn selftest_done(app: AppHandle, st: State<'_, SelfTest>, hermes: State<'_, Herm
     if !st.0 {
         return;
     }
-    println!("HYGIEA_SELFTEST {}", serde_json::json!({ "ok": ok, "report": report }));
+    println!("ASCLEPIUS_SELFTEST {}", serde_json::json!({ "ok": ok, "report": report }));
     let _ = fs::remove_dir_all(hermes.dir());
     app.exit(if ok { 0 } else { 1 });
 }
 
 pub fn run() {
-    let selftest = std::env::var_os("HYGIEA_SELFTEST").is_some();
+    let selftest = std::env::var_os("ASCLEPIUS_SELFTEST").is_some();
     tauri::Builder::default()
         .setup(move |app| {
             let dir = if selftest {
-                std::env::temp_dir().join(format!("hygiea-selftest-{}", std::process::id()))
+                std::env::temp_dir().join(format!("asclepius-selftest-{}", std::process::id()))
             } else {
                 app.path().app_data_dir()?.join("hermes")
             };
@@ -279,7 +279,7 @@ pub fn run() {
                 // Never hang a CI job: give up after 120 s.
                 std::thread::spawn(|| {
                     std::thread::sleep(std::time::Duration::from_secs(120));
-                    eprintln!("HYGIEA_SELFTEST timeout");
+                    eprintln!("ASCLEPIUS_SELFTEST timeout");
                     std::process::exit(3);
                 });
             }
@@ -297,7 +297,7 @@ pub fn run() {
             selftest_done
         ])
         .run(tauri::generate_context!())
-        .expect("error while running HYGIEA");
+        .expect("error while running ASCLEPIUS");
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -309,7 +309,7 @@ mod tests {
     const PASS: &str = "correct horse battery";
 
     fn temp(name: &str) -> PathBuf {
-        let d = std::env::temp_dir().join(format!("hygiea-test-{name}-{}", std::process::id()));
+        let d = std::env::temp_dir().join(format!("asclepius-test-{name}-{}", std::process::id()));
         let _ = fs::remove_dir_all(&d);
         d
     }
@@ -344,7 +344,7 @@ mod tests {
     #[test]
     fn wrong_signer_is_rejected() {
         let h = unlocked("signer");
-        let impostor = aura::create_identity(PASS, "Impostor <x@hygiea.invalid>", "cv25519").unwrap();
+        let impostor = aura::create_identity(PASS, "Impostor <x@asclepius.invalid>", "cv25519").unwrap();
         let body = b"forged red alert";
         let forged = h
             .with_keys(|k, _| {

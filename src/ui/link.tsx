@@ -8,7 +8,7 @@ export function LinkTimeline({ sentMs, oneWayMin, compact }: { sentMs: number; o
   const steps = [
     { label: "Sent from Mars", at: sentMs },
     { label: "Earth receives", at: sentMs + hop },
-    { label: "Earliest doctor reply", at: sentMs + 2 * hop },
+    { label: "Light-speed reply minimum", at: sentMs + 2 * hop },
   ];
   return (
     <div className={`link-timeline${compact ? " compact" : ""}`} role="group" aria-label="Message timeline">

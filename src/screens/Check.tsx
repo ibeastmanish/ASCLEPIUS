@@ -42,7 +42,8 @@ export function Check() {
   const taps = useRef(0);
 
   const unwell = tags.includes("unwell");
-  const { resting } = dueIndicators(state, today, unwell || isVideo);
+  // Simulated crew (demo) always asks all six, so the README walkthrough and judges see every reading.
+  const { resting } = dueIndicators(state, today, unwell || isVideo || !!profile.simulated);
   const restingTiles = TILES.filter((t) => TILE_INDS[t].every((i) => resting.includes(i)) && !added.includes(t));
   const tiles = TILES.filter((t) => !restingTiles.includes(t));
   // The optional camera perfusion check only joins the submitted/evaluated set once
@@ -81,7 +82,8 @@ export function Check() {
       setValues((old) => ({ ...old, [i]: ASHA_TODAY[i]! }));
       setPopKey((p) => ({ ...p, [i]: (p[i] ?? 0) + 1 }));
     }, 700 + k * 450));
-    timers.push(setTimeout(() => void finish(), 700 + order.length * 450 + 1400));
+    // Call the latest finish(): the one captured here would submit the pre-filled values.
+    timers.push(setTimeout(() => void finishRef.current(), 700 + order.length * 450 + 1400));
     return () => timers.forEach(clearTimeout);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isVideo]);
@@ -95,13 +97,16 @@ export function Check() {
       const v: Partial<Record<Indicator, number>> = {};
       for (const i of included) v[i] = values[i];
       const r = await app.submit({ values: v, tags, symptoms, input: "tapped" });
-      sessionStorage.setItem("hygiea-last-timing", JSON.stringify({ s: Math.round((performance.now() - started.current) / 1000), taps: taps.current, ms: engine.lastTiming.ms }));
+      sessionStorage.setItem("asclepius-last-timing", JSON.stringify({ s: Math.round((performance.now() - started.current) / 1000), taps: taps.current, ms: engine.lastTiming.ms }));
       location.hash = "#/body";
       void r;
     } finally {
       setSubmitting(false);
     }
   }
+
+  const finishRef = useRef(finish);
+  finishRef.current = finish;
 
   const toggle = <T,>(list: T[], x: T, setter: (v: T[]) => void) => { taps.current++; setter(list.includes(x) ? list.filter((y) => y !== x) : [...list, x]); };
 

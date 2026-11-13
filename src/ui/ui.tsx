@@ -22,7 +22,7 @@ export function useRoute(): [Route, (r: Route) => void] {
 
 // ------------------------------------------------------------------ theme (per-viewer convenience)
 export type ThemeMode = "system" | "light" | "dark";
-const THEME_KEY = "hygiea-theme";
+const THEME_KEY = "asclepius-theme";
 
 export function getThemeMode(): ThemeMode {
   try {
@@ -42,7 +42,7 @@ export function applyTheme(m: ThemeMode) {
 export function setThemeMode(m: ThemeMode) {
   try { localStorage.setItem(THEME_KEY, m); } catch { /* private mode: still applies for this visit */ }
   applyTheme(m);
-  dispatchEvent(new Event("hygiea-theme"));
+  dispatchEvent(new Event("asclepius-theme"));
 }
 
 /** Resolved appearance, for things drawn with attributes (charts) rather than CSS. */
@@ -53,8 +53,8 @@ export function useDark(): boolean {
   useEffect(() => {
     const on = () => setDark(calc());
     q?.addEventListener("change", on);
-    addEventListener("hygiea-theme", on);
-    return () => { q?.removeEventListener("change", on); removeEventListener("hygiea-theme", on); };
+    addEventListener("asclepius-theme", on);
+    return () => { q?.removeEventListener("change", on); removeEventListener("asclepius-theme", on); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return dark;
@@ -120,7 +120,7 @@ export function Disclaimer() {
   return (
     <p className="disclaimer">
       <span aria-hidden="true">{G.info}</span>
-      <span>Decision support, not a medical device. HYGIEA does not diagnose. When in doubt, tell your crew medical officer.</span>
+      <span>Decision support, not a medical device. ASCLEPIUS does not diagnose. When in doubt, tell your crew medical officer.</span>
     </p>
   );
 }
@@ -167,9 +167,9 @@ export function Shell({ route, children, who, sim }: { route: Route; children: R
   return (
     <div className="shell">
       <header className="band">
-        <a className="band-mark" href="#/home" aria-label="HYGIEA, today">
+        <a className="band-mark" href="#/home" aria-label="ASCLEPIUS, today">
           <span className="sq" aria-hidden="true" />
-          <b>HYGIEA</b>
+          <b>ASCLEPIUS</b>
         </a>
         <nav className="band-nav" aria-label="Main">{NAV.map((n) => link(n))}</nav>
         <nav className="band-more" aria-label="More">

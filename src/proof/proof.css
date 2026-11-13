@@ -1,0 +1,59 @@
+/* Crew reference (Pillar C). Imported only by src/screens/Crew.tsx.
+   Uses the tokens from src/styles.css; nothing here sets a colour of its own
+   except the status yellow/green that the rest of the app also uses. */
+
+.proof-stats { margin-top: 28px; }
+.proof-stats .stat { min-width: 0; }
+.proof-stats .label { overflow-wrap: anywhere; }
+
+/* chart key swatches, same grammar as Trends */
+.chart-key .key-pop { background: repeating-linear-gradient(-45deg, var(--green) 0 2px, transparent 2px 6px); box-shadow: inset 0 0 0 1px var(--green); }
+.chart-key .key-own { background: var(--light-blue); opacity: 0.6; box-shadow: inset 0 0 0 1.5px var(--personal); }
+.chart-key .key-dot { width: 9px !important; height: 9px !important; border-radius: 50%; background: var(--personal); }
+.chart-key .key-sq { width: 11px !important; height: 11px !important; background: var(--yellow); box-shadow: inset 0 0 0 2px var(--ink); }
+
+.mcv-chart { margin-top: 14px; min-width: 0; }
+.mcv-loading { height: 300px; display: grid; place-items: center; color: var(--ink-3); }
+.mcv-multiples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px 24px; margin-top: 14px; }
+.mcv-multiple { margin: 0; min-width: 0; }
+.mcv-multiple figcaption { font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; }
+
+.proof-caption {
+  margin-top: 14px; font-size: clamp(18px, 2vw, 22px); font-weight: 700; letter-spacing: -0.01em; line-height: 1.3;
+  opacity: 0; transform: translateY(4px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.proof-caption.shown { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .proof-caption { transition: none; } }
+
+.proof-table td { vertical-align: top; }
+.proof-table th, .proof-table td { white-space: normal; }
+.proof-res { display: block; font-weight: 700; }
+@media (max-width: 480px) {
+  .proof-table { font-size: 13px; }
+  .proof-table th, .proof-table td { padding-right: 8px; }
+}
+
+.proof-engine p { max-width: 75ch; }
+
+/* index of individuality list */
+.proof-ii-lede { font-size: clamp(18px, 2vw, 22px); line-height: 1.35; }
+.proof-ii-lede b { color: var(--accent); }
+.ii-head { display: grid; grid-template-columns: minmax(0, 13em) minmax(60px, 1fr) 6.5em; gap: 12px; margin-top: 18px; padding-bottom: 6px; border-bottom: 2px solid var(--rule); font-size: 12px; }
+.ii-list { list-style: none; margin: 0; padding: 0; }
+.ii-row { display: grid; grid-template-columns: minmax(0, 13em) minmax(60px, 1fr) 6.5em; gap: 12px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--hair); font-size: 14px; }
+.ii-name { min-width: 0; overflow-wrap: anywhere; }
+.ii-row:not(.under) .ii-name { color: var(--ink-3); }
+.ii-track { position: relative; height: 12px; background: var(--field); }
+.ii-bar { position: absolute; left: 0; top: 0; bottom: 0; background: var(--ink-3); }
+.ii-row.under .ii-bar { background: var(--personal); }
+.ii-cut { position: absolute; top: -4px; bottom: -4px; width: 0; border-left: 2px dashed var(--nasa-red); }
+.ii-val { white-space: nowrap; text-align: right; }
+@media (max-width: 480px) {
+  .ii-head { display: none; }
+  .ii-row { grid-template-columns: minmax(0, 1fr) 6.5em; gap: 4px 12px; }
+  .ii-track { grid-column: 1 / -1; grid-row: 2; }
+}
+
+.proof-limits ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.proof-limits > div { min-width: 0; }
+.proof-fix p { max-width: 75ch; }

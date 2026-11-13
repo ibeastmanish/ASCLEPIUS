@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HYGIEA - turn the cached JPL Horizons download into the small file the app
+ASCLEPIUS - turn the cached JPL Horizons download into the small file the app
 reads offline: src/data/horizons_delay.json.
 
     python3 analysis/build_app_data.py

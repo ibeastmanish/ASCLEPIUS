@@ -71,8 +71,8 @@ export function Settings() {
           <span className="label">Your data</span>
           <p className="small muted">Everything stays on this device, encrypted. Export is the only way it leaves, apart from red alerts and the daily digest to Earth.</p>
           <div className="row">
-            <button className="btn" onClick={async () => download(`hygiea-${p.crewId}.json`, toJsonExport(await app.events(), p))}>Export JSON</button>
-            <button className="btn" onClick={async () => download(`hygiea-${p.crewId}.fhir.json`, toFhirBundle(await app.events(), p), "application/fhir+json")}>Export FHIR R4</button>
+            <button className="btn" onClick={async () => download(`asclepius-${p.crewId}.json`, toJsonExport(await app.events(), p))}>Export JSON</button>
+            <button className="btn" onClick={async () => download(`asclepius-${p.crewId}.fhir.json`, toFhirBundle(await app.events(), p), "application/fhir+json")}>Export FHIR R4</button>
           </div>
           {isVaultStore(app.store) && (
             <>
@@ -114,8 +114,8 @@ export function Settings() {
 
         <section className="panel wide">
           <span className="label">About</span>
-          <p>HYGIEA is an offline daily health self-check for astronauts, built for the NASA Space Apps Challenge 2026
-            (<i>Create Health Monitoring Software for Astronauts on Space Missions</i>). Team HYGIEA, Warangal, India.</p>
+          <p>ASCLEPIUS is an offline daily health self-check for astronauts, built for the NASA Space Apps Challenge 2026
+            (<i>Create Health Monitoring Software for Astronauts on Space Missions</i>). Team ASCLEPIUS, Warangal, India.</p>
           <p className="small muted">Rules v{RULES.version} · guidance v{GUIDANCE_VERSION} · every colour comes from a readable rule in <span className="mono">rules.json</span>, never from AI.
             Data: NASA JPL Horizons, NASA OSDR OSD-569 / OSD-575 (SpaceX Inspiration4), NASA HRP hazards. Crew data shown for Asha Rao is simulated.
             Open source: React, Vite, Dexie, Recharts, Workbox (MIT/Apache-2.0).</p>

@@ -1,6 +1,7 @@
 // Personal baseline, "normal for YOU" (PRD 7.4).
-// median + scaled MAD over the last 30 learning values, minimum half-width,
-// then a slow EWMA drift of the centre from green in-flight checks only.
+// median + scaled MAD over the learning values (up to the last 30), minimum
+// half-width; once ready in flight the width is fixed and only the centre
+// drifts slowly (EWMA) from green checks. See updateAfterGreen.
 import { RULES, type Rules } from "./rules";
 import type { Baseline, Indicator } from "./types";
 
@@ -42,7 +43,13 @@ export function learn(b: Baseline | undefined, indicator: Indicator, value: numb
   return computeBaseline(indicator, [...(b?.window ?? []), value], rules);
 }
 
-/** In-flight update after a green check (PRD 7.4 `update_after_green`). */
+/**
+ * In-flight update after a green check (PRD 7.4 `update_after_green`).
+ * Deliberate design: the band's WIDTH stays the one learned while healthy
+ * (pre-flight / learning window); only the centre drifts slowly by EWMA, and
+ * only from green values. A rolling width would let a slow in-flight decline
+ * widen "your normal" until it hides itself.
+ */
 export function updateAfterGreen(b: Baseline, value: number, rules: Rules = RULES): Baseline {
   if (!b.ready) return b;
   const a = rules.baseline.ewmaAlpha;

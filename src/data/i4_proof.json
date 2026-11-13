@@ -1,0 +1,1072 @@
+{
+ "schema": 1,
+ "title": "Inspiration4: inside everyone's range, outside their own",
+ "headline": "The day after landing, all 4 Inspiration4 crew had a mean red-cell size (MCV) inside the population range (80-100 fL) and below their own lowest pre-flight value.",
+ "claimStrength": "consistent with a personal change after flight; not proof of one",
+ "sources": [
+  {
+   "id": "OSD-569",
+   "panel": "CBC",
+   "file": "LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+   "title": "Whole Blood Measurements from the SpaceX Inspiration4 Mission (RNA-seq, epitranscriptome, WGS, clonal hematopoiesis, CBC)",
+   "url": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-569",
+   "download": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-569/download?source=datamanager&file=LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv"
+  },
+  {
+   "id": "OSD-575",
+   "panel": "CMP",
+   "file": "LSDS-8_Comprehensive_Metabolic_Panel_CMP_TRANSFORMED.csv",
+   "title": "SpaceX Inspiration4 Blood Serum Metabolic Panel and Immune/Cardiac Cytokine Arrays (Comprehensive Metabolic Panel and Multiplex)",
+   "url": "https://osdr.nasa.gov/bio/repo/data/studies/OSD-575",
+   "download": "https://osdr.nasa.gov/geode-py/ws/studies/OSD-575/download?source=datamanager&file=LSDS-8_Comprehensive_Metabolic_Panel_CMP_TRANSFORMED.csv"
+  }
+ ],
+ "crew": 4,
+ "timepoints": [
+  {
+   "timepoint": "L-92",
+   "day": -92
+  },
+  {
+   "timepoint": "L-44",
+   "day": -44
+  },
+  {
+   "timepoint": "L-3",
+   "day": -3
+  },
+  {
+   "timepoint": "R+1",
+   "day": 1
+  },
+  {
+   "timepoint": "R+45",
+   "day": 45
+  },
+  {
+   "timepoint": "R+82",
+   "day": 82
+  },
+  {
+   "timepoint": "R+194",
+   "day": 194
+  }
+ ],
+ "fix": {
+  "row": "C003_whole-blood_L-92_cbc",
+  "file": "LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv",
+  "summary": "MCH is blank and the next ten values in the lab's report order each sit one place late. Example: 'absolute lymphocytes' 6826 is really the neutrophil count (71.1% x 9.6 thousand/µL).",
+  "detectedBy": "the only row in the file that fails the CBC identities (counts = % x WBC; MCH, MCHC, MCV from Hgb, Hct, RBC)",
+  "moves": [
+   {
+    "column": "mch",
+    "raw": null,
+    "corrected": 29.6,
+    "takenFrom": "mchc"
+   },
+   {
+    "column": "mchc",
+    "raw": 29.6,
+    "corrected": 32.4,
+    "takenFrom": "rdw"
+   },
+   {
+    "column": "rdw",
+    "raw": 32.4,
+    "corrected": 12.9,
+    "takenFrom": "platelet_count"
+   },
+   {
+    "column": "platelet_count",
+    "raw": 12.9,
+    "corrected": 330,
+    "takenFrom": "mpv"
+   },
+   {
+    "column": "mpv",
+    "raw": 330,
+    "corrected": 10.1,
+    "takenFrom": "absolute_neutrophils"
+   },
+   {
+    "column": "absolute_neutrophils",
+    "raw": 10.1,
+    "corrected": 6826,
+    "takenFrom": "absolute_lymphocytes"
+   },
+   {
+    "column": "absolute_lymphocytes",
+    "raw": 6826,
+    "corrected": 1997,
+    "takenFrom": "absolute_monocytes"
+   },
+   {
+    "column": "absolute_monocytes",
+    "raw": 1997,
+    "corrected": 614,
+    "takenFrom": "absolute_eosinophils"
+   },
+   {
+    "column": "absolute_eosinophils",
+    "raw": 614,
+    "corrected": 125,
+    "takenFrom": "absolute_basophils"
+   },
+   {
+    "column": "absolute_basophils",
+    "raw": 125,
+    "corrected": 38,
+    "takenFrom": "reconstructed: basophils % x WBC (the true value was pushed off the raw row)"
+   }
+  ],
+  "reconstructed": [
+   {
+    "column": "absolute_basophils",
+    "value": 38,
+    "how": "basophils % x WBC = 0.4 x 9.6 x 10"
+   },
+   {
+    "column": "mch_range_min_picogram",
+    "value": 27,
+    "how": "same MCH reference range as every other row that prints one"
+   },
+   {
+    "column": "mch_range_max_picogram",
+    "value": 33,
+    "how": "same MCH reference range as every other row that prints one"
+   }
+  ],
+  "checksBefore": [
+   {
+    "check": "absolute_neutrophils = neutrophils% x WBC",
+    "ok": false,
+    "detail": "10.1 vs 6825.6"
+   },
+   {
+    "check": "absolute_lymphocytes = lymphocytes% x WBC",
+    "ok": false,
+    "detail": "6826.0 vs 1996.8"
+   },
+   {
+    "check": "absolute_monocytes = monocytes% x WBC",
+    "ok": false,
+    "detail": "1997.0 vs 614.4"
+   },
+   {
+    "check": "absolute_eosinophils = eosinophils% x WBC",
+    "ok": false,
+    "detail": "614.0 vs 124.8"
+   },
+   {
+    "check": "absolute_basophils = basophils% x WBC",
+    "ok": false,
+    "detail": "125.0 vs 38.4"
+   },
+   {
+    "check": "mch from Hgb/Hct/RBC",
+    "ok": null,
+    "detail": "None vs 29.60"
+   },
+   {
+    "check": "mchc from Hgb/Hct/RBC",
+    "ok": false,
+    "detail": "29.6 vs 32.43"
+   },
+   {
+    "check": "mcv from Hgb/Hct/RBC",
+    "ok": true,
+    "detail": "91.3 vs 91.26"
+   },
+   {
+    "check": "platelet_count in possible span 20-1500",
+    "ok": false,
+    "detail": "12.9"
+   },
+   {
+    "check": "mpv in possible span 5-15",
+    "ok": false,
+    "detail": "330.0"
+   },
+   {
+    "check": "rdw in possible span 9-30",
+    "ok": false,
+    "detail": "32.4"
+   }
+  ],
+  "checksAfter": [
+   {
+    "check": "absolute_neutrophils = neutrophils% x WBC",
+    "ok": true,
+    "detail": "6826.0 vs 6825.6"
+   },
+   {
+    "check": "absolute_lymphocytes = lymphocytes% x WBC",
+    "ok": true,
+    "detail": "1997.0 vs 1996.8"
+   },
+   {
+    "check": "absolute_monocytes = monocytes% x WBC",
+    "ok": true,
+    "detail": "614.0 vs 614.4"
+   },
+   {
+    "check": "absolute_eosinophils = eosinophils% x WBC",
+    "ok": true,
+    "detail": "125.0 vs 124.8"
+   },
+   {
+    "check": "absolute_basophils = basophils% x WBC",
+    "ok": true,
+    "detail": "38.0 vs 38.4"
+   },
+   {
+    "check": "mch from Hgb/Hct/RBC",
+    "ok": true,
+    "detail": "29.6 vs 29.60"
+   },
+   {
+    "check": "mchc from Hgb/Hct/RBC",
+    "ok": true,
+    "detail": "32.4 vs 32.43"
+   },
+   {
+    "check": "mcv from Hgb/Hct/RBC",
+    "ok": true,
+    "detail": "91.3 vs 91.26"
+   },
+   {
+    "check": "platelet_count in possible span 20-1500",
+    "ok": true,
+    "detail": "330.0"
+   },
+   {
+    "check": "mpv in possible span 5-15",
+    "ok": true,
+    "detail": "10.1"
+   },
+   {
+    "check": "rdw in possible span 9-30",
+    "ok": true,
+    "detail": "12.9"
+   }
+  ],
+  "mcvAffected": false,
+  "note": "MCV, hemoglobin, hematocrit, RBC, WBC and every percentage are unaffected, so the MCV headline does not depend on the fix."
+ },
+ "mcv": {
+  "analyte": "mcv",
+  "label": "MCV (mean red blood cell size)",
+  "unit": "fL",
+  "population": {
+   "low": 80,
+   "high": 100,
+   "source": "Lab reference range printed in the OSD-569 file (same on every row)"
+  },
+  "personalRule": "Own range = lowest to highest of the 3 pre-flight draws (L-92, L-44, L-3).",
+  "crew": [
+   {
+    "crew": "C001",
+    "series": [
+     {
+      "timepoint": "L-92",
+      "day": -92,
+      "value": 92.8
+     },
+     {
+      "timepoint": "L-44",
+      "day": -44,
+      "value": 93
+     },
+     {
+      "timepoint": "L-3",
+      "day": -3,
+      "value": 94.9
+     },
+     {
+      "timepoint": "R+1",
+      "day": 1,
+      "value": 90.1
+     },
+     {
+      "timepoint": "R+45",
+      "day": 45,
+      "value": 93.5
+     },
+     {
+      "timepoint": "R+82",
+      "day": 82,
+      "value": 91.8
+     },
+     {
+      "timepoint": "R+194",
+      "day": 194,
+      "value": 89.7
+     }
+    ],
+    "preMin": 92.8,
+    "preMax": 94.9,
+    "preMedian": 93,
+    "r1": 90.1,
+    "r1BelowOwnMin": true,
+    "r1InsidePopulation": true,
+    "r1MinusOwnMin": -2.7,
+    "r194": 89.7,
+    "r194BelowOwnMin": true
+   },
+   {
+    "crew": "C002",
+    "series": [
+     {
+      "timepoint": "L-92",
+      "day": -92,
+      "value": 93.6
+     },
+     {
+      "timepoint": "L-44",
+      "day": -44,
+      "value": 96.2
+     },
+     {
+      "timepoint": "L-3",
+      "day": -3,
+      "value": 96.5
+     },
+     {
+      "timepoint": "R+1",
+      "day": 1,
+      "value": 90.5
+     },
+     {
+      "timepoint": "R+45",
+      "day": 45,
+      "value": 92.3
+     },
+     {
+      "timepoint": "R+82",
+      "day": 82,
+      "value": 90.4
+     }
+    ],
+    "preMin": 93.6,
+    "preMax": 96.5,
+    "preMedian": 96.2,
+    "r1": 90.5,
+    "r1BelowOwnMin": true,
+    "r1InsidePopulation": true,
+    "r1MinusOwnMin": -3.1,
+    "r194": null,
+    "r194BelowOwnMin": null
+   },
+   {
+    "crew": "C003",
+    "series": [
+     {
+      "timepoint": "L-92",
+      "day": -92,
+      "value": 91.3
+     },
+     {
+      "timepoint": "L-44",
+      "day": -44,
+      "value": 92.2
+     },
+     {
+      "timepoint": "L-3",
+      "day": -3,
+      "value": 92.4
+     },
+     {
+      "timepoint": "R+1",
+      "day": 1,
+      "value": 88.7
+     },
+     {
+      "timepoint": "R+45",
+      "day": 45,
+      "value": 87
+     },
+     {
+      "timepoint": "R+82",
+      "day": 82,
+      "value": 91.2
+     },
+     {
+      "timepoint": "R+194",
+      "day": 194,
+      "value": 87.1
+     }
+    ],
+    "preMin": 91.3,
+    "preMax": 92.4,
+    "preMedian": 92.2,
+    "r1": 88.7,
+    "r1BelowOwnMin": true,
+    "r1InsidePopulation": true,
+    "r1MinusOwnMin": -2.6,
+    "r194": 87.1,
+    "r194BelowOwnMin": true
+   },
+   {
+    "crew": "C004",
+    "series": [
+     {
+      "timepoint": "L-92",
+      "day": -92,
+      "value": 89.6
+     },
+     {
+      "timepoint": "L-44",
+      "day": -44,
+      "value": 89.8
+     },
+     {
+      "timepoint": "L-3",
+      "day": -3,
+      "value": 90.7
+     },
+     {
+      "timepoint": "R+1",
+      "day": 1,
+      "value": 87
+     },
+     {
+      "timepoint": "R+45",
+      "day": 45,
+      "value": 88.4
+     },
+     {
+      "timepoint": "R+82",
+      "day": 82,
+      "value": 87.2
+     },
+     {
+      "timepoint": "R+194",
+      "day": 194,
+      "value": 86
+     }
+    ],
+    "preMin": 89.6,
+    "preMax": 90.7,
+    "preMedian": 89.8,
+    "r1": 87,
+    "r1BelowOwnMin": true,
+    "r1InsidePopulation": true,
+    "r1MinusOwnMin": -2.6,
+    "r194": 86,
+    "r194BelowOwnMin": true
+   }
+  ],
+  "result": {
+   "n": 4,
+   "belowOwnMinAtR1": 4,
+   "insidePopulationAtR1": 4,
+   "stillBelowOwnMinAtR194": 3,
+   "r194Available": 3
+  },
+  "caption": "Population range: 4 of 4 fine. Personal range: 4 of 4 changed."
+ },
+ "ii": {
+  "cutoff": 0.6,
+  "n": 34,
+  "below": 16,
+  "belowAnalytes": [
+   "alt",
+   "alkaline_phosphatase",
+   "absolute_basophils",
+   "red_blood_cell_count",
+   "hematocrit",
+   "hemoglobin",
+   "absolute_monocytes",
+   "monocytes",
+   "ast",
+   "platelet_count",
+   "mcv",
+   "creatinine",
+   "basophils",
+   "total_bilirubin",
+   "absolute_neutrophils",
+   "albumin_to_globulin_ratio"
+  ],
+  "method": "II = CV_I / CV_G (Harris 1974), from the 3 pre-flight draws of each of the 4 crew. CV_I = root-mean-square of each person's own CV (sample SD / mean of their 3 draws); CV_G = sample SD of the 4 personal means / their mean. Lab (analytical) noise cannot be separated, so it is inside CV_I; that makes II larger, not smaller.",
+  "cutoffNote": "Below about 0.6 a population reference range is poor at spotting a change in one person; above about 1.4 it works well (Harris 1974; Fraser & Harris 1989).",
+  "sensitivity": {
+   "method": "ANOVA variance components (Fraser & Harris 1989)",
+   "n": 29,
+   "below": 15,
+   "note": "With only 4 people x 3 draws, between-person variance from ANOVA can be zero or tiny, so this form is noisier."
+  },
+  "skipped": [
+   {
+    "analyte": "mch",
+    "label": "MCH",
+    "why": "missing pre-flight values"
+   },
+   {
+    "analyte": "mchc",
+    "label": "MCHC",
+    "why": "missing pre-flight values"
+   },
+   {
+    "analyte": "bun_to_creatinine_ratio",
+    "label": "BUN/creatinine ratio",
+    "why": "missing pre-flight values"
+   },
+   {
+    "analyte": "egfr_african_american",
+    "label": "eGFR (race-adjusted)",
+    "why": "calculated from creatinine; duplicates creatinine"
+   },
+   {
+    "analyte": "egfr_non_african_american",
+    "label": "eGFR",
+    "why": "calculated from creatinine; duplicates creatinine"
+   }
+  ],
+  "rows": [
+   {
+    "analyte": "alt",
+    "label": "ALT (liver enzyme)",
+    "panel": "CMP",
+    "unit": "U/L",
+    "cvI": 11.8,
+    "cvG": 51.6,
+    "ii": 0.23,
+    "iiAnova": 0.21
+   },
+   {
+    "analyte": "alkaline_phosphatase",
+    "label": "Alkaline phosphatase",
+    "panel": "CMP",
+    "unit": "U/L",
+    "cvI": 9.1,
+    "cvG": 30.2,
+    "ii": 0.3,
+    "iiAnova": 0.26
+   },
+   {
+    "analyte": "absolute_basophils",
+    "label": "Basophils (count)",
+    "panel": "CBC",
+    "unit": "cells/µL",
+    "cvI": 13.9,
+    "cvG": 42.1,
+    "ii": 0.33,
+    "iiAnova": 0.36
+   },
+   {
+    "analyte": "red_blood_cell_count",
+    "label": "Red blood cells",
+    "panel": "CBC",
+    "unit": "million/µL",
+    "cvI": 4.5,
+    "cvG": 13.1,
+    "ii": 0.34,
+    "iiAnova": 0.31
+   },
+   {
+    "analyte": "hematocrit",
+    "label": "Hematocrit",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 3.8,
+    "cvG": 10.9,
+    "ii": 0.35,
+    "iiAnova": 0.33
+   },
+   {
+    "analyte": "hemoglobin",
+    "label": "Hemoglobin",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 4.6,
+    "cvG": 12.7,
+    "ii": 0.36,
+    "iiAnova": 0.34
+   },
+   {
+    "analyte": "absolute_monocytes",
+    "label": "Monocytes (count)",
+    "panel": "CBC",
+    "unit": "cells/µL",
+    "cvI": 14.1,
+    "cvG": 38,
+    "ii": 0.37,
+    "iiAnova": 0.31
+   },
+   {
+    "analyte": "monocytes",
+    "label": "Monocytes (%)",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 11.4,
+    "cvG": 29.1,
+    "ii": 0.39,
+    "iiAnova": 0.5
+   },
+   {
+    "analyte": "ast",
+    "label": "AST (liver enzyme)",
+    "panel": "CMP",
+    "unit": "U/L",
+    "cvI": 20.2,
+    "cvG": 47.1,
+    "ii": 0.43,
+    "iiAnova": 0.51
+   },
+   {
+    "analyte": "platelet_count",
+    "label": "Platelets",
+    "panel": "CBC",
+    "unit": "thousand/µL",
+    "cvI": 8.1,
+    "cvG": 19,
+    "ii": 0.43,
+    "iiAnova": 0.43
+   },
+   {
+    "analyte": "mcv",
+    "label": "MCV (red cell size)",
+    "panel": "CBC",
+    "unit": "fL",
+    "cvI": 1.1,
+    "cvG": 2.5,
+    "ii": 0.46,
+    "iiAnova": 0.48
+   },
+   {
+    "analyte": "creatinine",
+    "label": "Creatinine",
+    "panel": "CMP",
+    "unit": "mg/dL",
+    "cvI": 7,
+    "cvG": 13.6,
+    "ii": 0.52,
+    "iiAnova": 0.57
+   },
+   {
+    "analyte": "basophils",
+    "label": "Basophils (%)",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 22,
+    "cvG": 41.5,
+    "ii": 0.53,
+    "iiAnova": 0.67
+   },
+   {
+    "analyte": "total_bilirubin",
+    "label": "Bilirubin",
+    "panel": "CMP",
+    "unit": "mg/dL",
+    "cvI": 24.4,
+    "cvG": 46,
+    "ii": 0.53,
+    "iiAnova": 0.49
+   },
+   {
+    "analyte": "absolute_neutrophils",
+    "label": "Neutrophils (count)",
+    "panel": "CBC",
+    "unit": "cells/µL",
+    "cvI": 18.7,
+    "cvG": 34.7,
+    "ii": 0.54,
+    "iiAnova": 0.55
+   },
+   {
+    "analyte": "albumin_to_globulin_ratio",
+    "label": "Albumin/globulin ratio",
+    "panel": "CMP",
+    "unit": "ratio",
+    "cvI": 7.8,
+    "cvG": 14.5,
+    "ii": 0.54,
+    "iiAnova": 0.56
+   },
+   {
+    "analyte": "neutrophils",
+    "label": "Neutrophils (%)",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 8.1,
+    "cvG": 12.7,
+    "ii": 0.64,
+    "iiAnova": 0.68
+   },
+   {
+    "analyte": "eosinophils",
+    "label": "Eosinophils (%)",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 26.8,
+    "cvG": 40.3,
+    "ii": 0.66,
+    "iiAnova": 0.89
+   },
+   {
+    "analyte": "lymphocytes",
+    "label": "Lymphocytes (%)",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 14.9,
+    "cvG": 22,
+    "ii": 0.68,
+    "iiAnova": 0.66
+   },
+   {
+    "analyte": "white_blood_cell_count",
+    "label": "White blood cells",
+    "panel": "CBC",
+    "unit": "thousand/µL",
+    "cvI": 16.7,
+    "cvG": 22.3,
+    "ii": 0.75,
+    "iiAnova": 0.83
+   },
+   {
+    "analyte": "potassium",
+    "label": "Potassium",
+    "panel": "CMP",
+    "unit": "mmol/L",
+    "cvI": 6.3,
+    "cvG": 7.9,
+    "ii": 0.8,
+    "iiAnova": 0.93
+   },
+   {
+    "analyte": "sodium",
+    "label": "Sodium",
+    "panel": "CMP",
+    "unit": "mmol/L",
+    "cvI": 0.9,
+    "cvG": 1,
+    "ii": 0.86,
+    "iiAnova": 0.99
+   },
+   {
+    "analyte": "carbon_dioxide",
+    "label": "Bicarbonate (CO2)",
+    "panel": "CMP",
+    "unit": "mmol/L",
+    "cvI": 6,
+    "cvG": 6.8,
+    "ii": 0.89,
+    "iiAnova": 1.03
+   },
+   {
+    "analyte": "absolute_eosinophils",
+    "label": "Eosinophils (count)",
+    "panel": "CBC",
+    "unit": "cells/µL",
+    "cvI": 24.9,
+    "cvG": 26.2,
+    "ii": 0.95,
+    "iiAnova": 1.25
+   },
+   {
+    "analyte": "mpv",
+    "label": "MPV (platelet size)",
+    "panel": "CBC",
+    "unit": "fL",
+    "cvI": 3.4,
+    "cvG": 3.5,
+    "ii": 0.98,
+    "iiAnova": 1.19
+   },
+   {
+    "analyte": "chloride",
+    "label": "Chloride",
+    "panel": "CMP",
+    "unit": "mmol/L",
+    "cvI": 1.4,
+    "cvG": 1.3,
+    "ii": 1.03,
+    "iiAnova": 1.28
+   },
+   {
+    "analyte": "urea_nitrogen_bun",
+    "label": "Urea nitrogen (BUN)",
+    "panel": "CMP",
+    "unit": "mg/dL",
+    "cvI": 15.2,
+    "cvG": 13.2,
+    "ii": 1.15,
+    "iiAnova": 1.68
+   },
+   {
+    "analyte": "albumin",
+    "label": "Albumin",
+    "panel": "CMP",
+    "unit": "g/dL",
+    "cvI": 5.4,
+    "cvG": 4.6,
+    "ii": 1.16,
+    "iiAnova": 1.49
+   },
+   {
+    "analyte": "globulin",
+    "label": "Globulin",
+    "panel": "CMP",
+    "unit": "g/dL",
+    "cvI": 12.9,
+    "cvG": 8.5,
+    "ii": 1.53,
+    "iiAnova": 4.86
+   },
+   {
+    "analyte": "rdw",
+    "label": "RDW",
+    "panel": "CBC",
+    "unit": "%",
+    "cvI": 2.6,
+    "cvG": 1.4,
+    "ii": 1.85,
+    "iiAnova": null
+   },
+   {
+    "analyte": "calcium",
+    "label": "Calcium",
+    "panel": "CMP",
+    "unit": "mg/dL",
+    "cvI": 3.8,
+    "cvG": 1.9,
+    "ii": 2,
+    "iiAnova": null
+   },
+   {
+    "analyte": "glucose",
+    "label": "Glucose",
+    "panel": "CMP",
+    "unit": "mg/dL",
+    "cvI": 16.1,
+    "cvG": 5.1,
+    "ii": 3.16,
+    "iiAnova": null
+   },
+   {
+    "analyte": "absolute_lymphocytes",
+    "label": "Lymphocytes (count)",
+    "panel": "CBC",
+    "unit": "cells/µL",
+    "cvI": 25.7,
+    "cvG": 5.5,
+    "ii": 4.67,
+    "iiAnova": null
+   },
+   {
+    "analyte": "total_protein",
+    "label": "Total protein",
+    "panel": "CMP",
+    "unit": "g/dL",
+    "cvI": 7.9,
+    "cvG": 1.3,
+    "ii": 6,
+    "iiAnova": null
+   }
+  ]
+ },
+ "excluded": [
+  {
+   "analyte": "glucose",
+   "r45": [
+    {
+     "crew": "C001",
+     "glucose": 84,
+     "potassium": 4,
+     "ownPreflightMinGlucose": 69
+    },
+    {
+     "crew": "C002",
+     "glucose": 44,
+     "potassium": 4.1,
+     "ownPreflightMinGlucose": 69
+    },
+    {
+     "crew": "C003",
+     "glucose": 36,
+     "potassium": 4.4,
+     "ownPreflightMinGlucose": 62
+    },
+    {
+     "crew": "C004",
+     "glucose": 43,
+     "potassium": 5.9,
+     "ownPreflightMinGlucose": 56
+    }
+   ],
+   "lowAtR45": [
+    "C002",
+    "C003",
+    "C004"
+   ],
+   "why": "At R+45, 3 of 4 crew had glucose of 36-44 mg/dL (one with potassium 5.9 mmol/L) while feeling well on the ground. Low glucose with high potassium is the classic sign of a blood sample left too long before the serum was separated (cells keep using sugar and leak potassium). So glucose is left out of the headline."
+  }
+ ],
+ "withdrawn": [
+  {
+   "claim": "Hidden lymphocyte drift (> 20% from own pre-flight median, inside the lab range) in 4 of 4 crew at R+1",
+   "status": "withdrawn",
+   "r1PctVsOwnMedianRawFile": {
+    "C001": -26.8,
+    "C002": -27.3,
+    "C003": -33.9,
+    "C004": 20.7
+   },
+   "r1PctVsOwnMedianCorrected": {
+    "C001": -26.8,
+    "C002": -27.3,
+    "C003": 0.1,
+    "C004": 20.7
+   },
+   "beyond20PctCorrected": 3,
+   "why": "C003's pre-flight median was inflated by the shifted row (6826 is a neutrophil count). With the row fixed, C003 changed by about 0%, and the directions disagree (two down, one up), so there is no consistent signal."
+  }
+ ],
+ "limits": [
+  {
+   "id": "n4",
+   "text": "Only 4 people."
+  },
+  {
+   "id": "pre3",
+   "text": "Only 3 pre-flight draws each, so each person's own range is a rough one."
+  },
+  {
+   "id": "flight",
+   "text": "A 3-day flight in low Earth orbit, not a Mars mission."
+  },
+  {
+   "id": "noinflight",
+   "text": "No blood was drawn in flight; every comparison is after landing."
+  },
+  {
+   "id": "r194",
+   "text": "MCV is still below the pre-flight minimum at R+194, half a year later, in 3 of the 3 crew with an R+194 value (C002's is blank in the NASA file). A change of lab or analyzer after flight may explain part of the shift, so the result is 'consistent with', not 'proves'."
+  },
+  {
+   "id": "glucose",
+   "text": "Glucose is excluded: the R+45 values look like a sample-handling artefact (low sugar, high potassium)."
+  },
+  {
+   "id": "notclinical",
+   "text": "An illustration of personal baselines, not clinical evidence and not a prediction for Mars."
+  }
+ ],
+ "computedBy": {
+  "python": "analysis/i4_proof.py (row fix, MCV comparison, index of individuality, exclusions)",
+  "engine": "scripts/proof.mjs runs computeBaseline() from src/engine/baseline.ts (the app's own band code) on the same corrected file",
+  "reproduce": "npm run proof   (python3 -I analysis/i4_proof.py && node scripts/proof.mjs)"
+ },
+ "engine": {
+  "function": "computeBaseline() in src/engine/baseline.ts",
+  "ranWith": "node scripts/proof.mjs, which loads the TypeScript source through Vite's module runner (vite runnerImport)",
+  "rule": "band = median ± max(2.5 × 1.4826 × MAD, minHalfWidth) of the learning values",
+  "ruleSource": "src/engine/rules.json (baseline.k, baseline.madScale); minHalfWidth set to 0 for MCV, which is not an in-app indicator",
+  "learningChecks": 7,
+  "inputs": {
+   "C001": [
+    92.8,
+    93,
+    94.9
+   ],
+   "C002": [
+    93.6,
+    96.2,
+    96.5
+   ],
+   "C003": [
+    91.3,
+    92.2,
+    92.4
+   ],
+   "C004": [
+    89.6,
+    89.8,
+    90.7
+   ]
+  },
+  "crew": [
+   {
+    "crew": "C001",
+    "preflight": [
+     92.8,
+     93,
+     94.9
+    ],
+    "median": 93,
+    "spread": 0.297,
+    "half": 0.741,
+    "low": 92.259,
+    "high": 93.741,
+    "ready": false,
+    "r1": 90.1,
+    "preflightOutsideBand": 1,
+    "r1OutsideBand": true,
+    "r1BelowBand": true
+   },
+   {
+    "crew": "C002",
+    "preflight": [
+     93.6,
+     96.2,
+     96.5
+    ],
+    "median": 96.2,
+    "spread": 0.445,
+    "half": 1.112,
+    "low": 95.088,
+    "high": 97.312,
+    "ready": false,
+    "r1": 90.5,
+    "preflightOutsideBand": 1,
+    "r1OutsideBand": true,
+    "r1BelowBand": true
+   },
+   {
+    "crew": "C003",
+    "preflight": [
+     91.3,
+     92.2,
+     92.4
+    ],
+    "median": 92.2,
+    "spread": 0.297,
+    "half": 0.741,
+    "low": 91.459,
+    "high": 92.941,
+    "ready": false,
+    "r1": 88.7,
+    "preflightOutsideBand": 1,
+    "r1OutsideBand": true,
+    "r1BelowBand": true
+   },
+   {
+    "crew": "C004",
+    "preflight": [
+     89.6,
+     89.8,
+     90.7
+    ],
+    "median": 89.8,
+    "spread": 0.297,
+    "half": 0.741,
+    "low": 89.059,
+    "high": 90.541,
+    "ready": false,
+    "r1": 87,
+    "preflightOutsideBand": 1,
+    "r1OutsideBand": true,
+    "r1BelowBand": true
+   }
+  ],
+  "result": {
+   "n": 4,
+   "r1OutsideBand": 4,
+   "r1BelowBand": 4,
+   "preflightDrawsOutsideOwnBand": 4,
+   "preflightDraws": 12
+  },
+  "crossCheck": "same band re-derived with an independent median/MAD in scripts/proof.mjs: identical; Node and Python read identical MCV values",
+  "honesty": "The app only switches a band on after 7 checks (ready = false here: 3 draws). This calls the same band function directly on 3 draws to show what it computes; the headline comparison (below the person's own lowest pre-flight value) is the simpler min/max rule from analysis/i4_proof.py. With only 3 points the median/MAD band is very narrow: 4 of 12 pre-flight draws already fall outside their own band, which is exactly why the app waits for more checks."
+ }
+}

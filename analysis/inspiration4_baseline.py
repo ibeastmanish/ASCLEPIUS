@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HYGIEA proof analysis: "normal for everyone is not normal for you".
+ASCLEPIUS proof analysis: "normal for everyone is not normal for you".
 
 Real data: NASA OSDR OSD-569 (CBC) and OSD-575 (CMP), SpaceX Inspiration4,
 4 civilian crew, 3-day flight, 7 timepoints each.
@@ -139,7 +139,7 @@ def main():
         "driftPct": DRIFT_PCT,
         "appBand": {
             "k": K, "madScale": MAD_SCALE, "learningChecks": LEARNING_CHECKS, "preflightDraws": len(PRE),
-            "note": (f"HYGIEA's own band rule (median +/- {K} x scaled MAD) needs {LEARNING_CHECKS} checks. "
+            "note": (f"ASCLEPIUS's own band rule (median +/- {K} x scaled MAD) needs {LEARNING_CHECKS} checks. "
                      f"Inspiration4 has only {len(PRE)} pre-flight draws, so a band built from them is too wide "
                      "and noisy to trust; the fixed 20% cut-off is used here instead. 'Outside app band' shows "
                      "what the app's rule would say with those 3 draws."),

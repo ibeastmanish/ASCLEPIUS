@@ -25,7 +25,7 @@ export function download(name: string, data: unknown, type = "application/json")
 
 export function toJsonExport(events: HEvent[], profile?: Profile) {
   return {
-    app: "HYGIEA",
+    app: "ASCLEPIUS",
     exportedAt: new Date().toISOString(),
     rulesVersion: RULES.version,
     simulated: !!profile?.simulated,
@@ -55,11 +55,11 @@ export function toFhirBundle(events: HEvent[], profile?: Profile) {
         category: [{ coding: [{ system: "http://terminology.hl7.org/CodeSystem/observation-category", code: e.indicator === "mood" ? "survey" : "vital-signs" }] }],
         code: l
           ? { coding: [{ system: "http://loinc.org", code: l.code, display: l.display }], text: RULES.indicators[e.indicator].label }
-          : { coding: [{ system: "urn:hygiea:indicator", code: e.indicator, display: "Self-rated mood (1-5)" }], text: "Mood" },
+          : { coding: [{ system: "urn:asclepius:indicator", code: e.indicator, display: "Self-rated mood (1-5)" }], text: "Mood" },
         subject: { reference: patientRef },
         effectiveDateTime: e.ts,
         valueQuantity: { value: e.value, unit: RULES.indicators[e.indicator].unit, system: "http://unitsofmeasure.org", code: l?.ucum ?? "{score}" },
-        interpretation: status ? [{ text: `HYGIEA ${status}` }] : undefined,
+        interpretation: status ? [{ text: `ASCLEPIUS ${status}` }] : undefined,
         note: profile?.simulated ? [{ text: "Simulated crew data" }] : undefined,
       },
     });

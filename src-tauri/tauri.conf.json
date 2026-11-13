@@ -1,6 +1,6 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "HYGIEA",
+  "productName": "ASCLEPIUS",
   "version": "1.0.0",
   "identifier": "org.teamhygiea.hygiea",
   "build": {
@@ -13,7 +13,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "HYGIEA",
+        "title": "ASCLEPIUS",
         "width": 1180,
         "height": 820,
         "minWidth": 380,
@@ -31,8 +31,8 @@
     "targets": ["app", "dmg"],
     "category": "Medical",
     "shortDescription": "Offline daily health self-check for astronauts",
-    "longDescription": "HYGIEA turns a quick daily check of six health indicators into a clear green, yellow or red answer, fully offline. Decision support, not a medical device.",
-    "copyright": "Copyright (c) 2026 Manish Tula and Team HYGIEA. MIT License.",
+    "longDescription": "ASCLEPIUS turns a quick daily check of six health indicators into a clear green, yellow or red answer, fully offline. Decision support, not a medical device.",
+    "copyright": "Copyright (c) 2026 Manish Tula and Team ASCLEPIUS. MIT License.",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",

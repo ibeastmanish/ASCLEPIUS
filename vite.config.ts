@@ -5,7 +5,7 @@ import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
 // GitHub Pages serves the app from /hygiea/; local dev and preview use /.
-const base = process.env.HYGIEA_BASE ?? "/";
+const base = process.env.ASCLEPIUS_BASE ?? "/";
 
 export default defineConfig(({ command }) => ({
   base,
@@ -23,8 +23,8 @@ export default defineConfig(({ command }) => ({
       registerType: "autoUpdate",
       includeAssets: ["favicon.svg", "icon-192.png", "icon-512.png", "apple-touch-icon.png"],
       manifest: {
-        name: "HYGIEA: astronaut health self-check",
-        short_name: "HYGIEA",
+        name: "ASCLEPIUS: astronaut health self-check",
+        short_name: "ASCLEPIUS",
         description: "Offline daily health self-check for astronauts. Decision support, not a medical device.",
         theme_color: "#0B3D91",
         background_color: "#F4F6FA",
@@ -42,9 +42,13 @@ export default defineConfig(({ command }) => ({
       workbox: {
         globPatterns: ["**/*.{js,css,html,svg,png,jpg,json,woff2}"],
         navigateFallback: `${base}index.html`,
+        // The Ground Station console is its own page: never fall back to the crew app for it.
+        navigateFallbackDenylist: [/ground\.html$/],
       },
     }),
   ],
+  // Two static pages: the crew tablet (index.html) and the Ground Station console (ground.html).
+  build: { rollupOptions: { input: { main: "index.html", ground: "ground.html" } } },
   worker: { format: "es" },
   test: {
     environment: "node",

@@ -10,6 +10,8 @@ export interface EscalateInput {
   earlierToday: CheckResult[];
   earth: { oneWayMin: number; blackout: boolean; blackoutEnd?: string };
   now: string; // ISO timestamp of the check
+  /** Days in the few days before this one that had any yellow or red reading (see rules.escalationRules). */
+  priorYellowDays?: number;
 }
 
 export interface EscalateOutput {
@@ -17,6 +19,10 @@ export interface EscalateOutput {
   why: string[];
   earthEta?: string;
   earthHeld?: boolean;
+}
+
+function cap(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }
 
 export function escalate(e: EscalateInput, rules: Rules = RULES): EscalateOutput {
@@ -41,10 +47,18 @@ export function escalate(e: EscalateInput, rules: Rules = RULES): EscalateOutput
       const repeated = yellowNow.filter((i) => earlier.results.some((r) => r.indicator === i && r.status === "yellow"));
       if (repeated.length) {
         const names = repeated.map((i) => rules.indicators[i].short.toLowerCase());
-        why.push(`TR-REPEAT: ${names.join(", ")} still yellow at the recheck.`);
+        why.push(`${cap(names.join(", "))} still yellow at the recheck. (TR-REPEAT)`);
       }
     }
-    for (const p of e.patterns) if (p.tellCmo && p.status !== "green") why.push(`${p.id}: this pattern is worth telling the crew medical officer.`);
+    for (const p of e.patterns) if (p.tellCmo && p.status !== "green") why.push(`${rules.patterns[p.id as keyof Rules["patterns"]]?.label ?? "A pattern"} across several readings. (${p.id})`);
+    // Persistence: a several-day trend, or yellow on most recent days, is not a one-off.
+    if (rules.escalationRules.persistentTrendTellsCmo) {
+      for (const r of e.results) for (const w of r.why) {
+        if (w.layer === "trend" && r.status === "yellow") why.push(`${w.text} (${w.ruleId})`);
+      }
+    }
+    const ry = rules.escalationRules.repeatYellow;
+    if ((e.priorYellowDays ?? 0) >= ry.priorYellowDays) why.push(`Yellow on ${(e.priorYellowDays ?? 0) + 1} of the last ${ry.daysBack + 1} days. (${ry.ruleId})`);
     if (e.tags.some((t) => rules.context[t]?.lowerCmoThreshold)) why.push("You feel unwell, so any yellow is worth sharing.");
     if (e.results.some((r) => r.indicator === "mood" && r.value <= 1 && r.status !== "invalid")) why.push("Mood is at its lowest. Talking to someone helps.");
 

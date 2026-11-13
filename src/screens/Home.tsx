@@ -1,11 +1,13 @@
 import { dayLabel, fmtDate, utcHM } from "../app/clock";
 import { useApp } from "../app/store";
 import { guidance } from "../content/guidance";
-import { blackoutEnd, earthFor, formatDelay, isBlackout, series, sunAngleDeg } from "../engine/horizons";
+import { blackoutLastDay, earthFor, formatDelay, isBlackout, series, sunAngleDeg } from "../engine/horizons";
 import { formatMarsTime, nextLocalTime } from "../engine/mars";
 import { RULES, describe, fmt, worst } from "../engine/rules";
 import type { CheckResult, DayRecord, Indicator, IndicatorResult, Status } from "../engine/types";
-import { INDICATORS } from "../engine/types";
+import { CORE_INDICATORS } from "../engine/types";
+import { computeReplyClock, formatDuration, houstonTime, linkFor, replyClockForCheck, solsUntilAlignedMorning, surgeonOnShift } from "../engine/replyclock";
+import { ReplyClockCard } from "../ui/replyclock";
 import { badges, checksOn, dueIndicators, historyBefore, latestValues, streak } from "../storage/projection";
 import { Disclaimer, G, OVERALL_WORD, STATUS_GLYPH, StatusBadge, TopBar, fmtMinutes } from "../ui/ui";
 
@@ -23,6 +25,7 @@ export function EarthBanner() {
   );
 }
 
+const LEVEL_WORD = { "earth-guided": "Earth guides", "earth-consulted": "act, Earth confirms", "crew-decides": "crew decides" } as const;
 const MISSION_NAME = { mars: "Mars base", moon: "Lunar base", iss: "ISS" } as const;
 
 export function Home() {
@@ -32,7 +35,7 @@ export function Home() {
   const latest = todayChecks.at(-1);
   const e = earthFor(today, p.mission);
   const st = streak(state, today);
-  const learning = INDICATORS.filter((i) => !state.baselines[i]?.ready);
+  const learning = CORE_INDICATORS.filter((i) => !state.baselines[i]?.ready);
   const reminderHour = state.settings.reminderHour;
   const next = p.mission === "mars" ? nextLocalTime(now.getTime(), reminderHour, p.baseLonE) : null;
   const recheckDue = latest?.escalation === "recheck" && p.mission === "mars" ? nextLocalTime(Date.parse(latest.ts), 19, p.baseLonE) : null;
@@ -42,6 +45,14 @@ export function Home() {
   const pattern = latest?.patterns.find((x) => x.status !== "green");
   const pg = pattern ? guidance(pattern.guidanceId) : undefined;
   const overall: Status | "none" = latest?.overall ?? "none";
+  const link = linkFor(today, p.mission, state.settings.clinic);
+  const latestClock = latest ? replyClockForCheck(latest, p.mission, p.baseLonE, linkFor(latest.date, p.mission, state.settings.clinic)) : null;
+  // Today's Reply Clock for a routine yellow and for a red, from right now.
+  const a = RULES.replyClock.actWithinMin;
+  const yellowNow = computeReplyClock({ nowMs: now.getTime(), link, priority: "routine", actWithinMin: a["tell-cmo"], actBasis: "", mission: p.mission, baseLonE: p.baseLonE });
+  const redNow = computeReplyClock({ nowMs: now.getTime(), link, priority: "red", actWithinMin: a.red, actBasis: "", mission: p.mission, baseLonE: p.baseLonE });
+  const morning = p.mission === "mars" ? nextLocalTime(now.getTime(), reminderHour, p.baseLonE) : null;
+  const aligned = morning !== null ? solsUntilAlignedMorning(morning) : null;
 
   return (
     <>
@@ -92,7 +103,14 @@ export function Home() {
               <span className="big-num">{e.oneWayMin.toFixed(1)}<small>min one way</small></span>
               <div className="lightline" aria-hidden="true"><div className="track" /><span className="end mars" /><span className="photon" /><span className="end earth" /></div>
               <div className="lightline-labels" aria-hidden="true"><span>Mars</span><span>Earth</span></div>
-              <p>{e.blackout ? "Held: the Sun blocks the radio link." : `A question to Earth takes ${(2 * e.oneWayMin).toFixed(0)} min or more to answer. Act first, report after.`}</p>
+              <p>{e.blackout ? "Held: the Sun blocks the radio link. Your crew decides; Earth reviews afterwards." : <>
+                Right now Earth can answer a red in <b>{formatDuration(redNow.earliestReplyMin)}</b> ({LEVEL_WORD[redNow.level]}) and a yellow in <b>{formatDuration(yellowNow.earliestReplyMin)}</b> ({LEVEL_WORD[yellowNow.level]}).
+              </>}</p>
+              <p className="small">Houston {houstonTime(now.getTime())} · flight surgeon {surgeonOnShift(now.getTime()) ? "on shift" : "off shift"}.
+                {aligned !== null && morning !== null && (aligned === 0
+                  ? " Your morning check falls in the surgeon's shift."
+                  : ` A Mars sol is 39.6 min longer than a day, so your ${String(reminderHour).padStart(2, "0")}:00 check drifts against Houston; it lines up with the surgeon's shift again in ${aligned} sol${aligned === 1 ? "" : "s"}.`)}
+              </p>
               <NextBlackout today={today} />
             </>
           ) : (
@@ -103,6 +121,8 @@ export function Home() {
           )}
         </section>
       </div>
+
+      {latestClock && <ReplyClockCard clock={latestClock} />}
 
       <Specimens check={latest} />
 
@@ -136,7 +156,7 @@ export function Home() {
           </div>
         ))}
       </div>
-      <p className="small muted" style={{ marginTop: 12 }}>Badges are personal. HYGIEA never compares crew members.</p>
+      <p className="small muted" style={{ marginTop: 12 }}>Badges are personal. ASCLEPIUS never compares crew members.</p>
       <Disclaimer />
     </>
   );
@@ -157,7 +177,7 @@ function NextBlackout({ today }: { today: string }) {
   if (isBlackout(today)) return null;
   const start = series().find((d) => d.date > today && isBlackout(d.date))?.date;
   if (!start) return null;
-  const end = blackoutEnd(start);
+  const end = blackoutLastDay(start);
   return (
     <dl className="earth-facts">
       <div><dt>Next Sun blackout</dt><dd>{fmtDate(start)}{end ? ` – ${fmtDate(end)}` : ""}</dd></div>

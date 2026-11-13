@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { decode } from "./cbor";
 import { createKeyRing, fromB64 } from "./crypto";
+import { DEMO_STATION } from "../ground/demoKeys";
 import { open, seal, usingHermes, wrapHermes } from "./earthlink";
 
 describe("Earth link dispatch (web build)", () => {
@@ -9,7 +10,9 @@ describe("Earth link dispatch (web build)", () => {
     expect(usingHermes()).toBe(false);
     const s = await seal({ overall: "red", day: 212 }, ring);
     expect(s.alg).toBe("webcrypto");
-    expect(await open(s.payload, ring)).toEqual({ overall: "red", day: 212 });
+    // The tablet cannot open its own Earth messages: it holds only the ground PUBLIC key.
+    await expect(open(s.payload, ring)).rejects.toThrow(/Ground Station console/);
+    expect(await open(s.payload, { groundPrivateJwk: DEMO_STATION.encPrivateJwk, crewPublicJwk: ring.crewSign.publicJwk })).toEqual({ overall: "red", day: 212 });
   });
 
   it("marks Hermes messages and refuses to open them without the desktop app", async () => {

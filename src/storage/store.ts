@@ -14,15 +14,17 @@ export interface EventStore {
 interface EventRow { seq?: number; iv: Uint8Array; ct: Uint8Array }
 interface MetaRow { key: string; value: unknown }
 
-export class HygieaDB extends Dexie {
+export class AsclepiusDB extends Dexie {
   events!: Table<EventRow, number>;
   meta!: Table<MetaRow, string>;
+  // On-disk name kept from before the rename so existing vaults still open.
   constructor(name = "hygiea") {
     super(name);
     this.version(1).stores({ events: "++seq", meta: "key" });
   }
 }
 
+// Kept from before the rename: changing it would make existing vaults reject the right passphrase.
 const VERIFIER = "HYGIEA-VAULT-v1";
 
 interface VaultMeta { salt: Uint8Array; iterations: number; verifier: { iv: Uint8Array; ct: Uint8Array } }
@@ -31,11 +33,11 @@ export class WrongPassphraseError extends Error {
   constructor() { super("Wrong passphrase"); }
 }
 
-export async function hasVault(db: HygieaDB): Promise<boolean> {
+export async function hasVault(db: AsclepiusDB): Promise<boolean> {
   return !!(await db.meta.get("vault"));
 }
 
-export async function createVault(db: HygieaDB, passphrase: string, iterations = PBKDF2_ITERATIONS): Promise<VaultStore> {
+export async function createVault(db: AsclepiusDB, passphrase: string, iterations = PBKDF2_ITERATIONS): Promise<VaultStore> {
   if (await hasVault(db)) throw new Error("A vault already exists on this device");
   const salt = randomBytes(16);
   const key = await deriveVaultKey(passphrase, salt, iterations);
@@ -46,7 +48,7 @@ export async function createVault(db: HygieaDB, passphrase: string, iterations =
   return new VaultStore(db, key);
 }
 
-export async function openVault(db: HygieaDB, passphrase: string): Promise<VaultStore> {
+export async function openVault(db: AsclepiusDB, passphrase: string): Promise<VaultStore> {
   const row = await db.meta.get("vault");
   if (!row) throw new Error("No vault on this device");
   const m = row.value as VaultMeta;
@@ -60,7 +62,7 @@ export async function openVault(db: HygieaDB, passphrase: string): Promise<Vault
   return new VaultStore(db, key);
 }
 
-export async function destroyVault(db: HygieaDB): Promise<void> {
+export async function destroyVault(db: AsclepiusDB): Promise<void> {
   await db.transaction("rw", db.events, db.meta, async () => {
     await db.events.clear();
     await db.meta.clear();
@@ -70,9 +72,9 @@ export async function destroyVault(db: HygieaDB): Promise<void> {
 export class VaultStore implements EventStore {
   readonly persistent = true;
   private ring?: KeyRing;
-  private db: HygieaDB;
+  private db: AsclepiusDB;
   private key: CryptoKey;
-  constructor(db: HygieaDB, key: CryptoKey) {
+  constructor(db: AsclepiusDB, key: CryptoKey) {
     this.db = db;
     this.key = key;
   }

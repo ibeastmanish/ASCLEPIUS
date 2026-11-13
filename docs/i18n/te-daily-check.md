@@ -3,7 +3,7 @@
 **Status: draft.** The Telugu text in [`te.daily-check.json`](te.daily-check.json) was drafted with an AI assistant. It must not ship, or be shown to judges as finished, until a fluent Telugu speaker has reviewed every line. If it is shown at the event, list it in the project's Use of SI section.
 
 ## Why
-HYGIEA's Earth use is community health workers near Warangal, Telangana, where the nearest doctor can be hours away. Most of them read Telugu first. One fully translated screen, the daily check, shows that the Earth edition is real and not only a slide.
+ASCLEPIUS's Earth use is community health workers near Warangal, Telangana, where the nearest doctor can be hours away. Most of them read Telugu first. One fully translated screen, the daily check, shows that the Earth edition is real and not only a slide.
 
 ## What the reviewer should check
 1. **Plain words a health worker would actually say.** Prefer everyday Telugu, and keep common English loan words where people use them (బీపీ, షుగర్, సేవ్).

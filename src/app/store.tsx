@@ -4,7 +4,7 @@ import { ashaEvents } from "../seed/asha";
 import type { HEvent, Profile, Settings } from "../storage/events";
 import { project, type AppState } from "../storage/projection";
 import {
-  createVault, destroyVault, hasVault, HygieaDB, MemoryStore, openVault, requestPersistence, VaultStore, type EventStore,
+  createVault, destroyVault, hasVault, AsclepiusDB, MemoryStore, openVault, requestPersistence, VaultStore, type EventStore,
 } from "../storage/store";
 import { setHermesReady } from "../storage/earthlink";
 import { hermes, inDesktopApp, type HermesStatus } from "../storage/hermes";
@@ -55,7 +55,7 @@ export interface App {
 }
 
 const Ctx = createContext<App | null>(null);
-const db = new HygieaDB();
+const db = new AsclepiusDB();
 const EMPTY = project([]);
 
 export const VIDEO_DATE = "2026-11-14";
@@ -220,7 +220,7 @@ export function isVaultStore(s: EventStore | null): s is VaultStore {
 function notifyCmo(r: CheckResult) {
   try {
     if (typeof Notification === "undefined") return;
-    const show = () => new Notification("HYGIEA: crew medical alert", { body: r.escalationWhy[0], tag: r.checkId });
+    const show = () => new Notification("ASCLEPIUS: crew medical alert", { body: r.escalationWhy[0], tag: r.checkId });
     if (Notification.permission === "granted") show();
     else if (Notification.permission === "default") void Notification.requestPermission().then((p) => p === "granted" && show());
   } catch {

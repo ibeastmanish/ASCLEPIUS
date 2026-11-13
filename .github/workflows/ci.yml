@@ -33,7 +33,7 @@ jobs:
       - name: Build for GitHub Pages
         run: npm run build
         env:
-          HYGIEA_BASE: /${{ github.event.repository.name }}/
+          ASCLEPIUS_BASE: /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:

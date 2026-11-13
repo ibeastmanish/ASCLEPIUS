@@ -1,7 +1,7 @@
 {
   "$schema": "./rules.schema.json",
-  "version": "1.0.0",
-  "note": "Every threshold is either cited or marked project-defined. All [VERIFY] items must be checked against the source before submission. Decision support, not a medical device.",
+  "version": "3.0.0",
+  "note": "Every threshold cites its source. NASA-STD-3001 sets monitoring duties, sleep, behavioural-health, temperature and CO2 limits but gives no numeric blood-pressure, heart-rate or glucose limits (Vol 1 Rev C, Table E.2-2 lists the conditions only), so those numbers come from named terrestrial guidelines and are labelled as such. 'Project-defined' means the team chose it. Decision support, not a medical device.",
   "indicators": {
     "bp_sys": {
       "label": "Blood pressure (systolic)",
@@ -10,13 +10,43 @@
       "region": "heart",
       "step": 1,
       "decimals": 0,
-      "valid": { "ruleId": "BP-V1", "gte": 60, "lte": 260 },
+      "valid": {
+        "ruleId": "BP-V1",
+        "gte": 60,
+        "lte": 260
+      },
       "redflags": [
-        { "ruleId": "BP-R1", "gte": 180, "text": "Systolic pressure of 180 or more is a hypertensive crisis level.", "source": "AHA/ACC 2017 BP categories [VERIFY]" }
+        {
+          "ruleId": "BP-R1",
+          "gte": 180,
+          "text": "Systolic pressure of 180 or more is a hypertensive crisis level.",
+          "source": "ACC/AHA 2017 adult blood pressure guideline (terrestrial; NASA-STD-3001 gives no BP numbers)"
+        },
+        {
+          "ruleId": "BP-R3",
+          "lt": 80,
+          "text": "Systolic pressure under 80 is too low. Lie down with your legs raised and call the crew medical officer.",
+          "source": "Project-defined red limit below the NHLBI hypotension line of 90 mmHg"
+        }
       ],
-      "clinical": { "ruleId": "BP-C1", "green": { "lt": 130 }, "source": "AHA/ACC 2017 BP categories [VERIFY]" },
-      "personal": { "ruleId": "BP-P1", "minHalfWidth": 8, "direction": "both" },
-      "guidance": { "yellow": "bp-yellow", "red": "bp-red", "green": "heart-green" }
+      "clinical": {
+        "ruleId": "BP-C1",
+        "green": {
+          "gte": 90,
+          "lt": 130
+        },
+        "source": "ACC/AHA 2017 adult blood pressure guideline (terrestrial; NASA-STD-3001 gives no BP numbers); lower bound: Hypotension under 90/60 mmHg, NIH NHLBI 'Low Blood Pressure' (terrestrial); spaceflight relevance: NASA-STD-3001 Vol 1 Rev C Table E.2-2, gravity-transition orthostatic intolerance"
+      },
+      "personal": {
+        "ruleId": "BP-P1",
+        "minHalfWidth": 8,
+        "direction": "both"
+      },
+      "guidance": {
+        "yellow": "bp-yellow",
+        "red": "bp-red",
+        "green": "heart-green"
+      }
     },
     "bp_dia": {
       "label": "Blood pressure (diastolic)",
@@ -25,13 +55,43 @@
       "region": "heart",
       "step": 1,
       "decimals": 0,
-      "valid": { "ruleId": "BP-V2", "gte": 30, "lte": 160 },
+      "valid": {
+        "ruleId": "BP-V2",
+        "gte": 30,
+        "lte": 160
+      },
       "redflags": [
-        { "ruleId": "BP-R2", "gte": 120, "text": "Diastolic pressure of 120 or more is a hypertensive crisis level.", "source": "AHA/ACC 2017 BP categories [VERIFY]" }
+        {
+          "ruleId": "BP-R2",
+          "gte": 120,
+          "text": "Diastolic pressure of 120 or more is a hypertensive crisis level.",
+          "source": "ACC/AHA 2017 adult blood pressure guideline (terrestrial; NASA-STD-3001 gives no BP numbers)"
+        },
+        {
+          "ruleId": "BP-R4",
+          "lt": 40,
+          "text": "Diastolic pressure under 40 is too low. Lie down with your legs raised and call the crew medical officer.",
+          "source": "Project-defined red limit below the NHLBI hypotension line of 60 mmHg"
+        }
       ],
-      "clinical": { "ruleId": "BP-C2", "green": { "lt": 80 }, "source": "AHA/ACC 2017 BP categories [VERIFY]" },
-      "personal": { "ruleId": "BP-P2", "minHalfWidth": 6, "direction": "both" },
-      "guidance": { "yellow": "bp-yellow", "red": "bp-red", "green": "heart-green" }
+      "clinical": {
+        "ruleId": "BP-C2",
+        "green": {
+          "gte": 60,
+          "lt": 80
+        },
+        "source": "ACC/AHA 2017 adult blood pressure guideline (terrestrial; NASA-STD-3001 gives no BP numbers); lower bound: Hypotension under 90/60 mmHg, NIH NHLBI 'Low Blood Pressure' (terrestrial); spaceflight relevance: NASA-STD-3001 Vol 1 Rev C Table E.2-2, gravity-transition orthostatic intolerance"
+      },
+      "personal": {
+        "ruleId": "BP-P2",
+        "minHalfWidth": 6,
+        "direction": "both"
+      },
+      "guidance": {
+        "yellow": "bp-yellow",
+        "red": "bp-red",
+        "green": "heart-green"
+      }
     },
     "hr": {
       "label": "Heart rate (resting)",
@@ -40,14 +100,46 @@
       "region": "heart",
       "step": 1,
       "decimals": 0,
-      "valid": { "ruleId": "HR-V1", "gte": 25, "lte": 220 },
+      "valid": {
+        "ruleId": "HR-V1",
+        "gte": 25,
+        "lte": 220
+      },
       "redflags": [
-        { "ruleId": "HR-R1", "lt": 40, "text": "A resting heart rate under 40 needs help now.", "source": "Project-defined red limit (clinical convention)" },
-        { "ruleId": "HR-R2", "gt": 130, "text": "A resting heart rate over 130 needs help now.", "source": "Project-defined red limit (clinical convention)" }
+        {
+          "ruleId": "HR-R1",
+          "lt": 40,
+          "text": "A resting heart rate under 40 needs help now.",
+          "source": "Project-defined red limit (common clinical convention for urgent bradycardia/tachycardia at rest)"
+        },
+        {
+          "ruleId": "HR-R2",
+          "gt": 130,
+          "text": "A resting heart rate over 130 needs help now.",
+          "source": "Project-defined red limit (common clinical convention for urgent bradycardia/tachycardia at rest)"
+        }
       ],
-      "clinical": { "ruleId": "HR-C1", "green": { "gte": 60, "lte": 100 }, "source": "Clinical convention: adult resting HR 60-100 bpm [VERIFY]" },
-      "personal": { "ruleId": "HR-P1", "minHalfWidth": 5, "direction": "both", "clearsClinicalLow": true, "clearsNote": "Athletic resting heart rate: 50-59 bpm inside your own pre-learned normal is green. Red flags (< 40) are never cleared. Team decision - confirm with a flight surgeon [VERIFY]." },
-      "guidance": { "yellow": "hr-yellow", "red": "hr-red", "green": "heart-green" }
+      "clinical": {
+        "ruleId": "HR-C1",
+        "green": {
+          "gte": 60,
+          "lte": 100
+        },
+        "source": "Adult resting heart rate 60-100 bpm, AHA patient guidance (terrestrial; NASA-STD-3001 gives no HR numbers)"
+      },
+      "personal": {
+        "ruleId": "HR-P1",
+        "minHalfWidth": 5,
+        "direction": "both",
+        "clearsClinicalLow": true,
+        "clearsNote": "Athletic resting heart rate: 50-59 bpm inside your own learned normal is green. Below 50 is never cleared; red flags (< 40) are never cleared. Team decision, to be reviewed by a flight surgeon.",
+        "clearsFloor": 50
+      },
+      "guidance": {
+        "yellow": "hr-yellow",
+        "red": "hr-red",
+        "green": "heart-green"
+      }
     },
     "glucose": {
       "label": "Blood sugar",
@@ -56,14 +148,43 @@
       "region": "blood",
       "step": 1,
       "decimals": 0,
-      "valid": { "ruleId": "GL-V1", "gte": 20, "lte": 600 },
+      "valid": {
+        "ruleId": "GL-V1",
+        "gte": 20,
+        "lte": 600
+      },
       "redflags": [
-        { "ruleId": "GL-R1", "lt": 54, "text": "Blood sugar under 54 mg/dL is clinically significant low sugar.", "source": "ADA hypoglycaemia level 2 [VERIFY]" },
-        { "ruleId": "GL-R2", "gte": 250, "text": "Blood sugar of 250 mg/dL or more needs help now.", "source": "Project-defined red limit" }
+        {
+          "ruleId": "GL-R1",
+          "lt": 54,
+          "text": "Blood sugar under 54 mg/dL is clinically significant low sugar.",
+          "source": "ADA Standards of Care: level 2 hypoglycaemia, under 54 mg/dL (terrestrial)"
+        },
+        {
+          "ruleId": "GL-R2",
+          "gte": 250,
+          "text": "Blood sugar of 250 mg/dL or more needs help now.",
+          "source": "Project-defined red limit"
+        }
       ],
-      "clinical": { "ruleId": "GL-C1", "green": { "gte": 70, "lt": 100 }, "source": "ADA fasting glucose categories [VERIFY]" },
-      "personal": { "ruleId": "GL-P1", "minHalfWidth": 10, "direction": "both" },
-      "guidance": { "yellow": "glucose-yellow", "red": "glucose-red", "green": "blood-green" }
+      "clinical": {
+        "ruleId": "GL-C1",
+        "green": {
+          "gte": 70,
+          "lt": 100
+        },
+        "source": "ADA Standards of Care: fasting glucose 70-99 mg/dL (terrestrial). After a meal, use the 'After a meal' tag (under 140 mg/dL at 2 h)."
+      },
+      "personal": {
+        "ruleId": "GL-P1",
+        "minHalfWidth": 10,
+        "direction": "both"
+      },
+      "guidance": {
+        "yellow": "glucose-yellow",
+        "red": "glucose-red",
+        "green": "blood-green"
+      }
     },
     "temp": {
       "label": "Body temperature",
@@ -72,14 +193,43 @@
       "region": "skin",
       "step": 0.1,
       "decimals": 1,
-      "valid": { "ruleId": "TP-V1", "gte": 30, "lte": 43 },
+      "valid": {
+        "ruleId": "TP-V1",
+        "gte": 30,
+        "lte": 43
+      },
       "redflags": [
-        { "ruleId": "TP-R1", "gte": 39.5, "text": "A temperature of 39.5 °C or more is a high fever.", "source": "Project-defined red limit (clinical convention)" },
-        { "ruleId": "TP-R2", "lt": 35.0, "text": "A temperature under 35.0 °C is too cold for the body.", "source": "Project-defined red limit (clinical convention)" }
+        {
+          "ruleId": "TP-R1",
+          "gte": 39.5,
+          "text": "A temperature of 39.5 °C or more is a high fever.",
+          "source": "Project-defined red limit (clinical convention)"
+        },
+        {
+          "ruleId": "TP-R2",
+          "lt": 35.0,
+          "text": "A temperature under 35.0 °C is too cold for the body.",
+          "source": "NASA-STD-3001 Vol 1 Rev C Appendix C: hypothermia below 35 °C"
+        }
       ],
-      "clinical": { "ruleId": "TP-C1", "green": { "gte": 36.1, "lt": 38.0 }, "source": "Clinical convention: 36.1-37.9 °C [VERIFY]" },
-      "personal": { "ruleId": "TP-P1", "minHalfWidth": 0.3, "direction": "both" },
-      "guidance": { "yellow": "temp-yellow", "red": "temp-red", "green": "skin-green" }
+      "clinical": {
+        "ruleId": "TP-C1",
+        "green": {
+          "gte": 36.1,
+          "lt": 38.0
+        },
+        "source": "Common adult clinical range 36.1-37.9 °C (terrestrial)"
+      },
+      "personal": {
+        "ruleId": "TP-P1",
+        "minHalfWidth": 0.3,
+        "direction": "both"
+      },
+      "guidance": {
+        "yellow": "temp-yellow",
+        "red": "temp-red",
+        "green": "skin-green"
+      }
     },
     "sleep": {
       "label": "Sleep last night",
@@ -88,11 +238,29 @@
       "region": "brain",
       "step": 0.5,
       "decimals": 1,
-      "valid": { "ruleId": "SL-V1", "gte": 0, "lte": 16 },
+      "valid": {
+        "ruleId": "SL-V1",
+        "gte": 0,
+        "lte": 16
+      },
       "redflags": [],
-      "clinical": { "ruleId": "SL-C1", "green": { "gte": 7 }, "source": "AASM/SRS adult recommendation: 7 h or more [VERIFY]" },
-      "personal": { "ruleId": "SL-P1", "minHalfWidth": 0.75, "direction": "low" },
-      "guidance": { "yellow": "sleep-yellow", "red": "sleep-red", "green": "brain-green" }
+      "clinical": {
+        "ruleId": "SL-C1",
+        "green": {
+          "gte": 7
+        },
+        "source": "AASM/SRS adult consensus: 7 h or more (terrestrial). NASA-STD-3001 Vol 1 Rev C [V1 6001] plans an 8.5 h sleep period."
+      },
+      "personal": {
+        "ruleId": "SL-P1",
+        "minHalfWidth": 0.75,
+        "direction": "low"
+      },
+      "guidance": {
+        "yellow": "sleep-yellow",
+        "red": "sleep-red",
+        "green": "brain-green"
+      }
     },
     "mood": {
       "label": "Mood",
@@ -101,11 +269,29 @@
       "region": "brain",
       "step": 1,
       "decimals": 0,
-      "valid": { "ruleId": "MD-V1", "gte": 1, "lte": 5 },
+      "valid": {
+        "ruleId": "MD-V1",
+        "gte": 1,
+        "lte": 5
+      },
       "redflags": [],
-      "clinical": { "ruleId": "MD-C1", "green": { "gte": 3 }, "source": "Project-defined" },
-      "personal": { "ruleId": "MD-P1", "minHalfWidth": 1, "direction": "low" },
-      "guidance": { "yellow": "mood-yellow", "red": "mood-yellow", "green": "brain-green" }
+      "clinical": {
+        "ruleId": "MD-C1",
+        "green": {
+          "gte": 3
+        },
+        "source": "Project-defined 1-5 self-rating; NASA-STD-3001 Vol 1 Rev C [V1 4011] requires behavioural health to be monitored within clinically accepted values"
+      },
+      "personal": {
+        "ruleId": "MD-P1",
+        "minHalfWidth": 1,
+        "direction": "low"
+      },
+      "guidance": {
+        "yellow": "mood-yellow",
+        "red": "mood-yellow",
+        "green": "brain-green"
+      }
     },
     "crt": {
       "label": "Capillary refill (fingertip)",
@@ -114,13 +300,36 @@
       "region": "heart",
       "step": 0.1,
       "decimals": 1,
-      "valid": { "ruleId": "CR-V1", "gte": 0.2, "lte": 10 },
+      "valid": {
+        "ruleId": "CR-V1",
+        "gte": 0.2,
+        "lte": 10
+      },
       "redflags": [
-        { "ruleId": "CR-R1", "gte": 4.5, "text": "A capillary refill time of 4.5 seconds or more needs help now.", "source": "Project-defined red limit; delayed capillary refill is a recognised bedside sign of poor peripheral perfusion [VERIFY]" }
+        {
+          "ruleId": "CR-R1",
+          "gte": 4.5,
+          "text": "A capillary refill time of 4.5 seconds or more needs help now.",
+          "source": "Project-defined red limit; delayed capillary refill is a recognised bedside sign of poor peripheral perfusion. Experimental phone-camera measurement, not validated."
+        }
       ],
-      "clinical": { "ruleId": "CR-C1", "green": { "lt": 3.0 }, "source": "Clinical convention: capillary refill under roughly 2-3 s is usually considered normal in adults at room temperature [VERIFY]" },
-      "personal": { "ruleId": "CR-P1", "minHalfWidth": 0.4, "direction": "both" },
-      "guidance": { "yellow": "crt-yellow", "red": "crt-red", "green": "heart-green" }
+      "clinical": {
+        "ruleId": "CR-C1",
+        "green": {
+          "lt": 3.0
+        },
+        "source": "Bedside convention: capillary refill under about 3 s is usually normal in adults at room temperature. Experimental, not validated."
+      },
+      "personal": {
+        "ruleId": "CR-P1",
+        "minHalfWidth": 0.4,
+        "direction": "both"
+      },
+      "guidance": {
+        "yellow": "crt-yellow",
+        "red": "crt-red",
+        "green": "heart-green"
+      }
     }
   },
   "symptoms": {
@@ -136,22 +345,126 @@
     }
   },
   "context": {
-    "exercise": { "label": "After exercise", "skipPersonal": ["hr", "bp_sys", "bp_dia"], "minutes": 30 },
-    "eva": { "label": "After EVA", "skipPersonal": ["hr"], "minutes": 60, "tip": "hydrate" },
-    "caffeine": { "label": "Caffeine", "skipPersonal": ["hr"], "minutes": 60 },
-    "medication": { "label": "Medication", "skipPersonal": [] },
-    "woke": { "label": "Just woke up", "skipPersonal": [] },
-    "unwell": { "label": "Unwell", "skipPersonal": [], "lowerCmoThreshold": true }
+    "exercise": {
+      "label": "After exercise",
+      "skipPersonal": [
+        "hr",
+        "bp_sys",
+        "bp_dia"
+      ],
+      "minutes": 30
+    },
+    "eva": {
+      "label": "After EVA",
+      "skipPersonal": [
+        "hr"
+      ],
+      "minutes": 60,
+      "tip": "hydrate"
+    },
+    "caffeine": {
+      "label": "Caffeine",
+      "skipPersonal": [
+        "hr"
+      ],
+      "minutes": 60
+    },
+    "meal": {
+      "label": "After a meal",
+      "skipPersonal": [
+        "glucose"
+      ],
+      "minutes": 120,
+      "clinicalOverride": {
+        "glucose": {
+          "gte": 70,
+          "lt": 140
+        }
+      },
+      "source": "ADA: under 140 mg/dL 2 h after eating (terrestrial)"
+    },
+    "medication": {
+      "label": "Medication",
+      "skipPersonal": []
+    },
+    "woke": {
+      "label": "Just woke up",
+      "skipPersonal": []
+    },
+    "unwell": {
+      "label": "Unwell",
+      "skipPersonal": [],
+      "lowerCmoThreshold": true
+    },
+    "dizzy": {
+      "label": "Dizzy when standing",
+      "skipPersonal": [],
+      "lowerCmoThreshold": true
+    }
   },
   "trends": {
-    "TR-SLEEP-3": { "indicator": "sleep", "days": 3, "lt": 6, "status": "yellow", "source": "Project-defined" },
-    "TR-SLEEP-RED": { "indicator": "sleep", "days": 2, "lt": 4, "status": "red", "source": "Project-defined" },
-    "TR-MOOD-3": { "indicator": "mood", "days": 3, "belowMedianBy": 1, "status": "yellow", "source": "Project-defined" },
-    "TR-HR-3": { "indicator": "hr", "days": 3, "aboveBand": true, "status": "yellow", "source": "Project-defined" }
+    "TR-SLEEP-3": {
+      "indicator": "sleep",
+      "days": 3,
+      "lt": 6,
+      "status": "yellow",
+      "source": "Project-defined; NASA-STD-3001 Vol 1 Rev C [V1 6001] plans 8.5 h of sleep"
+    },
+    "TR-SLEEP-RED": {
+      "indicator": "sleep",
+      "days": 2,
+      "lt": 4,
+      "status": "red",
+      "source": "Project-defined"
+    },
+    "TR-MOOD-3": {
+      "indicator": "mood",
+      "days": 3,
+      "belowMedianBy": 1,
+      "status": "yellow",
+      "source": "Project-defined; NASA-STD-3001 Vol 1 Rev C [V1 4011], [V1 6010] private psychological conference"
+    },
+    "TR-HR-3": {
+      "indicator": "hr",
+      "days": 3,
+      "aboveBand": true,
+      "status": "yellow",
+      "source": "Project-defined persistence rule"
+    }
   },
   "patterns": {
-    "PT-FATIGUE": { "label": "Fatigue pattern", "regions": ["brain", "heart"], "guidance": "pattern-fatigue", "tellCmo": false, "source": "Project-defined" },
-    "PT-FEVER": { "label": "Possible infection", "regions": ["skin", "heart"], "guidance": "pattern-fever", "feverGte": 38.0, "tellCmo": true, "source": "Project-defined" }
+    "PT-FATIGUE": {
+      "label": "Fatigue pattern",
+      "regions": [
+        "brain",
+        "heart"
+      ],
+      "guidance": "pattern-fatigue",
+      "tellCmo": true,
+      "source": "Project-defined; NASA HRP risk: Sleep Loss, Circadian Desynchronization and Work Overload"
+    },
+    "PT-FEVER": {
+      "label": "Possible infection",
+      "regions": [
+        "skin",
+        "heart"
+      ],
+      "guidance": "pattern-fever",
+      "feverGte": 38.0,
+      "tellCmo": true,
+      "source": "Project-defined; fever 38.0 °C or more with raised heart rate"
+    },
+    "PT-ORTHO": {
+      "label": "Light-headed on standing",
+      "regions": [
+        "heart",
+        "brain"
+      ],
+      "guidance": "pattern-ortho",
+      "tellCmo": true,
+      "sysBelow": 100,
+      "source": "NASA-STD-3001 Vol 1 Rev C Table E.2-2: gravity-transition orthostatic intolerance; project-defined trigger"
+    }
   },
   "baseline": {
     "learningChecks": 7,
@@ -159,5 +472,51 @@
     "madScale": 1.4826,
     "k": 2.5,
     "ewmaAlpha": 0.05
+  },
+  "escalationRules": {
+    "persistentTrendTellsCmo": true,
+    "repeatYellow": {
+      "ruleId": "ES-YELLOW-3of5",
+      "daysBack": 4,
+      "priorYellowDays": 2,
+      "source": "Project-defined: yellow on 3 of the last 5 days"
+    }
+  },
+  "replyClock": {
+    "note": "Inputs to the Earth Reply Clock. Light time and Sun blackout are real (NASA JPL Horizons). Shift hours, response times, contact windows and act-by windows are project-defined assumptions, shown on screen as such.",
+    "actWithinMin": {
+      "red": 10,
+      "PT-ORTHO": 60,
+      "PT-FEVER": 240,
+      "recheck": 720,
+      "tell-cmo": 1440
+    },
+    "actSource": "Project-defined act-by windows: red = first-response window; patterns = their recheck time; yellow = before the next check.",
+    "surgeon": {
+      "shiftStartUtcHour": 13,
+      "shiftHours": 12,
+      "label": "Flight surgeon on console 07:00-19:00 Houston (UTC-6)",
+      "responseMin": {
+        "red": {
+          "on": 5,
+          "off": 30
+        },
+        "routine": {
+          "on": 60,
+          "off": 60
+        }
+      },
+      "source": "Project-defined assumption. Off shift, a red alert pages the on-call surgeon; routine messages wait for the next shift."
+    },
+    "contact": {
+      "mode": "continuous",
+      "windowHoursPerSol": 8,
+      "windowStartMarsHour": 6,
+      "source": "Project-defined: continuous relay by default; optional 8 h contact window per sol"
+    },
+    "levels": {
+      "guidedBelowFraction": 0.5
+    },
+    "concept": "NASA Earth-Independent Medical Operations (EIMO) concept of operations, NTRS 20250000009: decisions move to the crew when the ground is communication-delayed beyond practicality."
   }
 }

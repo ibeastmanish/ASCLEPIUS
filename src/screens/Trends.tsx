@@ -6,7 +6,7 @@ import { guidance } from "../content/guidance";
 import { addDays } from "../engine/evaluate";
 import { RULES, fmt } from "../engine/rules";
 import type { CheckResult, Indicator, Status } from "../engine/types";
-import { INDICATORS } from "../engine/types";
+import { CORE_INDICATORS } from "../engine/types";
 import { Disclaimer, StatusBadge, TopBar, chartColors, useDark } from "../ui/ui";
 
 const COLORS: Record<Status, string> = { green: "#2EC27E", yellow: "#FFC72C", red: "#FC3D21", invalid: "#8a92a3" };
@@ -58,7 +58,7 @@ export function Trends() {
       <TopBar title="Trends"><span>Your normal moves with you. The usual adult range does not.</span></TopBar>
       <div className="toolbar">
         <div className="seg" role="tablist" aria-label="Indicator">
-          {INDICATORS.map((i) => (
+          {CORE_INDICATORS.concat(state.checks.some((c) => c.results.some((r) => r.indicator === "crt")) ? ["crt"] : []).map((i) => (
             <button key={i} role="tab" aria-selected={ind === i} onClick={() => { setInd(i); setPicked(null); }}>{RULES.indicators[i].short}</button>
           ))}
         </div>

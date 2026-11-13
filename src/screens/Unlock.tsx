@@ -11,7 +11,7 @@ export function Unlock() {
       <div className="unlock-band" />
       <div className="unlock-grid">
         <section className="cover">
-          <h1>HYGIEA<span className="sq" aria-hidden="true" /></h1>
+          <h1>ASCLEPIUS<span className="sq" aria-hidden="true" /></h1>
           <p className="tagline">Health for the Artemis generation.</p>
           <p className="subline">The one-minute daily health self-check for astronauts, built for missions where Earth is minutes away.</p>
           <div className="facts">

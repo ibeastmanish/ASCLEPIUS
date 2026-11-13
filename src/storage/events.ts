@@ -17,6 +17,28 @@ export interface Settings {
   /** Mission-clock date override (YYYY-MM-DD) for demos and blackout tests; empty = real today. */
   dateOverride?: string;
   reminderHour: number;
+  /** UI language for the daily check ("te" = Telugu draft). */
+  lang?: "en" | "te";
+  /**
+   * "Delay is delay" Earth mode (PRD v3 S2): the far end is a rural clinic, the
+   * link is travel time to its doctor, and the clinic's opening hours replace the
+   * flight surgeon's shift. Light time from JPL Horizons is not used in this mode.
+   */
+  clinic?: ClinicSetting;
+  /** Cabin CO2, mmHg, as last entered or read (Crew Pulse). */
+  cabinCo2?: number;
+}
+
+export interface ClinicSetting {
+  on: boolean;
+  /** One-way travel time to the nearest doctor, minutes. */
+  travelMin: number;
+  /** Clinic hours in local time, 24 h clock. */
+  openHour: number;
+  closeHour: number;
+  /** Local time zone offset from UTC in minutes (IST = 330). */
+  tzOffsetMin: number;
+  name: string;
 }
 
 export interface OutboxMessage {

@@ -1,4 +1,4 @@
-/* HYGIEA — Standards Manual system.
+/* ASCLEPIUS — Standards Manual system.
    A working page of a 1975-style graphics standard: strict grid, Helvetica,
    2px rules between sections, 1px rules between rows, colour only as signal.
    Status is always colour + drawn icon + word. Light and dark share one grammar. */
@@ -792,3 +792,51 @@ body { background: radial-gradient(1100px 520px at 85% -10%, color-mix(in srgb, 
 .bm-vessels { stroke-dasharray: 2 0; }
 .region:hover .bm-drop, .region:focus-visible .bm-drop { transform: translateY(-2px); }
 .bm-drop { transition: transform .2s; transform-box: fill-box; }
+
+/* Phone header: the longer ASCLEPIUS wordmark + "More" links + Sim tag must fit in 390 px without sideways scroll. */
+@media (max-width: 520px) {
+  .band { gap: 8px; }
+  .band-mark { gap: 8px; }
+  .band-mark b { letter-spacing: 0.16em; font-size: 15px; }
+  .band-more { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  .band-more::-webkit-scrollbar { display: none; }
+  .band-more a { padding: 8px 5px; }
+  .band-right { gap: 8px; min-width: 0; }
+}
+
+/* Earth Reply Clock (PRD v3 Pillar A): status = glyph + word + colour, never colour alone. */
+.rc { --rc: var(--accent); color: var(--ink); margin-top: 18px; padding: 16px 18px 14px; border: 2px solid var(--rc); border-radius: 14px; background: var(--page); }
+.rc-guided { --rc: var(--green); }
+.rc-consulted { --rc: var(--yellow); }
+.rc-crew { --rc: var(--red); }
+.rc-head .label { color: var(--ink-3); }
+.rc-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.rc-level { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; font-size: 17px; }
+.rc-glyph { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--rc); color: #000; }
+.rc-glyph svg { width: 16px; height: 16px; }
+.rc-sentence { margin: 10px 0 4px; font-size: 16px; line-height: 1.45; color: var(--ink); }
+.rc-track { position: relative; height: 70px; margin: 8px 6px 2px; }
+.rc-bar { position: absolute; left: 0; right: 0; top: 30px; height: 6px; border-radius: 3px; background: var(--field-2); }
+.rc-gap { position: absolute; top: 30px; height: 6px; border-radius: 3px;
+  background: repeating-linear-gradient(135deg, var(--red) 0 6px, color-mix(in srgb, var(--red) 45%, transparent) 6px 12px); }
+.rc-mark { position: absolute; top: 0; height: 100%; transform: translateX(0); font-size: 12px; font-weight: 700; white-space: nowrap; color: var(--ink-2); }
+.rc-mark i { position: absolute; left: -1px; top: 22px; width: 3px; height: 22px; background: var(--ink); border-radius: 2px; }
+.rc-now, .rc-act { padding-top: 48px; }
+.rc-act { transform: translateX(-50%); }
+.rc-act i { left: calc(50% - 1px); background: var(--rc); }
+.rc-now { padding-left: 0; }
+.rc-reply { padding-top: 0; transform: translateX(-50%); }
+.rc-reply i { left: calc(50% - 1px); background: var(--accent); }
+.rc-reply.rc-right { transform: translateX(-100%); }
+.rc-reply.rc-right i { left: auto; right: -1px; }
+.rc-how { margin-top: 8px; font-size: 14px; }
+.rc-how summary { cursor: pointer; font-weight: 700; min-height: 44px; display: flex; align-items: center; }
+.rc-how ol { list-style: none; margin: 4px 0 10px; padding: 0; display: grid; gap: 8px; }
+.rc-how li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding-bottom: 8px; border-bottom: 1px solid var(--hair); }
+.rc-how li small { grid-column: 1 / -1; color: var(--ink-3); font-size: 12px; }
+.rc-how .rc-total { font-weight: 700; border-bottom: 2px solid var(--rule); }
+.rc-assumed { margin-left: 8px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 1px 6px; border: 1px solid var(--ink-3); border-radius: 4px; color: var(--ink-3); }
+.rc-compact { padding: 12px 14px 10px; }
+.rc-compact .rc-sentence { font-size: 14px; }
+.alert-full .rc { color: var(--ink); text-align: left; }
+@media (max-width: 520px) { .rc-mark { font-size: 11px; } }

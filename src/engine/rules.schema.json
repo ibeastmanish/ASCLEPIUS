@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "HYGIEA rules",
+  "title": "ASCLEPIUS rules",
   "type": "object",
   "required": ["version", "indicators", "symptoms", "context", "trends", "patterns", "baseline"],
   "$defs": {
@@ -49,6 +49,7 @@
             "minHalfWidth": { "type": "number", "exclusiveMinimum": 0 },
             "direction": { "enum": ["both", "low", "high"] },
             "clearsClinicalLow": { "type": "boolean" },
+            "clearsFloor": { "type": "number" },
             "clearsNote": { "type": "string" }
           }
         },

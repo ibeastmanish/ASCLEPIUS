@@ -61,7 +61,7 @@ export function evaluateReading(
       status: "invalid",
       why: [{
         ruleId: r.valid.ruleId, layer: "validity", indicator: ind, value,
-        low: r.valid.gte, high: r.valid.lte, source: "HYGIEA input check",
+        low: r.valid.gte, high: r.valid.lte, source: "ASCLEPIUS input check",
         text: `${Number.isFinite(value) ? v : "This"}${sp}${unit} can't be right. Please measure again.`,
       }],
     };
@@ -83,17 +83,19 @@ export function evaluateReading(
   // 3. Clinical band: normal for most people.
   let status: Status = "green";
   let side: "low" | "high" | undefined;
-  const g = r.clinical.green;
+  const override = tags.map((t) => ({ t, c: rules.context[t]?.clinicalOverride?.[ind] })).find((x) => x.c);
+  const g = override?.c ?? r.clinical.green;
+  const clinicalSource = override ? `${rules.context[override.t].source ?? r.clinical.source} ("${rules.context[override.t].label}")` : r.clinical.source;
   const greenLow = g.gte ?? g.gt;
   const greenHigh = g.lte ?? g.lt;
   if (matches(value, g)) {
     why.push({ ruleId: r.clinical.ruleId, layer: "clinical", indicator: ind, value, low: greenLow, high: greenHigh,
-      source: r.clinical.source, text: `${v}${sp}${unit} is inside the usual range for adults (${describe(g, unit)}).` });
+      source: clinicalSource, text: `${v}${sp}${unit} is inside the usual range for adults (${describe(g, unit)}).` });
   } else {
     status = "yellow";
     side = greenLow !== undefined && value < greenLow ? "low" : "high";
     why.push({ ruleId: r.clinical.ruleId, layer: "clinical", indicator: ind, value, low: greenLow, high: greenHigh,
-      source: r.clinical.source,
+      source: clinicalSource,
       text: `${v}${sp}${unit} is ${side === "low" ? "below" : "above"} the usual range for adults (${describe(g, unit)}).` });
   }
 
@@ -103,7 +105,7 @@ export function evaluateReading(
   let band: IndicatorResult["band"];
   let learning: IndicatorResult["learning"];
   if (skip) {
-    why.push({ ruleId: `CX-${skip.toUpperCase()}`, layer: "context", indicator: ind, value, source: "HYGIEA context rules",
+    why.push({ ruleId: `CX-${skip.toUpperCase()}`, layer: "context", indicator: ind, value, source: "ASCLEPIUS context rules",
       text: `Your personal band was not used: "${rules.context[skip].label}" changes this reading for about ${rules.context[skip].minutes} min.` });
   } else if (!b || !b.ready) {
     learning = { n: b?.n ?? 0, need: rules.baseline.learningChecks };
@@ -125,13 +127,14 @@ export function evaluateReading(
       why.push({ ruleId: r.personal.ruleId, layer: "personal", indicator: ind, value, low, high,
         source: "Personal baseline (median ± 2.5 × MAD of your own checks)",
         text: `${v}${sp}${unit} is ${position} your normal (${bandTxt}), learned from your own checks.` });
-    } else if (position === "inside" && status === "yellow" && side === "low" && r.personal.clearsClinicalLow) {
+    } else if (position === "inside" && status === "yellow" && side === "low" && r.personal.clearsClinicalLow
+      && value >= (r.personal.clearsFloor ?? -Infinity)) {
       // Normal for you, both ways: a mildly low value (never a red flag) that
       // sits inside your own learned band is green, e.g. an athlete's resting HR.
       status = "green";
       side = undefined;
       why.push({ ruleId: `${r.personal.ruleId}-CLEAR`, layer: "personal", indicator: ind, value, low, high,
-        source: "Personal baseline; rules.json clearsClinicalLow (team decision [VERIFY])",
+        source: `Personal baseline; rules.json clearsClinicalLow${r.personal.clearsFloor !== undefined ? ` (only at ${r.personal.clearsFloor} ${unit} or more)` : ""}, team decision`,
         text: `Below the usual adult range, but inside your own normal (${bandTxt}), so it's green for you.` });
     } else {
       why.push({ ruleId: r.personal.ruleId, layer: "personal", indicator: ind, value, low, high,
@@ -299,6 +302,26 @@ function matchPatterns(results: IndicatorResult[], baselines: Baselines, tags: C
       });
     }
   }
+  // PT-ORTHO: "dizzy when standing" plus a systolic pressure that is low for you
+  // (below your band, or under the pattern's limit while the band is still learning).
+  const sys = get("bp_sys");
+  if (tags.includes("dizzy") && sys) {
+    const p = rules.patterns["PT-ORTHO"];
+    const bs = baselines.bp_sys;
+    const low = sys.value < p.sysBelow || (bs?.ready ? sys.value < bs.low : false);
+    if (low) {
+      out.push({
+        id: "PT-ORTHO",
+        status: worst("yellow", sys.status),
+        indicators: ["bp_sys"],
+        regions: p.regions,
+        guidanceId: p.guidance,
+        tellCmo: p.tellCmo,
+        why: [{ ruleId: "PT-ORTHO", layer: "pattern", indicator: "bp_sys", value: sys.value, source: p.source,
+          text: `Dizzy when standing, with systolic pressure ${sys.value} mmHg (${bs?.ready && sys.value < bs.low ? "below your normal" : `under ${p.sysBelow}`}).` }],
+      });
+    }
+  }
   return out;
 }
 
@@ -322,7 +345,10 @@ export function completeCheck(input: CheckInput, ctx: EngineContext, rules: Rule
   for (const p of patterns) overall = worst(overall, p.status);
   // A check with only invalid readings has no colour; symptoms alone still make it red.
 
-  const esc = escalate({ overall, results, patterns, tags: input.tags, earlierToday: ctx.earlierToday, earth: ctx.earth, now: input.ts }, rules);
+  const ry = rules.escalationRules.repeatYellow;
+  const priorYellowDays = Array.from({ length: ry.daysBack }, (_, k) => ctx.history.find((d) => d.date === addDays(input.date, -(k + 1))))
+    .filter((d) => d && Object.values(d.statuses).some((s) => s === "yellow" || s === "red")).length;
+  const esc = escalate({ overall, results, patterns, tags: input.tags, earlierToday: ctx.earlierToday, earth: ctx.earth, now: input.ts, priorYellowDays }, rules);
 
   return {
     checkId: input.checkId,

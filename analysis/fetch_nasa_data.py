@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HYGIEA - download every NASA source the app uses into data/raw/ and record
+ASCLEPIUS - download every NASA source the app uses into data/raw/ and record
 provenance (URL, fetch time, size, SHA-256) in data/manifest.json.
 
 Usage:
@@ -22,7 +22,7 @@ import time
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 RAW = os.path.join(ROOT, "data", "raw")
 MANIFEST = os.path.join(ROOT, "data", "manifest.json")
-UA = "HYGIEA-SpaceApps2026/1.0 (+https://www.spaceappschallenge.org)"
+UA = "ASCLEPIUS-SpaceApps2026/1.0 (+https://www.spaceappschallenge.org)"
 AU_KM = 149_597_870.7
 C_KM_S = 299_792.458
 
@@ -60,7 +60,7 @@ def load_manifest():
     if os.path.exists(MANIFEST):
         with open(MANIFEST) as f:
             return json.load(f)
-    return {"project": "HYGIEA", "event": "NASA Space Apps Challenge 2026", "files": {}}
+    return {"project": "ASCLEPIUS", "event": "NASA Space Apps Challenge 2026", "files": {}}
 
 
 def record(m, path, source, url, note):

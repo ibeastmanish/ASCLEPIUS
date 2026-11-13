@@ -13,10 +13,19 @@ export interface IndicatorRules {
   valid: Cond & { ruleId: string };
   redflags: RedFlagRule[];
   clinical: { ruleId: string; green: Cond; source: string };
-  personal: { ruleId: string; minHalfWidth: number; direction: "both" | "low" | "high"; clearsClinicalLow?: boolean; clearsNote?: string };
+  personal: { ruleId: string; minHalfWidth: number; direction: "both" | "low" | "high"; clearsClinicalLow?: boolean; clearsFloor?: number; clearsNote?: string };
   guidance: Record<"green" | "yellow" | "red", string>;
 }
-export interface ContextRule { label: string; skipPersonal: Indicator[]; minutes?: number; tip?: string; lowerCmoThreshold?: boolean }
+export interface ContextRule {
+  label: string;
+  skipPersonal: Indicator[];
+  minutes?: number;
+  tip?: string;
+  lowerCmoThreshold?: boolean;
+  /** Replaces the usual adult range for some indicators while this tag applies (e.g. glucose after a meal). */
+  clinicalOverride?: Partial<Record<Indicator, Cond>>;
+  source?: string;
+}
 export interface Rules {
   version: string;
   indicators: Record<Indicator, IndicatorRules>;
@@ -31,8 +40,28 @@ export interface Rules {
   patterns: {
     "PT-FATIGUE": { label: string; regions: Region[]; guidance: string; tellCmo: boolean; source: string };
     "PT-FEVER": { label: string; regions: Region[]; guidance: string; feverGte: number; tellCmo: boolean; source: string };
+    "PT-ORTHO": { label: string; regions: Region[]; guidance: string; sysBelow: number; tellCmo: boolean; source: string };
+  };
+  escalationRules: {
+    persistentTrendTellsCmo: boolean;
+    repeatYellow: { ruleId: string; daysBack: number; priorYellowDays: number; source: string };
   };
   baseline: { learningChecks: number; window: number; madScale: number; k: number; ewmaAlpha: number };
+  replyClock: {
+    note: string;
+    actWithinMin: Record<string, number>;
+    actSource: string;
+    surgeon: {
+      shiftStartUtcHour: number;
+      shiftHours: number;
+      label: string;
+      responseMin: Record<"red" | "routine", { on: number; off: number }>;
+      source: string;
+    };
+    contact: { mode: "continuous" | "windowed"; windowHoursPerSol: number; windowStartMarsHour: number; source: string };
+    levels: { guidedBelowFraction: number };
+    concept: string;
+  };
 }
 
 export const RULES = raw as unknown as Rules;

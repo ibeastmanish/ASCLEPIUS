@@ -39,12 +39,19 @@ export function isBlackout(date: string, mission: MissionSetting = "mars"): bool
   return mission === "mars" && inRange(date) && sunAngleDeg(date) < H.blackoutBelowDeg;
 }
 
-/** First date after `date` when the blackout is over. */
+/** First clear day after the blackout that contains `date` (messages are held until then). */
 export function blackoutEnd(date: string): string | undefined {
   if (!isBlackout(date)) return undefined;
   let i = index(date);
   while (i < H.days.length && H.days[i][1] < H.blackoutBelowDeg) i++;
   return dateAt(i);
+}
+
+/** Last blocked day of the blackout that contains `date` (for "8 Mar - 3 Apr" ranges). */
+export function blackoutLastDay(date: string): string | undefined {
+  const end = blackoutEnd(date);
+  if (!end) return undefined;
+  return dateAt(index(end) - 1);
 }
 
 /** Every day in the table, for charts. */
