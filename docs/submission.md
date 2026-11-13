@@ -3,7 +3,7 @@
 Paste each section into the matching field on spaceappschallenge.org. Field names follow the 2025 Project Submission Guide; **re-check them against the 2026 guide** and trim to any character limits it sets. Items in `[brackets]` need the team to fill in or confirm.
 
 Challenge: **Create Health Monitoring Software for Astronauts on Space Missions**
-Team: **ASCLEPIUS**, Warangal, India · `[team member names, 1–6, all registered for the Warangal Local Event]`
+Team: **ASCLEPIUS**, Warangal, India · Team member: **Tula Manish** (registered for the Warangal Local Event)
 
 ---
 
@@ -14,7 +14,7 @@ ASCLEPIUS: Medicine for when Earth is too far away
 ASCLEPIUS is an offline health self-check for astronauts that knows whether Earth can answer in time. Each day the astronaut logs the six readings in the brief (blood pressure, heart rate, blood sugar, temperature, sleep, mood). Each one is judged against the usual adult range and against the astronaut's own learned normal, and every colour shows its rule and source. Using the real Earth–Mars light time and Sun blackouts from NASA JPL Horizons and the NASA Mars24 sol clock, the Earth Reply Clock compares when the crew must act with when a flight surgeon's answer can arrive, and tells the crew when to decide on their own. Crew Pulse looks across the whole crew to separate one sick person from bad cabin air (NASA-STD-3001 CO2 limit) or a spreading infection. Run on NASA OSDR Inspiration4 blood data (OSD-569), the same engine finds a change in all four crew that the population range calls normal. On Earth, the same clock helps rural health workers near Warangal.
 
 ## Link to Project Demo
-`[public link to the ≤30-second video (English captions) OR the ≤7-slide deck (pitch/ASCLEPIUS_SpaceApps2026_deck.pdf) — choose ONE, no login required]`
+https://github.com/ibeastmanish/ASCLEPIUS/blob/main/pitch/ASCLEPIUS_SpaceApps2026_deck.pdf (7-slide deck, PDF; English; the same file is in the repository's `pitch/` folder)
 
 ## Link to Final Project
 https://github.com/ibeastmanish/ASCLEPIUS · Live demo: https://ibeastmanish.github.io/ASCLEPIUS/ · Ground Station console: https://ibeastmanish.github.io/ASCLEPIUS/ground.html
@@ -52,19 +52,19 @@ The constraints ASCLEPIUS is built for (no internet, help that is hours away, pe
 TypeScript, React 19, Vite, vite-plugin-pwa/Workbox, Dexie (IndexedDB), Recharts, WebCrypto, Tauri (Rust) with the team's `aura` OpenPGP library (Sequoia), Vitest + fast-check, Python (NASA data processing).
 
 **Work done before the event (disclosure)**
-The planning documents, the NASA data download (Nov 3, 2026) and the base application (engine, vault, body map, outbox, Nov 4, 2026) were built before the hackathon. Sandeep, the Local Lead for the Warangal event, approved using this pre-event work in writing on Nov 5, 2026 (email thread: `[link to docs/local-lead-approval.pdf in the repo]`). The repository's `pre-event` git tag marks exactly what existed then. Built after that tag, under the same approval, on Nov 12–13 and during the event: the Earth Reply Clock, Crew Pulse, the Ground Station console, the corrected Inspiration4 analysis, the clinical rule fixes, the clinic mode and Telugu draft, and the demo materials. `[Update with what was done on Nov 14–15.]` `aura`, the team's earlier open-source OpenPGP library (MIT OR Apache-2.0), is reused unchanged in the desktop build only.
+The planning documents, the NASA data download (Nov 3, 2026) and the base application (engine, vault, body map, outbox, Nov 4, 2026) were built before the hackathon. Sandeep, the Local Lead for the Warangal event, approved using this pre-event work in writing on Nov 5, 2026 (email reply to Tula Manish, 5 Nov 2026, 18:41 IST, subject "NASA space apps": "You may continue your project."; a copy of the thread is available on request). The repository's `pre-event` git tag marks exactly what existed then. Built after that tag, under the same approval, on Nov 12–13 and during the event: the Earth Reply Clock, Crew Pulse, the Ground Station console, the corrected Inspiration4 analysis, the clinical rule fixes, the clinic mode and Telugu draft, and the demo materials. Work done during the event (Nov 14–15) is everything in the git history after commit `8a9491f` (Nov 13). `aura`, the team's earlier open-source OpenPGP library (MIT OR Apache-2.0), is reused unchanged in the desktop build only.
 
 ## NASA Data
 - **NASA JPL Horizons API.** Daily Mars position as seen from Earth (target 499, centre 500@399; quantities 20 and 23), Nov 2026 – Dec 2029. Gives the real one-way light time for every date (11.0 min on 14 Nov 2026; 19.25 min on 14 Jan 2028) and the solar-conjunction blackout of 8 Mar – 3 Apr 2028. It drives the Earth Reply Clock, the outbox arrival times and the Ground Station's hold. https://ssd.jpl.nasa.gov/horizons/
 - **NASA GISS Mars24 algorithm** (Allison & McEwen 2000). Mars local time for reminders and the sol drift against the flight surgeon's shift in the Reply Clock. https://www.giss.nasa.gov/tools/mars24/
-- **NASA Open Science Data Repository, OSD-569** (Inspiration4 complete blood count) and **OSD-575** (metabolic panel). The proof screen runs the app's own band rule on the four crew members' three pre-flight draws. Result: the day after landing, all 4 had a red-cell size (MCV) below their own lowest pre-flight value, while all 4 stayed inside the 80–100 fL population range; 16 of 34 markers have an index of individuality under 0.6. Limits are stated on the screen (n = 4, 3-day flight, no in-flight draws; MCV still low months later in 3 crew, so a lab change may contribute). While doing this we found that row C003 L-92 of the submitted CBC file is column-shifted (MCH missing); the pipeline documents and corrects it, and we have reported it to OSDR `[confirm sent]`. https://osdr.nasa.gov/bio/repo/data/studies/OSD-569 · https://osdr.nasa.gov/bio/repo/data/studies/OSD-575
+- **NASA Open Science Data Repository, OSD-569** (Inspiration4 complete blood count) and **OSD-575** (metabolic panel). The proof screen runs the app's own band rule on the four crew members' three pre-flight draws. Result: the day after landing, all 4 had a red-cell size (MCV) below their own lowest pre-flight value, while all 4 stayed inside the 80–100 fL population range; 16 of 34 markers have an index of individuality under 0.6. Limits are stated on the screen (n = 4, 3-day flight, no in-flight draws; MCV still low months later in 3 crew, so a lab change may contribute). While doing this we found that row C003 L-92 of the submitted CBC file is column-shifted (MCH missing); the pipeline documents and corrects it, and is documented in `data/derived/README.md` so the OSDR team can correct the source file. https://osdr.nasa.gov/bio/repo/data/studies/OSD-569 · https://osdr.nasa.gov/bio/repo/data/studies/OSD-575
 - **NASA-STD-3001** Vol 1 Rev C and Vol 2 Rev F. Cited rule by rule: monitoring duties, the 8.5 h sleep period and 01:00–07:00 circadian low [V1 6001], behavioural health [V1 4011], private medical communication [V1 6002], hypothermia (App. C), the cabin CO2 limit of 3 mmHg [V2 6004], orthostatic intolerance (Table E.2-2). https://standards.nasa.gov/
 - **NASA OCHMO-TB-004, Carbon Dioxide.** Headaches reported at 2.8–4.5 mmHg: the Crew Pulse cabin rule. https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-004-carbon-dioxide.pdf
 - **NASA HRP, 5 Hazards of Human Spaceflight** (challenge Resources tab). Every body-map card names its hazard (isolation & confinement, gravity fields, hostile/closed environments, distance from Earth, radiation) in "Why it matters in space". The Reply Clock is built on the *Distance from Earth* hazard, and Crew Pulse's cabin rule on *Hostile/Closed Environments*. https://www.nasa.gov/hrp/hazards/
 - **NASA HRP, Risks of Human Spaceflight** (Resources tab). Every guidance card links the exact HRP risks it relates to (25 cards, 9 risks): Cardiovascular Adaptations; Altered Sensorimotor and Vestibular Function (dizzy on standing); Altered Immune System Responses and Host-Microorganism Interactions (fever, spreading infection); Inadequate Food and Nutrition (blood sugar); Inadequate Sleep and Irregular Schedules; Behavioral Changes and Psychiatric Disorders; Inadequate Teamwork; Inadequate Systems Operations Support (warning symptoms). A test checks every card names at least one real risk. https://www.nasa.gov/hrp/risks/
 - **NASA HRP, Ongoing HRP Research in Space** (Resources tab). Artemis II *Standard Measures* (a consistent daily set of measurements) shaped the fixed six-reading check; the Artemis II study of crew well-being, activity and sleep and the *Immune Biomarkers* study are cited in Crew Pulse's sleep-debt and infection rules. https://www.nasa.gov/hrp/ongoing-hrp-research/
 - **NASA Earth-Independent Medical Operations concept of operations** (NTRS 20250000009): the idea the Reply Clock gives numbers to. https://ntrs.nasa.gov/citations/20250000009
-- **NASA public-domain images** in the deck: Blue Marble, Earthrise, Mars, ISS blood draw, Tim Peake aboard the ISS. `[add the source page URL for each image]`
+- **NASA public-domain images** in the deck: Mars (NASA/JPL/USGS, PIA00407, https://photojournal.jpl.nasa.gov/catalog/PIA00407); Blue Marble (NASA, Apollo 17, AS17-148-22727, https://images.nasa.gov/details/as17-148-22727); Earthrise (NASA, Apollo 8, 1968) and an ISS crew blood draw (NASA), both from the NASA Image and Video Library, https://images.nasa.gov
 - Provenance for every data file (URL, fetch time, size, SHA-256) is in `data/manifest.json`; `npm run data` and `npm run proof` rebuild the app data from the raw NASA files.
 
 ## Space Agency Partner & Other Data
@@ -72,26 +72,22 @@ The planning documents, the NASA data download (Nov 3, 2026) and the base applic
 - Clinical reference ranges (terrestrial, cited in `rules.json`): ACC/AHA 2017 blood pressure guideline, NHLBI hypotension line, ADA Standards of Care (glucose), AASM/SRS adult sleep consensus.
 - Viral reactivation background for Crew Pulse: Rooney et al. 2019, *Frontiers in Microbiology* (PMC6374706).
 - Open-source code: React (MIT), Vite (MIT), vite-plugin-pwa / Workbox (MIT), Dexie (Apache-2.0), Recharts (MIT), Tauri (MIT OR Apache-2.0), Sequoia OpenPGP (LGPL-2.0-or-later), Vitest (MIT), fast-check (MIT), Ajv (MIT), fake-indexeddb (Apache-2.0), oxlint (MIT), TypeScript (Apache-2.0).
-- Team's own earlier open-source work: `aura` (MIT OR Apache-2.0), `[repository URL — must be public before submission]`.
+- The judged project is the web app (crew tablet + Ground Station), which uses only the open-source packages above. An optional desktop build additionally uses the team's own earlier OpenPGP library `aura`; that repository is not public yet, so the desktop build is not part of this submission and is not needed to run or judge ASCLEPIUS.
 - ASCLEPIUS itself is released under the MIT licence.
 - All crew data shown (Commander Asha Rao and her crew) is **simulated** and labelled as such on every screen.
 
 ## Use of Super Intelligence (SI / AI)
-SI coding assistants (Claude Code) were used to help research prior work, write and test the application code and data-processing scripts, and draft the documentation, the deck and this text. The team reviewed the health rules, the medical wording and the data analysis. ASCLEPIUS does **not** use AI to make health decisions: every result comes from a readable rule in `rules.json`. The Telugu strings are a machine-assisted draft and are labelled so in the app. `[If the synthesized voice-over is kept: "The demo video's voice-over is synthesized with macOS text-to-speech." Delete this if a teammate records it.]` No AI-generated images or video are used; the deck uses NASA public-domain photographs and hand-drawn CSS/SVG art.
+SI coding assistants (Claude Code) were used to research existing tools and competing entries, to write and test the application code and data-processing scripts, and to draft the documentation, the deck, the speech and this text. The team chose the direction, reviewed the health rules, the medical wording and the data analysis, and is responsible for all of it. AI-assisted code is acknowledged in the repository README and in the commit metadata ("Co-Authored-By" lines). ASCLEPIUS does **not** use AI to make health decisions: every result comes from a readable rule in `rules.json`. The Telugu strings are a machine-assisted draft and are labelled so in the app. No video is submitted, and no AI-generated images, video or audio are used; the deck uses NASA public-domain photographs and hand-drawn CSS/SVG art.
 
 ---
 
 ## Before you press Submit
 - [x] Sandeep's written approval received (email, Nov 5, 2026, 18:41).
-- [ ] Sandeep confirms (same thread) that the approval also covers Global Judging; thread saved as `docs/local-lead-approval.pdf`
-- [ ] Repository public, `pre-event` tag pushed, Pages deployed; demo and ground.html open in a private window on a phone
-- [ ] Demo: video ≤ 30 s with English captions **or** deck ≤ 7 slides (not both)
-- [ ] Human voice-over recorded (or the SI disclosure above kept)
-- [ ] Team member names added to the deck and team page
-- [ ] `aura` repository public; `src-tauri/Cargo.toml` switched to the git dependency
-- [ ] 2026 guides read (field names, demo limits, SI rules)
-- [x] Challenge Resources tab: all 3 NASA resources and 1 CSA resource used (see NASA Data and Partner sections)
-- [ ] OSDR notified about the shifted row (update the NASA Data section)
-- [ ] Telugu strings reviewed by a native speaker, or left labelled as draft
-- [ ] Every member registered for the Warangal event and listed on the team page
-- [ ] Submitted before 11:59 p.m. local time on Nov 15
+- [x] Team member named on the deck (slides 1 and 7), the speech and the team page: Tula Manish
+- [x] Demo format: the 7-slide deck (≤ 7 slides incl. title, English, team member names on it)
+- [x] Submission and Judging guides (published Nov 12) read: demo limits, SI disclosure, NASA data, deadline
+- [x] Challenge Resources tab: all 3 NASA resources and 1 CSA resource used
+- [ ] Ask Sandeep (same thread) to confirm the approval also covers Global Judging
+- [ ] Push to GitHub; check the Actions run passes; open the live demo, ground.html and the deck link in a private window on a phone
+- [ ] Email the OSDR team about the shifted row in OSD-569 (see `data/derived/README.md`)
+- [ ] Copy each section above into the Project tab (opens Nov 14, 9:00 a.m. IST) and press Submit before **11:59 p.m. IST, Nov 15** (aim for 10 p.m.)

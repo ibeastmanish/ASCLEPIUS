@@ -32,7 +32,7 @@
     "category": "Medical",
     "shortDescription": "Offline daily health self-check for astronauts",
     "longDescription": "ASCLEPIUS turns a quick daily check of six health indicators into a clear green, yellow or red answer, fully offline. Decision support, not a medical device.",
-    "copyright": "Copyright (c) 2026 Manish Tula and Team ASCLEPIUS. MIT License.",
+    "copyright": "Copyright (c) 2026 Tula Manish (Team ASCLEPIUS). MIT License.",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",

@@ -17,7 +17,7 @@ npm run build      # -> ../ASCLEPIUS_SpaceApps2026_deck.pdf, .pptx and ../ASCLEP
 ```
 `build.cjs` also checks that no text runs off a slide and that every image loads, and writes `png/contact.png` (all 7 slides on one sheet) for a quick look.
 
-Before presenting, replace `[team member names]` in `source/deck.html` (slides 1 and 7) and rebuild.
+Team member Tula Manish is named on slides 1 and 7 (the 2026 guide requires team member names on the slides).
 
 ## Credits
 NASA public-domain images: Mars (NASA/JPL/USGS), Earthrise, Blue Marble, ISS blood draw (NASA). App screenshots show simulated crew data. No AI-generated imagery.

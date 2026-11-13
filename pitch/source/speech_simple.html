@@ -12,10 +12,10 @@ p{margin:0 0 10px}
 .oneline{border:2px solid #111;border-radius:6px;padding:10px 14px;margin-top:18px;font-size:12.5pt;break-inside:avoid}
 </style></head><body>
 <h1>ASCLEPIUS · Pitch speech</h1>
-<p class="sub">About 3 minutes. Say the normal text out loud. The grey boxes are for you: use them only if a judge asks a technical question.</p>
+<p class="sub">Presented by Tula Manish · Team ASCLEPIUS · Warangal. About 3 minutes. Say the normal text out loud. The grey boxes are for you: use them only if a judge asks a technical question.</p>
 
 <h2>Slide 1 · Cover</h2>
-<p>Hi everyone, we're Team ASCLEPIUS from Warangal.</p>
+<p>Hi everyone, I'm Tula Manish from Warangal, and this is ASCLEPIUS.</p>
 <p>So, imagine you're an astronaut on Mars. You wake up one morning and something feels off. Your heart's racing a bit, you didn't sleep well. Who do you ask?</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>It's a web app (PWA) built with React and TypeScript. After the first load it installs on the tablet and works fully offline: no server, no internet.</li>
@@ -29,7 +29,7 @@ p{margin:0 0 10px}
 <li>The 27-day blackout (8 Mar – 3 Apr 2028) is when the Sun–Earth–Mars angle is under 3°.</li></ul></div>
 
 <h2>Slide 3 · How it works</h2>
-<p>So we built ASCLEPIUS.</p>
+<p>So I built ASCLEPIUS.</p>
 <p>Every morning, the astronaut does a quick one-minute check: blood pressure, heart rate, blood sugar, temperature, sleep and mood. The app checks each one against the normal range for adults, and against that astronaut's own normal. Whichever one looks worse, that's the answer. Green, yellow or red, on a body map. And you can tap any colour to see exactly why. No AI guessing, just clear rules.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>A rules engine runs in a web worker (a background thread) so the screen never freezes. A full check takes about 1 ms.</li>
@@ -39,7 +39,7 @@ p{margin:0 0 10px}
 <li>Data is saved on the tablet (IndexedDB) and encrypted with AES-256. The key comes from the passphrase through PBKDF2 with 600,000 rounds.</li></ul></div>
 
 <h2>Slide 4 · Earth Reply Clock</h2>
-<p>Now here's the part we're most proud of. We call it the Earth Reply Clock. Every time something looks wrong, the app asks one simple question: can Earth answer before you need to act?</p>
+<p>Now here's the part I'm most proud of. I call it the Earth Reply Clock. Every time something looks wrong, the app asks one simple question: can Earth answer before you need to act?</p>
 <p>Say your blood sugar drops dangerously low. Earth's fastest possible reply is 27 minutes. But you need to act in 10. So the app tells you straight: don't wait for Earth. Your crew decides now, and Earth checks in later.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>Earth's answer time = light time to Earth + doctor's reply time + light time back. Example: 11 + 5 + 11 = 27 min. If the surgeon is off shift and has to be paged: 11 + 30 + 11 = 52 min.</li>
@@ -49,7 +49,7 @@ p{margin:0 0 10px}
 <li>The Ground Station page holds each message until the real light time has passed (×60 speed-up for the demo), checks the signature, shows the doctor exactly what the astronaut saw, and signs the reply.</li></ul></div>
 
 <h2>Slide 5 · Crew Pulse</h2>
-<p>We also built something for the crew's medical officer, called Crew Pulse. If one person has a headache, that's about them. But if three out of four people get headaches on the same day, it's probably not the people. It's the air. So the app tells them to check the carbon dioxide first.</p>
+<p>I also built something for the crew's medical officer, called Crew Pulse. If one person has a headache, that's about them. But if three out of four people get headaches on the same day, it's probably not the people. It's the air. So the app tells them to check the carbon dioxide first.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>It looks at all four crew over the last 7 days, with four rules:</li>
 <li>Same complaint, 2+ people, same day → the cabin. Compared with NASA's CO2 limit of 3 mmHg (NASA-STD-3001); headaches start around 2.8 mmHg (NASA OCHMO).</li>
@@ -58,7 +58,7 @@ p{margin:0 0 10px}
 <li>Mood scores are never shown to the medical officer. The other three crew in the demo are simulated.</li></ul></div>
 
 <h2>Slide 6 · Proof on NASA data</h2>
-<p>And we wanted to prove the "your own normal" idea actually matters, so we tested it on real NASA data: blood tests from the four Inspiration4 astronauts. The day after they landed, all four looked normal on the standard chart. But compared to their own numbers from before the flight, all four had changed. While doing that, we even found a mistake in NASA's data file and fixed it. To be fair, that's only four people, so it backs up our idea, it doesn't prove it.</p>
+<p>And I wanted to prove the "your own normal" idea actually matters, so I tested it on real NASA data: blood tests from the four Inspiration4 astronauts. The day after they landed, all four looked normal on the standard chart. But compared to their own numbers from before the flight, all four had changed. While doing that, I even found a mistake in NASA's data file and fixed it. To be fair, that's only four people, so it backs up the idea, it doesn't prove it.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>Data: NASA's Open Science Data Repository, study OSD-569 (Inspiration4 blood counts). We looked at red blood cell size (MCV): all 4 crew were inside the 80–100 range but below their own lowest pre-flight value.</li>
 <li>16 of 34 blood markers vary much more between people than within one person, which is exactly when a personal range beats a population range.</li>
@@ -67,7 +67,7 @@ p{margin:0 0 10px}
 
 <h2>Slide 7 · Impact</h2>
 <p>And here's the thing: this isn't only a space problem. Near Warangal, some villages are hours away from a doctor. A delay is a delay, whether it's light from Mars or a three-hour bus ride. So the same app works there too, and the daily check is in Telugu.</p>
-<p>Now, there are lots of health apps for astronauts, and in this challenge alone we found about sixty. Most of them show your numbers and a countdown to Earth. What's different about ours is three things. It tells you who should decide, by working out if Earth can answer in time. It looks at the whole crew to tell one sick person from bad air or an infection. And we tested our idea on real NASA crew data, and even found and fixed a mistake in it. As far as we could find, no one else does these.</p>
+<p>Now, there are lots of health apps for astronauts, and in this challenge alone I found about sixty. Most of them show your numbers and a countdown to Earth. What's different about mine is three things. It tells you who should decide, by working out if Earth can answer in time. It looks at the whole crew to tell one sick person from bad air or an infection. And I tested the idea on real NASA crew data, and even found and fixed a mistake in it. As far as I could find, no one else does these.</p>
 <p>ASCLEPIUS works offline, it's open source, and you can try it on your phone right now.</p>
 <p>Medicine for when Earth is too far away. Thank you!</p>
 <div class="tech"><b class="h">Technical, if asked</b>
@@ -78,15 +78,15 @@ p{margin:0 0 10px}
 <h2>What makes ASCLEPIUS special</h2>
 <p>Say this if a judge asks "how is this different?" or "doesn't this already exist?"</p>
 <div class="tech"><b class="h">What already exists</b>
-<ul><li>In this challenge we found about 60 apps on GitHub. Many have personal baselines (about 30), offline mode, a doctor's view, or an Earth-delay timer. One is very close to a normal health dashboard like ours.</li>
+<ul><li>In this challenge I found about 60 apps on GitHub. Many have personal baselines (about 30), offline mode, a doctor's view, or an Earth-delay timer. One is very close to a normal health dashboard like ours.</li>
 <li>NASA has a plan for crews doing medicine without Earth, a crew health record system, and a risk model used before missions. NASA and Google are testing a cloud AI medical assistant. None of these is a daily self-check for the astronaut.</li></ul></div>
 <div class="tech" style="border-left-color:#FC3D21"><b class="h" style="color:#FC3D21">What only ASCLEPIUS does (as far as we could find)</b>
-<ul><li><b>Earth Reply Clock.</b> Others show how long a message takes. We compare that with how soon you must act, and say who decides: Earth, Earth confirms, or the crew. NASA's own plan says decisions move to the crew but gives no levels; we give it numbers.</li>
-<li><b>Crew Pulse.</b> Others look at one astronaut at a time. We look across the crew and across days: one person, the cabin air, or a fever spreading from person to person.</li>
-<li><b>Real proof, and a fix.</b> Others use NASA data as a picture. We ran our own rule on NASA's Inspiration4 blood data (4 of 4 crew changed, all looked normal on the standard range), and found and fixed a shifted row in NASA's file.</li>
+<ul><li><b>Earth Reply Clock.</b> Others show how long a message takes. ASCLEPIUS compares that with how soon you must act, and say who decides: Earth, Earth confirms, or the crew. NASA's own plan says decisions move to the crew but gives no levels; ASCLEPIUS gives it numbers.</li>
+<li><b>Crew Pulse.</b> Others look at one astronaut at a time. ASCLEPIUS looks across the crew and across days: one person, the cabin air, or a fever spreading from person to person.</li>
+<li><b>Real proof, and a fix.</b> Others use NASA data as a picture. I ran the app's own rule on NASA's Inspiration4 blood data (4 of 4 crew changed, all looked normal on the standard range), and found and fixed a shifted row in NASA's file.</li>
 <li><b>Honest by design.</b> No AI makes health decisions; every colour shows its rule and source, NASA's crew health standard where it gives a number. Fully offline and encrypted.</li>
 <li><b>Built for home too.</b> The same clock works for health workers near Warangal, with travel time instead of light time, in Telugu.</li></ul></div>
-<p class="small" style="font-size:10.5pt;color:#555">Be fair if pushed: our search was GitHub on 12 Nov; new projects appear during the event, so say "as far as we could find".</p>
+<p class="small" style="font-size:10.5pt;color:#555">Be fair if pushed: the search was GitHub on 12 Nov; new projects appear during the event, so say "as far as we could find".</p>
 
 <div class="oneline"><b>If a judge says "explain it technically in one line":</b> "It's an offline React app. A rules engine checks each reading against adult ranges and your own learned normal, uses real NASA JPL distance data to work out whether Earth can reply in time, and everything is encrypted on the device, with 148 tests behind it."</div>
 </body></html>

@@ -9,7 +9,7 @@ ASCLEPIUS is an offline tablet app for astronauts. A one-minute daily check of s
 
 > **Earth cannot always answer in time.** Mars is 4 to 22 minutes away by radio, each way, and for about three weeks every two years the Sun blocks the link completely. The **Earth Reply Clock** compares *when you must act* with *when Earth's answer can arrive*, and says who decides.
 
-Built for the NASA Space Apps Challenge 2026, *Create Health Monitoring Software for Astronauts on Space Missions*. Team ASCLEPIUS, Warangal, India.
+Built for the NASA Space Apps Challenge 2026, *Create Health Monitoring Software for Astronauts on Space Missions*, by **Tula Manish** (Team ASCLEPIUS, Warangal, India).
 
 **Decision support, not a medical device.** ASCLEPIUS does not diagnose. Every colour comes from a readable rule with a source, never from AI.
 
@@ -146,6 +146,9 @@ npm run desktop:build      # ASCLEPIUS.app + .dmg in src-tauri/target/release/bu
 - Earth messages are signed with the crew key (ECDSA P-256) and encrypted to the ground station's **public** key (ECDH P-256 + AES-GCM 256). The ground private key lives only in the Ground Station console's own storage. The shipped *demo* station keys are public knowledge (they are in this repository); a real deployment generates new station keys in the console and pairs the tablet with them.
 - Nothing leaves the device unless you export it (JSON or HL7 FHIR R4) or a red alert or daily digest is queued for Earth.
 - Crew Pulse never shows mood or notes to the CMO.
+
+## AI assistance (SI disclosure)
+AI coding assistants (Claude Code) helped research existing tools, write and test code and data scripts, and draft documentation and pitch materials; commits they helped with carry a `Co-Authored-By` line. The health rules, medical wording and data analysis were reviewed by the team. **No AI makes health decisions in the app.** The Telugu text is a machine-assisted draft. No AI-generated images, video or audio are used.
 
 ## Licences and credits
 ASCLEPIUS is MIT-licensed (see `LICENSE`). Desktop build: Tauri (MIT OR Apache-2.0), `aura` (MIT OR Apache-2.0), Sequoia OpenPGP (LGPL-2.0-or-later, linked as a library). Dependencies: React (MIT), Vite (MIT), vite-plugin-pwa / Workbox (MIT), Dexie (Apache-2.0), Recharts (MIT), Vitest (MIT), fast-check (MIT), Ajv (MIT), fake-indexeddb (Apache-2.0), oxlint (MIT), TypeScript (Apache-2.0).
