@@ -66,7 +66,7 @@ export function Home() {
         </div>
       )}
       {latest?.escalation === "tell-cmo" && (
-        <div className="banner banner-yellow"><span className="bi" aria-hidden="true">{G.alert}</span><span><b>Tell the crew medical officer today.</b> {latest.escalationWhy.slice(1).join(" ")}</span></div>
+        <div className="banner banner-yellow"><span className="bi" aria-hidden="true">{G.alert}</span><span><b>Tell the crew medical officer today.</b> {latest.escalationWhy.slice(1).join(" ")} <a href="#/pulse">Is it only you? See Crew Pulse.</a></span></div>
       )}
 
       <div className="home-top">

@@ -13,9 +13,13 @@ ASCLEPIUS's Earth use is community health workers near Warangal, Telangana, wher
 
 Keep Western digits and the units mmHg, bpm, mg/dL and °C unchanged.
 
-## Wiring it in (about an hour at the event)
-- Add a `lang` setting (`en` or `te`) next to the theme switch in Settings.
-- Add a tiny `t(key)` helper that reads `en` (today's strings) or `te` from this JSON. Keys match the app's own IDs: `symptoms.*` and `context.*` match `rules.json`, and `status.*` matches the status names in `src/ui/ui.tsx`.
-- Use it only on the daily check screen first. Every other screen stays in English.
+## Where the strings live
+`te.daily-check.json` in this folder is a symlink to [`src/i18n/te.json`](../../src/i18n/te.json), the file the app ships. Edit that one file; there is no second copy. Its `_meta.needsReview` list names the keys added when the screen was wired up (footer counts, "Add …", the draft badge, the two newer context tags "After a meal" and "Dizzy when standing") that have had no human pass at all. When the review is done, put the reviewer's name in `_meta.reviewedBy`; the Settings label then stops saying "draft".
+
+## How it is wired (done)
+- Settings → "Earth use: delay is delay" → *Language for the daily check* writes `settings.lang` (`en` or `te`).
+- `src/i18n/index.ts` has the English table `EN` (typed keys) and `t(key, lang, vars)`, English fallback, no library. Keys match the app's own IDs: `symptoms.*` and `context.*` match `rules.json`, `status.*` matches the status names in `src/ui/ui.tsx`; `src/i18n/i18n.test.ts` checks the table is complete.
+- Only the daily check uses it. Every other screen stays in English, as do the engine's rule sentences, the how-to-measure text and the footer disclaimer (shared components).
+- While `lang` is `te`, the Check screen shows "ముసాయిదా అనువాదం · Draft translation · needs native review".
 - Fonts: macOS, iOS and Android ship Telugu fonts. For a consistent look, self-host Noto Sans Telugu (OFL licence) so it still works offline.
 - Rules, thresholds and colours do not change. Only the labels change.

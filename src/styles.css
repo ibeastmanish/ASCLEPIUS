@@ -126,14 +126,14 @@ svg { display: block; }
 .main { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 var(--gutter) 120px; flex: 1; }
 .tabbar { display: none; }
 
-@media (max-width: 1240px) { .band-who { display: none; } .nav-item { padding: 0 9px; } }
-@media (max-width: 1060px) { .nav-item .num { display: none; } }
+@media (max-width: 1560px) { .band-who { display: none; } .nav-item { padding: 0 9px; } }
+@media (max-width: 1180px) { .nav-item .num { display: none; } }
 @media (max-width: 900px) {
   :root { --band-h: 56px; }
   .band { gap: 12px; }
   .band-nav { display: none; }
   .band-more { display: flex; gap: 4px; }
-  .band-more a { color: #b9c0cc; font-size: 14px; padding: 8px; text-decoration: none; }
+  .band-more a { color: #b9c0cc; font-size: 14px; padding: 8px; text-decoration: none; white-space: nowrap; }
   .band-more a[aria-current="page"] { color: #fff; font-weight: 700; box-shadow: inset 0 -3px 0 var(--nasa-red); }
   .main { padding-bottom: 112px; }
   .tabbar {
@@ -840,3 +840,29 @@ body { background: radial-gradient(1100px 520px at 85% -10%, color-mix(in srgb, 
 .rc-compact .rc-sentence { font-size: 14px; }
 .alert-full .rc { color: var(--ink); text-align: left; }
 @media (max-width: 520px) { .rc-mark { font-size: 11px; } }
+
+/* Crew Pulse (PRD v3 Pillar B) */
+.pulse-card h3 { font-size: 19px; line-height: 1.3; }
+.pulse-card.s-red { border-color: var(--red); }
+.pulse-card.s-yellow { border-color: var(--yellow); }
+.pulse-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter); }
+.pulse { border-collapse: separate; border-spacing: 0; width: 100%; min-width: 640px; font-size: 14px; }
+.pulse th { text-align: left; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); padding: 8px 6px; border-bottom: 2px solid var(--rule); }
+.pulse th.today, .pulse td.today { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+.pulse tbody th { text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--ink); padding: 10px 10px 10px 0; border-bottom: 1px solid var(--hair); min-width: 150px; }
+.pulse tbody th b { font-weight: 700; }
+.pc { padding: 8px 6px; border-bottom: 1px solid var(--hair); vertical-align: middle; min-width: 68px; }
+.pc-glyph { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.pc-glyph svg { width: 13px; height: 13px; }
+.pc.s-green .pc-glyph { background: var(--green); color: var(--on-green); }
+.pc.s-yellow .pc-glyph { background: var(--yellow); color: var(--on-yellow); }
+.pc.s-red .pc-glyph { background: var(--red); color: var(--on-red); }
+.pc-word { font-weight: 700; font-size: 12px; vertical-align: middle; }
+.pc.none .pc-word { color: var(--ink-3); font-weight: 400; }
+.pc-flags { display: block; margin-top: 4px; }
+.pf { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 4px; margin-right: 3px; border: 1px solid var(--ink-3); border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.04em; color: var(--ink-2); }
+.pulse-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 10px; }
+.pulse-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.pulse-co2 { margin-top: 32px; padding: 18px 20px; border: 2px solid var(--rule); border-radius: 14px; display: grid; grid-template-columns: 1fr auto; gap: 16px 24px; align-items: center; }
+.pulse-co2 .row { flex-wrap: wrap; gap: 10px; align-items: flex-end; }
+@media (max-width: 760px) { .pulse-co2 { grid-template-columns: 1fr; } .pulse tbody th { min-width: 120px; } }

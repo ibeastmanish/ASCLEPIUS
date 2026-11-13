@@ -3,6 +3,7 @@ import { AppProvider, useApp } from "./app/store";
 import { Body } from "./screens/Body";
 import { Check } from "./screens/Check";
 import { Crew } from "./screens/Crew";
+import { CrewPulse } from "./screens/CrewPulse";
 import { Home } from "./screens/Home";
 import { Settings } from "./screens/Settings";
 import { Unlock } from "./screens/Unlock";
@@ -12,7 +13,7 @@ const Trends = lazy(() => import("./screens/Trends").then((m) => ({ default: m.T
 const Outbox = lazy(() => import("./screens/Outbox").then((m) => ({ default: m.Outbox })));
 import { Shell, useRoute, type Route } from "./ui/ui";
 
-const VIDEO_ROUTE: Record<string, Route> = { check: "check", bodymap: "body", proof: "crew", outbox: "outbox", alert: "body" };
+const VIDEO_ROUTE: Record<string, Route> = { check: "check", bodymap: "body", proof: "crew", outbox: "outbox", alert: "body", pulse: "pulse" };
 
 function Screens() {
   const app = useApp();
@@ -42,6 +43,7 @@ function Screens() {
         {route === "trends" && <Trends />}
         {route === "outbox" && <Outbox />}
       </Suspense>
+      {route === "pulse" && <CrewPulse />}
       {route === "crew" && <Crew />}
       {route === "settings" && <Settings />}
     </Shell>

@@ -5,7 +5,9 @@ import { GUIDANCE_VERSION } from "../content/guidance";
 import { HORIZONS_RANGE } from "../engine/horizons";
 import { RULES } from "../engine/rules";
 import type { MissionSetting } from "../engine/types";
+import { CLINIC_DEFAULTS, fmtTz, LANGS, type Lang } from "../i18n";
 import { PBKDF2_ITERATIONS, toB64 } from "../storage/crypto";
+import type { ClinicSetting } from "../storage/events";
 import { Disclaimer, G, TopBar, getThemeMode, setThemeMode, type ThemeMode } from "../ui/ui";
 
 export function Settings() {
@@ -21,9 +23,24 @@ export function Settings() {
   const [confirm, setConfirm] = useState(false);
   const [saved, setSaved] = useState("");
   const [theme, setTheme] = useState<ThemeMode>(getThemeMode);
+  // "Delay is delay" Earth mode (PRD v3 6.4). Stored as settings.clinic; the Reply Clock
+  // reads it through linkFor() on Home and Body, so nothing else needs to know.
+  const [clinic, setClinic] = useState<ClinicSetting>({ ...CLINIC_DEFAULTS, ...state.settings.clinic });
+  const lang: Lang = state.settings.lang ?? "en";
 
   const flash = (s: string) => { setSaved(s); setTimeout(() => setSaved(""), 2500); };
   const setOverride = async (d: string) => { setDate(d); await app.setSettings({ dateOverride: d }); flash("Mission date updated"); };
+  const saveClinic = async (patch: Partial<ClinicSetting>) => {
+    const next: ClinicSetting = { ...clinic, ...patch };
+    if (!Number.isFinite(next.travelMin) || next.travelMin < 0) next.travelMin = CLINIC_DEFAULTS.travelMin;
+    if (!Number.isFinite(next.tzOffsetMin)) next.tzOffsetMin = CLINIC_DEFAULTS.tzOffsetMin;
+    next.name = next.name.trim() || CLINIC_DEFAULTS.name;
+    setClinic(next);
+    await app.setSettings({ clinic: next });
+    flash(next.on ? "Rural clinic mode on" : "Space mission mode");
+  };
+  const setLang = async (l: Lang) => { await app.setSettings({ lang: l }); flash(l === "te" ? "Daily check in Telugu (draft)" : "Daily check in English"); };
+  const hourOpts = Array.from({ length: 24 }, (_, h) => <option key={h} value={h}>{String(h).padStart(2, "0")}:00</option>);
 
   return (
     <>
@@ -55,6 +72,40 @@ export function Settings() {
             <select value={state.settings.reminderHour} onChange={(e) => void app.setSettings({ reminderHour: Number(e.target.value) })}>
               {[5, 6, 7, 8, 9].map((h) => <option key={h} value={h}>{String(h).padStart(2, "0")}:00</option>)}
             </select></label>
+        </section>
+
+        <section className="panel" data-testid="earth-mode">
+          <span className="label">Earth use: delay is delay</span>
+          <p className="small muted">A concept, not clinical advice. The same Reply Clock that tells an astronaut whether Earth can answer in time tells a community health worker whether the nearest doctor can.</p>
+          <div className="seg" aria-label="Rural clinic mode">
+            <button aria-pressed={!clinic.on} onClick={() => void saveClinic({ on: false })}>Space mission</button>
+            <button aria-pressed={clinic.on} data-testid="clinic-on" onClick={() => void saveClinic({ on: true })}>Rural clinic mode</button>
+          </div>
+          {clinic.on && (
+            <>
+              <p className="small">With clinic mode on, the Reply Clock uses your travel time and the clinic&apos;s opening hours instead of light time and the flight surgeon&apos;s shift; JPL Horizons is not used.</p>
+              <label className="field"><span>Clinic or doctor (how the Reply Clock names the far end)</span>
+                <input value={clinic.name} onChange={(e) => setClinic({ ...clinic, name: e.target.value })} onBlur={() => void saveClinic({})} /></label>
+              <label className="field"><span>One-way travel time to the nearest doctor (minutes)</span>
+                <input type="number" inputMode="numeric" min={0} step={5} value={Number.isFinite(clinic.travelMin) ? clinic.travelMin : ""}
+                  onChange={(e) => setClinic({ ...clinic, travelMin: e.target.valueAsNumber })} onBlur={() => void saveClinic({})} /></label>
+              <div className="row" style={{ alignItems: "stretch" }}>
+                <label className="field" style={{ flex: "1 1 120px" }}><span>Clinic opens</span>
+                  <select value={clinic.openHour} onChange={(e) => void saveClinic({ openHour: Number(e.target.value) })}>{hourOpts}</select></label>
+                <label className="field" style={{ flex: "1 1 120px" }}><span>Clinic closes</span>
+                  <select value={clinic.closeHour} onChange={(e) => void saveClinic({ closeHour: Number(e.target.value) })}>{hourOpts}</select></label>
+              </div>
+              <label className="field"><span>Clinic time zone, minutes from UTC (now {fmtTz(Number.isFinite(clinic.tzOffsetMin) ? clinic.tzOffsetMin : CLINIC_DEFAULTS.tzOffsetMin)})</span>
+                <input type="number" inputMode="numeric" step={15} min={-720} max={840} value={Number.isFinite(clinic.tzOffsetMin) ? clinic.tzOffsetMin : ""}
+                  onChange={(e) => setClinic({ ...clinic, tzOffsetMin: e.target.valueAsNumber })} onBlur={() => void saveClinic({})} /></label>
+              <p className="small muted">Defaults: {CLINIC_DEFAULTS.name}, {CLINIC_DEFAULTS.travelMin} min each way, open {String(CLINIC_DEFAULTS.openHour).padStart(2, "0")}:00-{String(CLINIC_DEFAULTS.closeHour).padStart(2, "0")}:00, {fmtTz(CLINIC_DEFAULTS.tzOffsetMin)} (IST). All of these are assumptions you set, and the Reply Clock labels them so.</p>
+            </>
+          )}
+          <span className="small" style={{ color: "var(--ink-2)" }}>Language for the daily check</span>
+          <div className="seg" aria-label="Language for the daily check">
+            {LANGS.map((l) => <button key={l.id} aria-pressed={lang === l.id} data-testid={`lang-${l.id}`} onClick={() => void setLang(l.id)}>{l.label}</button>)}
+          </div>
+          <p className="small muted">Only the daily check changes language. The Telugu text is a machine-assisted draft awaiting native review (docs/i18n); rules, thresholds and colours do not change.</p>
         </section>
 
         <section className="panel">
