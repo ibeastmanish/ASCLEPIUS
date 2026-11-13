@@ -1,7 +1,7 @@
 # ASCLEPIUS
 ### *Medicine for when Earth is too far away.*
 
-**Live demo:** https://ibeastmanish.github.io/hygiea/ · **Ground Station console:** https://ibeastmanish.github.io/hygiea/ground.html · [![CI](https://github.com/ibeastmanish/hygiea/actions/workflows/ci.yml/badge.svg)](https://github.com/ibeastmanish/hygiea/actions/workflows/ci.yml)
+**Live demo:** https://ibeastmanish.github.io/ASCLEPIUS/ · **Ground Station console:** https://ibeastmanish.github.io/ASCLEPIUS/ground.html · [![CI](https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml/badge.svg)](https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml)
 
 ASCLEPIUS is an offline tablet app for astronauts. A one-minute daily check of six readings (blood pressure, heart rate, blood sugar, temperature, sleep, mood) becomes one clear answer: green, yellow or red, explained on a clickable body map, with what to do next. Then it answers the question the challenge asks: **when does this need the crew, and when does it need the flight surgeon on Earth?**
 

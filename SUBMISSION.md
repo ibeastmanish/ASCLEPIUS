@@ -17,7 +17,7 @@ ASCLEPIUS is an offline health self-check for astronauts that knows whether Eart
 `[public link to the ≤30-second video (English captions) OR the ≤7-slide deck (deck_v3/ASCLEPIUS_SpaceApps2026_deck.pdf) — choose ONE, no login required]`
 
 ## Link to Final Project
-https://github.com/ibeastmanish/hygiea · Live demo: https://ibeastmanish.github.io/hygiea/ · Ground Station console: https://ibeastmanish.github.io/hygiea/ground.html
+https://github.com/ibeastmanish/ASCLEPIUS · Live demo: https://ibeastmanish.github.io/ASCLEPIUS/ · Ground Station console: https://ibeastmanish.github.io/ASCLEPIUS/ground.html
 
 ## Detailed Project Description
 

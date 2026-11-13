@@ -4,7 +4,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
-// GitHub Pages serves the app from /hygiea/; local dev and preview use /.
+// GitHub Pages serves the app from /<repo name>/ (CI sets ASCLEPIUS_BASE); local dev and preview use /.
 const base = process.env.ASCLEPIUS_BASE ?? "/";
 
 export default defineConfig(({ command }) => ({
