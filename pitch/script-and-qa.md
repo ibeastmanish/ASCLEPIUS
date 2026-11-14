@@ -6,7 +6,7 @@ Space Apps accepts **one** demo format: a ≤30 s video **or** ≤7 slides. This
 Presenter: Tula Manish (named on slides 1 and 7, as the 2026 guide requires).
 
 ## Script
-1. **Cover (15 s).** I'm Tula Manish from Warangal, and this is ASCLEPIUS. ASCLEPIUS is an offline health check for astronauts that knows whether Earth can answer in time, and tells the crew what to do when it cannot.
+1. **Cover (15 s).** So basically, my project is about helping astronauts take care of their health when their doctor is millions of kilometres away. I'm Tula Manish from Warangal, and it's called ASCLEPIUS. ASCLEPIUS is an offline health check for astronauts that knows whether Earth can answer in time, and tells the crew what to do when it cannot.
 2. **Problem (25 s).** Mars is 4 to 22 minutes away by radio, each way: 11 minutes on 14 November 2026, from NASA JPL Horizons. In 2028 the Sun cuts the link for 27 days. And normal is personal: a heart rate of 74 is fine for most people, but a warning for someone whose own normal is 52 to 62.
 3. **How it works (25 s).** One minute, the six readings from the challenge. Each one is checked against the usual adult range and against your own learned normal; the worse result wins. Every colour on the body map shows its rule and source. No AI makes health decisions.
 4. **Earth Reply Clock (30 s).** New: for every finding we compare when you must act with when Earth can answer. For a red result on Mars, Earth needs 27 minutes even with the surgeon on shift. You have 10. The crew decides. NASA's own concept for Earth-independent medicine has no levels for this; we give it numbers.

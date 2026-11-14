@@ -3,7 +3,7 @@
 const path = require('path');
 const pptxgen = require('pptxgenjs');
 const S = [
-  ['ASCLEPIUS: Medicine for when Earth is too far away', 'I am Tula Manish from Warangal, and this is ASCLEPIUS. It is an offline health check for astronauts that knows whether Earth can answer in time, and tells the crew what to do when it cannot.'],
+  ['ASCLEPIUS: Medicine for when Earth is too far away', 'So basically, my project is about helping astronauts take care of their health when their doctor is millions of kilometres away. I am Tula Manish from Warangal, and it is called ASCLEPIUS. It is an offline health check for astronauts that knows whether Earth can answer in time, and tells the crew what to do when it cannot.'],
   ['On Mars, your doctor is on Earth', 'Mars is 4 to 22 minutes away by radio, each way. 11 minutes on 14 November 2026, from NASA JPL Horizons. In 2028 the Sun cuts the link for 27 days. And normal is personal: a heart rate of 74 is fine for most people, but a warning for someone whose own normal is 52 to 62.'],
   ['One minute. Six readings. One clear answer.', 'The daily check takes about a minute: the six readings from the challenge. Each one is checked against the usual adult range and against your own learned normal. The worse result wins, and every colour on the body map shows its rule and source. No AI makes health decisions.'],
   ['Earth Reply Clock: can Earth answer before you must act?', 'This is new. For every finding we compare when you must act with when Earth can answer: light time there, the flight surgeon\'s reply, light time back. Earth guides, Earth confirms, or the crew decides. For a red result on Mars, Earth needs 27 minutes even with the surgeon on shift. You have 10. The crew decides.'],
