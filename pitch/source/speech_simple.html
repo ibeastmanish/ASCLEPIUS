@@ -66,14 +66,14 @@ p{margin:0 0 10px}
 <li>Limits: 4 people, a 3-day flight, no tests during the flight; MCV stayed low months later in 3 crew, so a lab change may be part of it.</li></ul></div>
 
 <h2>Slide 7 · Impact</h2>
-<p>And here's the thing: this isn't only a space problem. Near Warangal, some villages are hours away from a doctor. A delay is a delay, whether it's light from Mars or a three-hour bus ride. So the same app works there too, and the daily check is in Telugu.</p>
+<p>And here's the thing: this isn't only a space problem. Near Warangal, some villages are hours away from a doctor. A delay is a delay, whether it's light from Mars or a three-hour bus ride. So the same app works there too, and the daily check is in Telugu and Hindi.</p>
 <p>Now, there are lots of health apps for astronauts, and in this challenge alone I found about sixty. Most of them show your numbers and a countdown to Earth. What's different about mine is three things. It tells you who should decide, by working out if Earth can answer in time. It looks at the whole crew to tell one sick person from bad air or an infection. And I tested the idea on real NASA crew data, and even found, fixed and reported a mistake in it. As far as I could find, no one else does these.</p>
 <p>ASCLEPIUS works offline, it's open source, and you can try it on your phone right now.</p>
 <p>Medicine for when Earth is too far away. Thank you!</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>Clinic mode (Settings): the Reply Clock uses travel time to the doctor and clinic hours instead of light time and the surgeon's shift. Same maths.</li>
-<li>Telugu is a draft translation, waiting for a native speaker to check it.</li>
-<li>Open source (MIT licence), 148 automated tests, including "property tests" that throw thousands of random inputs at the engine to prove things like "chest pain is always red".</li></ul></div>
+<li>Telugu and Hindi are draft translations, waiting for native speakers to check them; anyone can add a language in about 30 minutes (CONTRIBUTING.md).</li>
+<li>Open source (MIT licence), 149 automated tests, including "property tests" that throw thousands of random inputs at the engine to prove things like "chest pain is always red".</li></ul></div>
 
 <h2>What makes ASCLEPIUS special</h2>
 <p>Say this if a judge asks "how is this different?" or "doesn't this already exist?"</p>
@@ -88,5 +88,5 @@ p{margin:0 0 10px}
 <li><b>Built for home too.</b> The same clock works for health workers near Warangal, with travel time instead of light time, in Telugu.</li></ul></div>
 <p class="small" style="font-size:10.5pt;color:#555">Be fair if pushed: the search was GitHub on 12 Nov; new projects appear during the event, so say "as far as we could find".</p>
 
-<div class="oneline"><b>If a judge says "explain it technically in one line":</b> "It's an offline React app. A rules engine checks each reading against adult ranges and your own learned normal, uses real NASA JPL distance data to work out whether Earth can reply in time, and everything is encrypted on the device, with 148 tests behind it."</div>
+<div class="oneline"><b>If a judge says "explain it technically in one line":</b> "It's an offline React app. A rules engine checks each reading against adult ranges and your own learned normal, uses real NASA JPL distance data to work out whether Earth can reply in time, and everything is encrypted on the device, with 149 tests behind it."</div>
 </body></html>
