@@ -7,7 +7,7 @@ Everything for presenting ASCLEPIUS. Space Apps accepts **one** demo: a video of
 |---|---|
 | [`ASCLEPIUS_SpaceApps2026_deck.pdf`](ASCLEPIUS_SpaceApps2026_deck.pdf) · [`.pptx`](ASCLEPIUS_SpaceApps2026_deck.pptx) | **Main deck**, 7 slides (1920×1080), black NASA style. The PPTX has the spoken script in its speaker notes. |
 | [`ASCLEPIUS_SpaceApps2026_deck_school.pdf`](ASCLEPIUS_SpaceApps2026_deck_school.pdf) · [`.pptx`](ASCLEPIUS_SpaceApps2026_deck_school.pptx) | The same 7 slides in an art-maximalist notebook style. Same facts and order. |
-| [`video/ASCLEPIUS_30s_demo.mp4`](video/ASCLEPIUS_30s_demo.mp4) | **30-second video** (29.5 s, 1080p): real app footage, transitions, sound, English captions, text-to-speech voice-over. See [`video/`](video/). |
+| [`video/ASCLEPIUS_30s_demo.mp4`](video/ASCLEPIUS_30s_demo.mp4) · [YouTube](https://youtu.be/lrWjnpbwsGk) | **30-second video** (29.5 s, 1080p): real app footage, transitions, sound, English captions, text-to-speech voice-over. See [`video/`](video/). |
 
 ## Presenting
 | File | What it is |

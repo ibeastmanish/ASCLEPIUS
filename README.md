@@ -10,7 +10,7 @@ An offline health check for astronauts that knows whether Earth can answer in ti
   <a href="https://ibeastmanish.github.io/ASCLEPIUS/"><b>Live demo</b></a> ·
   <a href="https://ibeastmanish.github.io/ASCLEPIUS/ground.html"><b>Ground Station</b></a> ·
   <a href="pitch/ASCLEPIUS_SpaceApps2026_deck.pdf"><b>Pitch deck</b></a> ·
-  <a href="pitch/video/ASCLEPIUS_30s_demo.mp4"><b>30-s video</b></a> ·
+  <a href="https://youtu.be/lrWjnpbwsGk"><b>30-s video</b></a> ·
   <a href="docs/README.md"><b>Docs</b></a>
 </p>
 
@@ -30,7 +30,7 @@ An offline health check for astronauts that knows whether Earth can answer in ti
 | | |
 |---|---|
 | ▶️ **Try it** | [Live app](https://ibeastmanish.github.io/ASCLEPIUS/) (works on a phone) · [Ground Station](https://ibeastmanish.github.io/ASCLEPIUS/ground.html) (open in a second tab) · [60-second walkthrough](#try-it-in-60-seconds) |
-| 🎞️ **Demo** | [7-slide deck (PDF)](pitch/ASCLEPIUS_SpaceApps2026_deck.pdf) · [30-second video](pitch/video/ASCLEPIUS_30s_demo.mp4) · [all pitch materials](pitch/) |
+| 🎞️ **Demo** | [7-slide deck (PDF)](pitch/ASCLEPIUS_SpaceApps2026_deck.pdf) · [30-second video (YouTube)](https://youtu.be/lrWjnpbwsGk) · [all pitch materials](pitch/) |
 | 🛰️ **NASA data** | [What we used and how](#nasa-data) · [the data error we found and reported](#a-data-error-we-found-in-nasas-file) · [provenance](data/manifest.json) |
 | 🧭 **How it works** | [Pipeline and architecture](#how-it-works) · [every rule with its source](src/engine/rules.json) · [162 tests](#run-it-yourself) |
 | 📄 **Project text** | [Submission page](docs/submission.md) · [PRD](docs/prd-v3.md) · [Changelog](CHANGELOG.md) |
@@ -246,7 +246,7 @@ npm run desktop:build      # ASCLEPIUS.app + .dmg in src-tauri/target/release/bu
 - **Simulated crew.** Commander Asha Rao and her crew are fictional, generated through the real engine and labelled on every screen.
 - **Assumptions are labelled.** Houston shift hours, surgeon response times and act-by windows are shown in the app as assumptions.
 - **Known limits:** blood pressure, heart rate and glucose thresholds are terrestrial guidelines awaiting a flight surgeon's review; the Telugu text is a draft; Crew Pulse runs on one device in the demo; the shipped Ground Station keys are demo keys (see [SECURITY.md](SECURITY.md)).
-- **AI assistance.** AI coding assistants (Claude Code) helped research, write and test the code and draft the documents; those commits carry a `Co-Authored-By` line. The health rules, medical wording and data analysis were reviewed by the author. **No AI makes health decisions in the app.** No AI-generated images, video or audio are used.
+- **AI assistance.** AI coding assistants (Claude Code) helped research, write and test the code and draft the documents; those commits carry a `Co-Authored-By` line. The health rules, medical wording and data analysis were reviewed by the author. **No AI makes health decisions in the app.** No AI-generated images are used; the 30-second video's voice-over is text-to-speech.
 
 ## More
 [Docs index](docs/README.md) · [PRD](docs/prd-v3.md) · [Submission text](docs/submission.md) · [Changelog](CHANGELOG.md) · [Contributing and translations](CONTRIBUTING.md) · [Security](SECURITY.md) · [Pitch materials](pitch/README.md)

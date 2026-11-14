@@ -7,6 +7,8 @@
 | [`ASCLEPIUS_30s_demo.srt`](ASCLEPIUS_30s_demo.srt) | English subtitles |
 | [`VOICEOVER_SCRIPT.txt`](VOICEOVER_SCRIPT.txt) | The voice-over lines with exact times |
 
+**Watch:** https://youtu.be/lrWjnpbwsGk
+
 **Scenes:** Mission Story (light-time spiral) → daily check → 90-day heart-rate graph vs the astronaut's own normal → red alert with the Earth Reply Clock → Ground Station opening the signed report → NASA Inspiration4 proof (4 of 4 crew changed) → end card.
 
 **Rules (Space Apps 2026):** 30 seconds or less, English subtitles, public link with no login; submit the video **or** the deck, not both. The voice in `ASCLEPIUS_30s_demo.mp4` is macOS text-to-speech, so the submission says *"Voice-over generated with text-to-speech."* A human recording over the no-voice version needs no such note.
