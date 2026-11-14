@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="pitch/ASCLEPIUS_banner.png" alt="ASCLEPIUS: Medicine for when Earth is too far away" width="100%">
+  <img src="pitch/banners/ASCLEPIUS_banner.png" alt="ASCLEPIUS: Medicine for when Earth is too far away" width="100%">
 </p>
 
 <h1 align="center">ASCLEPIUS</h1>
@@ -10,6 +10,7 @@ An offline health check for astronauts that knows whether Earth can answer in ti
   <a href="https://ibeastmanish.github.io/ASCLEPIUS/"><b>Live demo</b></a> ·
   <a href="https://ibeastmanish.github.io/ASCLEPIUS/ground.html"><b>Ground Station</b></a> ·
   <a href="pitch/ASCLEPIUS_SpaceApps2026_deck.pdf"><b>Pitch deck</b></a> ·
+  <a href="pitch/video/ASCLEPIUS_30s_demo.mp4"><b>30-s video</b></a> ·
   <a href="docs/README.md"><b>Docs</b></a>
 </p>
 
@@ -24,6 +25,15 @@ An offline health check for astronauts that knows whether Earth can answer in ti
 <p align="center"><sub>NASA Space Apps Challenge 2026 · <i>Create Health Monitoring Software for Astronauts on Space Missions</i> · Tula Manish (Team ASCLEPIUS), Warangal, India</sub></p>
 
 ---
+
+### For judges
+| | |
+|---|---|
+| ▶️ **Try it** | [Live app](https://ibeastmanish.github.io/ASCLEPIUS/) (works on a phone) · [Ground Station](https://ibeastmanish.github.io/ASCLEPIUS/ground.html) (open in a second tab) · [60-second walkthrough](#try-it-in-60-seconds) |
+| 🎞️ **Demo** | [7-slide deck (PDF)](pitch/ASCLEPIUS_SpaceApps2026_deck.pdf) · [30-second video](pitch/video/ASCLEPIUS_30s_demo.mp4) · [all pitch materials](pitch/) |
+| 🛰️ **NASA data** | [What we used and how](#nasa-data) · [the data error we found and reported](#a-data-error-we-found-in-nasas-file) · [provenance](data/manifest.json) |
+| 🧭 **How it works** | [Pipeline and architecture](#how-it-works) · [every rule with its source](src/engine/rules.json) · [162 tests](#run-it-yourself) |
+| 📄 **Project text** | [Submission page](docs/submission.md) · [PRD](docs/prd-v3.md) · [Changelog](CHANGELOG.md) |
 
 ## The problem
 
@@ -98,6 +108,7 @@ Long missions can change astronauts' eyes (Spaceflight-Associated Neuro-ocular S
     <td align="center" width="25%"><img src="pitch/source/shots/proof-phone.png" alt="Proof on NASA Inspiration4 data"><br><sub><b>Proof</b>: NASA Inspiration4 data</sub></td>
   </tr>
 </table>
+<p align="center"><img src="pitch/source/img/forecast_chart.png" alt="Autonomy Forecast chart" width="80%"><br><sub><b>Autonomy Forecast</b>: who decides on each of 1,157 mission days (emergency · 4-hour problem · routine); red block = 2028 Sun blackout</sub></p>
 <p align="center"><img src="pitch/source/shots/story-desk.png" alt="Mission Story: data-art spiral of Earth–Mars light time" width="80%"><br><sub><b>Mission Story</b>: every ray is one day, 2026–2029; its length is the real light time (NASA JPL Horizons); yellow rays are the Sun blackout</sub></p>
 <p align="center"><img src="pitch/source/shots/ground-desk.png" alt="Ground Station console" width="80%"><br><sub><b>Ground Station console</b>: the flight surgeon's side</sub></p>
 <p align="center"><sub>All crew shown are simulated and labelled so in the app.</sub></p>
@@ -199,20 +210,25 @@ npm run proof        # rebuilds the NASA OSD-569 result from the raw files
 - NASA data: the proof's invariants and the shift fix; every guidance card names a real HRP risk.
 </details>
 
-<details>
-<summary><b>Repository layout</b></summary>
-
+## Repository layout
 ```
-src/            the app: engine/ (rules, Reply Clock, Crew Pulse), screens/, ui/, storage/ (vault, crypto),
-                ground/ (Ground Station), i18n/ (Telugu), seed/ (simulated crew)
-index.html      crew tablet          ground.html   Ground Station console
-analysis/       Python: NASA data processing and the OSD-569 proof
-data/           raw/ (NASA downloads, untouched) · derived/ (corrected CBC) · manifest.json (provenance)
-docs/           PRD, product brief, submission text, translations
-pitch/          deck (PDF, PPTX), speech, banners, script and Q&A, and their sources
-src-tauri/      optional desktop build (Tauri + OpenPGP)
+ASCLEPIUS/
+├── src/                 the app (React + TypeScript)
+│   ├── engine/          rules.json, evaluation, Earth Reply Clock, Autonomy Forecast, Crew Pulse, eye check
+│   ├── screens/         Today, Check, Body map, Trends, Outbox, Crew Pulse, Proof, Story, Eye check, Settings
+│   ├── ground/          Ground Station console (the flight surgeon's page)
+│   ├── storage/         encrypted vault, signing, encryption, traffic padding
+│   ├── i18n/            Telugu and Hindi daily check (drafts)
+│   └── seed/            simulated crew (Asha Rao and three crewmates)
+├── index.html           crew tablet entry      ground.html   Ground Station entry
+├── analysis/            Python: NASA data processing and the OSD-569 proof
+├── data/                raw/ NASA downloads (untouched) · derived/ corrected CBC · manifest.json provenance
+├── docs/                PRD, product brief, submission text, translations
+├── pitch/               decks, speech, video, banners, script and Q&A (+ sources to rebuild them)
+├── public/              app icons
+├── scripts/             proof.mjs: engine cross-check for the NASA result
+└── src-tauri/           optional desktop build (Tauri + OpenPGP)
 ```
-</details>
 
 <details>
 <summary><b>Optional desktop build</b></summary>

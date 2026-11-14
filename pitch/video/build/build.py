@@ -1,6 +1,6 @@
 """Assemble the 30 s ASCLEPIUS demo: real app clips + captions, transitions, sound and voice-over.
 
-  python3 -I build.py            (needs raw/*.webm from capture.cjs and cards/*.png from cards.cjs)
+  python3 -I pitch/video/build/build.py            (needs raw/*.webm from capture.cjs and cards/*.png from cards.cjs)
 
 Sound is synthesised here with ffmpeg (ambient pad, transition whooshes, alert beeps, end chime),
 so there are no third-party audio files. The voice-over uses a built-in macOS voice (`say`),
@@ -12,6 +12,7 @@ ASCLEPIUS_30s_demo.srt, VOICEOVER_SCRIPT.txt
 import json, os, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+OUT = os.path.dirname(HERE)          # finished files go to pitch/video/
 RAW, CARDS, TMP = (os.path.join(HERE, d) for d in ("raw", "cards", "tmp"))
 os.makedirs(TMP, exist_ok=True)
 script = json.load(open(os.path.join(HERE, "script.json")))
@@ -104,8 +105,8 @@ def mix(with_voice, out):
     ff([*args, "-filter_complex", ";".join(parts), "-map", "0:v", "-map", "[aout]", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
         "-ar", "48000", "-t", f"{total:.3f}", "-movflags", "+faststart", out])
 
-mix(True, os.path.join(HERE, "ASCLEPIUS_30s_demo.mp4"))
-mix(False, os.path.join(HERE, "ASCLEPIUS_30s_demo_no-voice.mp4"))
+mix(True, os.path.join(OUT, "ASCLEPIUS_30s_demo.mp4"))
+mix(False, os.path.join(OUT, "ASCLEPIUS_30s_demo_no-voice.mp4"))
 
 # ---- 5. subtitles + script
 def ts(t): return f"{int(t // 3600):02d}:{int(t % 3600 // 60):02d}:{t % 60:06.3f}".replace(".", ",")
@@ -115,8 +116,8 @@ for i, s in enumerate(script):
     b = (starts[i + 1] if i + 1 < len(script) else total) - 0.05
     srt += [str(i + 1), f"{ts(a)} --> {ts(b)}", s["caption"], ""]
     txt.append(f"{a:5.1f}s - {b:5.1f}s   {s['voice']}")
-open(os.path.join(HERE, "ASCLEPIUS_30s_demo.srt"), "w").write("\n".join(srt))
+open(os.path.join(OUT, "ASCLEPIUS_30s_demo.srt"), "w").write("\n".join(srt))
 txt += ["", f"The voice in ASCLEPIUS_30s_demo.mp4 is macOS text-to-speech ({VOICE}). If you keep it, add to the submission:",
         "\"Voice-over generated with text-to-speech.\"  To use your own voice, record over ASCLEPIUS_30s_demo_no-voice.mp4 in CapCut."]
-open(os.path.join(HERE, "VOICEOVER_SCRIPT.txt"), "w").write("\n".join(txt) + "\n")
+open(os.path.join(OUT, "VOICEOVER_SCRIPT.txt"), "w").write("\n".join(txt) + "\n")
 print(f"total {total:.2f}s; voice lines:", ", ".join(f"{d:.1f}s" for _, _, d in voice))

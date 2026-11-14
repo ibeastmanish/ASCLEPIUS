@@ -25,7 +25,7 @@ h1{margin:0;font-size:170px;font-weight:900;letter-spacing:.05em;line-height:.9}
 .t{font-size:60px;font-weight:800}
 .u{font-size:34px;color:#cfd8e8;margin-top:30px}
 .f{position:absolute;left:140px;bottom:70px;font:600 24px/1.4 "Helvetica Neue",Arial;letter-spacing:.12em;color:#9aa3b5;text-transform:uppercase}
-</style></head><body><img class="mars" src="file://${path.join(__dirname, '..', 'source', 'img', 'mars_sq.jpg')}"><div class="shade"></div>
+</style></head><body><img class="mars" src="file://${path.join(__dirname, '..', '..', 'source', 'img', 'mars_sq.jpg')}"><div class="shade"></div>
 <div class="c"><h1>ASCLEPIUS</h1><div class="bar"></div><div class="t">Medicine for when Earth<br>is too far away.</div><div class="u">ibeastmanish.github.io/ASCLEPIUS</div></div>
 <div class="f">Tula Manish · Warangal, India · NASA Space Apps 2026<br>Data: NASA JPL Horizons · NASA OSDR OSD-569 · Images: NASA/JPL/USGS</div></body></html>`;
 
