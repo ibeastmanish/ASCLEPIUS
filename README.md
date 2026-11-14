@@ -15,7 +15,7 @@ An offline health check for astronauts that knows whether Earth can answer in ti
 
 <p align="center">
   <a href="https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml"><img src="https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <img src="https://img.shields.io/badge/tests-149%20passing-2EC27E" alt="149 tests passing">
+  <img src="https://img.shields.io/badge/tests-151%20passing-2EC27E" alt="151 tests passing">
   <img src="https://img.shields.io/badge/NASA%20data-JPL%20Horizons%20%C2%B7%20OSDR%20%C2%B7%20NASA--STD--3001-0B3D91" alt="NASA data">
   <img src="https://img.shields.io/badge/works-offline-6FA3FF" alt="Works offline">
   <img src="https://img.shields.io/badge/licence-MIT-lightgrey" alt="MIT licence">
@@ -119,6 +119,7 @@ flowchart LR
 - **Your normal** = median ± 2.5 × MAD of your first 7 checks. The median resists one odd reading. The band's width is then fixed, so a slow decline can't hide by becoming the "new normal".
 - **No server, no internet** after the first load. Data is stored on the device and encrypted (AES-GCM 256; key from your passphrase via PBKDF2, 600,000 rounds).
 - **Messages to Earth** are signed with the crew's key and encrypted to the ground station's public key. The tablet never holds Earth's private key, and each message carries a sequence number so replays are rejected.
+- **Traffic padding** (an idea carried over from my earlier project, Hermes): every message to Earth is padded to the same size, so even someone watching the link can't tell a red alert from a routine digest.
 
 <details>
 <summary><b>The evaluation pipeline in detail</b></summary>
@@ -171,19 +172,19 @@ git clone https://github.com/ibeastmanish/ASCLEPIUS.git
 cd ASCLEPIUS
 npm install
 npm run dev          # https://localhost:5173 (self-signed; WebCrypto needs a secure context)
-npm test             # 149 tests
+npm test             # 151 tests
 npm run build        # dist/: crew app (index.html) + Ground Station (ground.html)
 npm run proof        # rebuilds the NASA OSD-569 result from the raw files
 ```
 
 <details>
-<summary><b>Tests (149)</b></summary>
+<summary><b>Tests (151)</b></summary>
 
 - Every rule at, just below and just above each threshold, driven from `rules.json` (schema-validated).
 - Property tests (fast-check, thousands of random checks): invalid input is never coloured; the overall colour is never greener than any reading; a red flag is always red; any warning symptom makes the check red.
 - Reply Clock: Mars red → *crew decides* (27 min vs 10); Moon → *Earth confirms*; the same finding changes level at 4 vs 22 min; blackout → always *crew decides*; Mars-sol drift; clinic mode.
 - Crew Pulse: each pattern, plus the negatives (different days ≠ same day; 4 sols apart ≠ spreading; the same person twice ≠ spreading).
-- Security: the crew key ring holds no ground private key; a one-bit change fails decryption; a changed **signed body** fails the **signature**; a forged key fails; a replayed sequence number is rejected; messages are held for the real light time and through the blackout.
+- Security: the crew key ring holds no ground private key; a one-bit change fails decryption; a changed **signed body** fails the **signature**; a forged key fails; a replayed sequence number is rejected; a tiny message and a full red alert seal to exactly the same size (traffic padding); messages are held for the real light time and through the blackout.
 - NASA data: the proof's invariants and the shift fix; every guidance card names a real HRP risk.
 </details>
 

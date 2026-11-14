@@ -203,15 +203,42 @@ async function verifyBytes(body: Uint8Array, sig: Uint8Array, publicJwk: JsonWeb
   return subtle.verify(SHA, k, buf(sig), buf(body));
 }
 
-/** Encrypt an already signed inner envelope {body, sig} to a ground ECDH public key. */
+// ------------------------------------------------------------------ traffic padding
+// Idea carried over from the author's earlier project Hermes: hide message SIZE.
+// Without padding, a red alert (full decision snapshot) is larger than a daily
+// digest, so anyone watching the Mars-Earth link could tell an emergency from
+// routine traffic without decrypting anything. Every plaintext is padded to the
+// same block (a 4-byte length, the envelope, then zero bytes) before AES-GCM.
+
+/** Padded plaintext size in bytes. Messages larger than this round up to a whole number of blocks. */
+export const PAD_BLOCK = 4096;
+
+export function padToBlock(data: Uint8Array, block = PAD_BLOCK): Uint8Array<ArrayBuffer> {
+  const total = Math.ceil((data.length + 4) / block) * block;
+  const out = new Uint8Array(total);
+  new DataView(out.buffer).setUint32(0, data.length);
+  out.set(data, 4);
+  return out;
+}
+
+export function unpad(data: Uint8Array): Uint8Array<ArrayBuffer> {
+  const n = new DataView(data.buffer, data.byteOffset, data.byteLength).getUint32(0);
+  if (n + 4 > data.length) throw new Error("bad padding");
+  return buf(data.subarray(4, 4 + n));
+}
+
+/** Outer format version for padded WebCrypto messages (v1 = unpadded, legacy; v2 = Hermes OpenPGP, desktop). */
+export const PADDED_V = 3;
+
+/** Encrypt an already signed inner envelope {body, sig} to a ground ECDH public key (padded, see above). */
 async function encryptToGround(inner: { body: Uint8Array; sig: Uint8Array }, groundEnc: JsonWebKey): Promise<SealedMessage> {
   const eph = await subtle.generateKey(ECDH, true, ["deriveKey"]);
   const groundPub = await subtle.importKey("jwk", publicOnly(groundEnc), ECDH, false, []);
   const aes = await aesFromEcdh(eph.privateKey, groundPub, ["encrypt"]);
   const iv = randomBytes(12);
-  const ct = new Uint8Array(await subtle.encrypt({ name: "AES-GCM", iv }, aes, buf(encode(inner))));
+  const ct = new Uint8Array(await subtle.encrypt({ name: "AES-GCM", iv }, aes, padToBlock(encode(inner))));
   const epk = new Uint8Array(await subtle.exportKey("raw", eph.publicKey));
-  const outer = encode({ v: 1, alg: "ES256+ECDH-ES-P256/A256GCM", epk, iv, ct });
+  const outer = encode({ v: PADDED_V, alg: "ES256+ECDH-ES-P256/A256GCM+PAD4096", epk, iv, ct });
   return { payload: toB64(outer), bytes: outer.length, signed: true, encrypted: true, alg: "webcrypto" };
 }
 
@@ -252,7 +279,9 @@ export async function decryptFromCrew(payload: string, groundPrivateJwk: JsonWeb
     const epk = await subtle.importKey("raw", buf(outer.epk), ECDH, false, []);
     const groundPriv = await subtle.importKey("jwk", { ...groundPrivateJwk, key_ops: undefined, ext: undefined }, ECDH, false, ["deriveKey"]);
     const aes = await aesFromEcdh(groundPriv, epk, ["decrypt"]);
-    const inner = decode(new Uint8Array(await subtle.decrypt({ name: "AES-GCM", iv: buf(outer.iv) }, aes, buf(outer.ct)))) as { body: Uint8Array; sig: Uint8Array };
+    const plain = new Uint8Array(await subtle.decrypt({ name: "AES-GCM", iv: buf(outer.iv) }, aes, buf(outer.ct)));
+    // v3 messages are padded (traffic padding); v1 messages from older outboxes are not.
+    const inner = decode(outer.v === PADDED_V ? unpad(plain) : plain) as { body: Uint8Array; sig: Uint8Array };
     return { body: buf(inner.body), sig: buf(inner.sig) };
   } catch {
     throw new SealError("decrypt", "Decryption failed (AES-GCM integrity check): changed in transit, or sealed to another ground key");

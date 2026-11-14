@@ -4,7 +4,7 @@ import { completeCheck } from "../engine/evaluate";
 import { earthFor } from "../engine/horizons";
 import { ashaEvents, ASHA_TODAY, ashaProfile } from "../seed/asha";
 import { decode, encode } from "./cbor";
-import { createKeyRing, crewRing, forgeFromCrew, fromB64, gzip, newSigningKey, openFromCrew, sealForEarth, toB64, type KeyRing, type OpenKeys } from "./crypto";
+import { createKeyRing, crewRing, forgeFromCrew, fromB64, gzip, newSigningKey, openFromCrew, PAD_BLOCK, padToBlock, sealForEarth, toB64, unpad, type KeyRing, type OpenKeys } from "./crypto";
 import { DEMO_STATION } from "../ground/demoKeys";
 import { releaseAt, seqKey, triage } from "../ground/protocol";
 import { verifyPacket } from "../ground/station";
@@ -209,7 +209,8 @@ describe("live check -> events -> outbox", () => {
     await store.append(e2);
     const after2 = project(await store.all());
     const digest = after2.outbox.find((m) => m.kind === "digest")!;
-    expect(digest.bytes).toBeLessThan(2048);
+    // Traffic padding: the digest and the red alert are exactly the same size on the wire.
+    expect(digest.bytes).toBe(alert.bytes);
     const { events: e3 } = await runCheck(after2, { values: { hr: 58 }, tags: [], symptoms: [] }, now, TODAY, 212, ring);
     expect(e3.filter((e) => e.type === "MessageQueued")).toHaveLength(0);
   });
@@ -231,4 +232,26 @@ describe("live check -> events -> outbox", () => {
 
 it("gzip is available (CompressionStream)", async () => {
   expect((await gzip(new Uint8Array(1000))).length).toBeLessThan(100);
+});
+
+describe("traffic padding (idea from Hermes): message size reveals nothing", () => {
+  it("pads to a whole block and unpads exactly", () => {
+    const d = new Uint8Array([1, 2, 3, 250]);
+    const p = padToBlock(d);
+    expect(p.length).toBe(PAD_BLOCK);
+    expect(Array.from(unpad(p))).toEqual([1, 2, 3, 250]);
+    expect(padToBlock(new Uint8Array(PAD_BLOCK)).length).toBe(2 * PAD_BLOCK);
+  });
+
+  it("a tiny message and a full red-alert snapshot seal to exactly the same size, and both still open", async () => {
+    const ring = await createKeyRing();
+    const tiny = await sealForEarth({ kind: "digest", overall: "green" }, ring);
+    const big = await sealForEarth({
+      kind: "red-alert", overall: "red",
+      results: Array.from({ length: 8 }, (_, i) => ({ i, why: [{ id: `R-${i}`, text: "x".repeat(120) }] })),
+    }, ring);
+    expect(tiny.bytes).toBe(big.bytes);
+    expect(await openFromCrew(tiny.payload, groundKeys(ring))).toMatchObject({ overall: "green" });
+    expect(await openFromCrew(big.payload, groundKeys(ring))).toMatchObject({ overall: "red" });
+  });
 });
