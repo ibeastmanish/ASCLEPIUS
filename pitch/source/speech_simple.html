@@ -41,12 +41,22 @@ p{margin:0 0 10px}
 <h2>Slide 4 · Earth Reply Clock</h2>
 <p>Now here's the part I'm most proud of. I call it the Earth Reply Clock. Every time something looks wrong, the app asks one simple question: can Earth answer before you need to act?</p>
 <p>Say your blood sugar drops dangerously low. Earth's fastest possible reply is 27 minutes. But you need to act in 10. So the app tells you straight: don't wait for Earth. Your crew decides now, and Earth checks in later.</p>
+<p>And the warning that goes to Earth is locked. The tablet signs it, so Earth knows it really came from the crew. It encrypts it, so only the ground station can read it. And every message is padded to the same size, so no one watching the radio link can even tell an emergency from a normal day.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>Earth's answer time = light time to Earth + doctor's reply time + light time back. Example: 11 + 5 + 11 = 27 min. If the surgeon is off shift and has to be paged: 11 + 30 + 11 = 52 min.</li>
 <li>Whether the surgeon is on shift depends on the time in Houston. A Mars day is 39.6 minutes longer than an Earth day (NASA's Mars24 formula), so the crew's morning keeps drifting against Houston's clock.</li>
 <li>Each warning has an "act by" time: 10 min for red, 1–4 h for patterns, up to a day for yellow. Answer well before → "Earth guides". Just in time → "act, Earth confirms". Too late, or Sun blackout → "crew decides".</li>
-<li>Warnings go to Earth signed (ECDSA, proves who sent it) and encrypted (ECDH + AES), only Earth can read them. Each has a sequence number so an old message re-sent is rejected.</li>
-<li>The Ground Station page holds each message until the real light time has passed (×60 speed-up for the demo), checks the signature, shows the doctor exactly what the astronaut saw, and signs the reply.</li></ul></div>
+<li>The Ground Station page holds each message until the real light time has passed (×60 speed-up for the demo) and shows the doctor exactly what the astronaut saw.</li></ul></div>
+<div class="tech" style="border-left-color:#2EC27E"><b class="h" style="color:#1b7a4c">How the message to Earth is protected (if asked)</b>
+<ul>
+<li><b>1 · Sign (who sent it).</b> The tablet has its own secret signing key. It signs every message with ECDSA (P-256). If even one letter is changed, the signature check fails. That's how the doctor knows it's really from the crew and wasn't altered.</li>
+<li><b>2 · Encrypt (who can read it).</b> The message is locked with the ground station's <i>public</i> key (ECDH key agreement + AES-256-GCM). Only the ground station's <i>private</i> key can open it, and that key never exists on the tablet.</li>
+<li><b>3 · Pad (hide the size).</b> Before encryption, every message is padded to the same 4 KB block, so a red alert and a normal daily digest look identical on the radio link. This idea comes from my earlier encryption project, Hermes.</li>
+<li><b>4 · Number it (stop replays).</b> Each message carries a signed sequence number. If someone re-sends an old message, the ground station rejects it.</li>
+<li><b>5 · Store safely.</b> On the tablet, every record is encrypted (AES-256). The key comes from the astronaut's passphrase through PBKDF2 with 600,000 rounds, so guessing it is very slow.</li>
+<li><b>OpenPGP (desktop version).</b> OpenPGP is the same standard used for secure email. The optional desktop version of ASCLEPIUS uses my earlier open-source library from Hermes (built on Sequoia OpenPGP, Ed25519 signatures + X25519 encryption) instead of the browser's built-in crypto. The web app I'm submitting uses the browser's WebCrypto, with the same steps.</li>
+<li><b>The proof it works:</b> automated tests change one bit, forge a signature with a fake key, and replay an old message. All three are caught.</li>
+</ul></div>
 
 <h2>Slide 5 · Crew Pulse</h2>
 <p>I also built something for the crew's medical officer, called Crew Pulse. If one person has a headache, that's about them. But if three out of four people get headaches on the same day, it's probably not the people. It's the air. So the app tells them to check the carbon dioxide first.</p>
