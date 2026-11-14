@@ -1,0 +1,43 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1600px;height:1200px;overflow:hidden;background:#000;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:#fff;position:relative}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 120px 80px,#fff 50%,transparent 51%),radial-gradient(1px 1px at 300px 400px,#cfe0ff 50%,transparent 51%),radial-gradient(1.3px 1.3px at 700px 120px,#fff 50%,transparent 51%),radial-gradient(1px 1px at 980px 520px,#fff 50%,transparent 51%),radial-gradient(1.6px 1.6px at 520px 300px,#fff 50%,transparent 51%),radial-gradient(1px 1px at 860px 60px,#cfe0ff 50%,transparent 51%);background-size:1100px 700px;opacity:.85}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:100px 100px}
+.mars{position:absolute;right:-420px;top:-160px;width:1400px;height:1400px;border-radius:50%;object-fit:cover}
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,#000 0%,#000 38%,rgba(0,0,0,.6) 58%,rgba(0,0,0,.05) 100%)}
+.orbit{position:absolute;border-radius:50%;border:1.5px solid rgba(111,163,255,.35)}
+.orbit.r{border-color:rgba(252,61,33,.5);border-style:dashed}
+.earth{position:absolute;left:90px;top:960px;width:70px;height:70px;border-radius:50%;object-fit:cover;box-shadow:0 0 30px rgba(111,163,255,.7)}
+.link{position:absolute;left:180px;top:994px;width:560px;height:2px;background:repeating-linear-gradient(90deg,rgba(255,255,255,.8) 0 8px,transparent 8px 16px)}
+.linklbl{position:absolute;left:200px;top:960px;font:700 14px/1 ui-monospace,Menlo,monospace;letter-spacing:.16em;color:#cfe0ff}
+.c{position:absolute;left:90px;top:110px;width:900px}
+.eye{font:700 18px/1 "Helvetica Neue",Arial;letter-spacing:.3em;color:#FC3D21;text-transform:uppercase}
+h1{font-size:168px;font-weight:800;letter-spacing:.06em;margin-top:26px;line-height:.9}
+.bar{width:560px;height:6px;background:#FC3D21;margin-top:26px}
+.tag{font-size:58px;font-weight:700;margin-top:24px;line-height:1.15}
+.sub{font-size:30px;color:#cdd6e6;margin-top:22px;line-height:1.4;max-width:720px}
+.chips{display:flex;flex-direction:column;align-items:flex-start;gap:14px;margin-top:40px}
+.chip{display:inline-flex;align-items:center;gap:10px;font:800 24px/1 "Helvetica Neue",Arial;padding:14px 22px;border-radius:999px;background:rgba(17,17,17,.9);border:2px solid #333}
+.dot{width:28px;height:28px;border-radius:50%;display:inline-grid;place-items:center;color:#000;font-size:13px;font-weight:900}
+.g{background:#2EC27E}.y{background:#FFC72C}.rd{background:#FC3D21}
+.phone{position:absolute;right:110px;top:300px;width:380px;height:780px;border-radius:40px;border-radius:30px;border:6px solid #1c1f26;box-shadow:0 30px 80px rgba(0,0,0,.8),0 0 0 2px rgba(255,255,255,.08);object-fit:cover;object-position:top;background:#fff}
+.stamp{position:absolute;right:150px;top:210px;font-size:20px;border:3px solid #6FA3FF;color:#6FA3FF;padding:8px 14px;font:800 15px/1 "Helvetica Neue",Arial;letter-spacing:.18em;transform:rotate(-7deg);background:rgba(0,0,0,.6);text-transform:uppercase}
+.foot{position:absolute;left:90px;bottom:44px;font:600 18px/1 "Helvetica Neue",Arial;letter-spacing:.14em;color:#8b94a6;text-transform:uppercase}
+</style></head><body>
+<img class="mars" src="img/mars_sq.jpg">
+<div class="stars"></div><div class="grid"></div><div class="shade"></div>
+<div class="orbit" style="right:-330px;top:-360px;width:1300px;height:1300px"></div>
+<div class="orbit r" style="right:-450px;top:-480px;width:1540px;height:1540px"></div>
+<img class="earth" src="img/bluemarble_sq.jpg"><div class="link"></div><div class="linklbl">EARTH ⇢ MARS · 11.0 MIN</div>
+<div class="c">
+  <div class="eye">NASA Space Apps 2026 · Astronaut health</div>
+  <h1>ASCLEPIUS</h1>
+  <div class="bar"></div>
+  <div class="tag">Medicine for when Earth<br>is too far away.</div>
+  <div class="sub">Offline health check for astronauts that knows whether Earth can answer in time.</div>
+  <div class="chips"><span class="chip"><span class="dot g">✓</span>Earth guides</span><span class="chip"><span class="dot y">→</span>Act, Earth confirms</span><span class="chip"><span class="dot rd">!</span>Crew decides</span></div>
+</div>
+<img class="phone" src="shots/bodymap-phone.png">
+<div class="stamp">Real NASA data</div>
+<div class="foot">Tula Manish · Warangal, India · Images: NASA/JPL/USGS, NASA</div>
+</body></html>
