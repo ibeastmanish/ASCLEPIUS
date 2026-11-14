@@ -1,3 +1,4 @@
+// ASCLEPIUS: TypeScript settings for the app (src/).
 {
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
