@@ -24,6 +24,7 @@ Everything for presenting ASCLEPIUS. Space Apps accepts **one** demo: a video of
 | `ASCLEPIUS_banner_3x2.png` | 3:2: the Space Apps team card |
 | `ASCLEPIUS_banner_4x3.png` | 4:3: clean |
 | `ASCLEPIUS_banner_4x3_maximal.png` | 4:3: art-maximalist collage |
+| `ASCLEPIUS_banner_4x3_teampage.png` | 4:3, centred: the Space Apps team page (it crops and blurs the edges) |
 
 ## Rebuild
 Requires Node 18+ and Google Chrome (set `CHROME_PATH` if Chrome is not in the default macOS location).
