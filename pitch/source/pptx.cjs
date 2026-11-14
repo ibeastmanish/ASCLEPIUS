@@ -11,6 +11,7 @@ const S = [
   ['Proof on real NASA crew data', 'We ran our own rule on NASA\'s Inspiration4 blood data. The day after landing, all four crew had smaller red blood cells than their own lowest pre-flight value, while all four looked normal on the population range. I also found and fixed a shifted row in the NASA file, and reported it to NASA. Four people and a 3-day flight, so this is consistent with our idea, not proof.'],
   ['Delay is delay: impact on Earth', 'The same clock works near Warangal, where the nearest doctor can be hours away: travel time replaces light time, with the daily check in Telugu and Hindi. It is open source, tested with 149 automated tests, and the live demo runs on any phone. Thank you.'],
 ];
+const SCHOOL = process.env.DECK === 'school';
 const pres = new pptxgen();
 pres.layout = 'LAYOUT_WIDE';
 pres.title = 'ASCLEPIUS · NASA Space Apps 2026';
@@ -18,7 +19,7 @@ S.forEach(([title, notes], i) => {
   const s = pres.addSlide();
   s.background = { color: '000000' };
   s.addText(title, { x: 0, y: 0, w: 13.333, h: 0.4, fontSize: 1, color: '000000' }); // searchable title, hidden under the image
-  s.addImage({ path: path.join(__dirname, 'png', `slide-${i + 1}.png`), x: 0, y: 0, w: 13.333, h: 7.5 });
+  s.addImage({ path: path.join(__dirname, 'png', `${SCHOOL ? 'school' : 'slide'}-${i + 1}.png`), x: 0, y: 0, w: 13.333, h: 7.5 });
   s.addNotes(notes);
 });
-pres.writeFile({ fileName: path.join(__dirname, '..', 'ASCLEPIUS_SpaceApps2026_deck.pptx') }).then((f) => console.log('wrote', f));
+pres.writeFile({ fileName: path.join(__dirname, '..', SCHOOL ? 'ASCLEPIUS_SpaceApps2026_deck_school.pptx' : 'ASCLEPIUS_SpaceApps2026_deck.pptx') }).then((f) => console.log('wrote', f));

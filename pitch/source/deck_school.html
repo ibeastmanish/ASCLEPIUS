@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>ASCLEPIUS · science-fair deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@600;700&display=block" rel="stylesheet">
+<style>
+@page { size: 1920px 1080px; margin: 0; }
+:root { --red:#FC3D21; --blue:#0B3D91; --sky:#6FA3FF; --green:#2EC27E; --yellow:#FFC72C; --pink:#FF6FA8; --paper:#0b0c10; }
+* { box-sizing:border-box; margin:0; padding:0 }
+html,body { background:#000 }
+body { font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; color:#fff; -webkit-print-color-adjust:exact; print-color-adjust:exact }
+.slide { position:relative; width:1920px; height:1080px; overflow:hidden; page-break-after:always; break-after:page;
+  background:
+    linear-gradient(90deg, transparent 158px, rgba(252,61,33,.75) 158px, rgba(252,61,33,.75) 161px, transparent 161px),
+    linear-gradient(rgba(255,255,255,.07) 1px, transparent 1px) 0 0/48px 48px,
+    linear-gradient(90deg, rgba(255,255,255,.07) 1px, transparent 1px) 0 0/48px 48px,
+    radial-gradient(circle at 80% 20%, #12152a 0%, var(--paper) 55%); }
+.holes span { position:absolute; left:58px; width:34px; height:34px; border-radius:50%; background:#000; box-shadow: inset 0 3px 6px rgba(255,255,255,.12) }
+.a { position:absolute }
+.marker { font-family:"Permanent Marker", "Marker Felt", cursive; letter-spacing:.01em }
+.hand { font-family:"Caveat", "Bradley Hand", cursive; font-weight:700 }
+.title { left:210px; top:70px; font-size:96px; line-height:1; transform:rotate(-1.5deg); text-shadow: 4px 4px 0 var(--red) }
+.lede { left:214px; font-size:34px; line-height:1.35; color:#e8edf6; max-width:1100px }
+.hl { background:linear-gradient(transparent 52%, rgba(255,199,44,.55) 52%, rgba(255,199,44,.55) 92%, transparent 92%); padding:0 4px }
+.hl.p { background:linear-gradient(transparent 52%, rgba(255,111,168,.5) 52%, rgba(255,111,168,.5) 92%, transparent 92%) }
+.hl.b { background:linear-gradient(transparent 52%, rgba(111,163,255,.5) 52%, rgba(111,163,255,.5) 92%, transparent 92%) }
+.sticky { width:330px; padding:26px 26px 30px; color:#111; box-shadow: 0 18px 30px rgba(0,0,0,.55); }
+.sticky .big { font-family:"Permanent Marker",cursive; font-size:74px; line-height:.95 }
+.sticky .t { font-family:"Caveat",cursive; font-weight:700; font-size:34px; line-height:1.05; margin-top:8px }
+.y { background:#FFE66D } .pk { background:#FF9EC4 } .bl { background:#9CC5FF } .gr { background:#9BE7B9 } .or { background:#FFB37A }
+.tape { position:absolute; width:150px; height:40px; background:repeating-linear-gradient(45deg, rgba(255,199,44,.85) 0 12px, rgba(255,230,140,.85) 12px 24px); box-shadow:0 2px 6px rgba(0,0,0,.35) }
+.tape.pk { background:repeating-linear-gradient(45deg, rgba(255,111,168,.85) 0 12px, rgba(255,170,205,.85) 12px 24px) }
+.tape.bl { background:repeating-linear-gradient(45deg, rgba(111,163,255,.85) 0 12px, rgba(170,200,255,.85) 12px 24px) }
+.polaroid { background:#f4f1ea; padding:16px 16px 58px; box-shadow:0 24px 50px rgba(0,0,0,.7) }
+.polaroid img { display:block; object-fit:cover }
+.polaroid .cap { position:absolute; left:18px; right:18px; bottom:12px; color:#1d1d1d; font-family:"Caveat",cursive; font-weight:700; font-size:30px; text-align:center }
+.shot { border-radius:22px; border:6px solid #f4f1ea; box-shadow:0 24px 50px rgba(0,0,0,.7); object-fit:cover; object-position:top; background:#fff }
+.sticker { border-radius:50%; display:grid; place-items:center; text-align:center; font-family:"Permanent Marker",cursive; color:#111; box-shadow:0 10px 20px rgba(0,0,0,.5), inset 0 0 0 5px rgba(255,255,255,.6) }
+.note { font-family:"Caveat",cursive; font-weight:700; color:var(--yellow); font-size:38px; line-height:1.05 }
+.chip { display:inline-flex; align-items:center; gap:12px; font:800 26px/1 "Helvetica Neue",Arial; padding:14px 20px; border-radius:999px; background:#111; border:3px solid #fff; color:#fff }
+.dot { width:28px; height:28px; border-radius:50%; display:inline-grid; place-items:center; color:#000; font-weight:900; font-size:17px }
+.card { background:rgba(15,17,24,.92); border:3px dashed rgba(255,255,255,.55); border-radius:18px; padding:22px 26px }
+.card h3 { font-family:"Permanent Marker",cursive; font-weight:400; font-size:36px; line-height:1.05 }
+.card p { font-size:25px; line-height:1.35; color:#dfe5f0; margin-top:8px }
+.foot { position:absolute; left:210px; right:80px; bottom:28px; display:flex; justify-content:space-between; font:700 16px/1 "Helvetica Neue",Arial; letter-spacing:.14em; color:#9aa3b5; text-transform:uppercase }
+.src { font-size:17px; color:#9aa3b5 }
+svg.doodle { position:absolute; overflow:visible }
+.doodle path, .doodle circle, .doodle line { fill:none; stroke-linecap:round; stroke-linejoin:round }
+</style></head><body>
+
+<!-- reusable doodles -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <g id="star"><path d="M0,-20 L6,-6 L21,-6 L9,3 L13,18 L0,9 L-13,18 L-9,3 L-21,-6 L-6,-6 Z" stroke="#FFC72C" stroke-width="3" fill="none"/></g>
+    <g id="rocket"><path d="M0,-60 C22,-35 22,10 14,30 L-14,30 C-22,10 -22,-35 0,-60 Z" stroke="#fff" stroke-width="4"/><circle cx="0" cy="-18" r="9" stroke="#6FA3FF" stroke-width="4"/><path d="M-14,14 L-30,36 L-14,30 M14,14 L30,36 L14,30" stroke="#fff" stroke-width="4"/><path d="M-8,34 Q0,62 8,34" stroke="#FC3D21" stroke-width="5"/></g>
+    <g id="arrow"><path d="M0,0 C60,-30 140,-30 200,10" stroke="#fff" stroke-width="4"/><path d="M200,10 L178,-6 M200,10 L176,22" stroke="#fff" stroke-width="4"/></g>
+  </defs>
+</svg>
+
+<!-- 1 COVER -->
+<section class="slide">
+  <div class="holes"><span style="top:140px"></span><span style="top:520px"></span><span style="top:900px"></span></div>
+  <div class="a polaroid" style="right:70px; top:90px; transform:rotate(5deg)"><img src="img/mars_sq.jpg" style="width:540px; height:540px"><span class="cap">Mars ✦ where the doctor isn't</span></div>
+  <div class="tape" style="right:330px; top:62px; transform:rotate(-6deg)"></div>
+  <div class="a polaroid" style="right:560px; top:600px; transform:rotate(-8deg)"><img src="img/bluemarble_sq.jpg" style="width:230px; height:230px"><span class="cap">home (11 min away)</span></div>
+  <div class="tape bl" style="right:610px; top:584px; transform:rotate(9deg); width:110px"></div>
+  <div class="a marker" style="left:210px; top:120px; font-size:30px; color:var(--red); letter-spacing:.06em">NASA SPACE APPS 2026 ✦ SCIENCE FAIR EDITION</div>
+  <div class="a marker" style="left:200px; top:190px; font-size:168px; line-height:.9; transform:rotate(-3deg); text-shadow:7px 7px 0 var(--red), 14px 14px 0 var(--blue)">ASCLEPIUS</div>
+  <div class="a lede" style="top:440px; font-size:52px; font-weight:800; color:#fff; max-width:900px">Medicine for when <span class="hl">Earth is too far away.</span></div>
+  <div class="a lede" style="top:590px; max-width:820px">An offline health check for astronauts that <span class="hl b">knows whether Earth can answer in time</span>.</div>
+  <div class="a sticker y" style="left:230px; top:760px; width:190px; height:190px; font-size:28px; transform:rotate(-12deg)">REAL<br>NASA<br>DATA ✓</div>
+  <div class="a sticker pk" style="left:450px; top:800px; width:160px; height:160px; font-size:24px; transform:rotate(9deg)">NO AI<br>DECIDES</div>
+  <div class="a note" style="left:640px; top:820px; transform:rotate(-3deg); width:400px">by Tula Manish ✦<br>Warangal, India</div>
+  <svg class="doodle" style="left:980px; top:960px" width="10" height="10"><use href="#rocket" transform="rotate(25) scale(1.1)"/></svg>
+  <svg class="doodle" style="left:120px; top:60px" width="10" height="10"><use href="#star" transform="scale(1.1)"/></svg>
+  <svg class="doodle" style="left:1180px; top:120px" width="10" height="10"><use href="#star"/></svg>
+  <div class="foot"><span>Challenge: Health monitoring for astronauts</span><span>Images: NASA/JPL/USGS · NASA</span></div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide">
+  <div class="holes"><span style="top:140px"></span><span style="top:520px"></span><span style="top:900px"></span></div>
+  <div class="a marker title">The problem 😬</div>
+  <div class="a lede" style="top:200px">On Mars, <span class="hl">your doctor is on Earth.</span></div>
+  <div class="a sticky y" style="left:214px; top:300px; transform:rotate(-4deg)"><div class="big">4–22 min</div><div class="t">for a radio message, EACH WAY<br>(11.0 min on 14 Nov 2026)</div></div>
+  <div class="a sticky pk" style="left:590px; top:330px; transform:rotate(3deg)"><div class="big">27 days</div><div class="t">no signal at all — the Sun gets in the way (Mar–Apr 2028)</div></div>
+  <div class="a sticky bl" style="left:330px; top:640px; transform:rotate(2deg); width:560px"><div class="big" style="font-size:56px">74 bpm = fine?</div><div class="t">For most people, yes. For an astronaut whose own normal is 52–62… it's a warning sign!</div></div>
+  <div class="a" style="left:1080px; top:150px; width:700px; height:700px"><img src="img/light_spiral.png" style="width:700px; height:700px"></div>
+  <div class="a note" style="left:1150px; top:860px; width:620px; transform:rotate(-2deg)">↑ every ray = 1 day (2026–29). longer ray = longer wait. yellow = Sun blackout!</div>
+  <svg class="doodle" style="left:960px; top:420px" width="10" height="10"><use href="#arrow" transform="rotate(-10) scale(.6)"/></svg>
+  <div class="foot"><span>Data: NASA JPL Horizons (5.4–20.1 min over 2026–29)</span><span>2 / 7</span></div>
+</section>
+
+<!-- 3 HOW IT WORKS -->
+<section class="slide">
+  <div class="holes"><span style="top:140px"></span><span style="top:520px"></span><span style="top:900px"></span></div>
+  <div class="a marker title">How it works 🔬</div>
+  <div class="a lede" style="top:200px; max-width:900px">Every morning: a <span class="hl">1-minute check</span> of the 6 readings from the challenge.</div>
+  <div class="a card" style="left:214px; top:330px; width:760px; transform:rotate(-1deg)"><h3>① check it twice</h3><p>Against the normal range for adults <b>and</b> against <span class="hl b">your own normal</span> (learned from your first 7 checks). The worse one wins.</p></div>
+  <div class="a card" style="left:240px; top:560px; width:760px; transform:rotate(1deg)"><h3>② show it on a body map</h3><p>Green, yellow or red — tap any colour to see the exact rule and the NASA source behind it.</p></div>
+  <div class="a" style="left:240px; top:800px; display:flex; gap:14px">
+    <span class="chip"><span class="dot" style="background:var(--green)">✓</span>Good</span><span class="chip"><span class="dot" style="background:var(--yellow)">!</span>Check</span><span class="chip"><span class="dot" style="background:var(--red)">✕</span>Act now</span>
+  </div>
+  <img class="a shot" src="shots/bodymap-phone.png" style="right:120px; top:110px; width:430px; height:860px; transform:rotate(4deg)">
+  <div class="tape" style="right:270px; top:94px; transform:rotate(-5deg)"></div>
+  <div class="a sticker gr" style="right:520px; top:760px; width:170px; height:170px; font-size:24px; transform:rotate(-10deg)">works<br>OFFLINE</div>
+  <div class="a note" style="left:1040px; top:420px; transform:rotate(-6deg); width:260px">no AI guessing — just clear rules ✦</div>
+  <div class="foot"><span>Encrypted on the device · simulated crew data</span><span>3 / 7</span></div>
+</section>
+
+<!-- 4 REPLY CLOCK -->
+<section class="slide">
+  <div class="holes"><span style="top:140px"></span><span style="top:520px"></span><span style="top:900px"></span></div>
+  <div class="a marker title">The big idea ⏱️</div>
+  <div class="a lede" style="top:200px; font-size:46px; font-weight:800; color:#fff">Can Earth answer <span class="hl p">before you must act?</span></div>
+  <div class="a card" style="left:214px; top:310px; width:1000px; border-color:var(--yellow)"><p style="font-size:30px; color:#fff; margin:0"><b>Earth's answer</b> = light time there + doctor's reply + light time back</p></div>
+  <div class="a" style="left:214px; top:440px; display:flex; flex-direction:column; gap:16px">
+    <span class="chip" style="border-color:var(--green)"><span class="dot" style="background:var(--green)">✓</span>Earth guides — the answer comes in time</span>
+    <span class="chip" style="border-color:var(--yellow)"><span class="dot" style="background:var(--yellow)">→</span>Act, Earth confirms — just in time</span>
+    <span class="chip" style="border-color:var(--red)"><span class="dot" style="background:var(--red)">!</span>Crew decides — too late, or the Sun blocks it</span>
+  </div>
+  <div class="a sticky or" style="left:1180px; top:430px; transform:rotate(4deg); width:420px"><div class="big" style="font-size:66px">27 vs 10</div><div class="t">dangerous low blood sugar: Earth needs 27 min, you have 10 → CREW DECIDES</div></div>
+  <div class="a sticker bl" style="left:1460px; top:110px; width:230px; height:230px; font-size:30px; transform:rotate(10deg)">real JPL<br>distances<br>every day</div>
+  <div class="a note" style="left:214px; top:770px; width:1000px; transform:rotate(-1deg)">NASA's own plan says the crew must decide when Earth is too far — but gives no levels. this gives it numbers!</div>
+  <svg class="doodle" style="left:1050px; top:890px" width="10" height="10"><use href="#rocket" transform="rotate(60) scale(1.1)"/></svg>
+  <div class="foot"><span>Light time: NASA JPL Horizons · Mars time: NASA GISS Mars24 · NTRS 20250000009</span><span>4 / 7</span></div>
+</section>
+
+<!-- 5 CREW PULSE -->
+<section class="slide">
+  <div class="holes"><span style="top:140px"></span><span style="top:520px"></span><span style="top:900px"></span></div>
+  <div class="a marker title">Crew Pulse 👩‍🚀👨‍🚀</div>
+  <div class="a lede" style="top:200px">One person, <span class="hl">the cabin</span>, or <span class="hl p">something spreading?</span></div>
+  <div class="a sticky gr" style="left:214px; top:310px; transform:rotate(-3deg)"><div class="big" style="font-size:54px">1 person</div><div class="t">→ it's about them. follow their card.</div></div>
+  <div class="a sticky y" style="left:580px; top:330px; transform:rotate(2deg); width:380px"><div class="big" style="font-size:54px">3 of 4, same day</div><div class="t">→ it's the AIR. cabin CO2 = 3.4 mmHg (NASA limit: 3.0)</div></div>
+  <div class="a sticky pk" style="left:330px; top:650px; transform:rotate(-1deg); width:520px"><div class="big" style="font-size:50px">fever, person → person</div><div class="t">Kwame (Sol 208) → Mei (Sol 210) = possible infection. 61% of ISS astronauts shed dormant viruses!</div></div>
+  <img class="a shot" src="shots/pulse-desk-pulsecard.png" style="right:80px; top:200px; width:780px; height:auto; object-fit:contain; transform:rotate(3deg); background:#f4f5f8">
+  <div class="tape pk" style="right:520px; top:204px; transform:rotate(-7deg)"></div>
+  <div class="a sticker bl" style="right:200px; top:700px; width:190px; height:190px; font-size:24px; transform:rotate(10deg)">mood stays<br>PRIVATE</div>
+  <div class="foot"><span>NASA-STD-3001 V2 6004 · NASA OCHMO-TB-004 · simulated crew</span><span>5 / 7</span></div>
+</section>
+
+<!-- 6 PROOF -->
+<section class="slide">
+  <div class="holes"><span style="top:140px"></span><span style="top:520px"></span><span style="top:900px"></span></div>
+  <div class="a marker title">The proof 🧪</div>
+  <div class="a lede" style="top:200px; max-width:1300px">Tested on <span class="hl b">real NASA data</span>: Inspiration4 crew blood tests (OSD-569).</div>
+  <div class="a marker" style="left:214px; top:290px; font-size:64px; line-height:1.1">Normal range: <span style="color:var(--green)">4/4 fine</span><br>Their own normal: <span style="color:var(--red)">4/4 changed!</span></div>
+  <div class="a sticky y" style="left:214px; top:510px; transform:rotate(-3deg)"><div class="big">16/34</div><div class="t">blood markers where your own range beats the "normal" one</div></div>
+  <div class="a sticky pk" style="left:590px; top:530px; transform:rotate(3deg); width:420px"><div class="big" style="font-size:52px">found a NASA data error!</div><div class="t">one row shifted by a column → fixed it, proved it, reported it to NASA ✓</div></div>
+  <div class="a polaroid" style="right:120px; top:160px; transform:rotate(5deg)"><img src="img/blooddraw_panel.jpg" style="width:520px; height:380px; object-position:center 30%"><span class="cap">blood draw on the ISS (NASA)</span></div>
+  <div class="tape" style="right:360px; top:142px; transform:rotate(-4deg)"></div>
+  <div class="a card" style="left:1120px; top:740px; width:640px; transform:rotate(-1deg)"><h3 style="font-size:30px">honest limits</h3><p style="font-size:22px">4 people, a 3-day flight, no tests during flight. It supports the idea — it doesn't prove it.</p></div>
+  <div class="a note" style="left:214px; top:850px; width:820px; transform:rotate(-2deg)">math check: MCH = 13.2 ÷ 4.46 × 10 = 29.6 → it was sitting in the wrong column!</div>
+  <div class="foot"><span>NASA OSDR OSD-569 · rerun it: npm run proof</span><span>6 / 7</span></div>
+</section>
+
+<!-- 7 IMPACT -->
+<section class="slide">
+  <div class="holes"><span style="top:140px"></span><span style="top:520px"></span><span style="top:900px"></span></div>
+  <div class="a marker title">Delay is delay 🌏</div>
+  <div class="a lede" style="top:200px; max-width:1000px">Near Warangal, some villages are <span class="hl">hours from a doctor</span>. Same clock, travel time instead of light time — with the daily check in <span class="hl p">Telugu and Hindi</span>.</div>
+  <div class="a card" style="left:214px; top:420px; width:560px; transform:rotate(-1.5deg)"><h3>Ground Station</h3><p>the flight surgeon's page — gets the signed message only after the real light time, rejects replays, signs the reply</p></div>
+  <div class="a card" style="left:820px; top:440px; width:520px; transform:rotate(1.5deg)"><h3>open + tested</h3><p>MIT licence · 149 automated tests · no server · every rule cited</p></div>
+  <div class="a polaroid" style="right:90px; top:110px; transform:rotate(6deg)"><img src="img/earthrise_sq.jpg" style="width:380px; height:300px; object-position:center 78%"><span class="cap">Earthrise (NASA)</span></div>
+  <div class="tape bl" style="right:240px; top:94px; transform:rotate(-6deg)"></div>
+  <div class="a sticky y" style="left:214px; top:690px; transform:rotate(-2deg); width:760px"><div class="t" style="font-size:34px; margin:0">try it now ➜ ibeastmanish.github.io/ASCLEPIUS<br>code ➜ github.com/ibeastmanish/ASCLEPIUS</div></div>
+  <div class="a marker" style="right:120px; top:640px; font-size:64px; line-height:1; text-align:right; transform:rotate(-3deg); text-shadow:4px 4px 0 var(--red)">Medicine for when<br>Earth is too far away.</div>
+  <div class="a note" style="right:120px; top:820px; text-align:right">thank you! ✦ Tula Manish</div>
+  <div class="a src" style="left:214px; top:900px; width:1100px">Decision support, not a medical device. AI coding assistants helped write and test code and text; the author reviewed the health rules. Pre-event work disclosed with the Local Lead's approval.</div>
+  <svg class="doodle" style="left:1400px; top:900px" width="10" height="10"><use href="#star" transform="scale(1.4)"/></svg>
+  <div class="foot"><span>Team ASCLEPIUS · Tula Manish · Warangal, India</span><span>7 / 7</span></div>
+</section>
+</body></html>
