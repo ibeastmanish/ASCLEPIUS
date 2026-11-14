@@ -48,6 +48,20 @@ A self-assessment tool that crews on Artemis surface missions and future Mars mi
 **Use on Earth**
 The constraints ASCLEPIUS is built for (no internet, help that is hours away, people who are not doctors checking themselves) also exist near our home in Warangal, Telangana, where the nearest doctor can be hours away for some villages. The rural clinic mode and the Telugu daily check are a first step; this use is proposed, not yet tested with such users, and the Telugu text awaits native review.
 
+**The science, step by step**
+1. *Question:* does a personal range catch changes that the population range misses in real astronauts?
+2. *Method:* run the app's own rule (median ± 2.5 × MAD of each person's pre-flight values) on NASA OSDR OSD-569, the Inspiration4 crew's blood tests.
+3. *Check the data first:* one row in NASA's file was shifted by a column. We proved it with the row's own numbers (MCH = haemoglobin ÷ red cells = 29.6, sitting in the MCHC column), corrected it in a documented script, kept the original untouched, and reported it to NASA's OSDR team.
+4. *Result:* the day after landing, all 4 crew had a red-cell size below their own lowest pre-flight value, while all 4 stayed inside the adult range; 16 of 34 markers vary far more between people than within one person.
+5. *Honesty:* an earlier claim built on the shifted row was withdrawn. Limits are stated on screen (4 people, 3-day flight, no in-flight draws, a possible lab change). Anyone can rerun it with `npm run proof`.
+
+**Why it matters, beyond this challenge**
+- *A plausible mission concept.* It gives NASA's Earth-Independent Medical Operations concept concrete autonomy levels, computed from the real Earth–Mars light time and the flight surgeon's shift, and it runs on one tablet with no network.
+- *Space data for everyone.* JPL Horizons distances and OSDR crew data are turned into something a non-doctor can act on in one minute, with every colour traceable to its source.
+- *Life on Earth.* "Delay is delay": the same clock works wherever help is far away, for polar stations, ships, and rural clinics. Near our home in Warangal, Telangana, it can help community health workers (ASHAs) decide what to do when the doctor is hours away, with the daily check in Telugu.
+- *Connecting people.* Open source, offline, and translation-ready (any language can be added beside English and Telugu), so communities anywhere can adapt it.
+- *Science and design together.* A tested rules engine and real NASA data, presented through a body map, a Mars-and-Earth interface and a maximalist pitch deck built from NASA imagery.
+
 **Tools**
 TypeScript, React 19, Vite, vite-plugin-pwa/Workbox, Dexie (IndexedDB), Recharts, WebCrypto, Tauri (Rust) with the team's `aura` OpenPGP library (Sequoia), Vitest + fast-check, Python (NASA data processing).
 
