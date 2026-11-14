@@ -2,8 +2,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { Status } from "../engine/types";
 
 // ------------------------------------------------------------------ router
-export type Route = "home" | "check" | "body" | "trends" | "outbox" | "pulse" | "crew" | "settings";
-const ROUTES: Route[] = ["home", "check", "body", "trends", "outbox", "pulse", "crew", "settings"];
+export type Route = "home" | "check" | "body" | "trends" | "outbox" | "pulse" | "crew" | "story" | "settings";
+const ROUTES: Route[] = ["home", "check", "body", "trends", "outbox", "pulse", "crew", "story", "settings"];
 
 export function currentRoute(): Route {
   const h = location.hash.replace(/^#\/?/, "").split("?")[0] as Route;
@@ -155,7 +155,8 @@ export const NAV: { r: Route; n: string; label: string; title: string; tab?: boo
   { r: "outbox", n: "5.0", label: "Outbox", title: "Earth outbox", tab: true },
   { r: "pulse", n: "6.0", label: "Crew Pulse", title: "Crew Pulse" },
   { r: "crew", n: "7.0", label: "Proof", title: "Crew reference" },
-  { r: "settings", n: "8.0", label: "Settings", title: "Settings" },
+  { r: "story", n: "8.0", label: "Story", title: "Mission Story" },
+  { r: "settings", n: "9.0", label: "Settings", title: "Settings" },
 ];
 
 export function Shell({ route, children, who, sim }: { route: Route; children: ReactNode; who?: ReactNode; sim?: boolean }) {

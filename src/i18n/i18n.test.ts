@@ -72,3 +72,12 @@ describe("rural clinic defaults in the Reply Clock", () => {
     expect(off.oneWayMin).toBeCloseTo(11, 0);
   });
 });
+
+describe("Hindi draft", () => {
+  it("has every key the daily check asks for, and falls back to English for none of them", async () => {
+    const { CHECK_KEYS, HI } = await import("./index");
+    for (const k of CHECK_KEYS) expect(HI[k], k).toBeTruthy();
+    expect(t("screen.title", "hi")).toBe("दैनिक जाँच");
+    expect(t("screen.learning", "hi", { n: 3, need: 7 })).toBe("आपका सामान्य स्तर सीख रहे हैं: 7 में से 3");
+  });
+});

@@ -3,8 +3,9 @@
 // check is translated; every other screen stays in English. Numbers, units
 // (mmHg, bpm, mg/dL, °C, h) and rule IDs never go through here.
 import te from "./te.json";
+import hi from "./hi.json";
 
-export type Lang = "en" | "te";
+export type Lang = "en" | "te" | "hi";
 
 /**
  * English source strings. The keys are what Check.tsx asks for; the test in
@@ -100,6 +101,8 @@ export function flatten(obj: unknown, prefix = ""): Record<string, string> {
 
 export const TE: Dict = flatten(te) as Dict;
 export const TE_META = te._meta;
+export const HI: Dict = flatten(hi) as Dict;
+export const HI_META = hi._meta;
 
 function fill(s: string, vars?: Vars): string {
   return vars ? s.replace(/\{(\w+)\}/g, (m, k: string) => (k in vars ? String(vars[k]) : m)) : s;
@@ -113,12 +116,13 @@ export function makeT(dicts: Partial<Record<Lang, Dict>>) {
   };
 }
 
-export const t = makeT({ te: TE });
+export const t = makeT({ te: TE, hi: HI });
 
 /** Languages offered in Settings. Telugu is a draft until the _meta.reviewedBy field names a reviewer. */
 export const LANGS: { id: Lang; label: string }[] = [
   { id: "en", label: "English" },
   { id: "te", label: `తెలుగు (Telugu, ${TE_META.reviewedBy ? "reviewed" : "draft"})` },
+  { id: "hi", label: `हिन्दी (Hindi, ${HI_META.reviewedBy ? "reviewed" : "draft"})` },
 ];
 
 /** "Delay is delay" Earth mode (PRD v3 6.4): defaults for the rural clinic Reply Clock. */

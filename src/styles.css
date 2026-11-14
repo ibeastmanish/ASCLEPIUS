@@ -128,7 +128,7 @@ svg { display: block; }
 
 @media (max-width: 1560px) { .band-who { display: none; } .nav-item { padding: 0 9px; } }
 @media (max-width: 1180px) { .nav-item .num { display: none; } }
-@media (max-width: 900px) {
+@media (max-width: 1150px) {
   :root { --band-h: 56px; }
   .band { gap: 12px; }
   .band-nav { display: none; }
@@ -581,7 +581,7 @@ table.ruled td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hair)
   font-size: 14px; font-weight: 700; animation: fade 0.3s; display: flex; gap: 10px; align-items: center; white-space: nowrap;
 }
 .toast .sq { width: 10px; height: 10px; background: var(--green); }
-@media (max-width: 900px) { .toast { bottom: calc(76px + env(safe-area-inset-bottom)); } }
+@media (max-width: 1150px) { .toast { bottom: calc(76px + env(safe-area-inset-bottom)); } }
 
 /* Earth link timeline: sent -> received -> earliest reply */
 .link-timeline { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 14px; border-top: 2px solid currentColor; }
@@ -638,7 +638,7 @@ body { background: radial-gradient(1100px 520px at 85% -10%, color-mix(in srgb, 
 .band-who { color: var(--ink-3); } .band-who b { color: var(--ink); }
 .band .tag-sim { color: var(--nasa-red); border-color: var(--nasa-red); border-radius: 6px; }
 .main { padding-top: 4px; }
-@media (max-width: 900px) {
+@media (max-width: 1150px) {
   .band { margin: 8px 8px 0; top: 8px; }
   .band-more a { color: var(--ink-3); border-radius: 8px; }
   .band-more a[aria-current="page"] { color: var(--ink); background: var(--field); box-shadow: none; }
@@ -869,3 +869,27 @@ body { background: radial-gradient(1100px 520px at 85% -10%, color-mix(in srgb, 
 .pulse-co2 { margin-top: 32px; padding: 18px 20px; border: 2px solid var(--rule); border-radius: 14px; display: grid; grid-template-columns: 1fr auto; gap: 16px 24px; align-items: center; }
 .pulse-co2 .row { flex-wrap: wrap; gap: 10px; align-items: flex-end; }
 @media (max-width: 760px) { .pulse-co2 { grid-template-columns: 1fr; } .pulse tbody th { min-width: 120px; } }
+
+/* Mission Story */
+.story-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 40px; align-items: center; margin-top: 12px; padding: 32px; border-radius: 26px; background: #03060d; color: #fff; box-shadow: inset 0 0 0 1px rgb(111 163 255 / 16%); }
+.story-hero .label { color: #FC3D21; }
+.story-hero h2 { font-size: clamp(30px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.03em; margin: 10px 0 14px; color: #fff; }
+.story-hero p { color: #c9d3e6; font-size: 17px; line-height: 1.5; }
+.story-hero .muted { color: #8f9bb3; }
+.story-spiral { width: 100%; height: auto; }
+.ss-big { font: 800 40px/1 var(--font); fill: #fff; letter-spacing: -0.02em; }
+.ss-small { font: 700 12px/1 var(--font); fill: #9fb6e6; letter-spacing: 0.16em; }
+.ss-tick { font: 700 12px/1 var(--font); fill: var(--ink-2); }
+.story-ch { margin-top: 44px; padding-top: 18px; border-top: 2px solid var(--rule); max-width: 900px; }
+.story-ch .label { color: var(--nasa-red); }
+.story-ch h2 { font-size: clamp(26px, 3vw, 40px); line-height: 1.08; letter-spacing: -0.025em; margin: 8px 0 12px; }
+.story-ch p { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 70ch; }
+.story-ch p + p { margin-top: 10px; }
+.story-bar { width: 100%; max-width: 640px; margin-top: 16px; }
+@media (max-width: 900px) { .story-hero { grid-template-columns: 1fr; padding: 22px; gap: 20px; } }
+
+/* Header with 9 items: let the nav shrink before it can touch the Sim tag, and drop the numbers earlier. */
+.band-nav { flex: 1 1 auto; min-width: 0; }
+.band-right { flex: none; }
+@media (max-width: 1520px) { .band .nav-item .num { display: none; } .band .nav-item { padding: 0 8px; } }
+@media (max-width: 1180px) { .band .nav-item { padding: 0 6px; font-size: 14px; } }

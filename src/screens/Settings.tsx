@@ -105,7 +105,7 @@ export function Settings() {
           <div className="seg" aria-label="Language for the daily check">
             {LANGS.map((l) => <button key={l.id} aria-pressed={lang === l.id} data-testid={`lang-${l.id}`} onClick={() => void setLang(l.id)}>{l.label}</button>)}
           </div>
-          <p className="small muted">Only the daily check changes language. The Telugu text is a machine-assisted draft awaiting native review (docs/i18n); rules, thresholds and colours do not change.</p>
+          <p className="small muted">Only the daily check changes language. The Telugu and Hindi texts are machine-assisted drafts awaiting native review (src/i18n); rules, thresholds and colours do not change.</p>
         </section>
 
         <section className="panel">

@@ -2,6 +2,13 @@
 
 All notable changes. Dates are 2026 (IST). The `pre-event` git tag marks the code that existed before NASA Space Apps 2026 (see [`docs/pre-event-disclosure.md`](docs/pre-event-disclosure.md)).
 
+## [3.1.0] - 2026-11-14
+### Added
+- **Mission Story** screen: one week on Mars in six chapters, every number computed live; data-art spiral of daily Earth–Mars light time 2026–2029 (JPL Horizons).
+- **Hindi** daily check (draft) beside Telugu; `CONTRIBUTING.md` with a 30-minute guide to add a language.
+### Changed
+- Header: compact menu below 1150 px; nav numbers hidden below 1520 px, so nine items never touch the Sim tag.
+
 ## [3.0.0] - 2026-11-13
 Renamed HYGIEA → **ASCLEPIUS**. Built after the `pre-event` tag with the Local Lead's approval.
 

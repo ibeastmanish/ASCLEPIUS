@@ -125,9 +125,9 @@ export function Check() {
         <span>{dayLabel(day)} · {fmtDate(today)} · {profile.name}</span>
         <span>{tx("screen.about_one_minute")}</span>
       </TopBar>
-      {lang === "te" && (
+      {(lang === "te" || lang === "hi") && (
         <p className="small muted" role="note" data-testid="draft-badge" style={{ margin: "0 0 12px", display: "flex", flexWrap: "wrap", alignItems: "center", gap: "6px 10px" }}>
-          <span className="tag tag-warn" style={{ whiteSpace: "normal" }}><span className="sw" />{tr("screen.draft_badge", "te")}</span>
+          <span className="tag tag-warn" style={{ whiteSpace: "normal" }}><span className="sw" />{tr("screen.draft_badge", lang)}</span>
           <span>{tr("screen.draft_badge", "en")}</span>
         </p>
       )}

@@ -17,8 +17,8 @@ export interface Settings {
   /** Mission-clock date override (YYYY-MM-DD) for demos and blackout tests; empty = real today. */
   dateOverride?: string;
   reminderHour: number;
-  /** UI language for the daily check ("te" = Telugu draft). */
-  lang?: "en" | "te";
+  /** UI language for the daily check ("te" = Telugu draft, "hi" = Hindi draft). */
+  lang?: "en" | "te" | "hi";
   /**
    * "Delay is delay" Earth mode (PRD v3 S2): the far end is a rural clinic, the
    * link is travel time to its doctor, and the clinic's opening hours replace the

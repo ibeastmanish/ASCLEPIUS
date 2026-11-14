@@ -1,0 +1,87 @@
+{
+  "_meta": {
+    "language": "hi",
+    "screen": "Daily check (src/screens/Check.tsx)",
+    "status": "DRAFT translation written with an AI assistant. A fluent Hindi speaker must review every line before it is relied on.",
+    "reviewedBy": null,
+    "numbers": "Western digits and the units mmHg, bpm, mg/dL, °C stay as they are."
+  },
+  "screen": {
+    "title": "दैनिक जाँच",
+    "about_one_minute": "लगभग एक मिनट",
+    "your_normal": "आपका सामान्य:",
+    "learning": "आपका सामान्य स्तर सीख रहे हैं: {need} में से {n}",
+    "not_due_today": "आज ज़रूरी नहीं",
+    "resting_note": "7 दिन से स्थिर और आपके सामान्य दायरे में: समय बचाने के लिए हर 2-3 दिन में पूछा जाता है।",
+    "add_tile": "{tile} जोड़ें",
+    "how_to_measure": "{tile} कैसे मापें",
+    "finish": "जाँच पूरी करें",
+    "finish_alert": "पूरा करें और CMO को सूचित करें",
+    "finish_alert_note": "जाँच पूरी करते ही क्रू मेडिकल ऑफ़िसर को अभी सूचना जाएगी।",
+    "fix_first": "पहले \"दोबारा मापें\" वाली संख्या ठीक करें।",
+    "saving": "सहेज रहे हैं…",
+    "indicators": "{n} संकेतक",
+    "note_one": "1 नोट",
+    "notes": "{n} नोट",
+    "no_notes": "कोई नोट नहीं",
+    "nothing_leaves": "कुछ भी इस डिवाइस से बाहर नहीं जाता",
+    "draft_badge": "मसौदा अनुवाद · मूल वक्ता द्वारा समीक्षा बाकी"
+  },
+  "tiles": {
+    "bp": "रक्तचाप (बीपी)",
+    "bp_sys": "सिस्टोलिक (ऊपरी)",
+    "bp_dia": "डायस्टोलिक (निचला)",
+    "hr": "हृदय गति",
+    "glucose": "ब्लड शुगर",
+    "temp": "तापमान",
+    "sleep": "नींद",
+    "sleep_unit": "घं",
+    "mood": "मनोदशा",
+    "mood_scale": "मनोदशा, 1 से 5"
+  },
+  "mood_words": [
+    "बहुत खराब",
+    "खराब",
+    "ठीक-ठाक",
+    "अच्छा",
+    "बहुत अच्छा"
+  ],
+  "status": {
+    "green": "अच्छा",
+    "yellow": "जाँचें",
+    "red": "तुरंत कदम उठाएँ",
+    "invalid": "दोबारा मापें",
+    "none": "जाँच नहीं हुई"
+  },
+  "context": {
+    "heading": "संदर्भ",
+    "question": "कुछ बताना है?",
+    "exercise": "व्यायाम के बाद",
+    "eva": "EVA (अंतरिक्ष-चहलकदमी) के बाद",
+    "caffeine": "कैफ़ीन",
+    "meal": "खाने के बाद",
+    "medication": "दवा",
+    "woke": "अभी-अभी जागे",
+    "unwell": "तबीयत ठीक नहीं",
+    "dizzy": "खड़े होने पर चक्कर",
+    "paused_note": "इस माप के लिए कुछ व्यक्तिगत नियम रोके गए हैं। खतरे के संकेत कभी नहीं रोके जाते।"
+  },
+  "symptoms": {
+    "heading": "खतरे के संकेत",
+    "question": "क्या अभी इनमें से कुछ है?",
+    "rule": "कोई भी खतरे का संकेत लाल है।",
+    "chest_pain": "सीने में दर्द",
+    "breathing": "साँस लेने में दिक्कत",
+    "fainting": "बेहोशी",
+    "weakness": "अचानक कमज़ोरी या सुन्नपन",
+    "confusion": "उलझन / भ्रम",
+    "headache": "तेज़ सिरदर्द"
+  },
+  "perfusion": {
+    "optional": "वैकल्पिक",
+    "title": "परफ़्यूज़न जाँच",
+    "tag": "· वैकल्पिक, प्रायोगिक",
+    "intro": "कैमरे से परफ़्यूज़न की स्व-जाँच। यह छह ज़रूरी मापों में शामिल नहीं; एक मिनट हो तो आज़माएँ।",
+    "add": "परफ़्यूज़न जाँच जोड़ें (कैमरा)"
+  }
+}

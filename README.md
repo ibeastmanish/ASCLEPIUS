@@ -15,7 +15,7 @@ An offline health check for astronauts that knows whether Earth can answer in ti
 
 <p align="center">
   <a href="https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml"><img src="https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <img src="https://img.shields.io/badge/tests-148%20passing-2EC27E" alt="148 tests passing">
+  <img src="https://img.shields.io/badge/tests-149%20passing-2EC27E" alt="149 tests passing">
   <img src="https://img.shields.io/badge/NASA%20data-JPL%20Horizons%20%C2%B7%20OSDR%20%C2%B7%20NASA--STD--3001-0B3D91" alt="NASA data">
   <img src="https://img.shields.io/badge/works-offline-6FA3FF" alt="Works offline">
   <img src="https://img.shields.io/badge/licence-MIT-lightgrey" alt="MIT licence">
@@ -74,7 +74,8 @@ Along the way we found and fixed a **data error in the NASA file** and reported 
 
 ### Plus
 - **Ground Station console**: a second page for the flight surgeon. Messages arrive only after the real light time, the crew's signature is checked, replays are rejected, and the signed reply reaches the crew one light time later.
-- **Delay is delay**: the same clock helps rural health workers near Warangal, using travel time to the doctor and clinic hours instead of light time. The daily check is available in Telugu (draft).
+- **Mission Story**: a scroll-through story of one week on Mars, told with live numbers from the same NASA data and engine. It opens with a data-art spiral of every day's Earth–Mars light time from 2026 to 2029.
+- **Delay is delay**: the same clock helps rural health workers near Warangal, using travel time to the doctor and clinic hours instead of light time. The daily check is available in **Telugu and Hindi** (drafts), and [anyone can add a language](CONTRIBUTING.md) in about 30 minutes.
 
 ## Screens
 
@@ -86,6 +87,7 @@ Along the way we found and fixed a **data error in the NASA file** and reported 
     <td align="center" width="25%"><img src="pitch/source/shots/proof-phone.png" alt="Proof on NASA Inspiration4 data"><br><sub><b>Proof</b>: NASA Inspiration4 data</sub></td>
   </tr>
 </table>
+<p align="center"><img src="pitch/source/shots/story-desk.png" alt="Mission Story: data-art spiral of Earth–Mars light time" width="80%"><br><sub><b>Mission Story</b>: every ray is one day, 2026–2029; its length is the real light time (NASA JPL Horizons); yellow rays are the Sun blackout</sub></p>
 <p align="center"><img src="pitch/source/shots/ground-desk.png" alt="Ground Station console" width="80%"><br><sub><b>Ground Station console</b>: the flight surgeon's side</sub></p>
 <p align="center"><sub>All crew shown are simulated and labelled so in the app.</sub></p>
 
@@ -96,6 +98,7 @@ Along the way we found and fixed a **data error in the NASA file** and reported 
 4. Do a new check with blood sugar **48** → **Act now**. The Reply Clock says *crew decides*.
 5. Open the **[Ground Station](https://ibeastmanish.github.io/ASCLEPIUS/ground.html)** in a second tab and switch on **×60 time warp**. The message arrives after the light time; write a reply, and the crew tab shows *Earth answered*.
 6. *Settings → Mar 20, 2028* replays the Sun blackout: every finding becomes *crew decides*.
+7. Open **Story** for the whole idea in one scroll, or switch the daily check to Telugu or Hindi in *Settings*.
 
 ## How it works
 
@@ -168,13 +171,13 @@ git clone https://github.com/ibeastmanish/ASCLEPIUS.git
 cd ASCLEPIUS
 npm install
 npm run dev          # https://localhost:5173 (self-signed; WebCrypto needs a secure context)
-npm test             # 148 tests
+npm test             # 149 tests
 npm run build        # dist/: crew app (index.html) + Ground Station (ground.html)
 npm run proof        # rebuilds the NASA OSD-569 result from the raw files
 ```
 
 <details>
-<summary><b>Tests (148)</b></summary>
+<summary><b>Tests (149)</b></summary>
 
 - Every rule at, just below and just above each threshold, driven from `rules.json` (schema-validated).
 - Property tests (fast-check, thousands of random checks): invalid input is never coloured; the overall colour is never greener than any reading; a red flag is always red; any warning symptom makes the check red.
@@ -218,7 +221,7 @@ npm run desktop:build      # ASCLEPIUS.app + .dmg in src-tauri/target/release/bu
 - **AI assistance.** AI coding assistants (Claude Code) helped research, write and test the code and draft the documents; those commits carry a `Co-Authored-By` line. The health rules, medical wording and data analysis were reviewed by the author. **No AI makes health decisions in the app.** No AI-generated images, video or audio are used.
 
 ## More
-[Docs index](docs/README.md) · [PRD](docs/prd-v3.md) · [Submission text](docs/submission.md) · [Pre-event disclosure](docs/pre-event-disclosure.md) · [Changelog](CHANGELOG.md) · [Security](SECURITY.md) · [Pitch materials](pitch/README.md)
+[Docs index](docs/README.md) · [PRD](docs/prd-v3.md) · [Submission text](docs/submission.md) · [Pre-event disclosure](docs/pre-event-disclosure.md) · [Changelog](CHANGELOG.md) · [Contributing and translations](CONTRIBUTING.md) · [Security](SECURITY.md) · [Pitch materials](pitch/README.md)
 
 ## Licence and credits
 **MIT** (see [LICENSE](LICENSE)). Built with React, Vite, TypeScript, Dexie, Recharts, Workbox, Vitest and fast-check (MIT / Apache-2.0).
