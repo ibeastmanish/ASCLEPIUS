@@ -133,7 +133,12 @@
       <div class="card" style="flex:1; border-color:var(--yellow)"><span class="chip"><span class="dot y">→</span>Act, Earth confirms</span><p>Start the steps now; Earth confirms in time.</p></div>
       <div class="card" style="flex:1; border-color:var(--red)"><span class="chip"><span class="dot rd">!</span>Crew decides</span><p>The answer comes too late, or the Sun blocks the link.</p></div>
     </div>
-    <img class="shot" src="shots/home-desk-rc.png" style="position:absolute; left:96px; top:670px; width:1010px; height:290px; object-fit:contain; background:#f4f5f8">
+    <div style="position:absolute; left:96px; top:668px; width:1010px">
+      <div style="font:800 18px/1 'Helvetica Neue',Arial; letter-spacing:.24em; color:#FC3D21; text-transform:uppercase">Autonomy Forecast · every mission day, 2026–29</div>
+      <img src="img/forecast_chart.png" style="display:block; width:1010px; height:auto; margin-top:12px; border-radius:10px">
+      <p style="font-size:21px; line-height:1.4; color:#dfe6f2; margin-top:12px">Emergency: crew decides on all <b>1,157</b> days · 4-hour problem: Earth guides <b class="gr">605</b> days, crew decides <b class="r">461</b> · <b class="yl">27 days</b> fully alone in 2028.</p>
+      <p style="font-size:19px; color:#9fb6e6; margin-top:6px">🔒 Every report is signed, encrypted and padded to the same size, so even its size can't reveal an emergency.</p>
+    </div>
     <div class="card" style="position:absolute; left:1150px; top:670px; width:674px">
       <h3>Example: red result</h3>
       <p>On 14 Nov 2026 Earth's earliest answer is <b class="r">27 min</b> if the surgeon is on shift, <b class="r">52 min</b> if they must be paged. You must act within <b>10 min</b>. Either way: <b class="r">crew decides.</b></p>
@@ -156,6 +161,7 @@
       <div class="card" style="border-color:var(--red)"><h3><span class="dot rd" style="margin-right:12px">3</span>Several crew, same day</h3><p>Suspect the <b>cabin air</b>. Today: 3 of 4 crew have a headache or short sleep, and cabin CO2 reads <b class="r">3.4 mmHg</b>, above NASA's <b>3 mmHg</b> limit.</p></div>
       <div class="card" style="border-color:var(--yellow)"><h3><span class="dot y" style="margin-right:12px">→</span>Fever moving person to person</h3><p>Possible infection: Kwame (Sol 208) → Mei (Sol 210). 61% of ISS astronauts shed dormant viruses, mostly without symptoms.</p></div>
     </div>
+    <div class="card" style="position:absolute; right:96px; top:760px; width:720px; border-color:var(--sky)"><h3>👁 Weekly eye check (SANS)</h3><p style="font-size:22px">Amsler grid + faint letters, each eye compared with your own past results. On the ISS, the grid runs on a laptop.</p></div>
     <p class="src" style="max-width:1000px">CO2: NASA-STD-3001 Vol 2 [V2 6004], NASA OCHMO-TB-004 · Viruses: Rooney et al. 2019 · Mood stays private · <span class="sim">Simulated crew data</span></p>
   </div>
   <img class="shot" src="shots/pulse-desk-pulsecard.png" style="position:absolute; right:96px; top:340px; width:720px; height:auto; object-fit:contain; background:#f4f5f8">
@@ -196,8 +202,9 @@
       <div class="card" style="flex:1"><h3>Ground Station</h3><p>A second page gets the signed, encrypted summary only after the real light time, checks the signature, rejects replays, and signs the reply.</p></div>
       <div class="card" style="flex:1"><h3>Open and tested</h3><p>MIT licence · 162 automated tests · no server · every rule cited (NASA-STD-3001 where it sets a limit).</p></div>
     </div>
-    <p class="lede" style="font-size:28px; margin-top:34px"><b class="s">Live demo</b> ibeastmanish.github.io/ASCLEPIUS &nbsp;·&nbsp; <b class="s">Code</b> github.com/ibeastmanish/ASCLEPIUS</p>
-    <p class="src" style="font-size:17px; max-width:1150px">Decision support, not a medical device. AI coding assistants helped write and test code and text; the team reviewed the health rules. Pre-event work disclosed with the Local Lead's approval. Image: NASA (Blue Marble).</p>
+    <p class="lede" style="font-size:26px; margin-top:26px; max-width:1180px; color:#fff"><b class="r">As far as I could find, no public NASA tool does this.</b> It turns NASA's own idea of Earth-independent medicine into numbers.</p>
+    <p class="lede" style="font-size:28px; margin-top:18px"><b class="s">Live demo</b> ibeastmanish.github.io/ASCLEPIUS &nbsp;·&nbsp; <b class="s">Code</b> github.com/ibeastmanish/ASCLEPIUS</p>
+    <p class="src" style="font-size:17px; max-width:1150px">Decision support, not a medical device. AI coding assistants helped write and test code and text; the team reviewed the health rules. Image: NASA (Blue Marble).</p>
   </div>
   <div class="foot"><span>Team ASCLEPIUS · Tula Manish · Warangal, India</span><span>7 / 7</span></div>
 </section>
