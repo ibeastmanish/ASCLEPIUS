@@ -1,0 +1,104 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#FC3D21;--blue:#0B3D91;--sky:#6FA3FF;--green:#2EC27E;--yellow:#FFC72C}
+body{width:1600px;height:1200px;overflow:hidden;background:#000;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;color:#fff;position:relative}
+.abs{position:absolute}
+.mono{font-family:ui-monospace,Menlo,monospace}
+.stars{inset:0;background-image:radial-gradient(1.6px 1.6px at 120px 80px,#fff 50%,transparent 51%),radial-gradient(1px 1px at 300px 400px,#cfe0ff 50%,transparent 51%),radial-gradient(1.3px 1.3px at 700px 120px,#fff 50%,transparent 51%),radial-gradient(1px 1px at 980px 520px,#fff 50%,transparent 51%),radial-gradient(1.6px 1.6px at 520px 300px,#fff 50%,transparent 51%),radial-gradient(1px 1px at 860px 60px,#cfe0ff 50%,transparent 51%),radial-gradient(1.2px 1.2px at 200px 650px,#fff 50%,transparent 51%);background-size:900px 700px}
+.grid{inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:80px 80px}
+.ht{border-radius:50%;background-image:radial-gradient(circle,var(--c) 2px,transparent 2.6px);background-size:16px 16px;-webkit-mask-image:radial-gradient(circle,#000 25%,transparent 70%);mask-image:radial-gradient(circle,#000 25%,transparent 70%)}
+.orbit{border-radius:50%;border:1.5px solid rgba(111,163,255,.4)}
+.orbit.r{border-color:rgba(252,61,33,.55);border-style:dashed}
+.photo{object-fit:cover;box-shadow:0 20px 60px rgba(0,0,0,.8)}
+.polaroid{background:#f2f0ea;padding:14px 14px 46px;box-shadow:0 24px 60px rgba(0,0,0,.85)}
+.polaroid img{display:block;object-fit:cover}
+.polaroid span{position:absolute;left:16px;bottom:12px;color:#222;font:700 15px/1 ui-monospace,Menlo,monospace;letter-spacing:.06em}
+.tape{background:rgba(255,199,44,.75);height:34px;width:130px;box-shadow:0 2px 6px rgba(0,0,0,.3)}
+.phone{border-radius:34px;border:7px solid #15181f;box-shadow:0 30px 80px rgba(0,0,0,.9),0 0 0 2px rgba(255,255,255,.1);object-fit:cover;object-position:top;background:#fff}
+.stamp{border:4px solid var(--red);color:var(--red);padding:10px 18px;font:900 24px/1 "Helvetica Neue",Arial;letter-spacing:.2em;text-transform:uppercase;background:rgba(0,0,0,.55)}
+.stamp.b{border-color:var(--sky);color:var(--sky)}
+.stamp.y{border-color:var(--yellow);color:var(--yellow)}
+.stamp.g{border-color:var(--green);color:var(--green)}
+.call{font:700 15px/1.35 ui-monospace,Menlo,monospace;letter-spacing:.06em;color:#cfe0ff;text-transform:uppercase}
+.call b{display:block;font:900 54px/1 "Helvetica Neue",Arial;letter-spacing:-.02em;color:#fff;text-transform:none;margin-bottom:6px}
+.tick{height:2px;background:rgba(255,255,255,.7)}
+.band{left:-100px;width:1900px;height:58px;background:var(--red);transform:rotate(-6deg);display:flex;align-items:center;white-space:nowrap;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.band div{font:900 30px/1 "Helvetica Neue",Arial;letter-spacing:.14em;color:#000;text-transform:uppercase}
+.echo{font:900 230px/1 "Helvetica Neue",Arial;letter-spacing:.02em;color:transparent;-webkit-text-stroke:2px rgba(111,163,255,.35)}
+h1{font:900 196px/.86 "Helvetica Neue",Arial;letter-spacing:.01em;text-shadow:0 10px 40px rgba(0,0,0,.9)}
+.tag{font:800 54px/1.05 "Helvetica Neue",Arial;letter-spacing:-.01em;text-shadow:0 4px 24px rgba(0,0,0,.95)}
+.tag em{font-style:normal;color:var(--red)}
+.chip{display:inline-flex;align-items:center;gap:10px;font:800 22px/1 "Helvetica Neue",Arial;padding:12px 18px;border-radius:999px;background:rgba(10,10,12,.92);border:2px solid #3a3f4a}
+.dot{width:26px;height:26px;border-radius:50%;display:inline-grid;place-items:center;color:#000;font-size:15px;font-weight:900}
+.ticket{background:#f2f0ea;color:#111;padding:14px 18px;font:700 14px/1.5 ui-monospace,Menlo,monospace;letter-spacing:.05em;box-shadow:0 18px 40px rgba(0,0,0,.8)}
+.ticket b{font:900 22px/1 "Helvetica Neue",Arial;letter-spacing:.04em;display:block;margin-bottom:6px}
+.barcode{height:44px;margin-top:8px;background:repeating-linear-gradient(90deg,#111 0 3px,transparent 3px 5px,#111 5px 6px,transparent 6px 10px,#111 10px 14px,transparent 14px 16px)}
+.cross{width:26px;height:26px}
+.cross::before,.cross::after{content:"";position:absolute;background:var(--sky)}
+.cross::before{left:12px;top:0;width:2px;height:26px}.cross::after{top:12px;left:0;height:2px;width:26px}
+</style></head><body>
+
+<!-- deep layers -->
+<img class="abs photo" src="img/mars_sq.jpg" style="right:-430px;top:-180px;width:1350px;height:1350px;border-radius:50%;box-shadow:none">
+<div class="abs stars"></div><div class="abs grid"></div>
+<div class="abs" style="inset:0;background:linear-gradient(90deg,#000 0%,rgba(0,0,0,.92) 34%,rgba(0,0,0,.45) 60%,rgba(0,0,0,0) 100%)"></div>
+<div class="abs ht" style="--c:rgba(111,163,255,.7);left:-260px;top:-260px;width:900px;height:900px"></div>
+<div class="abs ht" style="--c:rgba(252,61,33,.6);left:520px;top:620px;width:760px;height:760px"></div>
+<div class="abs orbit" style="right:-560px;top:-420px;width:1700px;height:1700px"></div>
+<div class="abs orbit r" style="right:-700px;top:-560px;width:1980px;height:1980px"></div>
+<div class="abs orbit" style="left:-180px;top:780px;width:620px;height:620px"></div>
+<div class="abs echo" style="left:40px;top:6px">ASCLEPIUS</div>
+
+<!-- red band -->
+<div class="abs band" style="top:780px"><div>Medicine for when Earth is too far away ✦ Sol 212 ✦ Jezero ✦ 11.0 light-minutes ✦ Medicine for when Earth is too far away ✦ Sol 212 ✦ Jezero ✦</div></div>
+
+<!-- collage photos -->
+<div class="abs polaroid" style="right:36px;top:24px;transform:rotate(7deg)"><img src="img/earthrise_sq.jpg" style="width:230px;height:170px;object-position:center 78%"><span>EARTHRISE · NASA</span></div>
+<div class="abs tape" style="right:120px;top:14px;transform:rotate(-4deg)"></div>
+<div class="abs polaroid" style="left:820px;top:880px;transform:rotate(-7deg)"><img src="img/blooddraw_panel.jpg" style="width:250px;height:180px;object-position:center 30%"><span>OSD-569 · INSPIRATION4</span></div>
+<div class="abs tape" style="left:900px;top:872px;transform:rotate(5deg)"></div>
+<img class="abs photo" src="img/bluemarble_sq.jpg" style="left:680px;top:548px;width:120px;height:120px;border-radius:50%;box-shadow:0 0 50px rgba(111,163,255,.8)">
+
+<!-- phones -->
+<img class="abs phone" src="shots/bodymap-phone.png" style="right:70px;top:250px;width:360px;height:740px;transform:rotate(4deg)">
+<img class="abs phone" src="shots/pulse-phone-pulsecard.png" style="right:380px;top:470px;width:300px;height:330px;transform:rotate(-6deg);object-fit:contain;background:#f4f5f8;border-radius:22px">
+
+<!-- light path -->
+<div class="abs" style="left:808px;top:600px;width:90px;height:3px;background:repeating-linear-gradient(90deg,#fff 0 10px,transparent 10px 18px);transform:rotate(-14deg);transform-origin:left"></div>
+<div class="abs mono call" style="left:640px;top:690px">EARTH ⇢ MARS · 11.0 MIN</div>
+
+<!-- type -->
+<div class="abs" style="left:70px;top:70px;font:800 20px/1 'Helvetica Neue',Arial;letter-spacing:.32em;color:var(--red)">NASA SPACE APPS 2026 · CHALLENGE: ASTRONAUT HEALTH</div>
+<h1 class="abs" style="left:62px;top:116px">ASCLEPIUS</h1>
+<div class="abs" style="left:70px;top:300px;width:560px;height:8px;background:var(--red)"></div>
+<div class="abs tag" style="left:70px;top:336px;width:820px">Medicine for when Earth<br>is <em>too far away.</em></div>
+
+<!-- data callouts -->
+<div class="abs call" style="left:70px;top:500px"><b>27 <span style="font-size:28px;color:var(--sky)">vs</span> 10 min</b>Earth's answer vs<br>time to act</div>
+<div class="abs tick" style="left:70px;top:610px;width:240px"></div>
+<div class="abs call" style="left:490px;top:500px"><b style="color:var(--red)">4/4</b>crew changed vs<br>their own normal</div>
+<div class="abs call" style="left:70px;top:640px"><b>3.4 <span style="font-size:26px;color:var(--yellow)">mmHg</span></b>cabin CO2 · NASA limit 3.0</div>
+
+<!-- chips -->
+<div class="abs" style="left:70px;top:900px;display:flex;flex-direction:column;gap:12px">
+  <span class="chip"><span class="dot" style="background:var(--green)">✓</span>Earth guides</span>
+  <span class="chip"><span class="dot" style="background:var(--yellow)">→</span>Act, Earth confirms</span>
+  <span class="chip"><span class="dot" style="background:var(--red)">!</span>Crew decides</span>
+</div>
+
+<!-- ticket -->
+<div class="abs ticket" style="left:420px;top:910px;width:300px;transform:rotate(3deg)"><b>MISSION LOG</b>CREW: 4 · SOL 212<br>BASE: JEZERO 18.4°N 77.5°E<br>LINK: JPL HORIZONS<br>RULES: NASA-STD-3001<div class="barcode"></div></div>
+
+<!-- stamps -->
+<div class="abs stamp" style="left:300px;top:742px;transform:rotate(-8deg)">Crew decides</div>
+<div class="abs stamp b" style="right:470px;top:318px;transform:rotate(-6deg)">Real NASA data</div>
+<div class="abs stamp y" style="right:470px;top:860px;transform:rotate(-4deg)">No AI decisions</div>
+<div class="abs stamp g" style="left:1150px;top:1040px;transform:rotate(5deg)">Offline · encrypted</div>
+
+<!-- crosshairs & marks -->
+<div class="abs cross" style="left:900px;top:430px"></div><div class="abs cross" style="left:1500px;top:1120px"></div><div class="abs cross" style="left:40px;top:860px"></div>
+<div class="abs mono" style="left:930px;top:436px;font-size:13px;color:#9fb6e6;letter-spacing:.1em">FIG. 01 · REPLY CLOCK</div>
+
+<!-- footer -->
+<div class="abs mono" style="left:70px;bottom:28px;font-size:16px;letter-spacing:.12em;color:#aab3c4">TULA MANISH · WARANGAL, INDIA · IMAGES: NASA/JPL/USGS, NASA · SIMULATED CREW DATA</div>
+</body></html>
