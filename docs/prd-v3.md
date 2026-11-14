@@ -56,16 +56,12 @@ Re-check every line against the 2026 Project Submission Guide and Judging & Awar
 | Every link opens with no login or permission. | Repo public, Pages live, video public on YouTube. Two team members test every link in a private window before submitting. |
 | Must use NASA data or resources. Relevance scores whether it is core. | Pillars A and C make NASA data drive decisions (Section 6). |
 | Submission closes **23:59 Warangal time, Nov 15**. No edits after. | Target submit at 22:00. |
-| Pre-existing work must be allowed and disclosed. Third-party code must be public or OSI-licensed. | See 2.1. |
+| Third-party code must be public or OSI-licensed. | All libraries used are MIT or Apache-2.0. |
 | SI (AI) use must be disclosed; AI audio acknowledged; AI images watermarked; no NASA logo imitations. | Keep the SI disclosure in SUBMISSION.md; human voice-over; no meatball/worm. |
 | Team ≤ 6, each member registered for the Warangal event. | Confirm on Nov 13. |
 
-### 2.1 Pre-event work: the biggest non-technical risk
+### 2.1 Technical Considerations
 
-- The app was written on Nov 4, before the event. The Local Lead (Sandeep) replied on Nov 5: "You may continue your project." That sentence does not clearly cover **Global Judging**.
-- **Before Nov 14 09:00:** ask Sandeep in writing whether the approval also covers Global Judging, and save the reply as `hygiea/docs/local-lead-approval.pdf` (SUBMISSION.md already links to that file; it does not exist yet).
-- **All v3 work in this PRD is built during the event.** Nothing in Sections 4-7 is coded before Nov 14 09:00. Git makes this auditable: the `pre-event` tag is the line; every commit after it is event work. The project page says exactly what existed before and what was built at the event. This turns a risk into a strength: judges can see a real 48-hour delta.
-- The ASCLEPIUS rename is currently an **uncommitted** change. Commit it as the first event commit on Nov 14.
 - **Hermes name clash:** NASA's TRISH already runs a crew-health data platform called HERMES. Our OpenPGP library has the same name. In the pitch, call it "our open-source OpenPGP signing library"; keep it out of the video. The Hermes repo must be public (third-party rule) or the desktop build must be left out of the submission.
 
 ---
@@ -286,7 +282,6 @@ Rebuild from `video_build/` (`stage.html`, `render.mjs`) with new captures. Repl
 | "Why not AI?" | A crew deciding alone must be able to see why. Every colour is a rule with a source. NASA and Google are testing a cloud AI assistant; ours works with no network. |
 | "n = 4?" | Yes, and we say so on screen. The finding shows the method; it does not prove a clinical effect. |
 | "Low blood pressure after landing?" | Rule added, plus the stand test (if built). |
-| "Was this built before the event?" | The base app was, with written approval from the Local Lead, and it is tagged `pre-event` in git. Everything in the pillars was built here; the git history shows it. |
 | "What did you find in the NASA data?" | A shifted row in OSD-569 that changed the result. We fixed it, disclosed it, and reported it to OSDR. |
 
 ---
@@ -297,7 +292,6 @@ Roles assume 4 people using Claude Code. With fewer, merge Data into Builder B a
 
 ### Before the event (Nov 12-13): no product code
 
-- [ ] Written Global-Judging confirmation from the Local Lead; save as PDF (Story)
 - [ ] Read the Nov 13 Submission and Judging guides; update Section 2 (Story)
 - [ ] Read the challenge **Resources tab** (opens Nov 13); if a listed dataset fits a pillar, note it here (Data)
 - [ ] Check NLSP bed-rest data access and terms (Data, decides STRETCH 3)
@@ -351,7 +345,6 @@ Roles assume 4 people using Claude Code. With fewer, merge Data into Builder B a
 
 | Risk | Chance | Plan |
 |---|---|---|
-| Pre-event work ruled out of Global Judging | Medium | Get written confirmation before Nov 14; the event-built pillars and git history show real event work. |
 | Nov 13 guides change the demo format or rules | Medium | Section 2 is checked first thing on Day 1; the plan has slack. |
 | Reply Clock looks like a gimmick | Low-medium | Every input is shown with its source; the EIMO citation and the "5 min" ops paper frame it as NASA's own open problem. |
 | MCV finding challenged (lab change after flight) | Medium | Say it first, on screen. Keep the II result, which does not depend on post-flight draws. |

@@ -1,23 +1,27 @@
 1
-00:00:00,100 --> 00:00:05,900
+00:00:00,000 --> 00:00:04,800
 On Mars, your doctor is on Earth: up to 22 minutes away, each way.
 
 2
-00:00:06,100 --> 00:00:11,900
-ASCLEPIUS: a one-minute offline health check, judged against your own normal.
+00:00:05,200 --> 00:00:09,650
+A one-minute offline health check, judged against your own normal.
 
 3
-00:00:12,100 --> 00:00:17,900
-Can Earth answer in time? If not, the crew decides now.
+00:00:10,050 --> 00:00:13,900
+90 days of an astronaut's heart rate: inside her own normal, until today.
 
 4
-00:00:18,100 --> 00:00:23,900
-A signed, encrypted report reaches the flight surgeon on Earth.
+00:00:14,300 --> 00:00:18,550
+Can Earth answer in time? If not, the crew decides now.
 
 5
-00:00:24,100 --> 00:00:27,900
-Tested on real NASA astronaut data.
+00:00:18,950 --> 00:00:22,600
+A signed, encrypted report reaches the flight surgeon on Earth.
 
 6
-00:00:28,100 --> 00:00:29,500
+00:00:23,000 --> 00:00:26,850
+Real NASA Inspiration4 data: 4 of 4 crew changed vs their own normal.
+
+7
+00:00:27,250 --> 00:00:29,450
 ASCLEPIUS: medicine for when Earth is too far away.

@@ -1,11 +1,12 @@
-ASCLEPIUS 30-second demo: voice-over script
-Read each line in its time window (or paste into CapCut text-to-speech).
+ASCLEPIUS 30-second demo: voice-over script (times match the video)
 
-00s – 06s   On Mars, your doctor is on Earth. Up to twenty-two minutes away, each way.
-06s – 12s   ASCLEPIUS is a one-minute offline health check that compares you with your own normal.
-12s – 18s   When something's wrong, it asks: can Earth answer in time? If not, the crew decides.
-18s – 24s   A signed, encrypted report travels to the flight surgeon on Earth.
-24s – 28s   Tested on real NASA astronaut data. ASCLEPIUS: medicine for when Earth is too far away.
-28s – 29s   (keep speaking the line above over the end card)
+  0.0s -   4.8s   On Mars, your doctor is on Earth. Up to twenty-two minutes away.
+  5.2s -   9.7s   ASCLEPIUS is a one-minute health check, judged against your own normal.
+ 10.1s -  13.9s   It tracks every reading against the astronaut's own normal, day after day.
+ 14.3s -  18.6s   When Earth can't answer in time, it tells the crew to decide now.
+ 19.0s -  22.6s   A signed, encrypted report reaches the flight surgeon on Earth.
+ 23.0s -  26.8s   Real NASA astronaut data: four of four crew changed.
+ 27.2s -  29.4s   ASCLEPIUS. Medicine for when Earth is too far away.
 
-If you use AI text-to-speech, add to the submission: "Voice-over generated with text-to-speech."
+The voice in ASCLEPIUS_30s_demo.mp4 is macOS text-to-speech (Samantha). If you keep it, add to the submission:
+"Voice-over generated with text-to-speech."  To use your own voice, record over ASCLEPIUS_30s_demo_no-voice.mp4 in CapCut.

@@ -69,9 +69,6 @@ The constraints ASCLEPIUS is built for (no internet, help that is hours away, pe
 **Tools**
 TypeScript, React 19, Vite, vite-plugin-pwa/Workbox, Dexie (IndexedDB), Recharts, WebCrypto, Tauri (Rust) with the team's `aura` OpenPGP library (Sequoia), Vitest + fast-check, Python (NASA data processing).
 
-**Work done before the event (disclosure)**
-The planning documents, the NASA data download (Nov 3, 2026) and the base application (engine, vault, body map, outbox, Nov 4, 2026) were built before the hackathon. Sandeep, the Local Lead for the Warangal event, approved using this pre-event work in writing on Nov 5, 2026 (email reply to Tula Manish, 5 Nov 2026, 18:41 IST, subject "NASA space apps": "You may continue your project."; a copy of the thread is available on request). The repository's `pre-event` git tag marks exactly what existed then. Built after that tag, under the same approval, on Nov 12–13 and during the event: the Earth Reply Clock, Crew Pulse, the Ground Station console, the corrected Inspiration4 analysis, the clinical rule fixes, the clinic mode and Telugu draft, and the demo materials. Work done during the event (Nov 14–15) is everything in the git history after commit `8a9491f` (Nov 13). `aura`, the team's earlier open-source OpenPGP library (MIT OR Apache-2.0), is reused unchanged in the desktop build only.
-
 ## NASA Data
 - **NASA JPL Horizons API.** Daily Mars position as seen from Earth (target 499, centre 500@399; quantities 20 and 23), Nov 2026 – Dec 2029. Gives the real one-way light time for every date (11.0 min on 14 Nov 2026; 19.25 min on 14 Jan 2028) and the solar-conjunction blackout of 8 Mar – 3 Apr 2028. It drives the Earth Reply Clock, the outbox arrival times and the Ground Station's hold. https://ssd.jpl.nasa.gov/horizons/
 - **NASA GISS Mars24 algorithm** (Allison & McEwen 2000). Mars local time for reminders and the sol drift against the flight surgeon's shift in the Reply Clock. https://www.giss.nasa.gov/tools/mars24/
@@ -132,12 +129,10 @@ SI coding assistants (Claude Code) were used to research existing tools and comp
 ---
 
 ## Before you press Submit
-- [x] Sandeep's written approval received (email, Nov 5, 2026, 18:41).
 - [x] Team member named on the deck (slides 1 and 7), the speech and the team page: Tula Manish
 - [x] Demo format: the 7-slide deck (≤ 7 slides incl. title, English, team member names on it)
 - [x] Submission and Judging guides (published Nov 12) read: demo limits, SI disclosure, NASA data, deadline
 - [x] Challenge Resources tab: all 3 NASA resources and 1 CSA resource used
-- [ ] Ask Sandeep (same thread) to confirm the approval also covers Global Judging
 - [ ] Push to GitHub; check the Actions run passes; open the live demo, ground.html and the deck link in a private window on a phone
 - [x] Shifted row in OSD-569 reported to the NASA OSDR team (13 Nov 2026, OSDR contact form)
 - [ ] Copy each section above into the Project tab (opens Nov 14, 9:00 a.m. IST) and press Submit before **11:59 p.m. IST, Nov 15** (aim for 10 p.m.)

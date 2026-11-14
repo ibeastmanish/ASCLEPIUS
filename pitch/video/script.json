@@ -1,40 +1,60 @@
 [
   {
     "clip": "s1_story",
-    "dur": 6,
+    "start": 1.0,
+    "dur": 5.2,
+    "transition": "fade",
     "caption": "On Mars, your doctor is on Earth: up to 22 minutes away, each way.",
-    "voice": "On Mars, your doctor is on Earth. Up to twenty-two minutes away, each way."
+    "voice": "On Mars, your doctor is on Earth. Up to twenty-two minutes away."
   },
   {
     "clip": "s2_check",
-    "dur": 6,
-    "caption": "ASCLEPIUS: a one-minute offline health check, judged against your own normal.",
-    "voice": "ASCLEPIUS is a one-minute offline health check that compares you with your own normal."
+    "start": 0.5,
+    "dur": 5.2,
+    "transition": "slideleft",
+    "caption": "A one-minute offline health check, judged against your own normal.",
+    "voice": "ASCLEPIUS is a one-minute health check, judged against your own normal."
+  },
+  {
+    "clip": "s6_trends",
+    "dur": 4.6,
+    "transition": "wipeleft",
+    "caption": "90 days of an astronaut's heart rate: inside her own normal, until today.",
+    "voice": "It tracks every reading against the astronaut's own normal, day after day."
   },
   {
     "clip": "s3_alert",
-    "dur": 6,
-    "caption": "Can Earth answer in time? If not, the crew decides now.",
-    "voice": "When something's wrong, it asks: can Earth answer in time? If not, the crew decides.",
+    "start": 0.6,
+    "dur": 5.0,
+    "transition": "fadeblack",
     "pos": "top",
-    "sim": true
+    "sim": true,
+    "sfx": "alert",
+    "caption": "Can Earth answer in time? If not, the crew decides now.",
+    "voice": "When Earth can't answer in time, it tells the crew to decide now."
   },
   {
     "clip": "s4_ground",
-    "dur": 6,
+    "offset": 2.2,
+    "dur": 4.4,
+    "transition": "smoothleft",
     "caption": "A signed, encrypted report reaches the flight surgeon on Earth.",
-    "voice": "A signed, encrypted report travels to the flight surgeon on Earth."
+    "voice": "A signed, encrypted report reaches the flight surgeon on Earth."
   },
   {
     "clip": "s5_proof",
-    "dur": 4,
-    "caption": "Tested on real NASA astronaut data.",
-    "voice": "Tested on real NASA astronaut data. ASCLEPIUS: medicine for when Earth is too far away."
+    "start": 0.8,
+    "dur": 4.6,
+    "transition": "slideleft",
+    "caption": "Real NASA Inspiration4 data: 4 of 4 crew changed vs their own normal.",
+    "voice": "Real NASA astronaut data: four of four crew changed."
   },
   {
     "end": true,
-    "dur": 1.6,
+    "dur": 2.6,
+    "transition": "circleopen",
+    "sfx": "chime",
     "caption": "ASCLEPIUS: medicine for when Earth is too far away.",
-    "voice": "(keep speaking the line above over the end card)"
+    "voice": "ASCLEPIUS. Medicine for when Earth is too far away."
   }
 ]

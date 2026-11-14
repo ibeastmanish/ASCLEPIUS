@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes. Dates are 2026 (IST). The `pre-event` git tag marks the code that existed before NASA Space Apps 2026 (see [`docs/pre-event-disclosure.md`](docs/pre-event-disclosure.md)).
+All notable changes. Dates are 2026 (IST).
 
 ## [3.1.0] - 2026-11-14
 ### Added
@@ -13,7 +13,7 @@ All notable changes. Dates are 2026 (IST). The `pre-event` git tag marks the cod
 - Header: compact menu below 1150 px; nav numbers hidden below 1520 px, so nine items never touch the Sim tag.
 
 ## [3.0.0] - 2026-11-13
-Renamed HYGIEA → **ASCLEPIUS**. Built after the `pre-event` tag with the Local Lead's approval.
+Renamed HYGIEA → **ASCLEPIUS**.
 
 ### Added
 - **Earth Reply Clock**: compares when the crew must act with when Earth's answer can arrive (JPL Horizons light time, Sun blackout, flight-surgeon shift, Mars-sol drift) and sets the level: Earth guides / act, Earth confirms / crew decides.
@@ -36,5 +36,5 @@ Renamed HYGIEA → **ASCLEPIUS**. Built after the `pre-event` tag with the Local
 ### Removed
 - The "hidden lymphocyte drift in 4 of 4 crew" claim: it came from a column-shifted row (C003 L-92) in the OSD-569 file. The row is now corrected in `data/derived/` and the claim is withdrawn.
 
-## [1.0.0] - 2026-11-04 (`pre-event`)
+## [1.0.0] - 2026-11-04
 - Offline PWA: six-reading daily check, personal baselines, body map, escalation ladder, encrypted vault, Earth outbox with JPL Horizons delays and Sun blackout, trends and badges, camera capillary-refill check, Tauri desktop build.

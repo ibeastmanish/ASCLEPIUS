@@ -9,7 +9,9 @@ fs.mkdirSync(RAW, { recursive: true });
 const SIZE = { width: 1920, height: 1080 };
 const cuts = {};
 
+const ONLY = process.env.ONLY;
 async function scene(browser, name, url, run) {
+  if (ONLY && ONLY !== name) return;
   const ctx = await browser.newContext({ viewport: SIZE, ignoreHTTPSErrors: true, recordVideo: { dir: RAW, size: SIZE } });
   const page = await ctx.newPage();
   const t0 = Date.now();
@@ -45,7 +47,7 @@ async function scene(browser, name, url, run) {
   });
 
   // 4. Ground Station: the sealed alert arrives after the (x60) light time and is opened.
-  {
+  if (!ONLY || ONLY === 's4_ground') {
     const ctx = await b.newContext({ viewport: SIZE, ignoreHTTPSErrors: true, recordVideo: { dir: RAW, size: SIZE } });
     const ground = await ctx.newPage();
     const t0 = Date.now(); const t = () => (Date.now() - t0) / 1000;
@@ -79,6 +81,18 @@ async function scene(browser, name, url, run) {
     await p.waitForSelector('.stats, .proof-stats', { timeout: 20000 }); const start = t() + 0.5; await p.waitForTimeout(5500); return { start };
   });
 
-  fs.writeFileSync(path.join(RAW, 'cuts.json'), JSON.stringify(cuts, null, 2));
+  // 6. Trends: an astronaut's heart rate over the mission against her own normal band (graph).
+  await scene(b, 's6_trends', '?video=outbox', async (p, t) => {
+    await p.waitForTimeout(4500);
+    await p.evaluate(() => (location.hash = '#/trends')); await p.waitForTimeout(1200);
+    const hr = p.getByRole('tab', { name: /Heart rate/ }); if (await hr.count()) await hr.first().click();
+    const r90 = p.getByRole('button', { name: /^90/ }); if (await r90.count()) await r90.first().click();
+    await p.waitForTimeout(600); const start = t();
+    await p.evaluate(() => document.querySelector('.recharts-responsive-container, .chart-head')?.scrollIntoView({ block: 'center' }));
+    await p.waitForTimeout(5500); return { start };
+  });
+
+  const prev = fs.existsSync(path.join(RAW, 'cuts.json')) ? JSON.parse(fs.readFileSync(path.join(RAW, 'cuts.json'), 'utf8')) : {};
+  fs.writeFileSync(path.join(RAW, 'cuts.json'), JSON.stringify({ ...prev, ...cuts }, null, 2));
   await b.close();
 })();

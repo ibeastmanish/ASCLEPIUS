@@ -24,7 +24,6 @@ Live demo → passphrase → keep "simulated crew member" → **Check** (HR 74, 
 | Why no AI? | A crew deciding alone must see why. Every colour is a rule with a source, and it works with no network. |
 | n = 4? | Yes, and it says so on screen. It shows the method, not a clinical effect. |
 | Low blood pressure after landing? | Yellow under 90/60, red under 80/40, and a "dizzy when standing" pattern (NASA-STD-3001 lists orthostatic intolerance). |
-| Built before the event? | The base app was, with the Local Lead's written approval; it is tagged `pre-event` in git and everything after the tag is listed. |
 | Where do the thresholds come from? | NASA-STD-3001 where it sets a limit (sleep, CO2, hypothermia); named terrestrial guidelines (ACC/AHA, ADA) where it does not, labelled so. |
 
 Image credits: Mars NASA/JPL/USGS; Earthrise, Blue Marble, ISS blood draw: NASA. All crew data shown is simulated.

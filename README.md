@@ -208,7 +208,7 @@ src/            the app: engine/ (rules, Reply Clock, Crew Pulse), screens/, ui/
 index.html      crew tablet          ground.html   Ground Station console
 analysis/       Python: NASA data processing and the OSD-569 proof
 data/           raw/ (NASA downloads, untouched) · derived/ (corrected CBC) · manifest.json (provenance)
-docs/           PRD, product brief, submission text, pre-event disclosure, translations
+docs/           PRD, product brief, submission text, translations
 pitch/          deck (PDF, PPTX), speech, banners, script and Q&A, and their sources
 src-tauri/      optional desktop build (Tauri + OpenPGP)
 ```
@@ -233,7 +233,7 @@ npm run desktop:build      # ASCLEPIUS.app + .dmg in src-tauri/target/release/bu
 - **AI assistance.** AI coding assistants (Claude Code) helped research, write and test the code and draft the documents; those commits carry a `Co-Authored-By` line. The health rules, medical wording and data analysis were reviewed by the author. **No AI makes health decisions in the app.** No AI-generated images, video or audio are used.
 
 ## More
-[Docs index](docs/README.md) · [PRD](docs/prd-v3.md) · [Submission text](docs/submission.md) · [Pre-event disclosure](docs/pre-event-disclosure.md) · [Changelog](CHANGELOG.md) · [Contributing and translations](CONTRIBUTING.md) · [Security](SECURITY.md) · [Pitch materials](pitch/README.md)
+[Docs index](docs/README.md) · [PRD](docs/prd-v3.md) · [Submission text](docs/submission.md) · [Changelog](CHANGELOG.md) · [Contributing and translations](CONTRIBUTING.md) · [Security](SECURITY.md) · [Pitch materials](pitch/README.md)
 
 ## Licence and credits
 **MIT** (see [LICENSE](LICENSE)). Built with React, Vite, TypeScript, Dexie, Recharts, Workbox, Vitest and fast-check (MIT / Apache-2.0).
