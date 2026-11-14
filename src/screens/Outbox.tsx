@@ -16,6 +16,7 @@ import type { OutboxMessage } from "../storage/events";
 import { outboxView } from "../storage/projection";
 import { G, StatusBadge, TopBar, chartColors, fmtMinutes, useDark } from "../ui/ui";
 import { LinkTimeline } from "../ui/link";
+import { AutonomyForecast } from "../ui/forecast";
 import { EarthBanner } from "./Home";
 
 const TA: CSSProperties = {
@@ -66,6 +67,7 @@ export function Outbox() {
         ))}
       </div>
       <GroundLink link={link} />
+      {state.profile?.mission === "mars" && <AutonomyForecast today={today} lonE={state.profile.baseLonE} />}
       <DelayChart />
     </>
   );

@@ -2,8 +2,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import type { Status } from "../engine/types";
 
 // ------------------------------------------------------------------ router
-export type Route = "home" | "check" | "body" | "trends" | "outbox" | "pulse" | "crew" | "story" | "settings";
-const ROUTES: Route[] = ["home", "check", "body", "trends", "outbox", "pulse", "crew", "story", "settings"];
+export type Route = "home" | "check" | "body" | "trends" | "outbox" | "pulse" | "crew" | "story" | "settings" | "eyes";
+const ROUTES: Route[] = ["home", "check", "body", "trends", "outbox", "pulse", "crew", "story", "settings", "eyes"];
 
 export function currentRoute(): Route {
   const h = location.hash.replace(/^#\/?/, "").split("?")[0] as Route;

@@ -104,5 +104,13 @@ export function ashaEvents(today: string): HEvent[] {
     if (day === 211) { v.sleep = 5.4; v.mood = 4; }
     run(date, day, v, tags);
   }
+  // Weekly eye checks (SANS) on the last four Sundays-ish: clear grid, contrast at step 6.
+  for (const back of [28, 21, 14, 7]) {
+    const date = addDays(today, -back);
+    events.push({ type: "EyeCheckRecorded", ts: at(date, 30), check: {
+      id: `seed-eyes-${date}`, ts: at(date, 30), date,
+      tests: [{ eye: "left", amslerCells: [], contrastStep: back === 14 ? 5 : 6 }, { eye: "right", amslerCells: [], contrastStep: 6 }],
+    } });
+  }
   return events;
 }

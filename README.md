@@ -15,7 +15,7 @@ An offline health check for astronauts that knows whether Earth can answer in ti
 
 <p align="center">
   <a href="https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml"><img src="https://github.com/ibeastmanish/ASCLEPIUS/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
-  <img src="https://img.shields.io/badge/tests-151%20passing-2EC27E" alt="151 tests passing">
+  <img src="https://img.shields.io/badge/tests-162%20passing-2EC27E" alt="162 tests passing">
   <img src="https://img.shields.io/badge/NASA%20data-JPL%20Horizons%20%C2%B7%20OSDR%20%C2%B7%20NASA--STD--3001-0B3D91" alt="NASA data">
   <img src="https://img.shields.io/badge/works-offline-6FA3FF" alt="Works offline">
   <img src="https://img.shields.io/badge/licence-MIT-lightgrey" alt="MIT licence">
@@ -39,7 +39,7 @@ There is no doctor on board. The crew needs to know two things fast: *is this se
 
 Every morning the astronaut does a **one-minute check** of the six readings in the challenge: blood pressure, heart rate, blood sugar, temperature, sleep and mood. Each reading is judged twice, against the **usual adult range** and against **the astronaut's own learned normal**. The worse result wins. The answer appears on a clickable body map, in green, yellow or red, and every colour shows the rule and the NASA source behind it. **No AI makes health decisions.**
 
-Then it does three things that, as far as we could find, no other entry or tool does:
+Then it does five things that, as far as we could find, no other entry or tool does:
 
 ### 1 · Earth Reply Clock: *can Earth answer before you must act?*
 ```
@@ -71,6 +71,17 @@ The app's own personal-range rule was run on **NASA OSDR OSD-569**, blood counts
 > **Population range: 4 of 4 fine. Personal range: 4 of 4 changed.**
 
 Along the way we found and fixed a **data error in the NASA file** and reported it to NASA ([details below](#a-data-error-we-found-in-nasas-file)).
+
+### 4 · Autonomy Forecast: *when will the crew be on its own?*
+The Reply Clock run for **every day of the mission** (all 1,157 days from Nov 2026 to Dec 2029, at the crew's 07:00 Mars-time check). It shows ahead of time:
+- an **emergency** is always the crew's call on Mars (Earth can never answer within 10 minutes);
+- a **4-hour problem** flips between *Earth guides* (605 days) and *crew decides* (461 days) as the Mars day drifts against Houston's shift;
+- **27 days fully alone** in the 2028 Sun blackout, with a checklist of what to prepare from 30 days before.
+
+NASA's Earth-independent medical operations concept describes *why* crews must decide alone; as far as we could find, no tool shows *when*, day by day.
+
+### 5 · Weekly eye check for SANS
+Long missions can change astronauts' eyes (Spaceflight-Associated Neuro-ocular Syndrome). On the ISS the in-flight check includes an **Amsler grid on a laptop**. ASCLEPIUS does it on the tablet, adds a **faint-letter contrast test** (a direction NASA Ames is researching), and compares each eye with **your own** earlier results. Screens aren't calibrated, so it never diagnoses; it says when to tell the medical officer. We found no astronaut self-check app that does this.
 
 ### Plus
 - **Ground Station console**: a second page for the flight surgeon. Messages arrive only after the real light time, the crew's signature is checked, replays are rejected, and the signed reply reaches the crew one light time later.
@@ -172,13 +183,13 @@ git clone https://github.com/ibeastmanish/ASCLEPIUS.git
 cd ASCLEPIUS
 npm install
 npm run dev          # https://localhost:5173 (self-signed; WebCrypto needs a secure context)
-npm test             # 151 tests
+npm test             # 162 tests
 npm run build        # dist/: crew app (index.html) + Ground Station (ground.html)
 npm run proof        # rebuilds the NASA OSD-569 result from the raw files
 ```
 
 <details>
-<summary><b>Tests (151)</b></summary>
+<summary><b>Tests (162)</b></summary>
 
 - Every rule at, just below and just above each threshold, driven from `rules.json` (schema-validated).
 - Property tests (fast-check, thousands of random checks): invalid input is never coloured; the overall colour is never greener than any reading; a red flag is always red; any warning symptom makes the check red.

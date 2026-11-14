@@ -1,3 +1,4 @@
+import type { EyeCheck } from "../engine/eyes";
 // Append-only event log (PRD 8.1). Current state is always rebuilt from these.
 import type { Baseline, CheckResult, ContextTag, Indicator, MissionSetting, Symptom } from "../engine/types";
 
@@ -73,6 +74,7 @@ export type HEvent =
   | { type: "CheckCompleted"; ts: string; result: CheckResult }
   | { type: "BaselineUpdated"; ts: string; checkId: string; baseline: Baseline }
   | { type: "MessageQueued"; ts: string; message: OutboxMessage }
-  | { type: "CmoAlerted"; ts: string; checkId: string; reason: string };
+  | { type: "CmoAlerted"; ts: string; checkId: string; reason: string }
+  | { type: "EyeCheckRecorded"; ts: string; check: EyeCheck };
 
 export type HEventType = HEvent["type"];

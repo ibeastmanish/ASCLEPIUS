@@ -1,5 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { CheckResult } from "../engine/types";
+import type { EyeCheck } from "../engine/eyes";
 import { ashaEvents } from "../seed/asha";
 import type { HEvent, Profile, Settings } from "../storage/events";
 import { project, type AppState } from "../storage/projection";
@@ -48,6 +49,7 @@ export interface App {
   unlock(passphrase: string): Promise<boolean>;
   lock(): void;
   submit(draft: Draft): Promise<CheckResult>;
+  recordEye(check: EyeCheck): Promise<void>;
   setSettings(s: Partial<Settings>): Promise<void>;
   setProfile(p: Profile): Promise<void>;
   erase(): Promise<void>;
@@ -177,6 +179,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
       setLastResult(result);
       if (result.overall === "red") notifyCmo(result);
       return result;
+    },
+
+    async recordEye(check) {
+      await append([{ type: "EyeCheckRecorded", ts: check.ts, check }]);
     },
 
     async setSettings(s) {

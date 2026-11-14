@@ -893,3 +893,53 @@ body { background: radial-gradient(1100px 520px at 85% -10%, color-mix(in srgb, 
 .band-right { flex: none; }
 @media (max-width: 1520px) { .band .nav-item .num { display: none; } .band .nav-item { padding: 0 8px; } }
 @media (max-width: 1180px) { .band .nav-item { padding: 0 6px; font-size: 14px; } }
+
+/* Autonomy Forecast */
+.af { margin-top: 48px; }
+.af-lede { margin-top: 8px; max-width: 72ch; color: var(--ink-2); font-size: 16px; }
+.af-chart { margin-top: 18px; display: grid; gap: 10px; }
+.af-row { display: grid; grid-template-columns: 220px 1fr; gap: 14px; align-items: center; }
+.af-label { font-size: 14px; font-weight: 700; color: var(--ink); }
+.af-track { position: relative; height: 30px; border-radius: 8px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--hair); }
+.af-track svg { display: block; width: 100%; height: 100%; }
+.af-today { position: absolute; top: -2px; bottom: -2px; width: 3px; margin-left: -1px; background: var(--ink); box-shadow: 0 0 0 1px var(--page); }
+.af-axis { position: relative; height: 22px; margin-left: 234px; font-size: 12px; font-weight: 700; color: var(--ink-3); }
+.af-axis span { position: absolute; top: 4px; transform: translateX(-50%); white-space: nowrap; }
+.af-axis .af-bo { color: var(--nasa-red); top: 4px; }
+.af-axis .af-tl { color: var(--ink); top: 4px; }
+.af-legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 8px; font-size: 13px; font-weight: 700; }
+.af-legend span { display: inline-flex; align-items: center; gap: 8px; }
+.af-legend i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+.af-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.af-facts div { border-top: 2px solid var(--rule); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.af-facts b { font-size: 18px; letter-spacing: -0.01em; }
+.af-facts span { font-size: 14px; color: var(--ink-2); line-height: 1.45; }
+.af-prep { margin-top: 18px; padding: 16px 18px; border: 2px solid var(--nasa-red); border-radius: 14px; }
+.af-prep ol { margin: 8px 0 0; padding-left: 20px; font-size: 15px; line-height: 1.5; }
+@media (max-width: 760px) {
+  .af-row { grid-template-columns: 1fr; gap: 4px; }
+  .af-axis { margin-left: 0; }
+  .af-facts { grid-template-columns: 1fr; }
+}
+
+/* Eye check */
+.eye-card { margin-top: 12px; max-width: 760px; }
+.eye-card h2 { font-size: clamp(24px, 2.6vw, 34px); line-height: 1.1; letter-spacing: -0.02em; margin: 8px 0 10px; }
+.eye-card p { font-size: 17px; line-height: 1.5; color: var(--ink-2); }
+.eye-card ol { margin: 12px 0 16px; padding-left: 20px; font-size: 16px; line-height: 1.55; }
+.amsler { position: relative; display: grid; width: min(100%, 520px); aspect-ratio: 1; background: #fff; border: 3px solid #000; margin-top: 14px; }
+.amsler button { border: 0; border-right: 1px solid #000; border-bottom: 1px solid #000; background: #fff; padding: 0; min-width: 0; min-height: 0; cursor: pointer; }
+.amsler button.on { background: var(--yellow); box-shadow: inset 0 0 0 2px var(--red); }
+.amsler-dot { position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: #000; pointer-events: none; }
+.contrast-box { display: grid; place-items: center; width: min(100%, 420px); aspect-ratio: 4 / 3; background: #fff; border: 2px solid var(--hair); border-radius: 12px; margin-top: 14px; }
+.contrast-box span { font: 700 140px/1 Helvetica, Arial, sans-serif; letter-spacing: 0.05em; }
+.eye-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
+.eye-res { border-top: 3px solid var(--green); padding-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.eye-res.s-yellow { border-color: var(--yellow); } .eye-res.s-red { border-color: var(--red); }
+.eye-res ul { margin: 4px 0 0; padding-left: 18px; font-size: 14px; line-height: 1.45; }
+@media (max-width: 640px) { .eye-results { grid-template-columns: 1fr; } .contrast-box span { font-size: 110px; } }
+.home-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 18px; }
+.home-link { display: flex; flex-direction: column; gap: 4px; padding: 16px 18px; border-radius: 14px; border: 2px solid var(--rule); color: var(--ink); text-decoration: none; background: var(--page); }
+.home-link b { font-size: 20px; }
+.home-link:hover { background: var(--field); }
+@media (max-width: 640px) { .home-links { grid-template-columns: 1fr; } }

@@ -124,6 +124,10 @@ export function Home() {
       </div>
 
       {latestClock && <ReplyClockCard clock={latestClock} />}
+      <div className="home-links">
+        <a className="home-link" href="#/eyes"><span className="label">Weekly · SANS</span><b>Eye check</b><span className="small">{state.eyeChecks.length ? `Last on ${fmtDate(state.eyeChecks.at(-1)!.date)}` : "Not done yet"} · Amsler grid + faint letters</span></a>
+        {p.mission === "mars" && <a className="home-link" href="#/outbox"><span className="label">Mission planning</span><b>Autonomy Forecast</b><span className="small">When the crew will be on its own, 2026–2029</span></a>}
+      </div>
 
       <Specimens check={latest} />
 

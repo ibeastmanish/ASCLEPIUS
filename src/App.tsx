@@ -5,6 +5,7 @@ import { Check } from "./screens/Check";
 import { Crew } from "./screens/Crew";
 import { CrewPulse } from "./screens/CrewPulse";
 import { Story } from "./screens/Story";
+import { EyeCheck } from "./screens/EyeCheck";
 import { Home } from "./screens/Home";
 import { Settings } from "./screens/Settings";
 import { Unlock } from "./screens/Unlock";
@@ -14,7 +15,7 @@ const Trends = lazy(() => import("./screens/Trends").then((m) => ({ default: m.T
 const Outbox = lazy(() => import("./screens/Outbox").then((m) => ({ default: m.Outbox })));
 import { Shell, useRoute, type Route } from "./ui/ui";
 
-const VIDEO_ROUTE: Record<string, Route> = { check: "check", bodymap: "body", proof: "crew", outbox: "outbox", alert: "body", pulse: "pulse", story: "story" };
+const VIDEO_ROUTE: Record<string, Route> = { check: "check", bodymap: "body", proof: "crew", outbox: "outbox", alert: "body", pulse: "pulse", story: "story", eyes: "eyes" };
 
 function Screens() {
   const app = useApp();
@@ -47,6 +48,7 @@ function Screens() {
       {route === "pulse" && <CrewPulse />}
       {route === "crew" && <Crew />}
       {route === "story" && <Story />}
+      {route === "eyes" && <EyeCheck />}
       {route === "settings" && <Settings />}
     </Shell>
   );

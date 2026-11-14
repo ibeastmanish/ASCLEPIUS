@@ -4,6 +4,8 @@ All notable changes. Dates are 2026 (IST). The `pre-event` git tag marks the cod
 
 ## [3.1.0] - 2026-11-14
 ### Added
+- **Autonomy Forecast** (Earth screen): the Reply Clock for all 1,157 mission days at the 07:00 Mars-time check; emergency / 4-hour / routine rows; 27-day blackout; preparation checklist.
+- **Weekly eye check (SANS)**: Amsler grid + contrast letters per eye, judged against the astronaut's own history (EY-* rules), saved encrypted as `EyeCheckRecorded` events.
 - **Traffic padding** for Earth messages (format v3): every message is padded to 4 KB blocks before AES-GCM, so a red alert and a digest look identical in size. Idea from the author's earlier project Hermes, implemented fresh. v1 messages still open.
 - **Mission Story** screen: one week on Mars in six chapters, every number computed live; data-art spiral of daily Earth–Mars light time 2026–2029 (JPL Horizons).
 - **Hindi** daily check (draft) beside Telugu; `CONTRIBUTING.md` with a 30-minute guide to add a language.

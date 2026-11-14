@@ -5,6 +5,7 @@ import { oneWayMin } from "../engine/horizons";
 import type { Baselines, CheckResult, ContextTag, DayRecord, Indicator, Symptom } from "../engine/types";
 import { INDICATORS } from "../engine/types";
 import type { HEvent, OutboxMessage, Profile, Settings } from "./events";
+import type { EyeCheck } from "../engine/eyes";
 
 export interface AppState {
   profile?: Profile;
@@ -16,6 +17,8 @@ export interface AppState {
   cmoAlerts: { ts: string; checkId: string; reason: string }[];
   tags: Record<string, ContextTag[]>;
   symptoms: Record<string, Symptom[]>;
+  /** Weekly eye checks (SANS), oldest first. */
+  eyeChecks: EyeCheck[];
   eventCount: number;
 }
 
@@ -24,7 +27,7 @@ export const DEFAULT_SETTINGS: Settings = { reminderHour: 7 };
 export function project(events: HEvent[]): AppState {
   const s: AppState = {
     settings: { ...DEFAULT_SETTINGS }, checks: [], days: [], baselines: {}, outbox: [], cmoAlerts: [],
-    tags: {}, symptoms: {}, eventCount: events.length,
+    tags: {}, symptoms: {}, eyeChecks: [], eventCount: events.length,
   };
   const dayMap = new Map<string, DayRecord>();
   for (const e of events) {
@@ -51,6 +54,7 @@ export function project(events: HEvent[]): AppState {
       case "MessageQueued": s.outbox.push(e.message); break;
       case "CmoAlerted": s.cmoAlerts.push({ ts: e.ts, checkId: e.checkId, reason: e.reason }); break;
       case "ReadingRecorded": break;
+      case "EyeCheckRecorded": s.eyeChecks.push(e.check); break;
     }
   }
   s.checks.sort((a, b) => a.ts.localeCompare(b.ts));
