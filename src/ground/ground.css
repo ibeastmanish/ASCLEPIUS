@@ -44,3 +44,34 @@ table.gs-table td.why { color: var(--ink-2); min-width: 220px; }
 .gs-hash { font-family: var(--mono); font-size: 12px; overflow-wrap: anywhere; }
 .gs .btn { min-height: 44px; }
 @media (max-width: 520px) { table.gs-table td.why { min-width: 180px; } .gs-count { font-size: 18px; } }
+
+/* Flight surgeon reply: composer + message thread */
+.gs-reply { border: 1px solid var(--hair); border-radius: var(--r, 0); background: var(--panel-2, var(--field)); padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.gs-reply-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 10px 16px; }
+.gs-reply-head h4 { font-size: 20px; letter-spacing: -0.01em; margin: 4px 0 0; }
+.gs-reply-eta { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; color: var(--accent); background: var(--page); border: 1px solid var(--hair); }
+.gs-reply-eta svg, .gs-pill svg { width: 15px; height: 15px; }
+.gs-thread { display: flex; flex-direction: column; gap: 10px; }
+.gs-bubble { align-self: flex-end; max-width: min(100%, 640px); background: var(--accent); color: var(--accent-ink, #fff); border-radius: 18px 18px 4px 18px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.gs-bubble-text { margin: 0; font-size: 16px; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.gs-bubble-status { display: flex; flex-direction: column; gap: 6px; }
+.gs-bubble-status .muted { color: inherit; opacity: 0.8; }
+.gs-bubble .gs-bar { background: rgba(255, 255, 255, 0.25); margin-top: 0; border-radius: 3px; }
+.gs-bubble .gs-bar > span { background: currentColor; }
+.gs-pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 800; letter-spacing: 0.04em; background: rgba(255, 255, 255, 0.18); }
+.gs-pill.ok { background: var(--green); color: #00210f; }
+.gs-bubble-copy { align-self: flex-start; color: inherit; border-color: currentColor; min-height: 36px !important; padding: 6px 12px; font-size: 13px; }
+.gs-compose { background: var(--page); border: 1px solid var(--hair); border-radius: var(--r-sm, 0); padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.gs-compose:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent); }
+.gs-quick { display: flex; flex-wrap: wrap; gap: 8px; }
+.gs-chip { border: 1px solid var(--hair); background: var(--field); color: var(--ink); border-radius: 999px; padding: 7px 12px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; min-height: 36px; }
+.gs-chip:hover { border-color: var(--accent); color: var(--accent); }
+.gs-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.gs-compose-field { display: block; }
+.gs-msg { width: 100%; min-height: 96px; border: 0; background: transparent; color: var(--ink); font: inherit; font-size: 16px; line-height: 1.5; resize: vertical; padding: 4px 2px; }
+.gs-msg:focus { outline: none; }
+.gs-msg::placeholder { color: var(--ink-3); }
+.gs-compose-foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px; border-top: 1px solid var(--hair); padding-top: 10px; }
+.gs-tools summary { cursor: pointer; font-size: 13px; color: var(--ink-3); }
+.gs-tools[open] { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+@media (max-width: 520px) { .gs-compose-foot .btn { width: 100%; } .gs-bubble { max-width: 100%; } }

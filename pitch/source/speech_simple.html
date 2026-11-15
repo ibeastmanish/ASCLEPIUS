@@ -49,6 +49,14 @@ p{margin:0 0 10px}
 <li>Each warning has an "act by" time: 10 min for red, 1–4 h for patterns, up to a day for yellow. Answer well before → "Earth guides". Just in time → "act, Earth confirms". Too late, or Sun blackout → "crew decides".</li>
 <li>The Ground Station page holds each message until the real light time has passed (×60 speed-up for the demo) and shows the doctor exactly what the astronaut saw.</li></ul></div>
 <div class="tech" style="border-left-color:#2EC27E"><b class="h" style="color:#1b7a4c">How the message to Earth is protected (if asked)</b>
+<p style="margin:2px 0 6px"><b>In one breath:</b></p>
+<ul style="margin-bottom:8px">
+<li><b>ECDH P-256:</b> the two sides agree on a secret key without ever sending it.</li>
+<li><b>AES-GCM:</b> locks the message with that secret key.</li>
+<li><b>ECDSA P-256:</b> the signature, which proves who sent it.</li>
+<li><b>SHA-256:</b> a fingerprint of the message and the rules, to show nothing was changed.</li>
+</ul>
+<p style="margin:2px 0 6px"><b>Step by step:</b></p>
 <ul>
 <li><b>1 · Sign (who sent it).</b> The tablet has its own secret signing key. It signs every message with ECDSA (P-256). If even one letter is changed, the signature check fails. That's how the doctor knows it's really from the crew and wasn't altered.</li>
 <li><b>2 · Encrypt (who can read it).</b> The message is locked with the ground station's <i>public</i> key (ECDH key agreement + AES-256-GCM). Only the ground station's <i>private</i> key can open it, and that key never exists on the tablet.</li>
@@ -76,9 +84,10 @@ p{margin:0 0 10px}
 <li>The mistake: one row (crew C003, draw L-92) was missing a value, so everything after it was shifted one column. Our Python script detects it, moves it back, and checks the percentages add up. Anyone can re-run it with "npm run proof".</li>
 <li>Limits: 4 people, a 3-day flight, no tests during the flight; MCV stayed low months later in 3 crew, so a lab change may be part of it.</li></ul></div>
 
-<h2>Slide 7 · Impact</h2>
+<h2>Slide 7 · Two-way link and impact</h2>
+<p>And Earth can answer back. On the Ground Station, the flight surgeon writes advice, signs it, and it travels back to Mars with the same real delay. The crew's tablet checks the signature before it shows the reply.</p>
 <p>And here's the thing: this isn't only a space problem. Near Warangal, some villages are hours away from a doctor. A delay is a delay, whether it's light from Mars or a three-hour bus ride. So the same app works there too, and the daily check is in Telugu and Hindi.</p>
-<p>And as far as I could find, there's no public NASA tool that does this. NASA's own plans say crews must decide when Earth is too far away. ASCLEPIUS turns that idea into numbers, and its Autonomy Forecast shows, day by day, when the crew will be on its own. Out of about sixty projects in this challenge, I didn't find another one that does it.</p>
+<p>And as far as I could find, there's no public NASA tool that does this. NASA's own plans say crews must decide when Earth is too far away. ASCLEPIUS turns that idea into numbers, and its Autonomy Forecast shows, day by day, when the crew will be on its own. Other projects mention the delay; ASCLEPIUS calculates it for every single day of the mission.</p>
 <p>ASCLEPIUS works offline, it's open source, and you can try it on your phone right now.</p>
 <p>Medicine for when Earth is too far away. Thank you!</p>
 <div class="tech"><b class="h">Technical, if asked</b>

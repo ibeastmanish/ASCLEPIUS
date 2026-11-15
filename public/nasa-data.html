@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NASA Data · ASCLEPIUS</title>
+<meta name="description" content="Every NASA data source ASCLEPIUS uses, what it gives the app, and where it appears.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root { --bg:#000; --panel:#0c0d10; --line:#1f232c; --ink:#fff; --ink2:#c9d1df; --mute:#8a93a5; --red:#FC3D21; --blue:#6FA3FF; --green:#2EC27E; --yellow:#FFC72C; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--ink); font-family:"Helvetica Neue",Helvetica,Arial,sans-serif; line-height:1.55; -webkit-font-smoothing:antialiased; }
+  a { color:var(--blue); text-decoration:none; overflow-wrap:anywhere; }
+  a:hover { text-decoration:underline; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  header { padding:96px 0 64px; border-bottom:1px solid var(--line); }
+  .ey { font-size:13px; font-weight:700; letter-spacing:.32em; text-transform:uppercase; color:var(--red); }
+  .ey b { color:#fff; margin-right:12px; }
+  h1 { font-size:clamp(44px,7vw,84px); line-height:1; letter-spacing:-.035em; font-weight:800; margin-top:22px; }
+  .lede { font-size:clamp(18px,2.2vw,22px); color:var(--ink2); max-width:720px; margin-top:24px; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:32px; margin-top:56px; }
+  .stat b { display:block; font-size:clamp(40px,5vw,56px); font-weight:800; letter-spacing:-.04em; line-height:1; }
+  .stat span { display:block; color:var(--mute); font-size:15px; margin-top:8px; }
+  section { padding:72px 0 8px; }
+  h2 { font-size:clamp(26px,3vw,34px); letter-spacing:-.02em; font-weight:800; }
+  .sec-sub { color:var(--mute); margin-top:8px; font-size:16px; }
+  .list { display:grid; gap:20px; margin-top:32px; }
+  .src { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:28px 30px; display:grid; grid-template-columns:56px 1fr; gap:6px 22px; }
+  .n { grid-row:1 / span 3; font:700 14px/1 ui-monospace,Menlo,monospace; color:var(--mute); padding-top:8px; }
+  .src h3 { font-size:22px; letter-spacing:-.01em; }
+  .src h3 small { display:block; font-size:14px; font-weight:500; color:var(--mute); letter-spacing:0; margin-top:4px; }
+  .src p { color:var(--ink2); font-size:16.5px; margin-top:10px; }
+  .src p b { color:#fff; }
+  .use { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .use span { font-size:13px; font-weight:700; padding:6px 12px; border-radius:999px; border:1px solid #2c3240; color:#dfe5ef; }
+  .link { margin-top:16px; font-size:15px; }
+  .tag { display:inline-block; font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; padding:4px 9px; border-radius:999px; margin-left:10px; vertical-align:middle; }
+  .t-res { color:var(--green); border:1px solid var(--green); }
+  .t-data { color:var(--blue); border:1px solid var(--blue); }
+  .note { border-left:3px solid var(--red); padding:4px 0 4px 18px; margin-top:16px; color:var(--ink2); font-size:16px; }
+  footer { margin-top:88px; padding:40px 0 72px; border-top:1px solid var(--line); color:var(--mute); font-size:14px; }
+  footer p + p { margin-top:8px; }
+  @media (max-width:600px) { header { padding:64px 0 48px; } .src { grid-template-columns:1fr; padding:22px; } .n { grid-row:auto; padding:0; } }
+  .lh { font-size:18px; letter-spacing:.2em; text-transform:uppercase; color:var(--red); margin-top:44px; }
+  .lines { margin-top:16px; padding-left:28px; display:grid; gap:14px; color:var(--ink2); font-size:16.5px; }
+  .lines li::marker { color:var(--mute); font-family:ui-monospace,Menlo,monospace; font-size:14px; }
+  .lines a { font-size:14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="ey"><b>ASCLEPIUS</b>NASA Space Apps 2026</div>
+    <h1>The NASA data<br>behind ASCLEPIUS.</h1>
+    <p class="lede">Every NASA source the app uses, what it gives the app, and where you can see it. Real NASA data drives the light delay, the blackout and the proof; the crew in the demo is simulated.</p>
+    <div class="stats">
+      <div class="stat"><b>22</b><span>NASA resources</span></div>
+      <div class="stat"><b>19</b><span>partner and other resources</span></div>
+      <div class="stat"><b>4/4</b><span>Inspiration4 crew, real blood data</span></div>
+      <div class="stat"><b>1</b><span>error found and reported to NASA OSDR</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>Data the app computes with</h2>
+    <p class="sec-sub">Downloaded, processed and checked. Provenance for every file (URL, time, size, SHA-256) is in <code>data/manifest.json</code>.</p>
+    <div class="list">
+
+      <article class="src"><div class="n">01</div><div>
+        <h3>NASA JPL Horizons <span class="tag t-data">Dataset</span><small>Mars (499) as seen from Earth (500@399), quantities 20 and 23, daily, Nov 2026 – Dec 2029</small></h3>
+        <p>Gives the <b>real one-way light time</b> for every day (11.0 min on 14 Nov 2026) and the <b>Sun blackout of 8 Mar – 3 Apr 2028</b>, when the Sun sits between Earth and Mars.</p>
+        <div class="use"><span>Earth Reply Clock</span><span>Autonomy Forecast</span><span>Outbox arrival times</span><span>Ground Station delay</span><span>Light-time spiral</span></div>
+        <p class="link"><a href="https://ssd.jpl.nasa.gov/horizons/">ssd.jpl.nasa.gov/horizons</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">02</div><div>
+        <h3>NASA OSDR · OSD-569 and OSD-575 <span class="tag t-data">Dataset</span><small>SpaceX Inspiration4 crew: complete blood count and metabolic panel</small></h3>
+        <p>The app's own "personal normal" rule was run on the four crew members' pre-flight blood tests. The day after landing, <b>all 4 had a red-cell size (MCV) below their own lowest pre-flight value</b>, while all 4 stayed inside the standard 80–100 fL range. 16 of 34 markers have an index of individuality under 0.6.</p>
+        <p class="note">We found that row C003 L-92 in the blood-count file is shifted by one column. We corrected it in a documented script, kept the original untouched, and reported it to the NASA OSDR team on 13 Nov 2026.</p>
+        <div class="use"><span>Proof screen</span><span>npm run proof</span></div>
+        <p class="link"><a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-569">OSD-569</a> · <a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-575">OSD-575</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">03</div><div>
+        <h3>NASA GISS Mars24 <span class="tag t-data">Algorithm</span><small>Allison &amp; McEwen (2000) Mars time</small></h3>
+        <p>Mars local time for the crew's morning check, and the <b>sol drift</b>: a Mars day is 39.6 min longer, so the crew's morning slides in and out of Houston's shift.</p>
+        <div class="use"><span>Earth Reply Clock</span><span>Autonomy Forecast</span></div>
+        <p class="link"><a href="https://www.giss.nasa.gov/tools/mars24/">giss.nasa.gov/tools/mars24</a></p>
+      </div></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Challenge resources and standards</h2>
+    <p class="sec-sub">The NASA resources listed on the challenge page, plus the standards behind each health rule.</p>
+    <div class="list">
+
+      <article class="src"><div class="n">04</div><div>
+        <h3>NASA HRP · 5 Hazards of Human Spaceflight <span class="tag t-res">Challenge resource</span></h3>
+        <p>Every body-map card names its hazard. The Reply Clock is built on <b>Distance from Earth</b>; the Crew Pulse cabin rule on <b>Hostile/Closed Environments</b>.</p>
+        <div class="use"><span>Body map cards</span><span>Reply Clock</span><span>Crew Pulse</span></div>
+        <p class="link"><a href="https://www.nasa.gov/hrp/hazards/">nasa.gov/hrp/hazards</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">05</div><div>
+        <h3>NASA HRP · Risks of Human Spaceflight <span class="tag t-res">Challenge resource</span></h3>
+        <p>25 guidance cards link to 9 HRP risks, such as cardiovascular adaptations, immune responses, nutrition, sleep and teamwork. A test checks that every card names a real risk.</p>
+        <div class="use"><span>Guidance cards</span><span>Automated test</span></div>
+        <p class="link"><a href="https://www.nasa.gov/hrp/risks/">nasa.gov/hrp/risks</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">06</div><div>
+        <h3>NASA HRP · Ongoing HRP Research in Space <span class="tag t-res">Challenge resource</span></h3>
+        <p>Artemis II <b>Standard Measures</b> shaped the fixed six-reading daily check. The Artemis II well-being and sleep study and the Immune Biomarkers study inform Crew Pulse's sleep and infection rules.</p>
+        <div class="use"><span>Daily check</span><span>Crew Pulse</span></div>
+        <p class="link"><a href="https://www.nasa.gov/hrp/ongoing-hrp-research/">nasa.gov/hrp/ongoing-hrp-research</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">07</div><div>
+        <h3>NASA-STD-3001 <span class="tag t-res">Standard</span><small>Vol 1 Rev C and Vol 2 Rev F</small></h3>
+        <p>Cited rule by rule: the <b>cabin CO2 limit of 3 mmHg</b> [V2 6004], the 8.5 h sleep period [V1 6001], private medical communication [V1 6002], behavioural health, hypothermia and orthostatic intolerance.</p>
+        <div class="use"><span>rules.json</span><span>Crew Pulse</span><span>Sleep rules</span></div>
+        <p class="link"><a href="https://standards.nasa.gov/">standards.nasa.gov</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">08</div><div>
+        <h3>NASA OCHMO-TB-004 · Carbon Dioxide <span class="tag t-res">Technical brief</span></h3>
+        <p>Headaches reported at 2.8–4.5 mmHg CO2. This is the basis of the Crew Pulse rule "several crew with headaches on the same day: check the cabin air first".</p>
+        <div class="use"><span>Crew Pulse</span></div>
+        <p class="link"><a href="https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-004-carbon-dioxide.pdf">OCHMO-TB-004 (PDF)</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">09</div><div>
+        <h3>NASA Earth-Independent Medical Operations <span class="tag t-res">Concept of operations</span><small>NTRS 20250000009</small></h3>
+        <p>NASA's concept says crews far from Earth must make medical decisions on their own. ASCLEPIUS gives that idea numbers: <b>when</b> Earth can still help, and when it can't.</p>
+        <div class="use"><span>Earth Reply Clock</span><span>Autonomy Forecast</span></div>
+        <p class="link"><a href="https://ntrs.nasa.gov/citations/20250000009">ntrs.nasa.gov/citations/20250000009</a></p>
+      </div></article>
+
+      <article class="src"><div class="n">10</div><div>
+        <h3>NASA public-domain images <span class="tag t-res">Images</span></h3>
+        <p>Mars (NASA/JPL/USGS, PIA00407), Blue Marble (Apollo 17, AS17-148-22727), Earthrise (Apollo 8) and an ISS crew blood draw, used in the deck and banners. No AI-generated images.</p>
+        <p class="link"><a href="https://photojournal.jpl.nasa.gov/catalog/PIA00407">PIA00407</a> · <a href="https://images.nasa.gov">images.nasa.gov</a></p>
+      </div></article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Space agency partner</h2>
+    <div class="list">
+      <article class="src"><div class="n">CSA</div><div>
+        <h3>Canadian Space Agency · Monitoring Radiation for Astronaut Health <span class="tag t-res">Challenge resource</span></h3>
+        <p>Linked from the radiation hazard card as further reading. ASCLEPIUS does not measure radiation; we left it out on purpose to keep the daily check focused on six readings.</p>
+        <p class="link"><a href="https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp">asc-csa.gc.ca</a></p>
+      </div></article>
+    </div>
+  </section>
+  <section id="all">
+    <h2>All resources, line by line</h2>
+    <p class="sec-sub">The same links as in our Space Apps submission.</p>
+    <h3 class="lh">NASA data · 22</h3>
+    <ol class="lines">
+      <li>NASA JPL Horizons System: Earth–Mars distance and light time, 2026–2029<br><a href="https://ssd.jpl.nasa.gov/horizons/">https://ssd.jpl.nasa.gov/horizons/</a></li>
+      <li>NASA JPL Horizons API: daily light-time and Sun-angle data used by the app<br><a href="https://ssd.jpl.nasa.gov/api/horizons.api">https://ssd.jpl.nasa.gov/api/horizons.api</a></li>
+      <li>NASA OSDR OSD-569: Inspiration4 crew Complete Blood Count<br><a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-569">https://osdr.nasa.gov/bio/repo/data/studies/OSD-569</a></li>
+      <li>NASA OSDR OSD-575: Inspiration4 crew Comprehensive Metabolic Panel<br><a href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-575">https://osdr.nasa.gov/bio/repo/data/studies/OSD-575</a></li>
+      <li>OSD-569 data file: LSDS-7 Complete Blood Count (CSV)<br><a href="https://osdr.nasa.gov/geode-py/ws/studies/OSD-569/download?source=datamanager&amp;file=LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv">https://osdr.nasa.gov/geode-py/ws/studies/OSD-569/download?source=datamanager&amp;file=LSDS-7_Complete_Blood_Count_CBC_TRANSFORMED.csv</a></li>
+      <li>OSD-575 data file: LSDS-8 Comprehensive Metabolic Panel (CSV)<br><a href="https://osdr.nasa.gov/geode-py/ws/studies/OSD-575/download?source=datamanager&amp;file=LSDS-8_Comprehensive_Metabolic_Panel_CMP_TRANSFORMED.csv">https://osdr.nasa.gov/geode-py/ws/studies/OSD-575/download?source=datamanager&amp;file=LSDS-8_Comprehensive_Metabolic_Panel_CMP_TRANSFORMED.csv</a></li>
+      <li>NASA Open Science Data Repository (OSDR), where we reported the data error<br><a href="https://science.nasa.gov/biological-physical/data/osdr/">https://science.nasa.gov/biological-physical/data/osdr/</a></li>
+      <li>Our corrected OSD-569 blood data (shifted row fixed)<br><a href="https://github.com/ibeastmanish/ASCLEPIUS/blob/main/data/derived/cbc_corrected.csv">https://github.com/ibeastmanish/ASCLEPIUS/blob/main/data/derived/cbc_corrected.csv</a></li>
+      <li>NASA GISS Mars24 Sunclock: Mars time<br><a href="https://www.giss.nasa.gov/tools/mars24/">https://www.giss.nasa.gov/tools/mars24/</a></li>
+      <li>NASA GISS Mars24 algorithm (used for sol drift)<br><a href="https://www.giss.nasa.gov/tools/mars24/help/algorithm.html">https://www.giss.nasa.gov/tools/mars24/help/algorithm.html</a></li>
+      <li>NASA-STD-3001 Space Flight Human-System Standard, Vol 1 &amp; 2 (NASA Technical Standards)<br><a href="https://standards.nasa.gov/">https://standards.nasa.gov/</a></li>
+      <li>NASA Office of the Chief Health and Medical Officer (OCHMO)<br><a href="https://www.nasa.gov/ochmo/">https://www.nasa.gov/ochmo/</a></li>
+      <li>NASA OCHMO-TB-004: Carbon Dioxide technical brief (cabin-air rule)<br><a href="https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-004-carbon-dioxide.pdf">https://www.nasa.gov/wp-content/uploads/2023/12/ochmo-tb-004-carbon-dioxide.pdf</a></li>
+      <li>NASA Human Research Program<br><a href="https://www.nasa.gov/hrp/">https://www.nasa.gov/hrp/</a></li>
+      <li>NASA HRP: 5 Hazards of Human Spaceflight<br><a href="https://www.nasa.gov/hrp/hazards/">https://www.nasa.gov/hrp/hazards/</a></li>
+      <li>NASA HRP: Risks of Human Spaceflight<br><a href="https://www.nasa.gov/hrp/risks/">https://www.nasa.gov/hrp/risks/</a></li>
+      <li>NASA HRP: Ongoing Research<br><a href="https://www.nasa.gov/hrp/ongoing-hrp-research/">https://www.nasa.gov/hrp/ongoing-hrp-research/</a></li>
+      <li>NASA NTRS 20250000009: Earth-Independent Medical Operations<br><a href="https://ntrs.nasa.gov/citations/20250000009">https://ntrs.nasa.gov/citations/20250000009</a></li>
+      <li>NASA Space Apps 2026 challenge: Health Monitoring Software for Astronauts<br><a href="https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/">https://www.spaceappschallenge.org/2026/challenges/health-monitoring-software/</a></li>
+      <li>NASA image: Mars, PIA00407 (NASA/JPL/USGS)<br><a href="https://photojournal.jpl.nasa.gov/catalog/PIA00407">https://photojournal.jpl.nasa.gov/catalog/PIA00407</a></li>
+      <li>NASA image: Blue Marble, Apollo 17 AS17-148-22727<br><a href="https://images.nasa.gov/details/as17-148-22727">https://images.nasa.gov/details/as17-148-22727</a></li>
+      <li>NASA image: Earthrise, Apollo 8 AS08-14-2383<br><a href="https://images.nasa.gov/details/as08-14-2383">https://images.nasa.gov/details/as08-14-2383</a></li>
+    </ol>
+    <h3 class="lh">Space agency partner and other data · 19</h3>
+    <ol class="lines">
+      <li>Canadian Space Agency (CSA): Monitoring Radiation for Astronaut Health<br><a href="https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp">https://www.asc-csa.gc.ca/eng/news/articles/2026/2026-02-26-monitoring-radiation-astronaut-health.asp</a></li>
+      <li>Rooney et al. 2019: Herpes virus reactivation in astronauts (Frontiers in Microbiology)<br><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6374706">https://pmc.ncbi.nlm.nih.gov/articles/PMC6374706</a></li>
+      <li>2017 ACC/AHA blood pressure guideline (terrestrial reference)<br><a href="https://doi.org/10.1161/HYP.0000000000000065">https://doi.org/10.1161/HYP.0000000000000065</a></li>
+      <li>American Diabetes Association Standards of Care (glucose ranges)<br><a href="https://professional.diabetes.org/standards-of-care">https://professional.diabetes.org/standards-of-care</a></li>
+      <li>AASM/SRS adult sleep duration recommendation (Watson et al. 2015)<br><a href="https://doi.org/10.5664/jcsm.4758">https://doi.org/10.5664/jcsm.4758</a></li>
+      <li>HL7 FHIR: health data export format<br><a href="https://hl7.org/fhir/">https://hl7.org/fhir/</a></li>
+      <li>LOINC: standard codes for lab and vital-sign readings<br><a href="https://loinc.org">https://loinc.org</a></li>
+      <li>Web Crypto API: on-device encryption and signatures (MDN)<br><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API">https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API</a></li>
+      <li>React (open source, MIT)<br><a href="https://react.dev">https://react.dev</a></li>
+      <li>TypeScript (open source, Apache-2.0)<br><a href="https://www.typescriptlang.org">https://www.typescriptlang.org</a></li>
+      <li>Vite (open source, MIT)<br><a href="https://vite.dev">https://vite.dev</a></li>
+      <li>Vite PWA plugin: offline app (MIT)<br><a href="https://vite-pwa-org.netlify.app">https://vite-pwa-org.netlify.app</a></li>
+      <li>Dexie.js: encrypted local database (Apache-2.0)<br><a href="https://dexie.org">https://dexie.org</a></li>
+      <li>Recharts: health charts (MIT)<br><a href="https://recharts.org">https://recharts.org</a></li>
+      <li>Vitest: 162 automated tests (MIT)<br><a href="https://vitest.dev">https://vitest.dev</a></li>
+      <li>fast-check: property-based testing (MIT)<br><a href="https://fast-check.dev">https://fast-check.dev</a></li>
+      <li>Python: NASA data processing<br><a href="https://www.python.org">https://www.python.org</a></li>
+      <li>Playwright + FFmpeg: demo video recording and editing<br><a href="https://playwright.dev">https://playwright.dev</a></li>
+      <li>Claude Code (AI coding assistant, disclosed in Use of AI)<br><a href="https://www.anthropic.com/claude-code">https://www.anthropic.com/claude-code</a></li>
+    </ol>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><a href="./">Open the app</a> · <a href="ground.html">Ground Station</a> · <a href="https://github.com/ibeastmanish/ASCLEPIUS">Code and data on GitHub</a></p>
+    <p>Rebuild the app data from the raw NASA files: <code>npm run data</code> and <code>npm run proof</code>. Crew data in the demo is simulated and labelled. Decision support, not a medical device.</p>
+    <p>Team ASCLEPIUS · Tula Manish · Warangal, India</p>
+  </div>
+</footer>
+</body>
+</html>

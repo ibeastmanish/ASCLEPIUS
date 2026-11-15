@@ -508,6 +508,7 @@ function Snapshot({ row, replies, station, tofu, now, onReply, onReplay }: {
   const [sending, setSending] = useState(false);
   const [copied, setCopied] = useState("");
   useEffect(() => { void groundRulesHash().then(setRulesHash); }, []);
+  async function send() { setSending(true); try { await onReply(text.trim()); setText(""); } finally { setSending(false); } }
 
   const results: SnapResult[] = Array.isArray(s.results)
     ? (s.results as SnapResult[])
@@ -581,22 +582,63 @@ function Snapshot({ row, replies, station, tofu, now, onReply, onReplay }: {
       )}
       {symptoms.length > 0 && <p className="small"><b>Symptoms reported:</b> {symptoms.join(", ").replace(/_/g, " ")}</p>}
 
-      <div className="stack" style={{ gap: 8 }}>
-        <span className="label">Flight surgeon reply</span>
-        {replies.map((r) => <SentReply key={r.id} r={r} now={now} onCopy={() => void copyText(JSON.stringify(r), `${r.id}.json`).then(setCopied)} />)}
-        {copied && <span className="small muted" role="status">{copied}</span>}
-        <label className="field"><span>Advice to the crew (signed with the station key, arrives one light time later)</span>
-          <textarea className="gs-ta" maxLength={600} value={text} onChange={(e) => setText(e.target.value)} /></label>
-        <div className="row">
-          <button className="btn btn-primary" disabled={!text.trim() || sending} onClick={async () => { setSending(true); await onReply(text); setText(""); setSending(false); }}>
-            <span aria-hidden="true">{G.send}</span>Sign and send reply
-          </button>
-          <button className="btn" onClick={onReplay}>Replay test: re-send this packet</button>
+      <div className="gs-reply" aria-label="Flight surgeon reply">
+        <div className="gs-reply-head">
+          <div>
+            <span className="label">Flight surgeon reply</span>
+            <h4>Reply to {String(s.name ?? row.packet.name)}</h4>
+          </div>
+          {earth && (
+            <span className="gs-reply-eta">
+              <span aria-hidden="true">{G.send}</span>
+              {earth.blackout ? <>Held until the Sun blackout ends</> : <>Reaches Mars in {fmtMinutes(earth.oneWayMin)}</>}
+            </span>
+          )}
         </div>
+
+        {replies.length > 0 && (
+          <div className="gs-thread">
+            {replies.map((r) => <SentReply key={r.id} r={r} now={now} onCopy={() => void copyText(JSON.stringify(r), `${r.id}.json`).then(setCopied)} />)}
+            {copied && <span className="small muted" role="status">{copied}</span>}
+          </div>
+        )}
+
+        <div className="gs-compose">
+          <div className="gs-quick" role="group" aria-label="Quick replies">
+            {QUICK_REPLIES.map((q) => (
+              <button key={q.label} type="button" className="gs-chip" onClick={() => setText(q.text)}>{q.label}</button>
+            ))}
+          </div>
+          <label className="gs-compose-field">
+            <span className="sr-only">Advice to the crew</span>
+            <textarea className="gs-msg" maxLength={600} value={text} placeholder="Write advice for the crew…"
+              onChange={(e) => setText(e.target.value)}
+              onKeyDown={(e) => { if ((e.metaKey || e.ctrlKey) && e.key === "Enter" && text.trim() && !sending) { e.preventDefault(); void send(); } }} />
+          </label>
+          <div className="gs-compose-foot">
+            <span className="small muted">Signed with the station key · arrives one light time later · {text.length}/600</span>
+            <button className="btn btn-primary" disabled={!text.trim() || sending} onClick={() => void send()}>
+              <span aria-hidden="true">{G.send}</span>{sending ? "Signing…" : "Sign and send reply"}
+            </button>
+          </div>
+        </div>
+
+        <details className="gs-tools">
+          <summary>Security test</summary>
+          <p className="small muted">Re-send this exact packet to check that the console rejects a replayed message.</p>
+          <button className="btn" onClick={onReplay}>Replay test: re-send this packet</button>
+        </details>
       </div>
     </div>
   );
 }
+
+const QUICK_REPLIES: { label: string; text: string }[] = [
+  { label: "Agree, recheck", text: "I agree with the crew's action. Continue the steps and send a new check in 15 minutes." },
+  { label: "Rest today", text: "Rest today and avoid hazardous tasks. Send your normal check tomorrow morning." },
+  { label: "Recheck in 1 h", text: "Please repeat the readings in 1 hour and send a new check so I can see the trend." },
+  { label: "CMO to call", text: "CMO, please contact me at the next communication window to talk this through." },
+];
 
 function SentReply({ r, now, onCopy }: { r: DsnReply; now: number; onCopy: () => void }) {
   const body = useMemo(() => {
@@ -605,17 +647,23 @@ function SentReply({ r, now, onCopy }: { r: DsnReply; now: number; onCopy: () =>
   if (!body) return null;
   const at = replyReleaseAt(r, body.oneWayMin);
   const left = at - now;
+  const total = (body.oneWayMin * 60000) / Math.max(1, r.warp);
+  const pct = Math.max(0, Math.min(100, 100 - (left / Math.max(1, total)) * 100));
+  const done = left <= 0;
   return (
-    <div className="banner banner-ok" style={{ margin: 0 }}>
-      <span className="bi" aria-hidden="true">{left > 0 ? G.send : G.check}</span>
-      <span className="stack" style={{ gap: 4 }}>
-        <span>&ldquo;{body.text}&rdquo;</span>
-        <span className="small muted">
-          Signed by the station · {left > 0 ? <>reaches the crew in <b>{fmtHold(left)}</b></> : <>reached the crew</>} · light time back {fmtMinutes(body.oneWayMin)}
-          {" "}· answer {fmtMinutes(body.answerAfterMin)} after the crew sent it{r.warp > 1 && <> · time warp ×{r.warp}</>}
+    <div className={`gs-bubble${done ? " done" : ""}`}>
+      <p className="gs-bubble-text">{body.text}</p>
+      <div className="gs-bubble-status">
+        <span className={`gs-pill ${done ? "ok" : "go"}`}>
+          <span aria-hidden="true">{done ? G.check : G.send}</span>
+          {done ? "Delivered to the crew" : <>In transit to Mars · {fmtHold(left)}</>}
         </span>
-        <span><button className="btn btn-ghost" onClick={onCopy}>Copy reply for the crew tablet</button></span>
-      </span>
+        {!done && <div className="gs-bar" aria-hidden="true"><span style={{ width: `${pct}%` }} /></div>}
+        <span className="small muted">
+          Signed by the station · light time {fmtMinutes(body.oneWayMin)} · answer {fmtMinutes(body.answerAfterMin)} after the crew sent it{r.warp > 1 && <> · time warp ×{r.warp}</>}
+        </span>
+      </div>
+      <button className="btn btn-ghost gs-bubble-copy" onClick={onCopy}>Copy reply for the crew tablet</button>
     </div>
   );
 }
