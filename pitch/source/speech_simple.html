@@ -10,27 +10,45 @@ p{margin:0 0 10px}
 .tech b.h{display:block;color:#0B3D91;font-size:9.5pt;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
 .tech ul{margin:0;padding-left:18px}.tech li{margin:2px 0}
 .oneline{border:2px solid #111;border-radius:6px;padding:10px 14px;margin-top:18px;font-size:12.5pt;break-inside:avoid}
+.cue{color:#888;font-style:italic;font-size:11pt;margin:-4px 0 10px}
+h2 .t{float:right;color:#888;letter-spacing:.06em;font-size:10pt;font-weight:600}
+.tips{background:#fff6e0;border-left:4px solid #FFC72C;border-radius:4px;padding:8px 12px;font-size:11.5pt;margin:0 0 6px}
+.say{font-size:15.5pt;line-height:1.75}
 </style></head><body>
 <h1>ASCLEPIUS · Pitch speech</h1>
-<p class="sub">Presented by Tula Manish · Team ASCLEPIUS · Warangal. About 3 minutes. Say the normal text out loud. The grey boxes are for you: use them only if a judge asks a technical question.</p>
+<p class="sub">Tula Manish · Team ASCLEPIUS · Warangal. <b>5 minutes.</b> One short sentence per line, so you never lose your place. Grey lines are reminders. The boxes are only for judges' questions.</p>
+<div class="tips"><b>Say these slowly:</b> ASCLEPIUS = <b>ass-KLEE-pee-us</b> · Inspiration Four (say "Four", not "4")<br>
+<b>If you stumble:</b> stop, breathe, and say the line again slowly. Nobody minds. You know this project better than anyone in the room.<br>
+<b>Pace:</b> one breath per line. Pause at every grey line. Look up at the judges between lines.</div>
 
-<h2>Slide 1 · Cover</h2>
-<p>So basically, my project is about helping astronauts take care of their health when their doctor is millions of kilometres away. It's an offline health app that runs on the crew's tablet on Mars. I'm Tula Manish from Warangal, and it's called ASCLEPIUS.</p>
-<p>Imagine you're an astronaut on Mars. You wake up one morning and something feels off. Your heart's racing a bit, you didn't sleep well. Who do you ask?</p>
+<h2>Slide 1 · Cover <span class="t">0:00 – 0:30</span></h2>
+<p class="say">Hi everyone.<br>I'm Tula Manish, from Warangal.</p>
+<p class="cue">(pause)</p>
+<p class="say">Let me start with a question.<br>Imagine you're an astronaut on Mars.<br>You wake up, and something feels wrong.<br>Your heart is racing. You hardly slept.<br>You want to ask a doctor.<br>But the closest doctor is on Earth.</p>
+<p class="cue">(pause)</p>
+<p class="say">That's the problem I worked on.<br>My project is called ASCLEPIUS.<br>Medicine for when Earth is too far away.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>It's a web app (PWA) built with React and TypeScript. After the first load it installs on the tablet and works fully offline: no server, no internet.</li>
 <li>Two parts: the crew tablet app, and a separate Ground Station page for the flight surgeon on Earth.</li></ul></div>
 
-<h2>Slide 2 · The problem</h2>
-<p>On Earth, you'd just see a doctor. But on Mars, your doctor is on Earth. A message takes anywhere from 4 to 22 minutes to get there, and the same again to come back. And in 2028, the Sun gets in the way and you can't talk to Earth at all for 27 days.</p>
-<p>There's another problem too. A heart rate of 74 is totally normal for most people. But if your normal is somewhere around 52 to 62, then 74 means something's wrong. A regular health app wouldn't catch that.</p>
+
+<h2>Slide 2 · The problem <span class="t">0:30 – 1:10</span></h2>
+<p class="say">Here's why it's hard.<br>A message from Mars takes up to twenty-two minutes to reach Earth.<br>The answer takes just as long to come back.</p>
+<p class="cue">(pause)</p>
+<p class="say">And in 2028, it gets worse.<br>The Sun moves between Earth and Mars.<br>For twenty-seven days, you can't reach Earth at all.</p>
+<p class="cue">(pause)</p>
+<p class="say">There's a second problem too.<br>Normal is personal.<br>A heart rate of seventy-four is fine for most people.<br>But if yours is usually in the fifties, seventy-four is a warning.<br>A normal health chart would miss that.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>The delays are real: we downloaded the Earth–Mars light time and the Sun angle for every day from Nov 2026 to Dec 2029 from NASA JPL Horizons. 11.0 minutes on 14 Nov 2026.</li>
 <li>The 27-day blackout (8 Mar – 3 Apr 2028) is when the Sun–Earth–Mars angle is under 3°.</li></ul></div>
 
-<h2>Slide 3 · How it works</h2>
-<p>So I built ASCLEPIUS.</p>
-<p>Every morning, the astronaut does a quick one-minute check: blood pressure, heart rate, blood sugar, temperature, sleep and mood. The app checks each one against the normal range for adults, and against that astronaut's own normal. Whichever one looks worse, that's the answer. Green, yellow or red, on a body map. And you can tap any colour to see exactly why. No AI guessing, just clear rules.</p>
+
+<h2>Slide 3 · How it works <span class="t">1:10 – 1:55</span></h2>
+<p class="say">So here's what my app does.<br>Every morning, the astronaut spends one minute on six things.<br>Blood pressure. Heart rate. Blood sugar.<br>Temperature. Sleep. And mood.<br>These are the six the challenge asks for.</p>
+<p class="cue">(pause)</p>
+<p class="say">The app checks each one twice.<br>Once against the normal adult range.<br>And once against that person's own normal.<br>It learns that normal in the first week.</p>
+<p class="cue">(pause)</p>
+<p class="say">Then it shows a body map. Green, yellow or red.<br>Tap any colour, and it tells you why.<br>No AI makes the health decisions.<br>Just clear rules you can check.<br>And it all works offline.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>A rules engine runs in a web worker (a background thread) so the screen never freezes. A full check takes about 1 ms.</li>
 <li>Each reading passes 5 checks in order: is it possible → is it an emergency → normal for adults → normal for you → is it a trend. Then patterns (e.g. short sleep + high heart rate + low mood = "fatigue"). Worst colour wins.</li>
@@ -38,16 +56,57 @@ p{margin:0 0 10px}
 <li>All thresholds live in one file, rules.json, each with an ID and a source: NASA-STD-3001 where NASA gives a number, standard medical guidelines (ACC/AHA, ADA) where it doesn't. Every card also names its NASA HRP hazard and risk.</li>
 <li>Data is saved on the tablet (IndexedDB) and encrypted with AES-256. The key comes from the passphrase through PBKDF2 with 600,000 rounds.</li></ul></div>
 
-<h2>Slide 4 · Earth Reply Clock</h2>
-<p>Now here's the part I'm most proud of. I call it the Earth Reply Clock. Every time something looks wrong, the app asks one simple question: can Earth answer before you need to act?</p>
-<p>Say your blood sugar drops dangerously low. Earth's fastest possible reply is 27 minutes. But you need to act in 10. So the app tells you straight: don't wait for Earth. Your crew decides now, and Earth checks in later.</p>
-<p>And the warning that goes to Earth is locked. The tablet signs it, so Earth knows it really came from the crew. It encrypts it, so only the ground station can read it. And every message is padded to the same size, so no one watching the radio link can even tell an emergency from a normal day.</p>
-<p>Then it travels: from the tablet to the base radio station, up to a relay spacecraft orbiting Mars, across space to NASA's Deep Space Network dishes on Earth, and on to the flight surgeon's Ground Station. In my demo the radio link is simulated, but the delay is real, from NASA's JPL data.</p>
+
+<h2>Slide 4 · Earth Reply Clock <span class="t">1:55 – 2:50</span></h2>
+<p class="say">Now, this is the part I'm proudest of.<br>I call it the Earth Reply Clock.<br>When something looks wrong, the app asks one question.<br>Can Earth answer before you have to act?</p>
+<p class="cue">(point at the red bar)</p>
+<p class="say">Here's an example.<br>Your blood sugar drops very low.<br>NASA's distance data says Earth needs at least twenty-seven minutes to reply.<br>Maybe an hour, if the doctor is off shift.<br>But you have to act in ten.<br>So the app tells you straight.<br>Don't wait. Your crew decides now.<br>Earth checks it later.</p>
+<p class="cue">(pause)</p>
+<p class="say">I didn't stop at one day.<br>I ran it for every day of the mission, up to 2029.<br>So the crew knows ahead of time when they'll be on their own.<br>They get a month's warning to prepare.</p>
 <div class="tech"><b class="h">Technical, if asked</b>
 <ul><li>Earth's answer time = light time to Earth + doctor's reply time + light time back. Example: 11 + 5 + 11 = 27 min. If the surgeon is off shift and has to be paged: 11 + 30 + 11 = 52 min.</li>
 <li>Whether the surgeon is on shift depends on the time in Houston. A Mars day is 39.6 minutes longer than an Earth day (NASA's Mars24 formula), so the crew's morning keeps drifting against Houston's clock.</li>
 <li>Each warning has an "act by" time: 10 min for red, 1–4 h for patterns, up to a day for yellow. Answer well before → "Earth guides". Just in time → "act, Earth confirms". Too late, or Sun blackout → "crew decides".</li>
-<li>The Ground Station page holds each message until the real light time has passed (×60 speed-up for the demo) and shows the doctor exactly what the astronaut saw.</li></ul></div>
+<li>The Ground Station page holds each message until the real light time has passed (×60 speed-up for the demo) and shows the doctor exactly what the astronaut saw.</li><li>Autonomy Forecast: the same clock run for all 1,157 days from 1 Nov 2026 to 31 Dec 2029 at the crew's morning check. Emergencies are always the crew's call; a 4-hour problem: Earth guides on 605 days, crew decides on 461; fully alone for 27 days (8 Mar – 3 Apr 2028), with a checklist from 30 days before.</li></ul></div>
+
+<h2>Slide 5 · Crew Pulse <span class="t">2:50 – 3:25</span></h2>
+<p class="say">I also built something for the crew's medical officer.<br>It's called Crew Pulse.<br>It looks at the whole crew, not just one person.</p>
+<p class="cue">(pause)</p>
+<p class="say">If one person has a headache, that's about them.<br>But if three out of four get headaches on the same day?<br>It's probably not the people.<br>It's the air.<br>So the app says, check the air first.<br>And if a fever moves from one person to the next, it warns about a possible infection.</p>
+<div class="tech"><b class="h">Technical, if asked</b>
+<ul><li>It looks at all four crew over the last 7 days, with four rules:</li>
+<li>Same complaint, 2+ people, same day → the cabin. Compared with NASA's CO2 limit of 3 mmHg (NASA-STD-3001); headaches start around 2.8 mmHg (NASA OCHMO).</li>
+<li>Fever in one person, then another 1–3 days later → possible infection (NASA HRP: spaceflight can wake up dormant viruses).</li>
+<li>Whole crew sleeping under 6 h for 3 days → a schedule problem. Only one person → about them.</li>
+<li>Mood scores are never shown to the medical officer. The other three crew in the demo are simulated.</li></ul></div>
+
+
+<h2>Slide 6 · Proof on real NASA data <span class="t">3:25 – 4:10</span></h2>
+<p class="say">I didn't want to just say that your own normal matters.<br>I wanted to test it on real astronauts.<br>So I used NASA's blood tests from the four Inspiration Four crew members.</p>
+<p class="cue">(pause)</p>
+<p class="say">The day after they landed, all four looked normal on the standard chart.<br>But compared with their own numbers from before the flight, all four had changed.</p>
+<p class="cue">(pause)</p>
+<p class="say">While I was working with that file, I found a mistake in NASA's data.<br>One row was shifted by a column.<br>I fixed it, and I reported it to NASA.<br>To be fair, that's only four people.<br>So it supports the idea. It doesn't prove it.</p>
+<div class="tech"><b class="h">Technical, if asked</b>
+<ul><li>Data: NASA's Open Science Data Repository, study OSD-569 (Inspiration4 blood counts). We looked at red blood cell size (MCV): all 4 crew were inside the 80–100 range but below their own lowest pre-flight value.</li>
+<li>16 of 34 blood markers vary much more between people than within one person, which is exactly when a personal range beats a population range.</li>
+<li>The mistake: one row (crew C003, draw L-92) was missing a value, so everything after it was shifted one column. Our Python script detects it, moves it back, and checks the percentages add up. Anyone can re-run it with "npm run proof".</li>
+<li>Limits: 4 people, a 3-day flight, no tests during the flight; MCV stayed low months later in 3 crew, so a lab change may be part of it.</li></ul></div>
+
+
+<h2>Slide 7 · Two-way link and impact <span class="t">4:10 – 5:00</span></h2>
+<p class="say">One last thing.<br>Earth can answer back.<br>The doctor on Earth reads the report, and writes back.<br>That reply travels to Mars with the same real delay.<br>Every message is locked and signed.<br>So nobody can read it, or fake it, on the way.</p>
+<p class="cue">(pause)</p>
+<p class="say">And this isn't only a space problem.<br>Near Warangal, where I live, some villages are hours from a doctor.<br>A delay is a delay.<br>Light from Mars, or a three-hour bus ride.<br>So the same app works there too, in Telugu and Hindi.</p>
+<p class="cue">(pause)</p>
+<p class="say">It's live right now. You can try it on your phone.</p>
+<p class="cue">(slow down)</p>
+<p class="say"><b>ASCLEPIUS.<br>Medicine for when Earth is too far away.<br>Thank you.</b></p>
+<div class="tech"><b class="h">Technical, if asked</b>
+<ul><li>Clinic mode (Settings): the Reply Clock uses travel time to the doctor and clinic hours instead of light time and the surgeon's shift. Same maths.</li>
+<li>Telugu and Hindi are draft translations, waiting for native speakers to check them; anyone can add a language in about 30 minutes (CONTRIBUTING.md).</li>
+<li>Open source (MIT licence), 162 automated tests, including "property tests" that throw thousands of random inputs at the engine to prove things like "chest pain is always red".</li></ul></div>
+
 <div class="tech" style="border-left-color:#2EC27E"><b class="h" style="color:#1b7a4c">How the message to Earth is protected (if asked)</b>
 <p style="margin:2px 0 6px"><b>In one breath:</b></p>
 <ul style="margin-bottom:8px">
@@ -67,33 +126,6 @@ p{margin:0 0 10px}
 <li><b>The proof it works:</b> automated tests change one bit, forge a signature with a fake key, and replay an old message. All three are caught.</li>
 </ul></div>
 
-<h2>Slide 5 · Crew Pulse</h2>
-<p>I also built something for the crew's medical officer, called Crew Pulse. If one person has a headache, that's about them. But if three out of four people get headaches on the same day, it's probably not the people. It's the air. So the app tells them to check the carbon dioxide first.</p>
-<div class="tech"><b class="h">Technical, if asked</b>
-<ul><li>It looks at all four crew over the last 7 days, with four rules:</li>
-<li>Same complaint, 2+ people, same day → the cabin. Compared with NASA's CO2 limit of 3 mmHg (NASA-STD-3001); headaches start around 2.8 mmHg (NASA OCHMO).</li>
-<li>Fever in one person, then another 1–3 days later → possible infection (NASA HRP: spaceflight can wake up dormant viruses).</li>
-<li>Whole crew sleeping under 6 h for 3 days → a schedule problem. Only one person → about them.</li>
-<li>Mood scores are never shown to the medical officer. The other three crew in the demo are simulated.</li></ul></div>
-
-<h2>Slide 6 · Proof on NASA data</h2>
-<p>And I wanted to prove the "your own normal" idea actually matters, so I tested it on real NASA data: blood tests from the four Inspiration4 astronauts. The day after they landed, all four looked normal on the standard chart. But compared to their own numbers from before the flight, all four had changed. While doing that, I even found a mistake in NASA's data file, fixed it, and reported it to NASA. To be fair, that's only four people, so it backs up the idea, it doesn't prove it.</p>
-<div class="tech"><b class="h">Technical, if asked</b>
-<ul><li>Data: NASA's Open Science Data Repository, study OSD-569 (Inspiration4 blood counts). We looked at red blood cell size (MCV): all 4 crew were inside the 80–100 range but below their own lowest pre-flight value.</li>
-<li>16 of 34 blood markers vary much more between people than within one person, which is exactly when a personal range beats a population range.</li>
-<li>The mistake: one row (crew C003, draw L-92) was missing a value, so everything after it was shifted one column. Our Python script detects it, moves it back, and checks the percentages add up. Anyone can re-run it with "npm run proof".</li>
-<li>Limits: 4 people, a 3-day flight, no tests during the flight; MCV stayed low months later in 3 crew, so a lab change may be part of it.</li></ul></div>
-
-<h2>Slide 7 · Two-way link and impact</h2>
-<p>And Earth can answer back. On the Ground Station, the flight surgeon writes advice, signs it, and it travels back to Mars with the same real delay. The crew's tablet checks the signature before it shows the reply.</p>
-<p>And here's the thing: this isn't only a space problem. Near Warangal, some villages are hours away from a doctor. A delay is a delay, whether it's light from Mars or a three-hour bus ride. So the same app works there too, and the daily check is in Telugu and Hindi.</p>
-<p>And as far as I could find, there's no public NASA tool that does this. NASA's own plans say crews must decide when Earth is too far away. ASCLEPIUS turns that idea into numbers, and its Autonomy Forecast shows, day by day, when the crew will be on its own. Other projects mention the delay; ASCLEPIUS calculates it for every single day of the mission.</p>
-<p>ASCLEPIUS works offline, it's open source, and you can try it on your phone right now.</p>
-<p>Medicine for when Earth is too far away. Thank you!</p>
-<div class="tech"><b class="h">Technical, if asked</b>
-<ul><li>Clinic mode (Settings): the Reply Clock uses travel time to the doctor and clinic hours instead of light time and the surgeon's shift. Same maths.</li>
-<li>Telugu and Hindi are draft translations, waiting for native speakers to check them; anyone can add a language in about 30 minutes (CONTRIBUTING.md).</li>
-<li>Open source (MIT licence), 162 automated tests, including "property tests" that throw thousands of random inputs at the engine to prove things like "chest pain is always red".</li></ul></div>
 
 <h2>What makes ASCLEPIUS special</h2>
 <p>Say this if a judge asks "how is this different?" or "doesn't this already exist?"</p>
